@@ -2,11 +2,17 @@ import React, { useState } from "react"
 import "./navbar.css"
 import ham from "./assets/ham.png"
 import { useHistory } from 'react-router-dom';
+import ContactInfoCard from "./components/ContactInfoCard"
 
 function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [cartCount, setCartCount] = useState(0)
   const [resmenu, setresmenu] = useState("none")
+  const [showComponent, setShowComponent] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowComponent(true);
+  };
 
   const handleCartClick = () => {
     setIsCartOpen(true)
@@ -113,7 +119,10 @@ function Navbar() {
                   <div className="cart-inner">
                     <button onClick={handleCloseClick}>Close</button>
                     <p>Items in cart: {cartCount}</p>
-                    <button className="checkout">Checkout</button>
+                    <div><button className="checkout" onClick={handleButtonClick}><a href="">Checkout</a>
+                    </button>
+                    {showComponent && <ContactInfoCard />}
+                    </div>
                   </div>
                 </div>
               </div>

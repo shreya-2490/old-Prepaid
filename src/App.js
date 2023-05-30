@@ -4,7 +4,7 @@ import About from "./AboutUsdt";
 import Skills from "./Skills";
 import Offers from "./Offers";
 import Projects from "./Projects";
-import Experience from "./Experience";
+import Faq from "./Faq";
 import Footer from "./Footer";
 import Navbar from "./navbar";
 
@@ -18,7 +18,7 @@ function App() {
       <Skills />
       <Offers />
       <Projects />
-      <Experience />
+      <Faq />
       <Footer />
     </div>
   );

@@ -1,54 +1,125 @@
-import React, { useState } from "react";
-import "./projects.css";
+import React, { useState } from "react"
+import "./projects.css"
+import { Typography, Collapse, Button } from "antd"
+
+const { Paragraph } = Typography
+const { Panel } = Collapse
 
 function Projects() {
-  const [projects, setProjects] = useState([
-    {
-      name: "Whatapp Clone",
-      description: "ReactJs, Redux, JavaScript, FireBase, Css",
-      view: "https://whatsapp-clone-b608b.web.app/",
-    },
-    {
-      name: "Covid-19 tracker",
-      description: "ReactJs, JavaScript, Html, Css,",
-      view: "https://covid-19-tracker-59515.web.app/",
-    },
-  ]);
+  const [expanded, setExpanded] = useState(false)
 
+  const handleReadMoreClick = () => {
+    setExpanded(!expanded)
+  }
   return (
-    <div className="projects" id="projectss">
-      {/* <div className="projects-header">
-        <img src={coding}></img>
-        <h1 style={{ textAlign: "center", color: "white" }}>
-          Personal <span style={{ color: "orange" }}>Projects</span>
-        </h1>
-      </div>
-      <div className="projects-content">
-        {projects.map((data) => {
-          return (
-            <Tilt className="tiles">
-              <h2 style={{}}>{data.name}</h2>
-              <div style={{ width: "90%", margin: "auto" }}>
-                {" "}
-                <p
-                  style={{
-                    fontSize: "15px",
-                    color: "white",
-                    width: "100%",
-                  }}
+    <div className="main-section">
+      <section>
+        <div className="section-box">
+          <h1 className="section-heading">Guide on how to buy USDT (USDT)</h1>
+          <div className="section-content-box">
+            <div className="section-content">
+              <p>Buy USDT with credit/debit card</p>
+              <p>
+                Buy USDT with your VISA, MasterCard, or ApplePay credit cards on
+                OKX. Simply enter the amount of USDT you wish to purchase in
+                your preferred currency and complete payment using your desired
+                credit card.
+              </p>
+              <Collapse bordered={false}>
+                <Panel
+                  header={
+                    <Button
+                      type="link"
+                      style={{
+                        backgroundColor: "white",
+                        color: "black",
+                        textDecoration: "underline",
+                      }}
+                      onClick={handleReadMoreClick}
+                    >
+                      Read More
+                    </Button>
+                  }
+                  key="1"
                 >
-                  TechStack: {data.description}
-                </p>
-              </div>
-              <a href={data.view} target="_blank">
-                <button>View</button>
-              </a>
-            </Tilt>
-          );
-        })}
-      </div> */}
+                  <Paragraph
+                    ellipsis={{
+                      rows: 2,
+                      expandable: true,
+                      symbol: "",
+                    }}
+                    onClick={handleReadMoreClick}
+                  >
+                    Purchase USDT instantly from our peer-to-peer (P2P) Market
+                  </Paragraph>
+                  <Paragraph>
+                    Navigate to our escrow-powered peer-to-peer trading window
+                    and purchase USDT tokens directly from trusted sellers using
+                    40 payment methods.
+                  </Paragraph>
+                  <Paragraph>Buy USDT with bank transfer</Paragraph>
+                  <Paragraph>
+                    {" "}
+                    OKX supports all major payment methods, including bank
+                    transfers. To purchase USDT using your bank account, enter
+                    the amount of USDT you wish to buy with your local currency,
+                    and complete the payment using a bank transfer.
+                  </Paragraph>
+                  <Paragraph>Swap your crypto for USDT</Paragraph>
+                  <Paragraph>
+                    {" "}
+                    OKX Convert allows you to instantly swap BTC, ETH, SOL, and
+                    MATIC among other cryptocurrencies for USDT at zero fees. To
+                    convert your crypto to USDT, select the cryptocurrency you
+                    wish to exchange and complete the swap.
+                  </Paragraph>
+                </Panel>
+              </Collapse>
+            </div>
+          </div>
+          <div className="section-table"></div>
+          <ul className="listing">
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+            <li className="list-item">
+              <a href="">SOL TO USD</a>{" "}
+            </li>
+          </ul>
+        </div>
+      </section>
     </div>
-  );
+  )
 }
 
-export default Projects;
+export default Projects
