@@ -1,0 +1,40 @@
+.about {
+  position: relative;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+.main{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.about .about-header img {
+  width: 62px;
+  margin-right: 10px;
+}
+ .about-sider img {
+  width: 413px;
+  margin-right: 10px;
+  margin-left: 24px;
+}
+.about .about-header h1 {
+  font-weight: bolder;
+  font-size: 35px;
+}
+.about-header {
+  display: flex;
+  align-items: center;
+  margin: 50px 50px 0px 50px;
+
+}
+.about-content {
+   font-size: 16px;
+    margin-top: 20px;
+    text-align: left;
+    margin-left: 50px;
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+
+
