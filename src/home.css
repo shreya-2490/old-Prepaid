@@ -43,7 +43,7 @@
   height: 70px;
   /* background-color: white; */
   border: none;
-  width: 253px;
+  width: 353px;
   font-size: 27px;
   font-weight: bold;
   cursor: pointer;
@@ -52,7 +52,7 @@
 .buttons .sell{
   height: 70px;
   border: none;
-  width: 243px;
+  width: 343px;
   font-size: 27px;
   font-weight: bold;
   cursor: pointer;

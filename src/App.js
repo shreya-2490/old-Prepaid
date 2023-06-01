@@ -1,4 +1,5 @@
 import "./App.css";
+import { BrowserRouter as Router, Switch, Routes, Route, Link, Redirect } from 'react-router-dom';
 import Home from "./Home";
 import About from "./AboutUsdt";
 import Skills from "./Skills";
@@ -7,19 +8,41 @@ import Projects from "./Projects";
 import Faq from "./Faq";
 import Footer from "./Footer";
 import Navbar from "./navbar";
+import Checkout from "./components/Checkout";
 
 function App() {
 
   return (
     <div className="App">
-      <Navbar/>
-      <Home/>
-      <About/>
-      <Skills />
-      <Offers />
-      <Projects />
-      <Faq />
-      <Footer />
+       <Router>
+      <Routes>
+        <Route path="/" element={<Navbar />} />
+      </Routes>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+      </Routes>
+      <Routes>
+        <Route path="/" element={<About />} />
+      </Routes>
+      <Routes>
+        <Route path="/" element={<Skills />} />
+      </Routes>
+      <Routes>
+        <Route path="/" element={<Offers />} />
+      </Routes>
+      <Routes>     
+        <Route path="/" element={<Projects />} />
+      </Routes>
+      <Routes>
+        <Route path="/" element={<Faq/>}/>
+      </Routes>
+      <Routes>
+            <Route path="/" element={<Footer />} />
+      </Routes>
+      <Routes>
+        <Route path="/contact" element={<Checkout />} />
+      </Routes>
+    </Router>
     </div>
   );
 }

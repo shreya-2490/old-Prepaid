@@ -1,0 +1,124 @@
+.checkout-main{
+    padding-bottom: 30px;
+    background-color: #F8FAF9;
+    min-height: calc(100vh - 64px);
+    isolation: isolate;
+    margin-top: 20px;
+}
+
+.twocards{
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(min-content,480px) 1fr;
+    grid-gap: 20px;
+    width: 100%;
+}
+.custom-card .ant-card-head-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+.custom-link{
+  font-size: 15px;
+  color: black;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.custom-link:hover{
+    color:black;
+}
+.custom-para{
+    font-size: 17px;
+    padding: 5px 10px 10px 0px;
+}
+.custom-tooltip{
+    display: flex;
+    align-items: center;
+}
+.custom-bottom-para{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.BTC{
+    font-size: 17px;
+    line-height: 1.5;
+}
+.custom-upper-para{
+    margin: -24px 0px 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.swiggy{
+    font-size: 15px;
+    font-weight: 600;
+    margin: 2px 0px 0px 0px;
+}
+.value{
+    font-weight: 400;
+    margin-top:3px;
+}
+.select-box{
+    display: flex;
+    align-items: center;
+}
+.select{
+    margin: 0px 22px 0px 0px;
+}
+.se-box{
+    display: flex;
+    flex-direction: column;
+}
+.Contact-title .ant-card-head-title{
+    font-size: 30px;
+    font-weight: 600;
+    padding: 30px 30px 1px 0px;
+}
+.Contact-title{
+    padding:0px 20px 0px 20px;
+}
+.checkbox{
+    display: flex;
+    align-items: center;
+    color: #6A716E;
+
+}
+.email-box{
+    border:1px solid rgb(159, 159, 159);
+    border-radius: 5px;
+    width:470px;
+    padding: 5px;
+    font-size: 15px;
+    color:black;
+
+}
+.email{
+    font-size: 15px;
+    margin-top: 20px;
+    color: #6A716E;
+}
+.custom-para2{
+   margin:  -25px 0px 10px 0px;
+}
+.payment-btn{
+    padding: 0 84px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    background-color: orangered;
+    margin: 0;
+    min-height: 46px;
+    font-size: 20px;
+}
+.payment{
+    display: block;
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    min-height:24px;
+    text-align: left;
+}
