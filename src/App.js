@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import "./App.css";
 import { BrowserRouter as Router, Switch, Routes, Route, Link, Redirect } from 'react-router-dom';
 import Home from "./Home";
@@ -9,6 +10,7 @@ import Faq from "./Faq";
 import Footer from "./Footer";
 import Navbar from "./navbar";
 import Checkout from "./components/Checkout";
+
 
 function App() {
 
@@ -41,7 +43,8 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/contact" element={<Checkout />} />
-      </Routes>
+        </Routes>
+     
     </Router>
     </div>
   );
