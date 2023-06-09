@@ -10,6 +10,7 @@ import Faq from "./Faq";
 import Footer from "./Footer";
 import Navbar from "./navbar";
 import Checkout from "./components/Checkout";
+import Login from './components/Login';
 
 
 function App() {
@@ -42,9 +43,11 @@ function App() {
             <Route path="/" element={<Footer />} />
       </Routes>
       <Routes>
-        <Route path="/contact" element={<Checkout />} />
+        <Route path="/checkout" element={<Checkout />} />
         </Routes>
-     
+        <Routes>
+        <Route path="/login" element={<Login/>} />
+        </Routes>
     </Router>
     </div>
   );

@@ -1,37 +1,31 @@
-*{
-  font-family: inherit;
+* {
+  font-family: "Alata", Sans-serif;
 }
-.header-two{
+.header {
+  background-image: url("./assets/background.jpg");
+  background-size: cover;
+}
+.header-two {
   display: flex;
   flex-direction: column;
 }
-.sub-header{
-display: flex;
-align-items: center;
-justify-content: space-between;
-box-shadow: 0 4px 8px 0 rgba(57, 56, 56, 0.1);
-position: relative;
-top: 40px; 
-left: 0;
-width: 100%;
-background-color: #f2f2f2;
+.logo img {
+  width: 185px;
+  padding: 9px;
+  margin-left: 41px;
 }
-.sub-header-heading{
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 20px;
-  padding: 30px 20px 20px 20px; 
+.user{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px;
 }
-.subheader.fixed {
-  position: fixed;
-  top: 0;
-  z-index: 1;
+.user .anticon{
+  margin-right: 10px;
 }
 .header {
   height: 60px;
-  background-color: rgb(8, 7, 7);
   position: -webkit-sticky;
-  box-shadow: 0 4px 8px 0 rgba(244, 243, 243, 0.2);
   display: flex;
   justify-content: space-between;
   z-index: 100;
@@ -60,6 +54,7 @@ background-color: #f2f2f2;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  font-size: 14px;
 }
 .header .left > a {
   color: rgb(255, 255, 255);
@@ -111,13 +106,12 @@ background-color: #f2f2f2;
   transform: translate3d(49px, 62px, 0px);
   min-width: max-content;
   z-index: 100;
-
 }
-.cart-inner{
+.cart-inner {
   background-color: white;
   width: 341px;
   border-radius: 12px;
-  box-shadow: 0 3px 6px rgb(0 0 0/15%),0 2px 4px rgb(0 0 0/12%);
+  box-shadow: 0 3px 6px rgb(0 0 0/15%), 0 2px 4px rgb(0 0 0/12%);
   color: black;
   overflow: hidden;
   opacity: 1;
@@ -142,24 +136,24 @@ background-color: #f2f2f2;
   color: black;
 }
 
-.cart-header{
+.cart-header {
   display: flex;
-    flex-direction: row;
-    padding: 16px;
-    text-decoration: none;
-    gap: 12px;
-    color: black;
+  flex-direction: row;
+  padding: 16px;
+  text-decoration: none;
+  gap: 12px;
+  color: black;
 }
-.checkout{
+.checkout {
   padding: 10px;
   text-align: center;
   background-color: red;
   margin: 30px;
   border: none;
   border-radius: 20px;
-  box-shadow: 0 3px 6px rgb(0 0 0/15%),0 2px 4px rgb(0 0 0/12%);
+  box-shadow: 0 3px 6px rgb(0 0 0/15%), 0 2px 4px rgb(0 0 0/12%);
 }
-.checkout a{
+.checkout a {
   text-decoration: none;
   color: #f2f2f2;
 }
