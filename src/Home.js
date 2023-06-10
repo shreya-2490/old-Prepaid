@@ -1,13 +1,22 @@
 import { useState } from "react"
 import { Select, Space } from "antd"
 import { Link } from "react-router-dom"
-import usdt from "./assets/img.webp"
+import dollar from "./assets/dollar.png"
+import bitcoin from "./assets/bitcoin.png"
 import ReactTypingEffect from "react-typing-effect"
 import "./home.css"
 
 const Home = ({ addToCart }) => {
-  const handleChange = (value) => {
-    console.log(` ${value}`, "shreya")
+  const [bitcoinAmount, setBitcoinAmount] = useState("")
+  const [usdAmount, setUSDAmount] = useState("")
+
+  const handleBitcoinChange = (event) => {
+    const { value } = event.target
+    setBitcoinAmount(value)
+    // Calculate equivalent USD amount
+    const exchangeRate = 25706.5 // Replace with actual exchange rate
+    const equivalentUSD = value * exchangeRate
+    setUSDAmount(equivalentUSD)
   }
 
   function fetchCryptoPrices() {
@@ -22,22 +31,14 @@ const Home = ({ addToCart }) => {
   // Update crypto currency prices in the ticker
   function updateCryptoPrices(prices) {
     document.getElementById(
-      "us"
+      "bitcoin"
     ).textContent = `Bitcoin: $${prices.bitcoin.usd}`
     document.getElementById(
-      "ethereum"
+      "usd"
     ).textContent = `Ethereum: $${prices.ethereum.usd}`
-    document.getElementById(
-      "litecoin"
-    ).textContent = `Litecoin: $${prices.litecoin.usd}`
-    document.getElementById(
-      "dogecoin"
-    ).textContent = `Dogecoin: $${prices.dogecoin.usd}`
   }
-
-  // Fetch crypto prices initially and update every 5 seconds
   fetchCryptoPrices()
-  setInterval(fetchCryptoPrices, 5000)
+  setInterval(fetchCryptoPrices, 1000)
 
   const originalHeadingText = "Buy USDT in a few steps"
   const [title, setTitle] = useState(originalHeadingText)
@@ -83,12 +84,13 @@ const Home = ({ addToCart }) => {
           <span className="effect-text">
             <ReactTypingEffect
               typingDelay={1000}
-              eraseDelay={2000}
-              eraseSpeed={50}
+              eraseDelay={1000}
+              eraseSpeed={100}
               speed={50}
               text={[" Visa", "Mastercard", "Amex"]}
             />
           </span>
+          <br />
           Prepaid Card
         </h1>
         <span className="subtitle">
@@ -98,7 +100,9 @@ const Home = ({ addToCart }) => {
           worldwide.
         </span>
         <div className="learn-more-btn">
-          <Link to="/"><button>Learn More</button></Link>
+          <Link to="/">
+            <button>Learn More</button>
+          </Link>
         </div>
       </div>
       <div className="sider">
@@ -150,60 +154,25 @@ const Home = ({ addToCart }) => {
                               step="1"
                               max="9007199254740991"
                               type="number"
+                              value={bitcoinAmount}
+                              onChange={handleBitcoinChange}
                             ></input>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="second-gray">
-                      <button type="button" className="second-gray-1">
-                        <span className="second-btn-content">
-                          <span>
-                            <div className="items">
-                              <Space wrap>
-                                <Select
-                                  className="dropdown-1"
-                                  id="us"
-                                  defaultValue="Bitcoin"
-                                  style={{
-                                    width: "91px",
-                                    marginLeft: "-10px",
-                                  }}
-                                  onChange={handleChange}
-                                  options={[
-                                    {
-                                      image: usdt,
-                                      value: "Bitcoin",
-                                      label: "Bitcoin",
-                                    },
-                                    {
-                                      value: "Ethereum",
-                                      label: "Ethereum",
-                                    },
-                                    {
-                                      value: "Litecoin",
-                                      label: "Litecoin",
-                                    },
-                                    {
-                                      value: "Dogecoin",
-                                      label: "Dogecoin",
-                                    },
-                                  ]}
-                                />
-                              </Space>
-                              {/* <picture className="usdt-pic">
-                                <img src={usdt}></img>
-                              </picture> */}
-                              {/* <span className="dropdown-1">USDT</span> */}
-                            </div>
-                          </span>
-                        </span>
-                      </button>
+                      <div className="items">
+                        <picture className="usdt-pic">
+                          <img src={bitcoin}></img>
+                        </picture>
+                        <span className="dropdown-1">Bitcoin</span>
+                      </div>
                     </div>
                   </div>
                 </form>
                 <p
-                  id="us"
+                  id="bitcoin"
                   style={{
                     color: "#929292",
                     marginLeft: "15px",
@@ -212,9 +181,7 @@ const Home = ({ addToCart }) => {
                     lineHeight: "16ox",
                     display: "inline",
                   }}
-                >
-                  83-8,200,000 INR
-                </p>
+                ></p>
               </div>
               <div>
                 <form>
@@ -228,35 +195,29 @@ const Home = ({ addToCart }) => {
                               id="numericInput"
                               inputmode="decimal"
                               placeholder="0.00"
-                              min="0"
                               name="quoteAmount"
                               autocomplete="off"
                               step="1"
                               max="9007199254740991"
                               type="number"
+                              value={usdAmount}
                             ></input>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="second-gray">
-                      <button type="button" className="second-gray-1">
-                        <span className="second-btn-content">
-                          <span>
-                            <div className="items">
-                              <picture className="usdt-pic">
-                                <img src={usdt}></img>
-                              </picture>
-                              <span className="dropdown-1">USDT</span>
-                            </div>
-                          </span>
-                        </span>
-                      </button>
+                      <div className="items">
+                        <picture className="usdt-pic">
+                          <img src={dollar}></img>
+                        </picture>
+                        <span className="dropdown-1">USD</span>
+                      </div>
                     </div>
                   </div>
                 </form>
                 <p
-                  id="us1"
+                  id="usd"
                   style={{
                     color: "#929292",
                     marginLeft: "15px",
@@ -265,10 +226,9 @@ const Home = ({ addToCart }) => {
                     lineHeight: "16ox",
                     display: "inline",
                   }}
-                >
-                  1 USDT ≈ 88.96 INR
-                </p>
+                ></p>
                 <div>
+                  <Link to='/checkout'>
                   <button
                     className="buy-usdt"
                     type="button"
@@ -276,6 +236,7 @@ const Home = ({ addToCart }) => {
                   >
                     Buy USDT
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>

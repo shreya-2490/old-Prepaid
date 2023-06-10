@@ -1,43 +1,77 @@
-import React from "react";
-import "./about.css";
-import Usdt from "./assets/img.webp";
-import okx from "./assets/img2.png"
+import React from "react"
+import "./about.css"
+import amount from "./assets/amount.gif"
+import bitcoin from "./assets/bitcoin.gif"
+import prepaid from "./assets/prepaid.gif"
+import email from "./assets/email.gif"
+import { Card } from "antd"
+import { ArrowRightOutlined } from "@ant-design/icons"
+const { Meta } = Card
 
 function About() {
   return (
-    <div className="main">
-    <div className="about" id="aboutt">
+    <div className="about-main">
       <div className="about-header">
-        <img src={Usdt}></img>
-        <h1>
-        What is USDT
-        </h1>
+        <h1>How it works?</h1>
       </div>
-      <div className="about-content">
-        <p>
-        Initially called Realcoin, Tether (USDT) was launched in 2014 by Brock Pierce, Reeve Collins, and Craig Sellars.
-         USDT is an Ethereum-based stablecoin that is supposed to be pegged and backed to the U.S. dollar.
-        </p><br/>
-        <p>
-        USDT tokens enable users to transact with fiat-like stability in the volatile crypto market.
-         Users can buy USDT and sell or trade cryptocurrencies using it without worrying about the price fluctuations of a typical crypto asset.
-        </p><br/>
-        <p>
-        Furthermore, USDT is a multi-blockchain asset. It is available on leading blockchains like Ethereum, Solana, Tron, Algorand, Avalanche, 
-        Bitcoin Cash’s Simple Ledger Protocol (SLP), EOS, Liquid Network, Omni, and more.
-        </p><br/>
-        <p>
-        USDT's price stability mechanism makes it a popular stablecoin choice among crypto traders who have a convenient way to conduct digital transactions 
-        without the worry of price and value fluctuations. All major cryptocurrencies have trading pairs with USDT. 
-        Therefore, you can access high liquidity transactions if you buy USDT.
-        </p>
-      </div>
-      </div>
-      <div className="about-sider">
-        <img src={okx}></img>
+      <div className="working-cards">
+        <div className="card-with-arrow">
+          <Card
+            className="work-card1"
+            cover={<img alt="amount" src={amount} className="wo-pic"/>}
+          >
+            <Meta
+              title="Enter Amount"
+              description="Choose the desired amount you want to load onto your prepaid card. Select the value that aligns with your spending needs and financial preferences."
+            />
+          </Card>
+          <div className="arrow">
+            <ArrowRightOutlined />
+          </div>
+        </div>
+        <div className="card-with-arrow">
+          <Card
+            className="work-card1"
+            cover={<img alt="email" src={email} className="wo-pic" />}
+          >
+            <Meta
+              title="Verify Email"
+              description="Provide your email address for verification. We prioritize security and ensure a smooth user experience. Check your inbox for a verification link and click on it to confirm your email."
+            />
+          </Card>
+          <div className="arrow">
+            <ArrowRightOutlined />
+          </div>
+        </div>
+        <div className="card-with-arrow">
+          <Card     
+            className="work-card1"
+            cover={<img alt="bitcoin" src={bitcoin} className="wo-pic" />}
+          >
+            <Meta
+              title="Pay Via BTC"
+              description="Pay for your prepaid card using Bitcoin (BTC). A unique BTC address will be generated for your transaction. Simply initiate the payment from your Bitcoin wallet by sending the exact amount to the provided address."
+            />
+          </Card>
+          <div className="arrow">
+            <ArrowRightOutlined />
+          </div>
+        </div>
+        <div className="card-with-arrow">
+          <Card
+            className="work-card1"
+            cover={<img alt="prepaid" src={prepaid} className="wo-pic" />}
+          >
+            <Meta
+              title="Pay Via BTC"
+              description="Pay for your prepaid card using Bitcoin (BTC). A unique BTC address will be generated for your transaction. Simply initiate the payment from your Bitcoin wallet by sending the exact amount to the provided address."
+            />
+          </Card>
+      
+        </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default About;
+export default About
