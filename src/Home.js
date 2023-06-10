@@ -84,9 +84,9 @@ const Home = ({ addToCart }) => {
           <span className="effect-text">
             <ReactTypingEffect
               typingDelay={1000}
-              eraseDelay={1000}
-              eraseSpeed={100}
-              speed={50}
+              eraseDelay={500}
+              eraseSpeed={200}
+              speed={30}
               text={[" Visa", "Mastercard", "Amex"]}
             />
           </span>
