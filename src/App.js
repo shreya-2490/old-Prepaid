@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Routes, Route, Link, Redirect } from 'react-router-dom';
 import Home from "./Home";
 import About from "./AboutUsdt";
-import Skills from "./Skills";
+import BulkCard from "./BulkCard";
 import Offers from "./Offers";
 import Projects from "./Projects";
 import Faq from "./Faq";
@@ -28,7 +28,7 @@ function App() {
         <Route path="/" element={<About />} />
       </Routes>
       <Routes>
-        <Route path="/" element={<Skills />} />
+        <Route path="/" element={<BulkCard />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Offers />} />
