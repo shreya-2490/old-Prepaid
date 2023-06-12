@@ -1,0 +1,59 @@
+.choose-section {
+  background-color: #ffffff;
+  text-align: center;
+  margin: 20px;
+}
+.choose-box {
+  box-sizing: border-box;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.choose-heading {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 132%;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+}
+.ex-pic {
+  width: 16% !important;
+  margin: auto;
+}
+
+.exchange-card {
+  width: 335px;
+  background: none;
+  border: none;
+  margin: 0px 10px;
+}
+.globe-card {
+  width: 200px;
+  height: 200px;
+}
+.diagram-card {
+  width: 200px;
+  height: 200px;
+}
+.choose-row1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+.exchange-card .ant-card-meta-description {
+  font-size: 13px;
+  color: #333333;
+  margin-top: 20px;
+}
+.choose-row2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+.choose-rows {
+  margin: 50px 10px 90px 10px;
+}

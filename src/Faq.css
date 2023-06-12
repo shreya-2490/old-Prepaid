@@ -1,5 +1,6 @@
 .Faq-main{
     padding: 0px 12px 120px 12px;
+    background-color: #F6F9FC;
 }
 .Faq-inner{
     box-sizing: border-box;
@@ -21,4 +22,5 @@
   .Accordion{
     width:62%;
     margin:auto;
+    color: black;
   }

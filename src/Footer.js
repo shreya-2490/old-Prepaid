@@ -1,47 +1,19 @@
-import React from "react";
+import React,{useRef} from "react";
 import "./footer.css";
-import loc from "./assets/location.png";
-import phone from "./assets/phone.png";
-import email from "./assets/email.png";
+import prepaidlogo from "./assets/logo.png"
+import { Link } from 'react-router-dom';
+import { UpCircleOutlined } from '@ant-design/icons';
 
 function Footer() {
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="footerr">
-      <div className="footer">
-        <div className="left">
-          <h3>Shreya</h3>
-          <p>
-            Thank you for visiting my website. I hope you liked it.Connect
-            with me over socials{" "}
-          </p>
-        </div>
-        <div className="right">
-          <h3>Contact Info</h3>
-          <div>
-            <img src={phone}></img>
-            <span>+91 8930400577</span>
-          </div>
-          <div>
-            <img src={email}></img>
-            <span>s07hreya@gmail.com</span>
-          </div>
-          <div>
-            <img src={loc}></img>
-            <span>Yamuna Nagar, Haryana, India</span>
-          </div>
-        </div>
-      </div>
-      <div style={{ borderTop: "1px solid gray" }}></div>
-      <h5
-        style={{
-          color: "white",
-          textAlign: "center",
-          margin: "0",
-          marginTop: "5px",
-        }}
-      >
-        Made by Shreya Garg
-      </h5>
+    <div className="footer">
+      <div className="prepaid-logo"><img src={prepaidlogo}></img></div>
+      <Link to="/" className="arrowhead" onClick={scrollToTop}><UpCircleOutlined /></Link>
     </div>
   );
 }

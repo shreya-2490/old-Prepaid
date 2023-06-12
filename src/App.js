@@ -5,7 +5,7 @@ import Home from "./Home";
 import About from "./AboutUsdt";
 import BulkCard from "./BulkCard";
 import Offers from "./Offers";
-import Projects from "./Projects";
+import Choose from "./WhyChooseUs";
 import Faq from "./Faq";
 import Footer from "./Footer";
 import Navbar from "./navbar";
@@ -34,7 +34,7 @@ function App() {
         <Route path="/" element={<Offers />} />
       </Routes>
       <Routes>     
-        <Route path="/" element={<Projects />} />
+        <Route path="/" element={<Choose />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Faq/>}/>

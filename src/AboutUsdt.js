@@ -4,8 +4,8 @@ import amount from "./assets/amount.gif"
 import bitcoin from "./assets/bitcoin.gif"
 import prepaid from "./assets/prepaid.gif"
 import email from "./assets/email.gif"
-import { Card } from "antd"
 import { ArrowRightOutlined } from "@ant-design/icons"
+import { Card } from "antd"
 const { Meta } = Card
 
 function About() {

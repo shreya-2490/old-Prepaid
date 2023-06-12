@@ -1,32 +1,23 @@
 .footer {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  width: 90%;
-  margin: auto;
-}
-.footerr {
-  background-color: rgba(0, 0, 0, 0.95);
-  padding: 10px;
-}
-.footer .left {
-  width: 50%;
-  color: white;
-  min-width: 250px;
-}
-.footer .right {
-  width: 30%;
-  color: white;
-  min-width: 250px;
-}
-.footer .right > div {
+  background-color: #101010;
   display: flex;
   align-items: center;
-  margin: 10px 0px;
+  justify-content: space-between;
 }
-.footer .right img {
-  width: 20px;
+.prepaid-logo{
+  margin: 2px;
+  padding: 10px;
 }
-.footer .right > div > span {
-  margin-left: 20px;
+.prepaid-logo img{
+  width:50%;
+}
+.arrowhead{
+  font-size: 40px;
+  color: white;
+  position: relative;
+  bottom: 12px;
+  margin: 10px;
+  border: none;
+  background: none;
+  
 }

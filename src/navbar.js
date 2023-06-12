@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import "./navbar.css"
-import ham from "./assets/ham.png"
 import { Link } from "react-router-dom"
 import logo from "./assets/logo.png"
 import {UserOutlined} from '@ant-design/icons';

@@ -5,6 +5,7 @@ import dollar from "./assets/dollar.png"
 import bitcoin from "./assets/bitcoin.png"
 import ReactTypingEffect from "react-typing-effect"
 import "./home.css"
+import Footer from "./Footer"
 
 const Home = ({ addToCart }) => {
   const [bitcoinAmount, setBitcoinAmount] = useState("")
@@ -228,14 +229,14 @@ const Home = ({ addToCart }) => {
                   }}
                 ></p>
                 <div>
-                  <Link to='/checkout'>
-                  <button
-                    className="buy-usdt"
-                    type="button"
-                    onClick={addToCart}
-                  >
-                    Buy USDT
-                  </button>
+                  <Link to="/checkout">
+                    <button
+                      className="buy-usdt"
+                      type="button"
+                      onClick={addToCart}
+                    >
+                      Buy USDT
+                    </button>
                   </Link>
                 </div>
               </div>
