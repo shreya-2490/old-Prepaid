@@ -3,14 +3,15 @@
   width: 91%;
   position: absolute;
   /* bottom: 50%; */
-  top: 300%;
+  top: 330%;
   left: 60px;
   /* bottom: -108px; */
   height: 450px;
   border-radius: 30px;
 }
 .offer-main-div{
- min-height: 580px;
+ min-height: 530px;
+ margin-bottom: 90px;
 }
 .bulkorder-divs{
   display: flex;
