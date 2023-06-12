@@ -1,0 +1,33 @@
+.ticker-container {
+    width: 100%;
+    position: sticky;
+    position: fixed;
+    z-index: 900;
+    bottom: 0;
+    background-color: black;
+    overflow: hidden;
+    color: white;
+}
+  
+  .ticker-wrapper {
+    display: flex;
+    animation: ticker-animation 40s linear infinite;
+    margin-right: 10px;
+  }
+  
+  .ticker-item {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  @keyframes ticker-animation {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  

@@ -1,56 +1,69 @@
-import React, { useRef } from 'react';
-import "./App.css";
-import { BrowserRouter as Router, Switch, Routes, Route, Link, Redirect } from 'react-router-dom';
-import Home from "./Home";
-import About from "./AboutUsdt";
-import BulkCard from "./BulkCard";
-import Offers from "./Offers";
-import Choose from "./WhyChooseUs";
-import Faq from "./Faq";
-import Footer from "./Footer";
-import Navbar from "./navbar";
-import Checkout from "./components/Checkout";
-import Login from './components/Login';
-
+import React, { useRef } from "react"
+import "./App.css"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Routes,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom"
+import Home from "./Home"
+import About from "./AboutUsdt"
+import BulkCard from "./BulkCard"
+import Offers from "./Offers"
+import Choose from "./WhyChooseUs"
+import Faq from "./Faq"
+import Explore from "./exploreprepaid"
+import Ticker from "./ticker"
+import Footer from "./Footer"
+import Navbar from "./navbar"
+import Checkout from "./components/Checkout"
+import Login from "./components/Login"
 
 function App() {
-
   return (
     <div className="App">
-       <Router>
-      <Routes>
-        <Route path="/" element={<Navbar />} />
-      </Routes>
-      <Routes>
-        <Route path="/" element={<Home/>} />
-      </Routes>
-      <Routes>
-        <Route path="/" element={<About />} />
-      </Routes>
-      <Routes>
-        <Route path="/" element={<BulkCard />} />
-      </Routes>
-      <Routes>
-        <Route path="/" element={<Offers />} />
-      </Routes>
-      <Routes>     
-        <Route path="/" element={<Choose />} />
-      </Routes>
-      <Routes>
-        <Route path="/" element={<Faq/>}/>
-      </Routes>
-      <Routes>
-            <Route path="/" element={<Footer />} />
-      </Routes>
-      <Routes>
-        <Route path="/checkout" element={<Checkout />} />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Navbar />} />
         </Routes>
         <Routes>
-        <Route path="/login" element={<Login/>} />
+          <Route path="/" element={<Home />} />
         </Routes>
-    </Router>
+        <Routes>
+          <Route path="/" element={<About />} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<BulkCard />} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<Offers />} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<Choose />} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<Faq />} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<Explore />} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<Footer />} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<Ticker/>} />
+        </Routes>
+        <Routes>
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

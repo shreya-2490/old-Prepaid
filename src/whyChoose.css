@@ -46,7 +46,7 @@
 .exchange-card .ant-card-meta-description {
   font-size: 13px;
   color: #333333;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .choose-row2 {
   display: flex;
@@ -56,4 +56,7 @@
 }
 .choose-rows {
   margin: 50px 10px 90px 10px;
+}
+.choose-rows .ant-card-body {
+  margin-top: 10px;
 }

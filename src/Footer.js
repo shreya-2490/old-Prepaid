@@ -1,4 +1,4 @@
-import React,{useRef} from "react";
+import React from "react";
 import "./footer.css";
 import prepaidlogo from "./assets/logo.png"
 import { Link } from 'react-router-dom';
