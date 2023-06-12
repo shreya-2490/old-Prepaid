@@ -1,9 +1,9 @@
 .about-main {
-  margin: 30px 0px;
+  margin: 30px 0px 10px 0px;
 }
 .wo-pic {
-  height: 122px;
-  width: 122px !important;
+  height: 100px;
+  width: 100px !important;
   margin: auto;
   text-align: center;
 }

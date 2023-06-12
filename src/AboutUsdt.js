@@ -63,8 +63,8 @@ function About() {
             cover={<img alt="prepaid" src={prepaid} className="wo-pic" />}
           >
             <Meta
-              title="Pay Via BTC"
-              description="Pay for your prepaid card using Bitcoin (BTC). A unique BTC address will be generated for your transaction. Simply initiate the payment from your Bitcoin wallet by sending the exact amount to the provided address."
+              title="Enjoy Your Prepaid Card"
+              description="Congratulations! Your prepaid card will be issued once the BTC transaction is confirmed. You now have a convenient and versatile payment option. Use your prepaid card to shop online, make in-store purchases, or withdraw cash from ATMs wherever Visa or Mastercard is accepted."
             />
           </Card>
       
