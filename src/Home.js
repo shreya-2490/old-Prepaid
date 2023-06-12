@@ -34,9 +34,7 @@ const Home = ({ addToCart }) => {
     document.getElementById(
       "bitcoin"
     ).textContent = `Bitcoin: $${prices.bitcoin.usd}`
-    document.getElementById(
-      "usd"
-    ).textContent = `Ethereum: $${prices.ethereum.usd}`
+
   }
   fetchCryptoPrices()
   setInterval(fetchCryptoPrices, 1000)
@@ -235,7 +233,7 @@ const Home = ({ addToCart }) => {
                       type="button"
                       onClick={addToCart}
                     >
-                      Buy USDT
+                      Buy Now
                     </button>
                   </Link>
                 </div>
