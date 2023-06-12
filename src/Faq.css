@@ -1,26 +1,24 @@
-.Faq-main{
-    padding: 0px 12px 120px 12px;
-    background-color: #F6F9FC;
+.Faq-main {
+  padding: 0px 12px 120px 12px;
+  background-color: #f6f9fc;
 }
-.Faq-inner{
-    box-sizing: border-box;
-    padding-left: 12px;
-    padding-right: 12px;
-    width: 100%
+.Faq-inner {
+  box-sizing: border-box;
+  padding: 50px 12px 10px 12px;
+  width: 100%;
 }
-.Faq-title{
-    text-align: center;
-    font-size: 36px;
-    font-weight: 700;
-    letter-spacing: 0;
-    line-height: 132%;
-    margin-bottom: 24px;
-    margin-left: auto;
-    margin-right: auto;
+.Faq-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 132%;
+  margin-bottom: 24px;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-  .Accordion{
-    width:62%;
-    margin:auto;
-    color: black;
-  }
+.Accordion {
+  width: 62%;
+  margin: auto;
+  color: black;
+}

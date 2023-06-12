@@ -11,45 +11,66 @@ function Faq() {
         <div className="Accordion">
           <Divider orientation="center"></Divider>
           <Collapse bordered={false}>
-            <Panel header="Where can I buy USDT?" key="1">
+            <Panel header="How does the prepaid card work?" key="1">
               <p>
-                Seamlessly buy USDT on OKX using popular cryptocurrencies such
-                as BTC, ETH, SOL, OKB, as well as fiat currencies like USD, GBP,
-                EUR, INR and more.
+                Our prepaid card allows you to purchase it using
+                cryptocurrencies such as Bitcoin (BTC) and then load it with
+                your desired amount. You can then spend the loaded value in
+                dollars, just like any regular prepaid card.
               </p>
             </Panel>
           </Collapse>
           <Divider orientation="left"></Divider>
           <Collapse bordered={false}>
-            <Panel header="Can I buy USDT in my local currency?" key="2">
+            <Panel
+              header="Which cryptocurrencies are accepted for purchasing the prepaid card?"
+              key="2"
+            >
               <p>
-                OKX allows you to buy USDT using over 30 fiat currencies,
-                including USD, CAD, GBP, INR, and more. Visit our "Buy Crypto"
-                page to buy USDT tokens using your preferred fiat currency.
+                Currently, we accept Bitcoin (BTC) as the primary cryptocurrency
+                for purchasing our prepaid cards. However, we are actively
+                exploring the integration of additional cryptocurrencies in the
+                near future.
               </p>
             </Panel>
           </Collapse>
           <Divider orientation="left"></Divider>
           <Collapse bordered={false}>
-            <Panel header="How can I buy USDT with ETH or BTC?" key="3">
+            <Panel
+              header="How do I purchase a prepaid card using Bitcoin?"
+              key="3"
+            >
               <p>
-                With OKX, you can swap your ETH or BTC holdings for USDT at zero
-                spread and trading fees. To buy USDT using ETH or BTC, select
-                "Convert" from the "Trade" menu on the top navigation bar,
-                select the cryptocurrency you wish to swap, and complete the
-                trade.
+                To purchase a prepaid card using Bitcoin, follow these simple
+                steps:
+                <ul style={{marginTop:"20px", textAlign:"left"}}>
+                  <li>
+                    Visit our website and select the desired prepaid card.
+                  </li>
+                  <li>Choose the BTC payment option during checkout.</li>
+                  <li>
+                    You will be provided with a unique BTC address to which you
+                    can send the required amount of Bitcoin.
+                  </li>
+                  <li>
+                    Once the transaction is confirmed on the blockchain, your
+                    prepaid card will be issued and ready for loading.
+                  </li>
+                </ul>
               </p>
             </Panel>
           </Collapse>
           <Divider orientation="left"></Divider>
           <Collapse bordered={false}>
-            <Panel header="Can I buy USDT using my credit card?" key="4">
+            <Panel
+              header="Can I reload the prepaid card multiple times?"
+              key="4"
+            >
               <p>
-                Yes. With OKX, you can buy USDT using your VISA, MasterCard, and
-                ApplePay credit card. To purchase USDT using your credit card,
-                go to the "Buy Crypto" page, enter the amount of fiat you wish
-                to spend, and complete the payment using your desired credit
-                card.
+                Absolutely! Our prepaid card is designed for multiple reloads,
+                allowing you to add funds as needed. You can load the card with
+                dollars using various payment methods, ensuring uninterrupted
+                usage.
               </p>
             </Panel>
           </Collapse>
@@ -66,31 +87,44 @@ function Faq() {
           <Divider orientation="left"></Divider>
           <Collapse bordered={false}>
             <Panel
-              header="What are the most popular cryptocurrencies to invest in today?"
+              header="Can I use the prepaid card for online and in-store purchases?"
               key="6"
             >
               <p>
-                Top cryptos, based on market capitalization or total circulation
-                value, include Bitcoin (BTC), Ethereum (ETH), Tether (USDT), USD
-                Coin (USDC), and XRP (XRP). However, like all other cryptos, the
-                above are also featured with volatility and risks. You should do
-                your own research (DYOR) and evaluate your risk appetite before
-                investing in any cryptos.
+                Yes, you can use the prepaid card for both online and in-store
+                purchases, wherever Visa or Mastercard is accepted. It offers
+                the same convenience and flexibility as a traditional payment
+                card.
               </p>
             </Panel>
           </Collapse>
           <Divider orientation="left"></Divider>
           <Collapse bordered={false}>
             <Panel
-              header="What are the top cryptocurrencies I can buy on OKX now?"
+              header="What if I have unused funds on the prepaid card? Can I convert them back to Bitcoin?"
               key="7"
             >
               <p>
-                OKX provides access to hundreds of cryptos and trading pairings.
-                Some of the most popular cryptos on OKX include BTC, ETH, USDT,
-                DOGE, SOL and OKB. You can visit our brand-new OKX Crypto
-                Calculator. Select a crypto and a fiat currency to check the
-                estimated real-time price.
+                At this time, we do not support direct conversion of unused
+                dollar funds back into Bitcoin. However, you can continue to use
+                the prepaid card for future purchases or withdraw the remaining
+                balance through various available methods, subject to applicable
+                fees.
+              </p>
+            </Panel>
+          </Collapse>
+          <Divider orientation="left"></Divider>
+          <Collapse bordered={false}>
+            <Panel
+              header="Are there any transaction fees associated with the prepaid card?"
+              key="8"
+            >
+              <p>
+                While specific fees may vary, our prepaid card may include
+                standard transaction fees for certain types of transactions,
+                such as ATM withdrawals or foreign currency conversions. We
+                strive to maintain transparent fee structures, which you can
+                review on our website or in the terms and conditions.
               </p>
             </Panel>
           </Collapse>

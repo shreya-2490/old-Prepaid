@@ -1,17 +1,12 @@
 .offer-blue-box{
   background-color: #041B36;
   width: 91%;
-  position: absolute;
-  /* bottom: 50%; */
-  top: 330%;
-  left: 60px;
-  /* bottom: -108px; */
   height: 450px;
   border-radius: 30px;
+  margin: 50px;
 }
 .offer-main-div{
- min-height: 530px;
- margin-bottom: 90px;
+margin: 20px 0px 70px 0px;
 }
 .bulkorder-divs{
   display: flex;

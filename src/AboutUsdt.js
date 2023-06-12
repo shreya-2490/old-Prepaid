@@ -18,7 +18,7 @@ function About() {
         <div className="card-with-arrow">
           <Card
             className="work-card1"
-            cover={<img alt="amount" src={amount} className="wo-pic"/>}
+            cover={<img alt="amount" src={prepaid} className="wo-pic" />}
           >
             <Meta
               title="Enter Amount"
@@ -44,7 +44,7 @@ function About() {
           </div>
         </div>
         <div className="card-with-arrow">
-          <Card     
+          <Card
             className="work-card1"
             cover={<img alt="bitcoin" src={bitcoin} className="wo-pic" />}
           >
@@ -60,14 +60,13 @@ function About() {
         <div className="card-with-arrow">
           <Card
             className="work-card1"
-            cover={<img alt="prepaid" src={prepaid} className="wo-pic" />}
+            cover={<img alt="prepaid" src={amount} className="wo-pic" />}
           >
             <Meta
               title="Enjoy Your Prepaid Card"
               description="Congratulations! Your prepaid card will be issued once the BTC transaction is confirmed. You now have a convenient and versatile payment option. Use your prepaid card to shop online, make in-store purchases, or withdraw cash from ATMs wherever Visa or Mastercard is accepted."
             />
           </Card>
-      
         </div>
       </div>
     </div>

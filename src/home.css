@@ -94,15 +94,15 @@
   display: block;
   font-size: 17px;
   font-weight: 500;
-  line-height: 24px;
-  margin-bottom: 10px;
+  line-height: 10px;
+  margin-bottom: 0px;
   text-align: left;
 }
 .input-div {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  position: relative;
+  margin: 10px 0px;
 }
 .input-box {
   border: none !important;
@@ -125,7 +125,6 @@ input[type="number"] {
   outline: none;
   font-size: 21px;
   caret-color: #004cff;
-
 }
 .input-div[type="number"]:focus {
   box-shadow: 0 0 5px 2px blue;
