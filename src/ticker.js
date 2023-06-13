@@ -19,6 +19,10 @@ const Ticker = () => {
     fetchTickerData();
   }, []);
 
+  if (!tickerData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="ticker-container">
       <div className="ticker-wrapper">

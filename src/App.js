@@ -20,6 +20,7 @@ import Footer from "./Footer"
 import Navbar from "./navbar"
 import Checkout from "./components/Checkout"
 import Login from "./components/Login"
+import Cart from "./CartPage"
 
 function App() {
   return (
@@ -54,6 +55,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/" element={<Ticker/>} />
+        </Routes>
+        <Routes>
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Routes>
           <Route path="/checkout" element={<Checkout />} />

@@ -1,78 +1,51 @@
 import { useState } from "react"
-import { Select, Space } from "antd"
+import { Select, Card, Image, Alert } from "antd"
 import { Link } from "react-router-dom"
 import dollar from "./assets/dollar.png"
 import bitcoin from "./assets/bitcoin.png"
+import { ExclamationCircleOutlined } from "@ant-design/icons"
+import visa from "./assets/visa.svg"
+import mastercard from "./assets/mastercard.svg"
 import ReactTypingEffect from "react-typing-effect"
 import "./home.css"
-import Footer from "./Footer"
+
+const { Option } = Select
 
 const Home = ({ addToCart }) => {
-  const [bitcoinAmount, setBitcoinAmount] = useState("")
-  const [usdAmount, setUSDAmount] = useState("")
+  const [usdValue, setUSDValue] = useState("")
+  const [btcValue, setBTCValue] = useState("0.00")
+  const [selectedCard, setSelectedCard] = useState(null)
+  const [isValueValid, setIsValueValid] = useState(false)
 
-  const handleBitcoinChange = (event) => {
-    const { value } = event.target
-    setBitcoinAmount(value)
-    // Calculate equivalent USD amount
-    const exchangeRate = 25706.5 // Replace with actual exchange rate
-    const equivalentUSD = value * exchangeRate
-    setUSDAmount(equivalentUSD)
+  const handleCardSelect = (value) => {
+    setSelectedCard(value)
   }
-
-  function fetchCryptoPrices() {
-    fetch(
-      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,litecoin,dogecoin&vs_currencies=usd"
-    )
-      .then((response) => response.json())
-      .then((data) => updateCryptoPrices(data))
-      .catch((error) => console.error(error))
+  const handleBuyButtonClick = (e) => {
+    if (usdValue === "") {
+      e.preventDefault()
+      setIsValueValid(true)
+    } else {
+      setIsValueValid(false)
+    }
   }
+  const renderOption = (cardName, imagePath) => (
+    <div>
+      <img
+        src={imagePath}
+        alt={cardName}
+        style={{ width: "20px", marginRight: "8px" }}
+      />
+      {cardName}
+    </div>
+  )
+  const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
 
-  // Update crypto currency prices in the ticker
-  function updateCryptoPrices(prices) {
-    document.getElementById(
-      "bitcoin"
-    ).textContent = `Bitcoin: $${prices.bitcoin.usd}`
-
+  const handleUSDChange = (event) => {
+    const usdInput = parseFloat(event.target.value)
+    setUSDValue(usdInput)
+    setBTCValue(usdInput * exchangeRate)
+    setIsValueValid(false)
   }
-  fetchCryptoPrices()
-  setInterval(fetchCryptoPrices, 1000)
-
-  const originalHeadingText = "Buy USDT in a few steps"
-  const [title, setTitle] = useState(originalHeadingText)
-  const [text, setText] = useState("You'll pay")
-  const [secondtext, setSecondtext] = useState("You'll recieve")
-  const [button1Color, setButton1Color] = useState("white")
-  const [button2Color, setButton2Color] = useState("#F0F0F0")
-
-  const handleClick = () => {
-    setTitle("Sell USDT in a few steps")
-    setText("You'll sell")
-    setSecondtext("You recieve")
-  }
-  const restoreHeadingText = () => {
-    setTitle(originalHeadingText)
-    setText("You'll pay")
-    setSecondtext("You'll recieve")
-  }
-
-  const toggleButtonColors = () => {
-    setButton1Color((prevColor) =>
-      prevColor === "white" ? "#F0F0F0" : "white"
-    )
-    setButton2Color((prevColor) =>
-      prevColor === "white" ? "#F0F0F0" : "white"
-    )
-  }
-
-  window.addEventListener("DOMContentLoaded", function () {
-    var numericInput = document.getElementById("numericInput")
-
-    numericInput.addEventListener("mouseover", function () {
-      numericInput.blur()
-    })
-  })
 
   return (
     <div className="main-body">
@@ -108,86 +81,80 @@ const Home = ({ addToCart }) => {
         <div className="box">
           <div className="buttons">
             <div className="first-btn">
-              <button
-                onClick={() => {
-                  restoreHeadingText()
-                  toggleButtonColors()
-                }}
-                className="buy"
-                style={{ backgroundColor: button1Color }}
-              >
+              <button className="buy" style={{ backgroundColor: "white" }}>
                 Buy Prepaid Card With Crypto
               </button>
             </div>
-            {/* <div className="second-btn">
-              <button
-                onClick={() => {
-                  handleClick("Sell USDT in a few steps")
-                  toggleButtonColors()
-                }}
-                className="sell"
-                style={{ backgroundColor: button2Color }}
-              >
-                Sell
-              </button>
-            </div> */}
           </div>
           <div className="sider-content">
             <div style={{ display: "block" }}></div>
             <div className="forms">
               <div style={{ marginBottom: "20px" }}>
                 <form>
-                  <div className="both-gray">
-                    <div className="first-gray">
-                      <div className="first-gray-1">
-                        <label className="pay">{text}</label>
-                        <div className="input-div">
-                          <div className="input-box">
-                            <input
-                              id="numericInput"
-                              inputmode="decimal"
-                              placeholder="0.00"
-                              min="0"
-                              name="quoteAmount"
-                              autocomplete="off"
-                              step="1"
-                              max="9007199254740991"
-                              type="number"
-                              value={bitcoinAmount}
-                              onChange={handleBitcoinChange}
-                            ></input>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="second-gray">
-                      <div className="items">
-                        <picture className="usdt-pic">
-                          <img src={bitcoin}></img>
-                        </picture>
-                        <span className="dropdown-1">Bitcoin</span>
-                      </div>
-                    </div>
+                  <div className="card-selector-container">
+                    <p>Select Card Type</p>
+                    {/* <Select
+                      value={selectedCard}
+                      onChange={handleCardSelect}
+                      className="card-selector"
+                    >
+                      <Option value="visa">
+                        <Card
+                          actions={[
+                            selectedCard === "visa" && (
+                              <span onClick={handleCardCancel}>Cancel</span>
+                            ),
+                          ]}
+                        >
+                          <Image src={visa} alt="Visa Card" />
+                        </Card>
+                      </Option>
+                      <Option value="mastercard">
+                        <Card
+                          actions={[
+                            selectedCard === "mastercard" && (
+                              <span onClick={handleCardCancel}>Cancel</span>
+                            ),
+                          ]}
+                        >
+                          <Image src={mastercard} alt="Mastercard" />
+                        </Card>
+                      </Option>
+                    </Select> */}
+
+                    <Select
+                      className="card-selector"
+                      value={selectedCard}
+                      onChange={handleCardSelect}
+                      style={{ width: 180 }}
+                      dropdownMatchSelectWidth={false}
+                      dropdownStyle={{ minWidth: 200 }}
+                    >
+                      <Option
+                        value="visa"
+                        label={renderOption("Visa", "./assets/visa.svg")}
+                      >
+                        Visa
+                      </Option>
+                      <Option
+                        value="mastercard"
+                        label={renderOption(
+                          "Mastercard",
+                          "./assets/mastercard.svg"
+                        )}
+                      >
+                        Mastercard
+                      </Option>
+                    </Select>
                   </div>
                 </form>
-                <p
-                  id="bitcoin"
-                  style={{
-                    color: "#929292",
-                    marginLeft: "15px",
-                    fontSize: "12px",
-                    fontWeight: "400",
-                    lineHeight: "16ox",
-                    display: "inline",
-                  }}
-                ></p>
               </div>
               <div>
                 <form>
                   <div className="both-gray">
                     <div className="first-gray">
                       <div className="first-gray-1">
-                        <label className="pay">{secondtext}</label>
+                        <label className="pay">Enter Amount</label>
                         <div className="input-div">
                           <div className="input-box">
                             <input
@@ -199,8 +166,9 @@ const Home = ({ addToCart }) => {
                               step="1"
                               max="9007199254740991"
                               type="number"
-                              value={usdAmount}
-                            ></input>
+                              value={usdValue}
+                              onChange={handleUSDChange}
+                            />
                           </div>
                         </div>
                       </div>
@@ -216,22 +184,35 @@ const Home = ({ addToCart }) => {
                   </div>
                 </form>
                 <p
-                  id="usd"
                   style={{
-                    color: "#929292",
+                    color: "black",
                     marginLeft: "15px",
-                    fontSize: "12px",
+                    fontSize: "15px",
                     fontWeight: "400",
                     lineHeight: "16ox",
                     display: "inline",
                   }}
-                ></p>
+                >
+                  <picture className="bit-pic">
+                    <img src={bitcoin}></img>
+                  </picture>
+                  <span style={{ margin: "10px" }}>{btcValue} BTC</span>
+                </p>
+                {isValueValid && (
+                    <Alert
+                      style={{ marginTop: "15px", position: "relative" }}
+                      message="Please fill all details"
+                      type="warning"
+                      showIcon
+                      closable
+                    />
+                  )}
                 <div>
-                  <Link to="/checkout">
+                  <Link  to="/cart">
                     <button
                       className="buy-usdt"
                       type="button"
-                      onClick={addToCart}
+                      onClick={handleBuyButtonClick}
                     >
                       Buy Now
                     </button>

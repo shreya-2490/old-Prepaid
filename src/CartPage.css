@@ -1,0 +1,48 @@
+.cart-main {
+    padding-bottom: 30px;
+    background-color: #f8faf9;
+    min-height: calc(100vh - 64px);
+    isolation: isolate;
+    margin-top: 20px;
+  }
+  
+  .twocards-cart {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(min-content, 480px) 1fr;
+    grid-gap: 20px;
+    width: 100%;
+  }
+  .custom-card-cart .ant-card-head-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .custom-card-cart img{
+    width: 445px;
+    padding: 30px;
+
+  }
+  .custom-para2-cart{
+    margin: 20px 22px;
+  }
+  .cart-input input[type="number"] {
+    background-color: #e6e7e7;
+    border-radius: 5px;
+    margin-top: -6px;
+  }
+  .cart-btn button{
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    width: 72%;
+    text-align: center;
+    padding: 10px;
+  }
+  .cart-btn{
+    margin-top: 40px;
+    text-align: center;
+  }
