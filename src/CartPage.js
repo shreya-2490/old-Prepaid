@@ -2,13 +2,36 @@ import React from "react"
 import { useState, useRef } from "react"
 import { Card, Select } from "antd"
 import { Link } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 
 import Navbar from "./navbar"
 import mastercard from "./assets/mastercard.jpg"
 import "./CartPage.css"
 
 const Cart = () => {
-  const options = []
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const usdValue = queryParams.get("usd")
+  // const btcAmount = handleUSDChange(usdValue);
+  const btcRate = 0.00001; // Conversion rate from USD to BTC
+
+  const handlebtcChange = (value) => {
+    const [min, max] = value.split('-');
+    const btcMin = min * btcRate;
+    const btcMax = max * btcRate;
+  }
+  const options = [
+    { value: "100-500", label: "100-500" },
+    { value: "500-1000", label: "500-1000" },
+    { value: "1000-1500", label: "1000-1500" },
+    { value: "1500-2000", label: "1500-2000" },
+    { value: "2000-2500", label: "2000-2500" },
+    { value: "2500-3000", label: "2500-3000" },
+    { value: "3000-3500", label: "3000-3500" },
+    { value: "3500-4000", label: "3500-4000" },
+    { value: "4000-4500", label: "4000-4500" },
+    { value: "4500-5000", label: "4500-5000" },
+  ]
 
   const handleChange = (value) => {
     console.log(`selected ${value}`)
@@ -47,9 +70,7 @@ const Cart = () => {
                 margin: "90px 0px 0px 30px",
               }}
             >
-              <p className="custom-para2-cart">
-              content to be ready for this
-              </p>
+              <p className="custom-para2-cart">content to be ready for this</p>
               <div
                 style={{
                   display: "flex",
@@ -83,6 +104,7 @@ const Cart = () => {
                       step="1"
                       max="9007199254740991"
                       type="number"
+                      onChange={handlebtcChange}
                     />
                   </div>
                 </div>

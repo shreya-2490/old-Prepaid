@@ -66,7 +66,7 @@ function Navbar() {
       <div className="left">
         <Link to="/">HOME</Link>
         <Link to="/">PREPAID CARDS</Link>
-        <Link to="/">BULK ORDERS</Link>
+        <Link to="/bulkorder">BULK ORDERS</Link>
         <Link to="/">CONTACT US</Link>
         <Link to="/login"><span className="user"><UserOutlined />LOGIN/REGISTER</span></Link>
         {/* <div style={{ color: "white" }}>

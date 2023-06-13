@@ -7,15 +7,17 @@ import { ExclamationCircleOutlined } from "@ant-design/icons"
 import visa from "./assets/visa.svg"
 import mastercard from "./assets/mastercard.svg"
 import ReactTypingEffect from "react-typing-effect"
+import { useNavigate } from 'react-router-dom';
 import "./home.css"
 
 const { Option } = Select
 
-const Home = ({ addToCart }) => {
+const Home = () => {
   const [usdValue, setUSDValue] = useState("")
   const [btcValue, setBTCValue] = useState("0.00")
   const [selectedCard, setSelectedCard] = useState(null)
   const [isValueValid, setIsValueValid] = useState(false)
+  const navigate = useNavigate();
 
   const handleCardSelect = (value) => {
     setSelectedCard(value)
@@ -27,6 +29,7 @@ const Home = ({ addToCart }) => {
     } else {
       setIsValueValid(false)
     }
+    // navigate(`/cart?usd=${usdValue}`);;
   }
   const renderOption = (cardName, imagePath) => (
     <div>

@@ -21,6 +21,7 @@ import Navbar from "./navbar"
 import Checkout from "./components/Checkout"
 import Login from "./components/Login"
 import Cart from "./CartPage"
+import BulkOrder from "./BulkOrder"
 
 function App() {
   return (
@@ -64,6 +65,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/login" element={<Login />} />
+        </Routes>
+        <Routes>
+          <Route path="/bulkorder" element={<BulkOrder />} />
         </Routes>
       </Router>
     </div>

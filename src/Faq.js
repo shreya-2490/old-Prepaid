@@ -76,19 +76,9 @@ function Faq() {
           </Collapse>
           <Divider orientation="left"></Divider>
           <Collapse bordered={false}>
-            <Panel header="What is the cheapest way to buy USDT?" key="5">
-              <p>
-                OKX charges one of the lowest fees in the crypto market, making
-                it the cheapest place to buy USDT. Using our "Convert" feature,
-                you can buy USDT at zero fees.
-              </p>
-            </Panel>
-          </Collapse>
-          <Divider orientation="left"></Divider>
-          <Collapse bordered={false}>
             <Panel
               header="Can I use the prepaid card for online and in-store purchases?"
-              key="6"
+              key="5"
             >
               <p>
                 Yes, you can use the prepaid card for both online and in-store
@@ -102,7 +92,7 @@ function Faq() {
           <Collapse bordered={false}>
             <Panel
               header="What if I have unused funds on the prepaid card? Can I convert them back to Bitcoin?"
-              key="7"
+              key="6"
             >
               <p>
                 At this time, we do not support direct conversion of unused
@@ -117,7 +107,7 @@ function Faq() {
           <Collapse bordered={false}>
             <Panel
               header="Are there any transaction fees associated with the prepaid card?"
-              key="8"
+              key="7"
             >
               <p>
                 While specific fees may vary, our prepaid card may include
