@@ -38,7 +38,7 @@ const Cart = () => {
           <div className="card2-cart">
             <Card
               className="Contact-title"
-              title="New Prepaid MasterCard"
+              title="NEW PREPAID MASTERCARD"
               bordered={false}
               headStyle={{ borderBottom: "none" }}
               style={{
@@ -48,16 +48,14 @@ const Cart = () => {
               }}
             >
               <p className="custom-para2-cart">
-                bufhbvhbbvvvvvvvvvvvvvvvvvvvvvvvvvvfbvhbvjhbvjhbvhjbhvbhjvb
-                rvjnrjvnjnvjknvjnejvnejknvjhefvjhvjhbfvjhbjhvbjhbvjhbvjhbvjhbv
-                rvbjhvjhbvjhbjhvbjhbvjhbvjhfbvjhbvhjbjhbvjhfbvjhjhvjhv
-                jvnjvnjkvnjvnkj
+              content to be ready for this
               </p>
               <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
+                  margin: "20px 20px",
                 }}
               >
                 <div style={{ marginTop: "50px" }}>
