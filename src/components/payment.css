@@ -3,7 +3,7 @@
     color: black;
 }
 .order-details{
-    margin-top: -30px;
+    margin: 7px 20px;
    
 }
 .emailad{
@@ -24,7 +24,7 @@
     color: black;
 }
 .payment-details{
-    margin-top: -80px;
+    margin: -70px 20px;
 }
 .custom-divider{
     margin-top: -70px;
@@ -44,6 +44,7 @@
 }
 .scanner-pic img{
     margin: auto;
+    width: 300px;
 }
 .pay-h{
     margin-bottom:25px;

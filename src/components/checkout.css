@@ -24,7 +24,7 @@
   font-weight: 600;
   text-decoration: underline;
   cursor: pointer;
-  margin: 2px;
+  margin: 15px;
 }
 .custom-link:hover {
   color: black;
@@ -35,19 +35,20 @@
 }
 .custom-tooltip {
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 .custom-bottom-para {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
+  margin: 7px 20px;
 }
 .BTC {
   font-size: 17px;
   line-height: 1.5;
 }
 .custom-upper-para {
-  margin: -24px 0px 10px 0px;
+  margin: 7px 20px 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,7 +83,7 @@
 }
 .checkbox {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   color: #6a716e;
 }
 .email-box {
@@ -98,7 +99,7 @@
   color: #6a716e;
 }
 .custom-para2 {
-  margin: -25px 0px 10px 0px;
+  margin: 7px 20px 10px 20px;
 }
 .payment-btn {
   padding: 0 84px;
