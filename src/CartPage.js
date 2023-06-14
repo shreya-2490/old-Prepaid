@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useSta } from "react"
 import { useState, useRef } from "react"
 import { Card, Select } from "antd"
 import { Link } from "react-router-dom"
@@ -12,55 +12,24 @@ import Ticker from "./ticker"
 
 const Cart = ({ params }) => {
   const location = useLocation()
-  const { usdValue } = useParams()
   const queryParams = new URLSearchParams(location.search)
-  const input = queryParams.get("usdValue")
-  const [selectedCurrency, setSelectedCurrency] = useState(input)
-  const [btcValue, setBtcValue] = useState("")
+  const input1 = queryParams.get("usdValue")
+  const input2 = queryParams.get("btcValue")
+  const [usdValue, setUSDValue] = useState(input1)
+  const [btcValue, setBtcValue] = useState(input2)
 
-  const handleCurrencyChange = async (value) => {
-    setSelectedCurrency(value)
+  const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
 
-    try {
-      // Fetch exchange rate data from CoinGecko API
-      const response = await axios.get(
-        "https://api.coingecko.com/api/v3/simple/price",
-        {
-          params: {
-            ids: "bitcoin",
-            vs_currencies: "usd",
-          },
-        }
-      )
-
-      // Get the conversion rate from USD to BTC
-      const usdToBtcRate = response.data.bitcoin.usd
-
-      // Convert the selected USD value to BTC
-      const btc = parseFloat(value) / usdToBtcRate
-
-      // Update the BTC value in the state
-      setBtcValue(btc.toFixed(8)) // Assuming 8 decimal places for BTC
-    } catch (error) {
-      console.error("Error fetching exchange rate:", error)
-    }
+  const handleUSDChange = (event) => {
+    const usdInput = parseFloat(event.target.value)
+    setUSDValue(usdInput)
+    setBtcValue(usdInput * exchangeRate)
   }
-  useEffect(() => {
-    handleCurrencyChange(selectedCurrency)
-  }, [])
 
-  const options = [
-    { value: "100-500", label: "100-500" },
-    { value: "500-1000", label: "500-1000" },
-    { value: "1000-1500", label: "1000-1500" },
-    { value: "1500-2000", label: "1500-2000" },
-    { value: "2000-2500", label: "2000-2500" },
-    { value: "2500-3000", label: "2500-3000" },
-    { value: "3000-3500", label: "3000-3500" },
-    { value: "3500-4000", label: "3500-4000" },
-    { value: "4000-4500", label: "4000-4500" },
-    { value: "4500-5000", label: "4500-5000" },
-  ]
+  useEffect(() => {
+    setUSDValue(usdValue)
+    setBtcValue(btcValue)
+  }, [])
 
   return (
     <>
@@ -114,21 +83,25 @@ const Cart = ({ params }) => {
                   margin: "-30px 40px",
                 }}
               >
-                <div style={{ marginTop: "50px" }}>
+                <div style={{ margin: "50px 0px 0px 20px" }}>
                   <p>Enter Amount</p>
-                  <Select
-                    showSearch
-                    style={{
-                      width: 200,
-                    }}
-                    placeholder="Search to Select"
-                    tokenSeparators={[","]}
-                    options={options}
-                    value={selectedCurrency}
-                    onChange={handleCurrencyChange}
-                  />
+                  <div className="cart-input">
+                    <input
+                      id="numericInput"
+                      inputmode="decimal"
+                      placeholder="0.00"
+                      name="quoteAmount"
+                      autocomplete="off"
+                      step="1"
+                      max="9007199254740991"
+                      type="number"
+                      value={usdValue}
+                      onChange={handleUSDChange}
+                      className={btcValue.length > 10 ? 'long-value' : ''}
+                    />
+                  </div>
                 </div>
-                <div style={{ margin: "40px, 30px" }}>
+                <div style={{ margin: "50px 40px 0px 0px" }}>
                   <p>Expected BTC</p>
                   <div className="cart-input">
                     <input
@@ -141,6 +114,7 @@ const Cart = ({ params }) => {
                       max="9007199254740991"
                       type="number"
                       value={btcValue}
+                      className={btcValue.length > 10 ? 'long-value' : ''}
                     />
                   </div>
                 </div>

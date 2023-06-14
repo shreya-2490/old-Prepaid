@@ -26,7 +26,7 @@ const Home = () => {
   const handleCardSelect = (value) => {
     setSelectedCard(value)
   }
-  
+
   const handleBuyButtonClick = (e) => {
     if (usdValue === "") {
       e.preventDefault()
@@ -185,6 +185,7 @@ const Home = () => {
                               type="number"
                               value={usdValue}
                               onChange={handleUSDChange}
+                              className={btcValue.length > 10 ? 'long-value' : ''}
                             />
                           </div>
                         </div>
@@ -225,7 +226,7 @@ const Home = () => {
                   />
                 )}
                 <div>
-                  <Link to={`/cart?usdValue=${usdValue}`}>
+                  <Link to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}`}>
                     <button
                       className="buy-usdt"
                       type="button"
