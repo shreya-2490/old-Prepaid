@@ -7,7 +7,6 @@ import { ExclamationCircleOutlined } from "@ant-design/icons"
 import visa from "./assets/visa.svg"
 import mastercard from "./assets/mastercard.svg"
 import ReactTypingEffect from "react-typing-effect"
-import { useNavigate } from "react-router-dom"
 import "./home.css"
 
 const { Option } = Select
@@ -17,11 +16,17 @@ const Home = () => {
   const [btcValue, setBTCValue] = useState("0.00")
   const [selectedCard, setSelectedCard] = useState(null)
   const [isValueValid, setIsValueValid] = useState(false)
-  const navigate = useNavigate()
+  const [selectedButton, setSelectedButton] = useState(null);
+
+  const handleButtonClick = (event, buttonId) => {
+    event.preventDefault();
+    setSelectedButton(buttonId);
+  };
 
   const handleCardSelect = (value) => {
     setSelectedCard(value)
   }
+  
   const handleBuyButtonClick = (e) => {
     if (usdValue === "") {
       e.preventDefault()
@@ -29,20 +34,9 @@ const Home = () => {
     } else {
       setIsValueValid(false)
     }
-    // navigate(`/cart?usd=${usdValue}`);;
   }
-  const renderOption = (cardName, imagePath) => (
-    <div>
-      <img
-        src={imagePath}
-        alt={cardName}
-        style={{ width: "20px", marginRight: "8px" }}
-      />
-      {cardName}
-    </div>
-  )
-  const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
 
+  const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
   const handleUSDChange = (event) => {
     const usdInput = parseFloat(event.target.value)
     setUSDValue(usdInput)
@@ -95,7 +89,27 @@ const Home = () => {
               <div style={{ marginBottom: "20px" }}>
                 <form>
                   <div className="card-selector-container">
-                    <p>Select Card Type</p>
+                    <p style={{ margin: "10px 10px", textAlign: "justify" }}>
+                      Choose Card
+                    </p>
+                    <div className="selection-cards-visamastercard">
+                      <button
+                        className={`button ${
+                          selectedButton === 1 ? "selected" : ""
+                        }`}
+                        onClick={(event) => handleButtonClick(event, 1)}
+                      >
+                        <img src={visa}></img>
+                      </button>
+                      <button
+                        className={`button ${
+                          selectedButton === 2 ? "selected" : ""
+                        }`}
+                        onClick={(event) => handleButtonClick(event, 2)}
+                      >
+                        <img src={mastercard}></img>
+                      </button>
+                    </div>
                     {/* <Select
                       value={selectedCard}
                       onChange={handleCardSelect}
@@ -125,7 +139,7 @@ const Home = () => {
                       </Option>
                     </Select> */}
 
-                    <Select
+                    {/* <Select
                       className="card-selector"
                       value={selectedCard}
                       onChange={handleCardSelect}
@@ -148,7 +162,7 @@ const Home = () => {
                       >
                         Mastercard
                       </Option>
-                    </Select>
+                    </Select> */}
                   </div>
                 </form>
               </div>
@@ -211,7 +225,7 @@ const Home = () => {
                   />
                 )}
                 <div>
-                  <Link to={{ pathname: '/cart', state:  usdValue  }}>
+                  <Link to={`/cart?usdValue=${usdValue}`}>
                     <button
                       className="buy-usdt"
                       type="button"

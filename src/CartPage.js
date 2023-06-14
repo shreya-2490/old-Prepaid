@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useState, useRef } from "react"
 import { Card, Select } from "antd"
 import { Link } from "react-router-dom"
@@ -8,12 +8,14 @@ import axios from "axios"
 import Navbar from "./navbar"
 import mastercard from "./assets/mastercard.jpg"
 import "./CartPage.css"
+import Ticker from "./ticker"
 
 const Cart = ({ params }) => {
   const location = useLocation()
   const { usdValue } = useParams()
   const queryParams = new URLSearchParams(location.search)
-  const [selectedCurrency, setSelectedCurrency] = useState("")
+  const input = queryParams.get("usdValue")
+  const [selectedCurrency, setSelectedCurrency] = useState(input)
   const [btcValue, setBtcValue] = useState("")
 
   const handleCurrencyChange = async (value) => {
@@ -43,6 +45,9 @@ const Cart = ({ params }) => {
       console.error("Error fetching exchange rate:", error)
     }
   }
+  useEffect(() => {
+    handleCurrencyChange(selectedCurrency)
+  }, [])
 
   const options = [
     { value: "100-500", label: "100-500" },
@@ -56,7 +61,7 @@ const Cart = ({ params }) => {
     { value: "4000-4500", label: "4000-4500" },
     { value: "4500-5000", label: "4500-5000" },
   ]
-  console.log("shreyaaparams", usdValue)
+
   return (
     <>
       <Navbar />
@@ -150,6 +155,7 @@ const Cart = ({ params }) => {
           </div>
         </div>
       </div>
+      <Ticker />
     </>
   )
 }

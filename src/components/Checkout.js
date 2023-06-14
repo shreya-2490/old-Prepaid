@@ -6,6 +6,7 @@ import Navbar from "../navbar"
 import "./checkout.css"
 import Payment from "./payment"
 import validator from 'validator';
+import Ticker from "../ticker"
 
 const Checkout = () => {
   const [isChecked1, setIsChecked1] = useState(false)
@@ -175,6 +176,7 @@ const Checkout = () => {
           <Payment email={email} />
         )}
       </div>
+      <Ticker/>
     </>
   )
 }
