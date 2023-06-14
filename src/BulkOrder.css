@@ -20,9 +20,8 @@
   background-color: #f6f9fc;
 }
 .bulk-content {
-  text-align: center;
+  text-align: justify;
   margin: auto;
-  color: white;
   padding-top: 40px;
 }
 .bulk-content-list {

@@ -85,17 +85,19 @@
   display: flex;
   align-items: baseline;
   color: #6a716e;
+  margin: 3px 20px;
 }
 .email-box {
   border: 1px solid rgb(159, 159, 159);
   border-radius: 5px;
   width: 470px;
   font-size: 15px;
+  margin: 3px 0px 3px 20px;
   color: black;
 }
 .email {
   font-size: 15px;
-  margin-top: 20px;
+  margin: 3px 0px 3px 20px;
   color: #6a716e;
 }
 .custom-para2 {
@@ -107,11 +109,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  background-color: rgb(223, 60, 1);
-  margin: 0;
+
+  margin: 10px 20px;
   min-height: 46px;
   font-size: 20px;
+}
+.payment button {
+  color: white;
+  background-color: black !important;
 }
 .payment {
   display: block;
@@ -121,11 +126,11 @@
   min-height: 24px;
   text-align: left;
 }
-.payment-btn:hover{
-  color: white!important;
+.payment-btn:hover {
+  color: white !important;
   /* background-color: rgba(231, 65, 4, 0.925); */
 }
-.terms{
+.terms {
   color: black;
   margin: 2px;
   text-decoration: underline;

@@ -2,24 +2,48 @@ import React from "react"
 import { useState, useRef } from "react"
 import { Card, Select } from "antd"
 import { Link } from "react-router-dom"
-import { useLocation } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
+import axios from "axios"
 
 import Navbar from "./navbar"
 import mastercard from "./assets/mastercard.jpg"
 import "./CartPage.css"
 
-const Cart = () => {
+const Cart = ({ params }) => {
   const location = useLocation()
+  const { usdValue } = useParams()
   const queryParams = new URLSearchParams(location.search)
-  const usdValue = queryParams.get("usd")
-  // const btcAmount = handleUSDChange(usdValue);
-  const btcRate = 0.00001; // Conversion rate from USD to BTC
+  const [selectedCurrency, setSelectedCurrency] = useState("")
+  const [btcValue, setBtcValue] = useState("")
 
-  const handlebtcChange = (value) => {
-    const [min, max] = value.split('-');
-    const btcMin = min * btcRate;
-    const btcMax = max * btcRate;
+  const handleCurrencyChange = async (value) => {
+    setSelectedCurrency(value)
+
+    try {
+      // Fetch exchange rate data from CoinGecko API
+      const response = await axios.get(
+        "https://api.coingecko.com/api/v3/simple/price",
+        {
+          params: {
+            ids: "bitcoin",
+            vs_currencies: "usd",
+          },
+        }
+      )
+
+      // Get the conversion rate from USD to BTC
+      const usdToBtcRate = response.data.bitcoin.usd
+
+      // Convert the selected USD value to BTC
+      const btc = parseFloat(value) / usdToBtcRate
+
+      // Update the BTC value in the state
+      setBtcValue(btc.toFixed(8)) // Assuming 8 decimal places for BTC
+    } catch (error) {
+      console.error("Error fetching exchange rate:", error)
+    }
   }
+
   const options = [
     { value: "100-500", label: "100-500" },
     { value: "500-1000", label: "500-1000" },
@@ -32,11 +56,7 @@ const Cart = () => {
     { value: "4000-4500", label: "4000-4500" },
     { value: "4500-5000", label: "4500-5000" },
   ]
-
-  const handleChange = (value) => {
-    console.log(`selected ${value}`)
-  }
-
+  console.log("shreyaaparams", usdValue)
   return (
     <>
       <Navbar />
@@ -70,13 +90,23 @@ const Cart = () => {
                 margin: "90px 0px 0px 30px",
               }}
             >
-              <p className="custom-para2-cart">content to be ready for this</p>
+              <p className="custom-para2-cart">
+                Introducing the Prepaid Mastercard - Your Ultimate Financial
+                Freedom! Are you tired of the limitations and restrictions
+                imposed by traditional banking systems? Look no further! Our
+                Prepaid Mastercard is the perfect solution for individuals
+                seeking financial independence and control. With our prepaid
+                Mastercard, you can enjoy all the benefits of a credit or debit
+                card without the hassle of credit checks or tying your finances
+                to a bank account. It's a game-changer for those who value
+                flexibility and convenience.
+              </p>
               <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
-                  margin: "20px 20px",
+                  margin: "-30px 40px",
                 }}
               >
                 <div style={{ marginTop: "50px" }}>
@@ -87,9 +117,10 @@ const Cart = () => {
                       width: 200,
                     }}
                     placeholder="Search to Select"
-                    onChange={handleChange}
                     tokenSeparators={[","]}
                     options={options}
+                    value={selectedCurrency}
+                    onChange={handleCurrencyChange}
                   />
                 </div>
                 <div style={{ margin: "40px, 30px" }}>
@@ -104,7 +135,7 @@ const Cart = () => {
                       step="1"
                       max="9007199254740991"
                       type="number"
-                      onChange={handlebtcChange}
+                      value={btcValue}
                     />
                   </div>
                 </div>

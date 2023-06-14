@@ -37,17 +37,17 @@ const Payment = ({ email }) => {
             <Divider className="custom-divider" />
             <div className="custom-upper-para">
               <div>
-                <p className="swiggy">Swiggy Money India</p>
-                <p className="value">₹1000.00 value</p>
+                <p className="swiggy">Mastercard</p>
+                <p className="value">$23</p>
               </div>
               <div className="se-box">
-                <p className="BTC">0.00047920 BTC</p>
+                <p className="BTC">0.000874 BTC</p>
               </div>
             </div>
             <Divider className="custom-divider2" />
             <div className="custom-bottom-para pay-para">
               <p className="custom-para">Total</p>
-              <p className="BTC">0.00047920 BTC</p>
+              <p className="BTC">0.000874 BTC</p>
             </div>
           </Card>
         </div>
@@ -75,7 +75,7 @@ const Payment = ({ email }) => {
             </div>
             <div className="pay-h">
               <p className="pay-h4">Amount to pay</p>
-              <p className="pay-h5">0.00537628 BTC</p>
+              <p className="pay-h5">0.000874 BTC</p>
             </div>
             <div>
               <p className="pay-h6">Expires in</p>

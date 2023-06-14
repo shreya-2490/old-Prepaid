@@ -57,8 +57,8 @@ const Checkout = () => {
               >
                 <div className="custom-upper-para">
                   <div>
-                    <p className="swiggy">Swiggy Money India</p>
-                    <p className="value">₹1000.00 value</p>
+                    <p className="swiggy">Mastercard</p>
+                    <p className="value">$23</p>
                   </div>
                   <div className="se-box">
                     <div className="select-box">
@@ -82,7 +82,7 @@ const Checkout = () => {
                       </Space>
                       <DeleteOutlined />
                     </div>
-                    <p className="BTC">0.00047920 BTC</p>
+                    <p className="BTC">0.000874 BTC</p>
                   </div>
                 </div>
                 <Divider />
@@ -96,7 +96,7 @@ const Checkout = () => {
                       <InfoCircleOutlined />
                     </Tooltip>
                   </div>
-                  <p className="BTC">0.00047920 BTC</p>
+                  <p className="BTC">0.000874 BTC</p>
                 </div>
               </Card>
             </div>

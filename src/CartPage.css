@@ -24,7 +24,7 @@
 
   }
   .custom-para2-cart{
-    margin: 20px 22px;
+    margin: 10px 22px;
   }
   .cart-input input[type="number"] {
     background-color:white;
@@ -42,12 +42,12 @@
     border-radius: 30px;
     border: none;
     cursor: pointer;
-    font-size: 17px;
-    width: 72%;
+    font-size: 18px;
+    width: 55%;
     text-align: center;
-    padding: 10px;
+    padding: 6px;
   }
   .cart-btn{
-    margin-top: 40px;
+    margin-top: 50px;
     text-align: center;
   }
