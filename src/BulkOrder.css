@@ -19,10 +19,12 @@
   height: 750px;
   background-color: #f6f9fc;
 }
-.bulk-content {
-  text-align: justify;
+.bulkorder-content {
+  text-align: center;
   margin: auto;
   padding-top: 40px;
+  color: white;
+
 }
 .bulk-content-list {
   text-align: center;

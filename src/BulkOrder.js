@@ -24,7 +24,7 @@ const BulkOrder = () => {
             <div className="bulk-image">
               <img src={bulkcard}></img>
             </div>
-            <div className="bulk-content">
+            <div className="bulkorder-content">
               <h1 style={{ fontSize: "30px" }}>Benifits of Bulk Orders</h1>
               <div className="bulk-content-list">
                 <ul>
