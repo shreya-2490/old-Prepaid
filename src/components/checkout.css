@@ -97,12 +97,10 @@
 }
 .email {
   font-size: 15px;
-  margin: 3px 0px 3px 20px;
+  margin: 10px 0px 3px 20px;
   color: #6a716e;
 }
-.custom-para2 {
-  margin: 7px 20px 10px 20px;
-}
+
 .payment-btn {
   padding: 0 84px;
   border-radius: 9999px;

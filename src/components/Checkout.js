@@ -109,16 +109,10 @@ const Checkout = () => {
                 headStyle={{ borderBottom: "none" }}
                 style={{
                   width: "638px",
-                  height: 430,
+                  height: 380,
                   margin: "90px 0px 0px 30px",
                 }}
               >
-                <p className="custom-para2">
-                  Already have an account?
-                  <a href="" className="custom-link">
-                    Login
-                  </a>
-                </p>
                 <div>
                   <p className="email">
                     Email address for order status updates
@@ -148,7 +142,7 @@ const Checkout = () => {
                     onChange={handleCheckboxChange2}
                   />
                   <p>
-                    I have read and agree with the Bitrefill
+                    I have read and agree with the Prepaid Friends
                     <a href="" className="terms">
                       Terms & Conditions and the Privacy Policy
                     </a>

@@ -61,7 +61,6 @@ const BulkOrder = () => {
                 <Select defaultValue="Select--" onChange={handleSelectChange}>
                   <Option value="card1">Visa</Option>
                   <Option value="card2">MasterCard </Option>
-                  <Option value="card3">Card 3</Option>
                 </Select>
               </Form.Item>
               <Form.Item

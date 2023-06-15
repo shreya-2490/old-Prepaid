@@ -56,7 +56,7 @@ const Home = () => {
               eraseDelay={500}
               eraseSpeed={160}
               speed={30}
-              text={[" Visa", "Mastercard", "Amex"]}
+              text={[" Visa", "Mastercard"]}
             />
           </span>
           <br />

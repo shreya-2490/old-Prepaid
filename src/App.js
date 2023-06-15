@@ -22,6 +22,7 @@ import Checkout from "./components/Checkout"
 import Login from "./components/Login"
 import Cart from "./CartPage"
 import BulkOrder from "./BulkOrder"
+import ContactUs from "./components/ContactUs"
 
 function App() {
   return (
@@ -68,6 +69,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/bulkorder" element={<BulkOrder />} />
+        </Routes>
+        <Routes>
+          <Route path="/contactus" element={<ContactUs/>} />
         </Routes>
       </Router>
     </div>
