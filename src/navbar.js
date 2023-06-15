@@ -65,10 +65,9 @@ function Navbar() {
       </div>
       <div className="left">
         <Link to="/">HOME</Link>
-        <Link to="/">PREPAID CARDS</Link>
         <Link to="/bulkorder">BULK ORDERS</Link>
         <Link to="/contactus">CONTACT US</Link>
-        <Link to="/login"><span className="user"><UserOutlined />LOGIN/REGISTER</span></Link>
+        <Link to="/login"><span className="user"><UserOutlined />LOGIN</span></Link>
         {/* <div style={{ color: "white" }}>
           <button onClick={handleCartClick}>Cart</button>
           {isCartOpen && (
