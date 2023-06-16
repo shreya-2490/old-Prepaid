@@ -15,6 +15,9 @@ const Cart = ({ params }) => {
   const queryParams = new URLSearchParams(location.search)
   const input1 = queryParams.get("usdValue")
   const input2 = queryParams.get("btcValue")
+  const input3 = queryParams.get("selectedButton")
+  const [selectedButton, setSelectedButton] = useState(input3)
+  const[title,setTitle]=useState("NEW PREPAID MASTERCARD")
   const [usdValue, setUSDValue] = useState(input1)
   const [btcValue, setBtcValue] = useState(input2)
 
@@ -25,10 +28,12 @@ const Cart = ({ params }) => {
     setUSDValue(usdInput)
     setBtcValue(usdInput * exchangeRate)
   }
+  console.log("shreyainput3",selectedButton);
 
   useEffect(() => {
     setUSDValue(usdValue)
     setBtcValue(btcValue)
+    setSelectedButton(selectedButton)
   }, [])
 
   return (
@@ -55,7 +60,7 @@ const Cart = ({ params }) => {
           <div className="card2-cart">
             <Card
               className="Contact-title"
-              title="NEW PREPAID MASTERCARD"
+              title ={ selectedButton==1? "NEW PREPAID VISACARD": title}
               bordered={false}
               headStyle={{ borderBottom: "none" }}
               style={{
@@ -119,7 +124,7 @@ const Cart = ({ params }) => {
                   </div>
                 </div>
               </div>
-              <Link to="/checkout">
+              <Link to={`/checkout?usdValue=${usdValue}&btcValue=${btcValue}`}>
                 {" "}
                 <div className="cart-btn">
                   <button>Add to Cart</button>

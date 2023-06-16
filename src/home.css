@@ -240,10 +240,13 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .selection-cards-visamastercard button:hover {
-  background-color: #a5a1a1;
+  background-color: #78cf6c;
 }
 
 .selection-cards-visamastercard button.selected {
-  background-color: #a39f9f;
+  background-color: #25ef3e;
   color: #fff;
+}
+.mastercard-image img{
+  width: 35px !important;
 }

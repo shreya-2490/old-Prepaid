@@ -5,7 +5,7 @@ import dollar from "./assets/dollar.png"
 import bitcoin from "./assets/bitcoin.png"
 import { ExclamationCircleOutlined } from "@ant-design/icons"
 import visa from "./assets/visa.svg"
-import mastercard from "./assets/mastercard.svg"
+import mastercard from "./assets/mastercard.png"
 import ReactTypingEffect from "react-typing-effect"
 import "./home.css"
 
@@ -107,7 +107,7 @@ const Home = () => {
                         }`}
                         onClick={(event) => handleButtonClick(event, 2)}
                       >
-                        <img src={mastercard}></img>
+                        <div  className="mastercard-image"><img src={mastercard}></img></div>
                       </button>
                     </div>
                     {/* <Select
@@ -226,7 +226,7 @@ const Home = () => {
                   />
                 )}
                 <div>
-                  <Link to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}`}>
+                  <Link to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}>
                     <button
                       className="buy-usdt"
                       type="button"

@@ -1,10 +1,23 @@
 import React from "react"
+import { useState, useEffect } from "react"
 import "./payment.css"
 import { Card, Button, Tooltip, Select, Space, Divider, Checkbox } from "antd"
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons"
 import Scanner from "../assets/scanner.jpg"
+import { useLocation } from "react-router-dom"
 
 const Payment = ({ email }) => {
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const input1 = queryParams.get("usdValue")
+  const input2 = queryParams.get("btcValue")
+  const [usdValue, setUSDValue] = useState(input1)
+  const [btcValue, setBtcValue] = useState(input2)
+
+  useEffect(() => {
+    setUSDValue(usdValue)
+    setBtcValue(btcValue)
+  }, [])
   return (
     <div className="checkout-main">
       <div className="twocards" style={{ overflowX: "hidden" }}>
@@ -38,16 +51,16 @@ const Payment = ({ email }) => {
             <div className="custom-upper-para">
               <div>
                 <p className="swiggy">Mastercard</p>
-                <p className="value">$23</p>
+                <p className="value">${usdValue}</p>
               </div>
               <div className="se-box">
-                <p className="BTC">0.000874 BTC</p>
+                <p className="BTC">{btcValue} BTC</p>
               </div>
             </div>
             <Divider className="custom-divider2" />
             <div className="custom-bottom-para pay-para">
               <p className="custom-para">Total</p>
-              <p className="BTC">0.000874 BTC</p>
+              <p className="BTC">{btcValue} BTC</p>
             </div>
           </Card>
         </div>
@@ -75,7 +88,7 @@ const Payment = ({ email }) => {
             </div>
             <div className="pay-h">
               <p className="pay-h4">Amount to pay</p>
-              <p className="pay-h5">0.000874 BTC</p>
+              <p className="pay-h5">{btcValue } BTC</p>
             </div>
             <div>
               <p className="pay-h6">Expires in</p>

@@ -1,5 +1,5 @@
 import React from "react"
-import { useState, useRef } from "react"
+import { useState, useEffect } from "react"
 import { Card, Button, Tooltip, Select, Space, Divider, Checkbox } from "antd"
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons"
 import Navbar from "../navbar"
@@ -7,13 +7,25 @@ import "./checkout.css"
 import Payment from "./payment"
 import validator from 'validator';
 import Ticker from "../ticker"
+import { useLocation, useParams } from "react-router-dom"
 
 const Checkout = () => {
   const [isChecked1, setIsChecked1] = useState(false)
   const [isChecked2, setIsChecked2] = useState(false)
   const [paymentStatus, setPaymentstatus] = useState(false)
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const input1 = queryParams.get("usdValue")
+  const input2 = queryParams.get("btcValue")
+  const [usdValue, setUSDValue] = useState(input1)
+  const [btcValue, setBtcValue] = useState(input2)
   const [email, setEmail] = useState("")
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    setUSDValue(usdValue)
+    setBtcValue(btcValue)
+  }, [])
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value)
@@ -59,7 +71,7 @@ const Checkout = () => {
                 <div className="custom-upper-para">
                   <div>
                     <p className="swiggy">Mastercard</p>
-                    <p className="value">$23</p>
+                    <p className="value">${usdValue}</p>
                   </div>
                   <div className="se-box">
                     <div className="select-box">
@@ -83,7 +95,7 @@ const Checkout = () => {
                       </Space>
                       <DeleteOutlined />
                     </div>
-                    <p className="BTC">0.000874 BTC</p>
+                    <p className="BTC">{btcValue} BTC</p>
                   </div>
                 </div>
                 <Divider />
@@ -97,7 +109,7 @@ const Checkout = () => {
                       <InfoCircleOutlined />
                     </Tooltip>
                   </div>
-                  <p className="BTC">0.000874 BTC</p>
+                  <p className="BTC">{ btcValue } BTC</p>
                 </div>
               </Card>
             </div>
