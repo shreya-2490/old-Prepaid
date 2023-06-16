@@ -89,7 +89,7 @@ const Home = () => {
               <div style={{ marginBottom: "20px" }}>
                 <form>
                   <div className="card-selector-container">
-                    <p style={{ margin: "10px 10px", textAlign: "justify" }}>
+                    <p className="choose-card">
                       Choose Card
                     </p>
                     <div className="selection-cards-visamastercard">
@@ -102,7 +102,7 @@ const Home = () => {
                         <img src={visa}></img>
                       </button>
                       <button
-                        className={`button ${
+                        className={`mastercard-button ${
                           selectedButton === 2 ? "selected" : ""
                         }`}
                         onClick={(event) => handleButtonClick(event, 2)}
