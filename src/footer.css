@@ -21,3 +21,8 @@
   background: none;
   
 }
+@media (max-width: 768px) {
+  .footer{
+    width: 145vh;
+  }
+}

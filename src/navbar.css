@@ -14,13 +14,13 @@
   padding: 9px;
   margin-left: 41px;
 }
-.user{
+.user {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 2px;
 }
-.user .anticon{
+.user .anticon {
   margin-right: 10px;
 }
 .header {
@@ -61,8 +61,8 @@
   text-decoration: none;
 }
 .header .left > a:hover {
-  text-decoration: underline;
-  color: rgb(96, 96, 233);
+  /* text-decoration: underline; */
+  color: rgb(240, 240, 243);
 }
 .header .left .hamburg {
   display: none;
@@ -88,7 +88,7 @@
 }
 
 .header .left .hamburg .navmenu > a:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
   color: rgb(236, 236, 242);
 }
 .cart-details-overlay {
@@ -165,7 +165,27 @@
 .cart.open {
   display: block; /* Show the cart when it's open */
 }
-@media screen and (max-width: 800px) {
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+}
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  display: inline-block;
+}
+
+.menu li a {
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
   .header .left > a {
     display: none;
   }

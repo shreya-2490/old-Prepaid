@@ -51,3 +51,8 @@
 .explore-para{
     margin: 2px 2px 2px 50px;
 }
+@media (max-width: 768px) {
+    .explore-main-div{
+      width: 145vh;
+    }
+  }

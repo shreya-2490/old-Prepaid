@@ -22,3 +22,8 @@
   margin: auto;
   color: black;
 }
+@media (max-width: 768px) {
+  .Faq-main{
+    width: 145vh;
+  }
+}

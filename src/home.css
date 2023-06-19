@@ -1,5 +1,7 @@
 .main-body {
   display: flex;
+  background-image: url("./assets/background.jpg");
+  background-size: cover;
 }
 .home {
   margin-top: 140px;
@@ -37,10 +39,6 @@
   height: 70px;
   justify-content: space-between;
   overflow: hidden;
-}
-.main-body {
-  background-image: url("./assets/background.jpg");
-  background-size: cover;
 }
 .sider {
   backdrop-filter: blur(26px);
@@ -155,9 +153,9 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 50%;
   width: 25px;
 }
-.bit-pic img{
+.bit-pic img {
   height: 20px;
-  width:20px;
+  width: 20px;
 }
 .both-gray {
   display: flex;
@@ -218,7 +216,7 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: space-between;
   margin-top: -25px;
   border: none;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   padding: 10px;
   border-radius: 12px;
 }
@@ -228,11 +226,11 @@ input[type="number"]::-webkit-outer-spin-button {
   border: none;
   margin-bottom: 10px;
 }
-.selection-cards-visamastercard{
+.selection-cards-visamastercard {
   display: flex;
   /* margin-right: 10px; */
 }
-.selection-cards-visamastercard button{
+.selection-cards-visamastercard button {
   background-color: #b9dbf0;
   border: none;
   border-radius: 4px;
@@ -250,16 +248,37 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: #25ef3e;
   color: #fff;
 }
-.mastercard-image img{
+.mastercard-image img {
   width: 35px !important;
 }
-.mastercard-button{
- width: 75px;
+.mastercard-button {
+  width: 75px;
 }
-.choose-card{
+.choose-card {
   margin: 10px 10px;
   text-align: justify;
   font-size: 17px;
   font-family: "Alata", Sans-serif;
   color: black;
+}
+@media (max-width: 768px) {
+  .main-body {
+    display: flex;
+    flex-direction: column;
+    width: 145vh;
+  }
+
+  .home {
+    text-align: center;
+    margin: auto;
+    margin-top: 140px;
+  }
+
+  .home-heading {
+    text-align: center;
+  }
+  .sider {
+    margin: auto;
+    margin-bottom: 58px;
+  }
 }

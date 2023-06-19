@@ -45,3 +45,29 @@
 .heading {
   font-size: 36px;
 }
+
+@media (max-width: 768px) {
+  .bulkcards {
+    display: flex;
+    flex-direction: column;
+    width: 145vh;
+  }
+  .bulk-content {
+    text-align: center;
+  }
+  .bulkcard-card1{
+    width: 68%;
+  }
+  .bulkcard-img img {
+    margin-right: 0px;
+  }
+  .heading{
+    text-align: center;
+  }
+  .bulk-desc {
+    min-height: 300px;
+  }
+  .bulk-card-desc {
+    width: 69.33333333%
+  }
+}

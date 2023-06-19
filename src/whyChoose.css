@@ -60,3 +60,16 @@
 .choose-rows .ant-card-body {
   margin-top: 10px;
 }
+@media (max-width: 768px) {
+  .choose-box{
+    width: 249%;
+  }
+  .choose-row1{
+    display: flex;
+    flex-direction: column;
+  }
+  .choose-row2{
+    display: flex;
+    flex-direction: column;
+  }
+}

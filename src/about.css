@@ -36,3 +36,15 @@
 .ant-card-body{
   padding: 0px !important;
 }
+@media (max-width: 768px) {
+ .about-main{
+  width: 145vh;
+ }
+ .working-cards{
+  display: flex;
+  flex-direction:column;
+ }
+ .arrow{
+  display: none;
+ }
+}
