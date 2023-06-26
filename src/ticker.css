@@ -1,33 +1,41 @@
-.ticker-container {
-    width: 100%;
-    position: sticky;
+
+  .ticker-container {
+    /* position: sticky; */
     position: fixed;
     z-index: 900;
     bottom: 0;
-    background-color: black;
+    left: 0;
+    width: 100%;
+    /* height: 50px; */
+    background-color: rgb(12, 12, 12);
     overflow: hidden;
     color: white;
+  }
+
+
+.ticker {
+  display: flex;
+  animation: ticker-animation 30s linear infinite;
 }
-  
-  .ticker-wrapper {
-    display: flex;
-    animation: ticker-animation 40s linear infinite;
-    margin-right: 10px;
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+  white-space: nowrap;
+}
+
+.crypto-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+@keyframes ticker-animation {
+  0% {
+    transform: translateX(0);
   }
-  
-  .ticker-item {
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  100% {
+    transform: translateX(-100%);
   }
-  
-  @keyframes ticker-animation {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  
+}

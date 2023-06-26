@@ -195,4 +195,14 @@
   .header .left {
     justify-content: flex-end;
   }
+  .logo img{
+    width: 120% ;
+  }
+  .header{
+    height: 140px;
+  }
+  .header .left .hamburg>img {
+    height: 120px;
+    width: 143px;
+  }
 }

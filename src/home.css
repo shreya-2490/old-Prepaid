@@ -36,9 +36,12 @@
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   display: flex;
-  height: 70px;
+  height: 71px;
   justify-content: space-between;
   overflow: hidden;
+}
+.box {
+  width: 332px;
 }
 .sider {
   backdrop-filter: blur(26px);
@@ -46,16 +49,17 @@
   /* border: 1px solid #efefef; */
   border-radius: 16px;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.08);
-  margin: 190px 10px 105px 180px;
+  margin: 190px 10px 105px 129px;
   width: 375px;
 }
 .buttons .buy {
   height: 70px;
-  /* background-color: white; */
+  text-align: center;
   border: none;
   width: 400px;
   font-size: 20px;
   font-weight: bold;
+  margin-left: -30px;
   cursor: pointer;
   border-top-right-radius: 37px;
 }
@@ -69,7 +73,7 @@
   border-bottom-left-radius: 57px;
 }
 .sider-content {
-  padding: 30px;
+  padding: 18px;
   background-color: #ffffff;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
@@ -138,6 +142,9 @@ input[type="number"]::-webkit-outer-spin-button {
   box-shadow: none !important;
   min-height: 44px;
   padding: 10px 11px;
+}
+.second-gray {
+  margin-left: -21px;
 }
 .items {
   align-items: center;
@@ -265,7 +272,7 @@ input[type="number"]::-webkit-outer-spin-button {
   .main-body {
     display: flex;
     flex-direction: column;
-    width: 145vh;
+    width: 160vh;
   }
 
   .home {
@@ -276,9 +283,156 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .home-heading {
     text-align: center;
+    font-size: 60px;
+    margin-left: -190px;
   }
   .sider {
     margin: auto;
     margin-bottom: 58px;
+  }
+  .subtitle {
+    font-size: 25px;
+    line-height: 32px;
+  }
+  .learn-more-btn button {
+    font-size: 25px;
+    width: 171px;
+  }
+}
+
+/*-------PUSH EFFECT CSS----*/
+.pushEffect span:nth-child(1) {
+  animation-delay: 7.5s;
+  -ms-animation-delay: 2.5s; 
+  -webkit-animation-delay: 2.5s;
+}
+
+.pushEffect span:nth-child(2) {
+  animation-delay: 1.5s;
+  -ms-animation-delay: 7.5s;
+  -webkit-animation-delay: 7.5s;
+}
+
+/* Push Effect */
+.pushEffect {
+  display: inline;
+  text-indent: 8px;
+  position: relative;
+}
+
+.pushEffect span {
+  animation: push 8s linear infinite;
+  -ms-animation: push 8s linear infinite;
+  -webkit-animation: push 8s linear infinite;
+  color: #00abe9;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+@keyframes push {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  60% {
+    opacity: 0;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes push {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+    -moz-transform: rotate(0deg) scale(2) skew(0deg) translate(0px);
+  }
+  10% {
+    opacity: 1;
+    -moz-transform: translateX(0px);
+  }
+  25% {
+    opacity: 1;
+    -moz-transform: translateX(0px);
+  }
+  30% {
+    opacity: 0;
+    -moz-transform: translateX(0px);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes push {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotate(0deg) scale(2) skew(0deg) translate(0px);
+  }
+  5% {
+    opacity: 0;
+    -webkit-transform: rotate(0deg) scale(2) skew(0deg) translate(0px);
+  }
+  10% {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+  }
+  25% {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+  }
+  30% {
+    opacity: 0;
+    -webkit-transform: translateX(0px);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes push {
+  0% {
+    opacity: 0;
+    -ms-transform: rotate(0deg) scale(2) skew(0deg) translate(0px);
+  }
+  5% {
+    opacity: 0;
+    -ms-transform: rotate(0deg) scale(2) skew(0deg) translate(0px);
+  }
+  10% {
+    opacity: 1;
+    -ms-transform: translateX(0px);
+  }
+  25% {
+    opacity: 1;
+    -ms-transform: translateX(0px);
+  }
+  30% {
+    opacity: 0;
+    -ms-transform: translateX(0px);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
   }
 }

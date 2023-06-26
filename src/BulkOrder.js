@@ -1,4 +1,4 @@
-import { React } from "react"
+import React, { useState, useEffect } from "react"
 import Navbar from "./navbar"
 import Ticker from "./ticker"
 import bulkcard from "./assets/bulkcard.png"
@@ -8,13 +8,93 @@ const { Option } = Select
 
 const BulkOrder = () => {
   const [form] = Form.useForm()
+  const [subTotal, setSubTotal] = useState(0)
+
+  useEffect(() => {
+    form.setFieldsValue({
+      SubTotal: parseFloat(subTotal).toFixed(2),
+    })
+  }, [subTotal])
+
+  const handleLoadAmountChange = (value) => {
+    const cardQuantity = form.getFieldValue("Card Quantity")
+    const calculatedLoadAmount =  value
+
+    form.setFieldsValue({
+      SubTotal: calculateSubTotal(
+        cardQuantity,
+        calculatedLoadAmount,
+        form.getFieldValue("Add mulitple transactions to cards"),
+        form.getFieldValue("Allow international transactions")
+      ),
+    })
+  }
 
   const handleNumberChange = (value) => {
-    console.log(value)
+    form.setFieldsValue({
+      SubTotal: calculateSubTotal(
+        value,
+        form.getFieldValue("Load Amount ($per card)"),
+        form.getFieldValue("Add mulitple transactions to cards"),
+        form.getFieldValue("Allow international transactions")
+      ),
+    })
   }
+
+  const handleAddMultipleTransactionsChange = (e) => {
+    form.setFieldsValue({
+      SubTotal: calculateSubTotal(
+        form.getFieldValue("Card Quantity"),
+        form.getFieldValue("Load Amount ($per card)"),
+        e.target.value,
+        form.getFieldValue("Allow international transactions")
+      ),
+    })
+  }
+
+  const handleAllowInternationalTransactionsChange = (e) => {
+    form.setFieldsValue({
+      SubTotal: calculateSubTotal(
+        form.getFieldValue("Card Quantity"),
+        form.getFieldValue("Load Amount ($per card)"),
+        form.getFieldValue("Add mulitple transactions to cards"),
+        e.target.value
+      ),
+    })
+  }
+
   const handleSelectChange = (value) => {
     console.log(value)
   }
+
+  const calculateSubTotal = (
+    cardQuantity,
+    loadAmount,
+    addMultipleTransactions = "No",
+    allowInternationalTransactions = "No"
+  ) => {
+    const costPerCard = 2.98
+    let parsedCardQuantity = parseFloat(cardQuantity)
+    if (isNaN(parsedCardQuantity)) {
+      parsedCardQuantity = 0
+    }
+    let sum = parsedCardQuantity * costPerCard + parseFloat(loadAmount)* parsedCardQuantity
+    if (addMultipleTransactions === "Yes") {
+      sum += 5
+    }
+    if (allowInternationalTransactions === "Yes") {
+      sum += 8
+    }
+    setSubTotal(sum.toFixed(2))
+    return sum.toFixed(2)
+  }
+
+  const handleSubmit = () => {
+    form.validateFields().then((values) => {
+      console.log(values)
+    })
+  }
+
   return (
     <>
       <Navbar />
@@ -48,6 +128,9 @@ const BulkOrder = () => {
               name="validateOnly"
               layout="vertical"
               autoComplete="off"
+              initialValues={{
+                SubTotal: subTotal.toString(),
+              }}
             >
               <Form.Item
                 name="Card Type"
@@ -91,7 +174,7 @@ const BulkOrder = () => {
                   },
                 ]}
               >
-                <Input placeholder="$2.98" />
+                <Input placeholder="$2.98" disabled={true} />
               </Form.Item>
               <Form.Item
                 name="Load Amount ($per card)"
@@ -107,7 +190,7 @@ const BulkOrder = () => {
                     min={1}
                     max={100}
                     defaultValue=""
-                    onChange={handleNumberChange}
+                    onChange={handleLoadAmountChange}
                     style={{ width: "275%" }}
                   />
                 </Space>
@@ -127,6 +210,7 @@ const BulkOrder = () => {
                     flexDirection: "column",
                     justifyContent: "space-between",
                   }}
+                  onChange={handleAddMultipleTransactionsChange}
                 >
                   <Radio value="Yes"> Yes </Radio>
                   <Radio value="No"> No </Radio>
@@ -147,6 +231,7 @@ const BulkOrder = () => {
                     flexDirection: "column",
                     justifyContent: "space-between",
                   }}
+                  onChange={handleAllowInternationalTransactionsChange}
                 >
                   <Radio value="Yes"> Yes </Radio>
                   <Radio value="No"> No </Radio>
@@ -161,9 +246,18 @@ const BulkOrder = () => {
                   },
                 ]}
               >
-                <Input placeholder="5.96" />
+                <Input value={subTotal.toString()} readOnly />
               </Form.Item>
-              <Button type="primary" htmlType="submit" style={{borderRadius:"3px", margin:"5px", textAlign:"center"}}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{
+                  borderRadius: "3px",
+                  margin: "5px",
+                  textAlign: "center",
+                }}
+                onClick={handleSubmit}
+              >
                 Buy Now
               </Button>
             </Form>

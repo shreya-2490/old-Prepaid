@@ -7,7 +7,7 @@ import { ExclamationCircleOutlined } from "@ant-design/icons"
 import visa from "./assets/visa.svg"
 import mastercard from "./assets/mastercard.png"
 import ReactTypingEffect from "react-typing-effect"
-import "./home.css"
+import "./home.css" 
 
 const { Option } = Select
 
@@ -16,12 +16,12 @@ const Home = () => {
   const [btcValue, setBTCValue] = useState("0.00")
   const [selectedCard, setSelectedCard] = useState(null)
   const [isValueValid, setIsValueValid] = useState(false)
-  const [selectedButton, setSelectedButton] = useState(null);
+  const [selectedButton, setSelectedButton] = useState(null)
 
   const handleButtonClick = (event, buttonId) => {
-    event.preventDefault();
-    setSelectedButton(buttonId);
-  };
+    event.preventDefault()
+    setSelectedButton(buttonId)
+  }
 
   const handleCardSelect = (value) => {
     setSelectedCard(value)
@@ -50,15 +50,10 @@ const Home = () => {
         {/* <h1 className="home-heading">{title}</h1> */}
         <h1 className="home-heading">
           Exchange Bitcoin For
-          <span className="effect-text">
-            <ReactTypingEffect
-              typingDelay={1000}
-              eraseDelay={500}
-              eraseSpeed={160}
-              speed={30}
-              text={[" Visa", "Mastercard"]}
-            />
-          </span>
+          <div className="pushEffect">
+            <span style={{ animationDelay: "1s" }}>Visa</span>
+            <span style={{ animationDelay: "5s" }}>Mastercard</span>
+          </div>
           <br />
           Prepaid Card
         </h1>
@@ -89,9 +84,7 @@ const Home = () => {
               <div style={{ marginBottom: "20px" }}>
                 <form>
                   <div className="card-selector-container">
-                    <p className="choose-card">
-                      Choose Card
-                    </p>
+                    <p className="choose-card">Choose Card</p>
                     <div className="selection-cards-visamastercard">
                       <button
                         className={`button ${
@@ -107,7 +100,9 @@ const Home = () => {
                         }`}
                         onClick={(event) => handleButtonClick(event, 2)}
                       >
-                        <div  className="mastercard-image"><img src={mastercard}></img></div>
+                        <div className="mastercard-image">
+                          <img src={mastercard}></img>
+                        </div>
                       </button>
                     </div>
                     {/* <Select
@@ -185,7 +180,9 @@ const Home = () => {
                               type="number"
                               value={usdValue}
                               onChange={handleUSDChange}
-                              className={btcValue.length > 10 ? 'long-value' : ''}
+                              className={
+                                btcValue.length > 10 ? "long-value" : ""
+                              }
                             />
                           </div>
                         </div>
@@ -226,7 +223,9 @@ const Home = () => {
                   />
                 )}
                 <div>
-                  <Link to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}>
+                  <Link
+                    to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
+                  >
                     <button
                       className="buy-usdt"
                       type="button"
