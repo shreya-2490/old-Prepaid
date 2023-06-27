@@ -110,7 +110,7 @@ const Checkout = () => {
                       </Space>
                       <DeleteOutlined />
                     </div>
-                    <p className="BTC">{btcValue} BTC</p>
+                    <p className="BTC">{btcValue.toFixed(5)} BTC</p>
                   </div>
                 </div>
                 <div className="custom-upper-cardvalue1">
@@ -130,7 +130,7 @@ const Checkout = () => {
                 </div>
                 < div className="custom-upper-cardvalue">
                     <p className="value">${subtotal.toFixed(2)}</p>
-                    <p className="BTC-total"> {subtotalBTC} BTC</p>
+                    <p className="BTC-total"> {subtotalBTC.toFixed(5)}  BTC</p>
                   </div>
                   </div>
               </Card>
