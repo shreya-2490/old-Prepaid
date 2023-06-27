@@ -184,6 +184,15 @@
   padding: 10px;
   text-decoration: none;
 }
+.carticon{
+  font-size: 28px;
+  margin-right: 20px;
+  color: #fff;
+}
+.ant-badge .ant-badge-count {
+  background: rgb(136, 136, 223);
+}
+
 
 @media (max-width: 768px) {
   .header .left > a {

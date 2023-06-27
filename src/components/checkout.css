@@ -14,9 +14,10 @@
   width: 100%;
 }
 .custom-card .ant-card-head-title {
-  font-size: 24px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1.25;
+  margin-left: -5px;
 }
 .custom-link {
   font-size: 15px;
@@ -74,7 +75,7 @@
   flex-direction: column;
 }
 .Contact-title .ant-card-head-title {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 600;
   padding: 30px 30px 1px 0px;
 }
@@ -133,3 +134,26 @@
   margin: 2px;
   text-decoration: underline;
 }
+.custom-upper-cardvalue{
+  margin: -29px 20px 10px 20px;
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.custom-upper-cardvalue1{
+  margin: -18px 20px 10px 20px;
+  display:flex;
+  flex-direction: column;
+}
+.custom-bottom-para-total{
+  display: flex;
+  flex-direction: column;
+}
+  .bottom-para-total{
+    margin: 2px 20px;
+  }
+  .BTC-total{
+    font-size: 17px;
+    line-height: 1.5;
+    margin-top: 20px;
+  }

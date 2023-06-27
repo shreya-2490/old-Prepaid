@@ -1,11 +1,11 @@
-import React, { useEffect, useSta } from "react"
-import { useState, useRef } from "react"
-import { Card, Select } from "antd"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState, useContext } from "react"
+import { Card, Badge, Button, Modal } from "antd"
+import { CheckCircleOutlined, CloseOutlined } from "@ant-design/icons"
 import { useLocation, useParams } from "react-router-dom"
 import axios from "axios"
+import { CartContext } from './CartContext';
 
-import Navbar from "./navbar"
+import NavbarCart from "./NavbarCart"
 import mastercard from "./assets/mastercard.jpg"
 import "./CartPage.css"
 import Ticker from "./ticker"
@@ -17,9 +17,11 @@ const Cart = ({ params }) => {
   const input2 = queryParams.get("btcValue")
   const input3 = queryParams.get("selectedButton")
   const [selectedButton, setSelectedButton] = useState(input3)
-  const[title,setTitle]=useState("NEW PREPAID MASTERCARD")
+  const [title, setTitle] = useState("NEW PREPAID MASTERCARD")
   const [usdValue, setUSDValue] = useState(input1)
   const [btcValue, setBtcValue] = useState(input2)
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
+  const { addToCart } = useContext(CartContext);
 
   const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
 
@@ -28,7 +30,15 @@ const Cart = ({ params }) => {
     setUSDValue(usdInput)
     setBtcValue(usdInput * exchangeRate)
   }
-  console.log("shreyainput3",selectedButton);
+
+  const handleAddToCart = () => {
+    setIsSuccessModalVisible(true)
+    addToCart();
+  }
+
+  const handleCloseModal = () => {
+    setIsSuccessModalVisible(false)
+  }
 
   useEffect(() => {
     setUSDValue(usdValue)
@@ -38,7 +48,7 @@ const Cart = ({ params }) => {
 
   return (
     <>
-      <Navbar />
+      <NavbarCart />
       <div className="cart-main">
         <div className="twocards-cart" style={{ overflowX: "hidden" }}>
           <div className="card1-cart">
@@ -60,7 +70,7 @@ const Cart = ({ params }) => {
           <div className="card2-cart">
             <Card
               className="Contact-title"
-              title ={ selectedButton==1? "NEW PREPAID VISACARD": title}
+              title={selectedButton == 1 ? "NEW PREPAID VISACARD" : title}
               bordered={false}
               headStyle={{ borderBottom: "none" }}
               style={{
@@ -102,7 +112,7 @@ const Cart = ({ params }) => {
                       type="number"
                       value={usdValue}
                       onChange={handleUSDChange}
-                      className={btcValue.length > 10 ? 'long-value' : ''}
+                      className={btcValue.length > 10 ? "long-value" : ""}
                     />
                   </div>
                 </div>
@@ -119,17 +129,32 @@ const Cart = ({ params }) => {
                       max="9007199254740991"
                       type="number"
                       value={btcValue}
-                      className={btcValue.length > 10 ? 'long-value' : ''}
+                      className={btcValue.length > 10 ? "long-value" : ""}
                     />
                   </div>
                 </div>
-              </div>
-              <Link to={`/checkout?usdValue=${usdValue}&btcValue=${btcValue}`}>
-                {" "}
-                <div className="cart-btn">
-                  <button>Add to Cart</button>
+              </div>{" "}
+              <div className="cart-btn">
+                <button onClick={handleAddToCart}>Add to Cart</button>
+                <div className="success-modal">
+                  <Modal
+                    visible={isSuccessModalVisible}
+                    onCancel={handleCloseModal}
+                    footer={null}
+                    closable={false}
+                  >
+                    <div style={{ textAlign: "center" }}>
+                      <CheckCircleOutlined
+                        style={{ fontSize: "64px", color: "#52c41a" }}
+                      />
+                      <h2>Success!</h2>
+                      <Button type="primary" onClick={handleCloseModal}>
+                        Close
+                      </Button>
+                    </div>
+                  </Modal>
                 </div>
-              </Link>
+              </div>
             </Card>
           </div>
         </div>

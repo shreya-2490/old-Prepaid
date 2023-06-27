@@ -5,26 +5,37 @@ import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons"
 import Navbar from "../navbar"
 import "./checkout.css"
 import Payment from "./payment"
-import validator from 'validator';
+import validator from "validator"
 import Ticker from "../ticker"
 import { useLocation, useParams } from "react-router-dom"
 
 const Checkout = () => {
+  const calculateSubtotal = (usdValue) => {
+    const cardValue = 2.98
+    const btcFee = (usdValue + cardValue) * 0.01
+    const subtotal = usdValue + cardValue + btcFee
+    return { btcFee, subtotal }
+  }
+
   const [isChecked1, setIsChecked1] = useState(false)
   const [isChecked2, setIsChecked2] = useState(false)
   const [paymentStatus, setPaymentstatus] = useState(false)
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
+  const input3 = queryParams.get("selectedButton")
   const input1 = queryParams.get("usdValue")
   const input2 = queryParams.get("btcValue")
+  const [selectedButton, setSelectedButton] = useState(input3)
   const [usdValue, setUSDValue] = useState(input1)
-  const [btcValue, setBtcValue] = useState(input2)
+  const [btcValue, setBtcValue] = useState(parseFloat(input2))
   const [email, setEmail] = useState("")
-  const [error, setError] = useState('');
+  const [error, setError] = useState("")
+  const { btcFee, subtotal } = calculateSubtotal(parseFloat(usdValue))
 
   useEffect(() => {
     setUSDValue(usdValue)
     setBtcValue(btcValue)
+    setSelectedButton(selectedButton)
   }, [])
 
   const handleEmailChange = (event) => {
@@ -32,12 +43,11 @@ const Checkout = () => {
   }
 
   const handleSubmit = () => {
-
     setPaymentstatus(true)
     if (validator.isEmail(email)) {
       setEmail(email)
     } else {
-      alert('Invalid email format. Please enter a correct email address.');
+      alert("Invalid email format. Please enter a correct email address.")
     }
   }
 
@@ -53,6 +63,9 @@ const Checkout = () => {
   const handleChange = (value) => {
     console.log(`selected ${value}`)
   }
+
+  const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
+  const subtotalBTC = subtotal * exchangeRate
 
   return (
     <>
@@ -70,7 +83,9 @@ const Checkout = () => {
               >
                 <div className="custom-upper-para">
                   <div>
-                    <p className="swiggy">Mastercard</p>
+                    <p className="swiggy">
+                      {selectedButton == 1 ? "Visa" : "MasterCard"}
+                    </p>
                     <p className="value">${usdValue}</p>
                   </div>
                   <div className="se-box">
@@ -98,19 +113,26 @@ const Checkout = () => {
                     <p className="BTC">{btcValue} BTC</p>
                   </div>
                 </div>
+                <div className="custom-upper-cardvalue1">
+                  <p className="value">Card Value : $2.98</p>
+                  <p className="value">BTC Fee: ${btcFee.toFixed(2)}</p>
+                </div>
                 <Divider />
-                <a href="" className="custom-link">
-                  Enter a Promo Code
-                </a>
+                 <div className="custom-bottom-para-total">
                 <div className="custom-bottom-para">
                   <div className="custom-tooltip">
                     <p className="custom-para">Total Estimate</p>
+                 
                     <Tooltip title={tooltipText}>
                       <InfoCircleOutlined />
                     </Tooltip>
                   </div>
-                  <p className="BTC">{ btcValue } BTC</p>
                 </div>
+                < div className="custom-upper-cardvalue">
+                    <p className="value">${subtotal.toFixed(2)}</p>
+                    <p className="BTC-total"> {subtotalBTC} BTC</p>
+                  </div>
+                  </div>
               </Card>
             </div>
             <div className="card2">
@@ -182,7 +204,7 @@ const Checkout = () => {
           <Payment email={email} />
         )}
       </div>
-      <Ticker/>
+      <Ticker />
     </>
   )
 }
