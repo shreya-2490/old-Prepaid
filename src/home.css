@@ -1,9 +1,7 @@
 .main-body {
-  /* background-image: url("./assets/bluebackground.jpg"); */
   background: linear-gradient(98deg,#531eba,#6a3dc1,#5f16e3);
   background-size: 180% 180%;
   animation: gradient-animation 3s ease infinite;
-  background-size: cover;
 }
 @keyframes gradient-animation {
   0% {
