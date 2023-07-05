@@ -100,9 +100,10 @@ function NavbarCart() {
         </div>
         <div className="first-four-navigation"> 
         <Link to="/">HOME</Link>
-        <Link to="/bulkorder">BULK ORDERS</Link>
+          <Link to="/bulkorder">BULK ORDERS</Link>
+          <Link to="/">HOW IT WORKS</Link>
         <Link to="/contactus">CONTACT US</Link>
-          <Link to="/">How It Works</Link>
+         
         </div>
         <div className="navlogin">
         <Link

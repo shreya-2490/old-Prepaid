@@ -1,9 +1,5 @@
 * {
-  font-family: "Alata", Sans-serif;
-}
-.header {
-  background-image: url("./assets/blackbackground.jpg");
-  background-size: cover;
+  font-family: "Montserrat,Tajawal,Open Sans,sans-serif";
 }
 .header-two {
   display: flex;
@@ -25,6 +21,7 @@
 }
 .header {
   height: 40px;
+  background: white;
   position: -webkit-sticky;
   display: flex;
   justify-content: space-between;
@@ -55,6 +52,7 @@
   display: flex;
   align-items: center;
   font-size: 14px;
+  color: black;
 }
 .first-four-navigation{
   width: 65%;
@@ -62,26 +60,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: inherit;
+  font-family: "Open Sans", sans-serif;
 }
 .first-four-navigation > a{
-  color: rgb(255, 255, 255);
+  color: #333;
   text-decoration: none;
+  font-weight: 400;
 }
 .navlogin{
   margin-left: inherit;
 }
 .navlogin > a{
-  color: white;
+  color:#333;
   text-decoration: none;
-}
-.header .left > a {
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-}
-.header .left > a:hover {
-  /* text-decoration: underline; */
-  color: rgb(240, 240, 243);
 }
 .header .left .hamburg {
   display: none;

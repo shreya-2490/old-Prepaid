@@ -17,12 +17,16 @@ const Home = () => {
   const [selectedCard, setSelectedCard] = useState(null)
   const [isValueValid, setIsValueValid] = useState(false)
   const [selectedButton, setSelectedButton] = useState(1)
+  const[button, setButton] = useState(2)
 
   const handleButtonClick = (event, buttonId) => {
     event.preventDefault()
     setSelectedButton(buttonId)
   }
-
+  const handleMainButtonClick = (event, buttonId) => {
+    event.preventDefault()
+    setButton(buttonId)
+  }
   const handleCardSelect = (value) => {
     setSelectedCard(value)
   }
@@ -55,7 +59,7 @@ const Home = () => {
             <span style={{ animationDelay: "5s" }}>Mastercard</span>
           </div>
           <br />
-          <span style={{marginLeft:"128px"}}>Prepaid Card</span>
+          <span style={{marginLeft:"40%"}}>Prepaid Card</span>
         </h1>
         <p className="subtitle">
           Enjoy the flexibility and accessibility of your digital assets by
@@ -74,16 +78,16 @@ const Home = () => {
           <div className="buttons">
             <div className="first-btn">
               <button className="buy" style={{
-                backgroundColor: selectedButton === 1 ? "#e95959" : "white",
-              }}  onClick={(event) => handleButtonClick(event, 1)}>
-                Preowned Card
+                backgroundColor: button === 1 ? "#000000" : "white", color: button===1?"white":"#000000",
+              }}  onClick={(event) => handleMainButtonClick(event, 1)}>
+                PreOwned Card
               </button>
             </div>
             <div className="second-btn">
               <button className="sell" style={{
-                backgroundColor: selectedButton === 2 ? "#e95959" : "white",
+                backgroundColor: button === 2 ? "#000000" : "white", color: button===2?"white":"#000000",
               }}
-              onClick={(event) => handleButtonClick(event, 2)}>
+              onClick={(event) => handleMainButtonClick(event, 2)}>
                 New Card
               </button>
             </div>
@@ -221,7 +225,7 @@ const Home = () => {
                   <picture className="bit-pic">
                     <img src={bitcoin}></img>
                   </picture>
-                  <span style={{ margin: "10px" }}>{btcValue} BTC</span>
+                  <span style={{ margin: "10px", fontFamily: "Open Sans, sans-serif"}}>{btcValue} BTC</span>
                 </p>
                 {isValueValid && (
                   <Alert
