@@ -23,6 +23,7 @@ import Login from "./components/Login"
 import Cart from "./CartPage"
 import BulkOrder from "./BulkOrder"
 import ContactUs from "./components/ContactUs"
+import Payment from "./components/payment"
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<About />} />
         </Routes>
         <Routes>
@@ -54,15 +55,18 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/" element={<Footer />} />
-        </Routes>
-        <Routes>
+        </Routes> */}
+        {/* <Routes>
           <Route path="/" element={<Ticker/>} />
-        </Routes>
+        </Routes> */}
         <Routes>
           <Route path="/cart" element={<Cart />} />
         </Routes>
         <Routes>
           <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+        <Routes>
+          <Route path="/payment" element={<Payment />} />
         </Routes>
         <Routes>
           <Route path="/login" element={<Login />} />

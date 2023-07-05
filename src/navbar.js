@@ -84,28 +84,15 @@ function Navbar() {
         <Link to="/login"><span className="user"><UserOutlined />LOGIN</span></Link>
           </div>
         </div>
+        <div className="first-four-navigation"> 
         <Link to="/">HOME</Link>
         <Link to="/bulkorder">BULK ORDERS</Link>
         <Link to="/contactus">CONTACT US</Link>
-        <Link to="/login"><span className="user"><UserOutlined />LOGIN</span></Link>
-        {/* <div style={{ color: "white" }}>
-          <button onClick={handleCartClick}>Cart</button>
-          {isCartOpen && (
-            <div className="cart-details-overlay">
-              <div className="cart-details">
-                <div className="cart-inner">
-                  <button onClick={handleCloseClick}>Close</button>
-                  <p>Items in cart: {cartCount}</p>
-                  <div>
-                    <button className="checkout">
-                      <Link to="/checkout">Checkout</Link>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div> */}
+          <Link to="/">How It Works</Link>
+        </div>
+        <div className="navlogin">
+          <Link to="/login" ><span className="user"><UserOutlined />LOGIN</span></Link>
+        </div>
       </div>
     </div>
   )

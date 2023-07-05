@@ -2,7 +2,7 @@
   font-family: "Alata", Sans-serif;
 }
 .header {
-  background-image: url("./assets/background.jpg");
+  background-image: url("./assets/blackbackground.jpg");
   background-size: cover;
 }
 .header-two {
@@ -10,7 +10,7 @@
   flex-direction: column;
 }
 .logo img {
-  width: 185px;
+  width: 130px;
   padding: 9px;
   margin-left: 41px;
 }
@@ -24,7 +24,7 @@
   margin-right: 10px;
 }
 .header {
-  height: 60px;
+  height: 40px;
   position: -webkit-sticky;
   display: flex;
   justify-content: space-between;
@@ -50,11 +50,30 @@
   margin-right: 20px;
 }
 .header .left {
-  width: 35%;
+  width: 58%;
+  margin: auto;
   display: flex;
-  justify-content: space-around;
   align-items: center;
   font-size: 14px;
+}
+.first-four-navigation{
+  width: 65%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.first-four-navigation > a{
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+.navlogin{
+  margin-left: inherit;
+}
+.navlogin > a{
+  color: white;
+  text-decoration: none;
 }
 .header .left > a {
   color: rgb(255, 255, 255);

@@ -7,17 +7,30 @@ import Scanner from "../assets/scanner.jpg"
 import { useLocation } from "react-router-dom"
 
 const Payment = ({ email }) => {
+  const calculateSubtotal = (usdValue) => {
+    const cardValue = 2.98
+    const btcFee = (usdValue + cardValue) * 0.01
+    const subtotal = usdValue + cardValue + btcFee
+    return { btcFee, subtotal }
+  }
+
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const input1 = queryParams.get("usdValue")
   const input2 = queryParams.get("btcValue")
+  const input3 = queryParams.get("subTotalBtc")
   const [usdValue, setUSDValue] = useState(input1)
   const [btcValue, setBtcValue] = useState(input2)
+  const { btcFee, subtotal } = calculateSubtotal(parseFloat(usdValue))
 
   useEffect(() => {
     setUSDValue(usdValue)
     setBtcValue(btcValue)
   }, [])
+
+  const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
+  const subtotalBTC = subtotal * exchangeRate
+
   return (
     <div className="checkout-main">
       <div className="twocards" style={{ overflowX: "hidden" }}>
@@ -60,7 +73,7 @@ const Payment = ({ email }) => {
             <Divider className="custom-divider2" />
             <div className="custom-bottom-para pay-para">
               <p className="custom-para">Total</p>
-              <p className="BTC">{btcValue} BTC</p>
+              <p className="BTC-total"> {subtotalBTC.toFixed(5)} BTC</p>
             </div>
           </Card>
         </div>

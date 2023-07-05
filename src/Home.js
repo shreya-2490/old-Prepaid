@@ -16,7 +16,7 @@ const Home = () => {
   const [btcValue, setBTCValue] = useState("0.00")
   const [selectedCard, setSelectedCard] = useState(null)
   const [isValueValid, setIsValueValid] = useState(false)
-  const [selectedButton, setSelectedButton] = useState(null)
+  const [selectedButton, setSelectedButton] = useState(1)
 
   const handleButtonClick = (event, buttonId) => {
     event.preventDefault()
@@ -55,14 +55,14 @@ const Home = () => {
             <span style={{ animationDelay: "5s" }}>Mastercard</span>
           </div>
           <br />
-          Prepaid Card
+          <span style={{marginLeft:"128px"}}>Prepaid Card</span>
         </h1>
-        <span className="subtitle">
+        <p className="subtitle">
           Enjoy the flexibility and accessibility of your digital assets by
           exchanging them for prepaid cards that can be used for online
           purchases, in-store transactions, or cash withdrawals at ATMs
           worldwide.
-        </span>
+        </p>
         <div className="learn-more-btn">
           <Link to="/">
             <button>Learn More</button>
@@ -73,8 +73,18 @@ const Home = () => {
         <div className="box">
           <div className="buttons">
             <div className="first-btn">
-              <button className="buy" style={{ backgroundColor: "white" }}>
-                Buy Prepaid Card With Crypto
+              <button className="buy" style={{
+                backgroundColor: selectedButton === 1 ? "#e95959" : "white",
+              }}  onClick={(event) => handleButtonClick(event, 1)}>
+                Preowned Card
+              </button>
+            </div>
+            <div className="second-btn">
+              <button className="sell" style={{
+                backgroundColor: selectedButton === 2 ? "#e95959" : "white",
+              }}
+              onClick={(event) => handleButtonClick(event, 2)}>
+                New Card
               </button>
             </div>
           </div>

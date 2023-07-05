@@ -18,7 +18,7 @@ const BulkOrder = () => {
 
   const handleLoadAmountChange = (value) => {
     const cardQuantity = form.getFieldValue("Card Quantity")
-    const calculatedLoadAmount =  value
+    const calculatedLoadAmount = value
 
     form.setFieldsValue({
       SubTotal: calculateSubTotal(
@@ -78,7 +78,9 @@ const BulkOrder = () => {
     if (isNaN(parsedCardQuantity)) {
       parsedCardQuantity = 0
     }
-    let sum = parsedCardQuantity * costPerCard + parseFloat(loadAmount)* parsedCardQuantity
+    let sum =
+      parsedCardQuantity * costPerCard +
+      parseFloat(loadAmount) * parsedCardQuantity
     if (addMultipleTransactions === "Yes") {
       sum += 5
     }
@@ -91,7 +93,21 @@ const BulkOrder = () => {
 
   const handleSubmit = () => {
     form.validateFields().then((values) => {
-      console.log(values)
+      const {
+        CardType,
+        "Card Quantity": CardQuantity,
+        "Load Amount ($per card)": LoadAmount,
+        "Add mulitple transactions to cards": AddMultipleTransactions,
+        "Allow international transactions": AllowInternationalTransactions,
+      } = values
+      const subtotal = calculateSubTotal(
+        CardQuantity,
+        LoadAmount,
+        AddMultipleTransactions,
+        AllowInternationalTransactions
+      )
+      const queryParams = `?cardType=${CardType}&cardQuantity=${CardQuantity}&loadAmount=${LoadAmount}&subtotal=${subtotal}`
+      window.location.href = `/Checkout${queryParams}`
     })
   }
 
@@ -133,7 +149,7 @@ const BulkOrder = () => {
               }}
             >
               <Form.Item
-                name="Card Type"
+                name="CardType"
                 label="Card Type"
                 rules={[
                   {

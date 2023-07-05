@@ -98,15 +98,13 @@ function NavbarCart() {
             </Link>
           </div>
         </div>
+        <div className="first-four-navigation"> 
         <Link to="/">HOME</Link>
         <Link to="/bulkorder">BULK ORDERS</Link>
         <Link to="/contactus">CONTACT US</Link>
-        <Link to="/login">
-          <span className="user">
-            <UserOutlined />
-            LOGIN
-          </span>
-        </Link>
+          <Link to="/">How It Works</Link>
+        </div>
+        <div className="navlogin">
         <Link
           to={`/checkout?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
           
@@ -115,6 +113,8 @@ function NavbarCart() {
             <ShoppingCartOutlined/>
           </Badge>
         </Link>
+        </div>
+   
 
         {/* <div style={{ color: "white" }}>
           <button onClick={handleCartClick}>Cart</button>

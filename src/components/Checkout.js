@@ -49,6 +49,7 @@ const Checkout = () => {
     } else {
       alert("Invalid email format. Please enter a correct email address.")
     }
+    window.location.href=`/payment?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}&subTotalBtc=${subtotalBTC}`
   }
 
   const handleCheckboxChange1 = () => {
@@ -114,25 +115,25 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="custom-upper-cardvalue1">
-                  <p className="value">Card Value : $2.98</p>
+                  <p className="value">Card Fee : $2.98</p>
                   <p className="value">BTC Fee: ${btcFee.toFixed(2)}</p>
                 </div>
                 <Divider />
-                 <div className="custom-bottom-para-total">
-                <div className="custom-bottom-para">
-                  <div className="custom-tooltip">
-                    <p className="custom-para">Total Estimate</p>
-                 
-                    <Tooltip title={tooltipText}>
-                      <InfoCircleOutlined />
-                    </Tooltip>
+                <div className="custom-bottom-para-total">
+                  <div className="custom-bottom-para">
+                    <div className="custom-tooltip">
+                      <p className="custom-para">Total Estimate</p>
+
+                      <Tooltip title={tooltipText}>
+                        <InfoCircleOutlined />
+                      </Tooltip>
+                    </div>
+                  </div>
+                  <div className="custom-upper-cardvalue">
+                    <p className="value">${subtotal.toFixed(2)}</p>
+                    <p className="BTC-total"> {subtotalBTC.toFixed(5)} BTC</p>
                   </div>
                 </div>
-                < div className="custom-upper-cardvalue">
-                    <p className="value">${subtotal.toFixed(2)}</p>
-                    <p className="BTC-total"> {subtotalBTC.toFixed(5)}  BTC</p>
-                  </div>
-                  </div>
               </Card>
             </div>
             <div className="card2">
