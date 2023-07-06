@@ -53,25 +53,25 @@ const Home = () => {
       <div className="home" id="homee">
         {/* <h1 className="home-heading">{title}</h1> */}
         <h1 className="home-heading">
-          Exchange Bitcoin For
-          <div className="pushEffect">
+          LOAD IN BTC SPEND <br/>IN DOLLARS
+          {/* <div className="pushEffect">
             <span style={{ animationDelay: "1s" }}>Visa</span>
             <span style={{ animationDelay: "5s" }}>Mastercard</span>
           </div>
           <br />
-          <span style={{marginLeft:"40%"}}>Prepaid Card</span>
+          <span style={{marginLeft:"40%"}}>Prepaid Card</span> */}
         </h1>
-        <p className="subtitle">
+        {/* <p className="subtitle">
           Enjoy the flexibility and accessibility of your digital assets by
           exchanging them for prepaid cards that can be used for online
           purchases, in-store transactions, or cash withdrawals at ATMs
           worldwide.
-        </p>
-        <div className="learn-more-btn">
+        </p> */}
+        {/* <div className="learn-more-btn">
           <Link to="/">
             <button>Learn More</button>
           </Link>
-        </div>
+        </div> */}
       </div>
       <div className="sider">
         <div className="box">
