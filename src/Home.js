@@ -53,7 +53,7 @@ const Home = () => {
       <div className="home" id="homee">
         {/* <h1 className="home-heading">{title}</h1> */}
         <h1 className="home-heading">
-          LOAD IN BTC SPEND <br/>IN DOLLARS
+          LOAD IN BTC <br/> SPEND IN DOLLARS
           {/* <div className="pushEffect">
             <span style={{ animationDelay: "1s" }}>Visa</span>
             <span style={{ animationDelay: "5s" }}>Mastercard</span>
