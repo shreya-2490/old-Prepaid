@@ -1,88 +1,114 @@
 .ant-card-head-title {
-    font-size: 30px;
-    color: black;
+  font-size: 30px;
+  color: black;
 }
-.order-details{
-    margin: 7px 20px;
-   
+.order-details {
+  margin: 7px 20px;
 }
-.emailad{
-    margin-top: -13px;
-    margin-bottom: 93px;
+.emailad {
+  margin-top: -13px;
+  margin-bottom: 93px;
 }
-.email-div{
-    display: flex;
-    justify-content: space-between;
+.email-div {
+  display: flex;
+  justify-content: space-between;
 }
-.change{
-    color: black;
-    text-decoration: underline;
-    margin-top: -11px;
-    border: none;
+.change {
+  color: black;
+  text-decoration: underline;
+  margin-top: -11px;
+  border: none;
 }
-.change:hover{
-    color: black;
+.change:hover {
+  color: black;
 }
-.payment-details{
-    margin: -70px 20px;
+.payment-details {
+  margin: -70px 20px;
 }
-.custom-divider{
-    margin-top: -70px;
-    margin-bottom: 50px;
+.custom-divider {
+  margin-top: -70px;
+  margin-bottom: 50px;
 }
-.custom-divider2{
-    margin-top: -10px;
+.custom-divider2 {
+  margin-top: -10px;
 }
-.pay-para{
-    margin-top: -23px;
+.pay-para {
+  margin-top: -23px;
 }
-.payment-card1 .ant-card-body{
-    height: 325px;
+.payment-card1 .ant-card-body {
+  height: 50%;
 }
 .scanner-pic {
-    display: flex;
+  display: flex;
 }
-.scanner-pic img{
-    margin: auto;
-    width: 300px;
+.scanner-pic img {
+  margin: auto;
+  width: 300px;
 }
-.pay-h{
-    margin-bottom:25px;
-    font-weight: 600;
+.pay-h {
+  margin-bottom: 25px;
+  font-weight: 600;
 }
-.pay-h1{
-    color:#99A29E;
-    font-size: 20px;
+.pay-h1 {
+  color: #99a29e;
+  font-size: 20px;
 }
-.pay-h2{
-    margin-top: -16px;
-    font-size: 15px; 
+.pay-h2 {
+  margin-top: -16px;
+  font-size: 15px;
 }
-.pay-h3{
-    font-size: 15px; 
-    margin-top: -5px;
+.pay-h3 {
+  font-size: 15px;
+  margin-top: -5px;
 }
-.pay-h4, .pay-h5{
-    font-size: 15px; 
+.pay-h4,
+.pay-h5 {
+  font-size: 15px;
 }
-.pay-h5{
-    margin-top: -8px;
+.pay-h5 {
+  margin-top: -8px;
 }
-.pay-h6{
-    font-weight: 600;
-    margin-top: 30px;
-    font-size: 15px; 
+.pay-h6 {
+  font-weight: 600;
+  margin-top: 30px;
+  font-size: 15px;
 }
 .pay-adv {
-    text-decoration: underline;
-    color: black;
-    margin: auto;
-    font-size: 15px;
+  text-decoration: underline;
+  color: black;
+  margin: auto;
+  font-size: 15px;
 }
-.pay-adv:hover{
-    color: black;
+.pay-adv:hover {
+  color: black;
 }
-.adv{
-    display: flex;
-    margin-top: 65px;
+.adv {
+  display: flex;
+  margin-top: 65px;
+}
+.custom-upper-para-pay {
+  margin: -30px 20px 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.subtotal {
+  margin-left: 20px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.BTC-payment {
+  font-size: 17px;
+  line-height: 1.5;
+  margin-top: -35px;
+  margin-left: -111px;
+}
+.fee-footer {
+  margin-left: 20px;
+}
+.BTC-simplecard{
+  font-size: 17px;
+  line-height: 1.5;
+  margin-top: -46px;
+  margin-left: -94px;
 }

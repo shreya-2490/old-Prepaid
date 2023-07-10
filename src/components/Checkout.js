@@ -2,21 +2,16 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { Card, Button, Tooltip, Select, Space, Divider, Checkbox } from "antd"
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons"
-import Navbar from "../navbar"
+import Navbarlogo from "../Navbarlogo"
 import "./checkout.css"
 import Payment from "./payment"
 import validator from "validator"
 import Ticker from "../ticker"
-import { useLocation, useParams } from "react-router-dom"
+import visa from "../assets/visa.svg"
+import mastercard from "../assets/mastercard.png"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const Checkout = () => {
-  const calculateSubtotal = (usdValue) => {
-    const cardValue = 2.98
-    const btcFee = (usdValue + cardValue) * 0.01
-    const subtotal = usdValue + cardValue + btcFee
-    return { btcFee, subtotal }
-  }
-
   const [isChecked1, setIsChecked1] = useState(false)
   const [isChecked2, setIsChecked2] = useState(false)
   const [paymentStatus, setPaymentstatus] = useState(false)
@@ -25,17 +20,21 @@ const Checkout = () => {
   const input3 = queryParams.get("selectedButton")
   const input1 = queryParams.get("usdValue")
   const input2 = queryParams.get("btcValue")
-  const [selectedButton, setSelectedButton] = useState(input3)
-  const [usdValue, setUSDValue] = useState(input1)
-  const [btcValue, setBtcValue] = useState(parseFloat(input2))
+  const [selectedButton, setSelectedButton] = useState(input3 || "1")
+  const [usdValue, setUSDValue] = useState(input1 || "")
+  const [btcValue, setBtcValue] = useState(parseFloat(input2) || 0)
   const [email, setEmail] = useState("")
   const [error, setError] = useState("")
-  const { btcFee, subtotal } = calculateSubtotal(parseFloat(usdValue))
+  const [cardType, setCardType] = useState("")
+  const [displaySelectedButton, setDisplaySelectedButton] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    setUSDValue(usdValue)
-    setBtcValue(btcValue)
-    setSelectedButton(selectedButton)
+    setUSDValue(input1)
+    setBtcValue(parseFloat(input2))
+    setSelectedButton(input3)
+    setCardType(queryParams.get("cardType") || "")
+    setDisplaySelectedButton(queryParams.has("selectedButton"))
   }, [])
 
   const handleEmailChange = (event) => {
@@ -49,7 +48,21 @@ const Checkout = () => {
     } else {
       alert("Invalid email format. Please enter a correct email address.")
     }
-    window.location.href=`/payment?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}&subTotalBtc=${subtotalBTC}`
+
+    const queryParams = new URLSearchParams({
+      cardType: cardType,
+      cardQuantity: displayCardQuantity,
+      loadAmount: displayLoadAmount,
+      subtotal: displaySubtotal,
+      usdValue: usdValue,
+      btcValue: btcValue,
+      selectedButton: selectedButton,
+      subTotalBtc: subtotalBTC,
+      multipletransaction: displayMultipleTransaction,
+      internationaltransaction: displayInternationalTransaction,
+      })
+
+    navigate(`/payment?${queryParams}&email=${email}`)
   }
 
   const handleCheckboxChange1 = () => {
@@ -59,18 +72,26 @@ const Checkout = () => {
   const handleCheckboxChange2 = () => {
     setIsChecked2(!isChecked2)
   }
+
   const tooltipText = "This is the text that will be displayed on hover."
 
   const handleChange = (value) => {
     console.log(`selected ${value}`)
   }
+  const displayCardQuantity = queryParams.get("cardQuantity")
+  const displayLoadAmount = queryParams.get("loadAmount")
+  const displaySubtotal = queryParams.get("subtotal")
+  const displayMultipleTransaction = queryParams.get("multipletransaction")
+  const displayInternationalTransaction= queryParams.get("internationaltransaction")
 
   const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
-  const subtotalBTC = subtotal * exchangeRate
+  const subtotalBTC = usdValue * exchangeRate
+  const bulktotal = displayLoadAmount * displayCardQuantity * exchangeRate
+  const totalbulkamt = displayLoadAmount * displayCardQuantity 
 
   return (
     <>
-      <Navbar />
+      <Navbarlogo />
       <div className="checkout-main">
         {!paymentStatus ? (
           <div className="twocards" style={{ overflowX: "hidden" }}>
@@ -79,19 +100,82 @@ const Checkout = () => {
                 className="custom-card"
                 title="Order Summary"
                 bordered={false}
-                style={{ width: 500, margin: "90px 0px 0px 30px" }}
+                style={{ width: 450, margin: "90px 0px 0px 30px" }}
                 headStyle={{ borderBottom: "none" }}
               >
                 <div className="custom-upper-para">
                   <div>
                     <p className="swiggy">
-                      {selectedButton == 1 ? "Visa" : "MasterCard"}
+                      {displaySelectedButton ? (
+                        <div className="value">
+                          {selectedButton === "1" ? (
+                            <>
+                              <div style={{ display: "flex" }}>
+                                <img
+                                  src={visa}
+                                  alt="Visa"
+                                  className="visacardtype-img"
+                                />
+                                <p>Visa</p>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div style={{ display: "flex" }}>
+                                <img
+                                  src={mastercard}
+                                  alt="MasterCard"
+                                  className="cardtype-img"
+                                />
+                                <p>MasterCard</p>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="value">
+                          {cardType === "card1" ? (
+                            <>
+                              <div style={{ display: "flex" }}>
+                                <img
+                                  src={visa}
+                                  alt="Visa"
+                                  className="visacardtype-img"
+                                />
+                                <p>Visa</p>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div style={{ display: "flex" }}>
+                                <img
+                                  src={mastercard}
+                                  alt="MasterCard"
+                                  className="cardtype-img"
+                                />
+                                <p>MasterCard</p>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      )}
                     </p>
-                    <p className="value">${usdValue}</p>
+                    {queryParams.has("loadAmount") ? (
+                      <>
+                        <p className="value">
+                          Card Quantity: {queryParams.get("cardQuantity")}
+                        </p>
+                        <p className="value">
+                          Load Amount: ${queryParams.get("loadAmount")}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="value">${usdValue}</p>
+                    )}
                   </div>
                   <div className="se-box">
                     <div className="select-box">
-                      <Space wrap>
+                      {queryParams.has("loadAmount") ? "": <Space wrap>
                         <Select
                           className="select"
                           defaultValue="1"
@@ -108,17 +192,16 @@ const Checkout = () => {
                             { value: "8", label: "8" },
                           ]}
                         />
-                      </Space>
+                      </Space>}
                       <DeleteOutlined />
                     </div>
-                    <p className="BTC">{btcValue.toFixed(5)} BTC</p>
+                    {queryParams.has("loadAmount") ? (
+                      ""
+                    ) : (
+                      <p className="BTC">{btcValue.toFixed(5)} BTC</p>
+                    )}
                   </div>
                 </div>
-                <div className="custom-upper-cardvalue1">
-                  <p className="value">Card Fee : $2.98</p>
-                  <p className="value">BTC Fee: ${btcFee.toFixed(2)}</p>
-                </div>
-                <Divider />
                 <div className="custom-bottom-para-total">
                   <div className="custom-bottom-para">
                     <div className="custom-tooltip">
@@ -130,8 +213,17 @@ const Checkout = () => {
                     </div>
                   </div>
                   <div className="custom-upper-cardvalue">
-                    <p className="value">${subtotal.toFixed(2)}</p>
-                    <p className="BTC-total"> {subtotalBTC.toFixed(5)} BTC</p>
+                    {queryParams.has("loadAmount") ? (
+                      <p className="value">${totalbulkamt}
+                      </p>
+                    ) : (
+                      <p className="value">${usdValue}</p>
+                    )}
+                    {queryParams.has("loadAmount") ? (
+                      <p className="BTC-total"> {bulktotal.toFixed(5)} BTC</p>
+                    ) : (
+                      <p className="BTC-total"> {subtotalBTC.toFixed(5)} BTC</p>
+                    )}
                   </div>
                 </div>
               </Card>

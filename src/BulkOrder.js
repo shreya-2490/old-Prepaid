@@ -24,8 +24,8 @@ const BulkOrder = () => {
       SubTotal: calculateSubTotal(
         cardQuantity,
         calculatedLoadAmount,
-        form.getFieldValue("Add mulitple transactions to cards"),
-        form.getFieldValue("Allow international transactions")
+        form.getFieldValue("Will cards be used for more than one purchase?"),
+        form.getFieldValue("Will cards be used to make international purchases?")
       ),
     })
   }
@@ -34,9 +34,9 @@ const BulkOrder = () => {
     form.setFieldsValue({
       SubTotal: calculateSubTotal(
         value,
-        form.getFieldValue("Load Amount ($per card)"),
-        form.getFieldValue("Add mulitple transactions to cards"),
-        form.getFieldValue("Allow international transactions")
+        form.getFieldValue("Load Amount"),
+        form.getFieldValue("Will cards be used for more than one purchase?"),
+        form.getFieldValue("Will cards be used to make international purchases?")
       ),
     })
   }
@@ -45,9 +45,9 @@ const BulkOrder = () => {
     form.setFieldsValue({
       SubTotal: calculateSubTotal(
         form.getFieldValue("Card Quantity"),
-        form.getFieldValue("Load Amount ($per card)"),
+        form.getFieldValue("Load Amount"),
         e.target.value,
-        form.getFieldValue("Allow international transactions")
+        form.getFieldValue("Will cards be used to make international purchases?")
       ),
     })
   }
@@ -56,8 +56,8 @@ const BulkOrder = () => {
     form.setFieldsValue({
       SubTotal: calculateSubTotal(
         form.getFieldValue("Card Quantity"),
-        form.getFieldValue("Load Amount ($per card)"),
-        form.getFieldValue("Add mulitple transactions to cards"),
+        form.getFieldValue("Load Amount"),
+        form.getFieldValue("Will cards be used for more than one purchase?"),
         e.target.value
       ),
     })
@@ -96,9 +96,9 @@ const BulkOrder = () => {
       const {
         CardType,
         "Card Quantity": CardQuantity,
-        "Load Amount ($per card)": LoadAmount,
-        "Add mulitple transactions to cards": AddMultipleTransactions,
-        "Allow international transactions": AllowInternationalTransactions,
+        "Load Amount": LoadAmount,
+        "Will cards be used for more than one purchase?": AddMultipleTransactions,
+        "Will cards be used to make international purchases?": AllowInternationalTransactions,
       } = values
       const subtotal = calculateSubTotal(
         CardQuantity,
@@ -106,7 +106,7 @@ const BulkOrder = () => {
         AddMultipleTransactions,
         AllowInternationalTransactions
       )
-      const queryParams = `?cardType=${CardType}&cardQuantity=${CardQuantity}&loadAmount=${LoadAmount}&subtotal=${subtotal}`
+      const queryParams = `?cardType=${CardType}&cardQuantity=${CardQuantity}&loadAmount=${LoadAmount}&multipletransaction=${AddMultipleTransactions}&internationaltransaction=${ AllowInternationalTransactions}&subtotal=${subtotal}`
       window.location.href = `/Checkout${queryParams}`
     })
   }
@@ -193,8 +193,8 @@ const BulkOrder = () => {
                 <Input placeholder="$2.98" disabled={true} />
               </Form.Item>
               <Form.Item
-                name="Load Amount ($per card)"
-                label="Load Amount ($per card)"
+                name="Load Amount"
+                label="Load Amount"
                 rules={[
                   {
                     required: true,
@@ -212,8 +212,8 @@ const BulkOrder = () => {
                 </Space>
               </Form.Item>
               <Form.Item
-                name="Add mulitple transactions to cards"
-                label="Add mulitple transactions to cards"
+                name="Will cards be used for more than one purchase?"
+                label="Will cards be used for more than one purchase?"
                 rules={[
                   {
                     required: true,
@@ -233,8 +233,8 @@ const BulkOrder = () => {
                 </Radio.Group>
               </Form.Item>
               <Form.Item
-                name="Allow international transactions"
-                label="Allow international transactions"
+                name="Will cards be used to make international purchases?"
+                label="Will cards be used to make international purchases?"
                 rules={[
                   {
                     required: true,

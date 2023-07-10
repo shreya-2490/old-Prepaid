@@ -54,7 +54,7 @@
   font-size: 14px;
   color: black;
 }
-.first-four-navigation{
+.first-four-navigation {
   width: 65%;
   margin: auto;
   display: flex;
@@ -63,16 +63,16 @@
   font-size: inherit;
   font-family: "Open Sans", sans-serif;
 }
-.first-four-navigation > a{
+.first-four-navigation > a {
   color: #333;
   text-decoration: none;
   font-weight: 400;
 }
-.navlogin{
+.navlogin {
   margin-left: inherit;
 }
-.navlogin > a{
-  color:#333;
+.navlogin > a {
+  color: #333;
   text-decoration: none;
 }
 .header .left .hamburg {
@@ -195,19 +195,52 @@
   padding: 10px;
   text-decoration: none;
 }
-.carticon{
+.carticon {
   font-size: 28px;
   margin-right: 20px;
   color: #0c0c0c;
 }
 .anticon svg {
-  color:#0c0c0c;
+  color: #0c0c0c;
 }
 .ant-badge .ant-badge-count {
   background: rgb(136, 136, 223);
   margin-top: 10px;
 }
+.headerlogo {
+  height: 27px;
+}
+.logocheckout img {
+  width: 180px;
+  margin-left: 17px;
+  margin-top: 2px;
+}
+.back-arrow {
+  font-size: 20px;
+  margin-left: 35px;
+  cursor: pointer;
+}
+.cart-modal {
+  max-width: 192px;
+}
 
+.cart-modal .ant-modal-content {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cart-modal .ant-modal-body {
+  flex-grow: 1;
+  padding: 16px;
+}
+
+.cart-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
 
 @media (max-width: 768px) {
   .header .left > a {
@@ -219,13 +252,13 @@
   .header .left {
     justify-content: flex-end;
   }
-  .logo img{
-    width: 120% ;
+  .logo img {
+    width: 120%;
   }
-  .header{
+  .header {
     height: 140px;
   }
-  .header .left .hamburg>img {
+  .header .left .hamburg > img {
     height: 120px;
     width: 143px;
   }

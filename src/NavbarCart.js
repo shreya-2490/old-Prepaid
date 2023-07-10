@@ -3,35 +3,24 @@ import "./navbar.css"
 import { Link } from "react-router-dom"
 import logo from "./assets/logo.png"
 import ham from "./assets/ham.png"
-import { useLocation } from "react-router-dom"
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons"
-import { Badge } from "antd"
+import { Badge, Modal, Button } from "antd"
 import { CartContext } from "./CartContext"
 
 function NavbarCart() {
   const { cartCount } = useContext(CartContext)
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [resmenu, setresmenu] = useState("none")
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const location = useLocation()
-  const queryParams = new URLSearchParams(location.search)
-  const input1 = queryParams.get("usdValue")
-  const input2 = queryParams.get("btcValue")
-  const input3 = queryParams.get("selectedButton")
-  const [selectedButton, setSelectedButton] = useState(input3)
-  const [title, setTitle] = useState("NEW PREPAID MASTERCARD")
-  const [usdValue, setUSDValue] = useState(input1)
-  const [btcValue, setBtcValue] = useState(input2)
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
   const handleCartClick = () => {
     setIsCartOpen(true)
   }
 
   const handleCloseClick = () => {
     setIsCartOpen(false)
+  }
+  const handleKeepShopping = () => {
+    window.location.href = `/`
   }
 
   const scrolll = (e, id) => {
@@ -60,6 +49,7 @@ function NavbarCart() {
       }
     }, 0)
   }
+
   window.addEventListener("scroll", function () {
     var subheader = document.querySelector(".subheader")
     var headerHeight = document.querySelector("header").offsetHeight
@@ -75,17 +65,17 @@ function NavbarCart() {
   return (
     <div className="header">
       <div className="logo">
-        <img src={logo}></img>
+        <img src={logo} alt="Logo" />
       </div>
       <div className="left">
         <div
           className="hamburg"
           onClick={() => {
-            if (resmenu == "none") setresmenu("flex")
+            if (resmenu === "none") setresmenu("flex")
             else setresmenu("none")
           }}
         >
-          <img src={ham}></img>
+          <img src={ham} alt="Menu" />
           <div className="navmenu" style={{ display: resmenu }}>
             <Link to="/">HOME</Link>
             <Link to="/bulkorder">BULK ORDERS</Link>
@@ -98,44 +88,42 @@ function NavbarCart() {
             </Link>
           </div>
         </div>
-        <div className="first-four-navigation"> 
-        <Link to="/">HOME</Link>
+        <div className="first-four-navigation">
+          <Link to="/">HOME</Link>
           <Link to="/bulkorder">BULK ORDERS</Link>
           <Link to="/">HOW IT WORKS</Link>
-        <Link to="/contactus">CONTACT US</Link>
-         
+          <Link to="/contactus">CONTACT US</Link>
         </div>
         <div className="navlogin">
-        <Link
-          to={`/checkout?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
-          
-        >
-          <Badge count={cartCount}className="carticon">
-            <ShoppingCartOutlined/>
-          </Badge>
-        </Link>
+          <div onClick={handleCartClick}>
+            <Badge count={cartCount} className="carticon">
+              <ShoppingCartOutlined />
+            </Badge>
+          </div>
         </div>
-   
-
-        {/* <div style={{ color: "white" }}>
-          <button onClick={handleCartClick}>Cart</button>
-          {isCartOpen && (
-            <div className="cart-details-overlay">
-              <div className="cart-details">
-                <div className="cart-inner">
-                  <button onClick={handleCloseClick}>Close</button>
-                  <p>Items in cart: {cartCount}</p>
-                  <div>
-                    <button className="checkout">
-                      <Link to="/checkout">Checkout</Link>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div> */}
       </div>
+
+      <Modal
+        visible={isCartOpen}
+        onCancel={handleCloseClick}
+        footer={null}
+        className="cart-modal"
+        style={{
+          borderRadius: "8px",
+          top: "60px",
+          left: "33%",
+          width: "191px",
+        }}
+      >
+        <div className="cart-modal-footer">
+          <Button key="keepShopping" onClick={handleKeepShopping}>
+            Keep Shopping
+          </Button>
+          {/* <Button key="checkout" type="primary" onClick={handleCheckout}>
+            Checkout
+          </Button> */}
+        </div>
+      </Modal>
     </div>
   )
 }
