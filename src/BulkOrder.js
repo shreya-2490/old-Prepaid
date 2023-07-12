@@ -107,7 +107,7 @@ const BulkOrder = () => {
         AllowInternationalTransactions
       )
       const queryParams = `?cardType=${CardType}&cardQuantity=${CardQuantity}&loadAmount=${LoadAmount}&multipletransaction=${AddMultipleTransactions}&internationaltransaction=${ AllowInternationalTransactions}&subtotal=${subtotal}`
-      window.location.href = `/Checkout${queryParams}`
+      window.location.href = `/checkout${queryParams}`
     })
   }
 
