@@ -39,31 +39,32 @@ const Home = () => {
     }
   }
 
-  // const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
+  const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
   // const handleUSDChange = (event) => {
   //   const usdInput = parseFloat(event.target.value)
   //   setUSDValue(usdInput)
   //   setBTCValue(usdInput * exchangeRate)
   //   setIsValueValid(false)
   // }
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-        )
-        const btcPrice = response.data.bitcoin.usd
-        setBTCValue((usdValue / btcPrice).toFixed(5))
-      } catch (error) {
-        console.log("Error fetching data:", error)
-      }
-    }
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+  //       )
+  //       const btcPrice = response.data.bitcoin.usd
+  //       setBTCValue((usdValue / btcPrice).toFixed(5))
+  //     } catch (error) {
+  //       console.log("Error fetching data:", error)
+  //     }
+  //   }
 
-    fetchData()
-  }, [usdValue])
+  //   fetchData()
+  // }, [usdValue])
   const handleUSDSelect = (selectedValue) => {
     setUSDValue(selectedValue)
     setIsValueValid(false)
+    setBTCValue(usdValue*exchangeRate)
   }
 
   return (

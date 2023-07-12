@@ -34,10 +34,8 @@ const Cart = ({ params }) => {
   }
 
   const handleAddToCart = () => {
-    setIsSuccessModalVisible(true)
     addToCart()
     const queryParams = `?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`
-
     setTimeout(() => {
       window.location.href = `/Checkout${queryParams}`
     }, 1000) // Redirect after a delay of 1 second (adjust as needed)
