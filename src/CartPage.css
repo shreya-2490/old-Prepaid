@@ -1,6 +1,6 @@
 .cart-main {
     padding-bottom: 30px;
-    background-color: #f8faf9;
+    background-color: #F5F2EA;
     min-height: calc(100vh - 64px);
     isolation: isolate;
     margin-top: 20px;
@@ -13,6 +13,9 @@
     grid-gap: 20px;
     width: 100%;
   }
+  .card1-cart{
+    margin-left: 40px;
+  }
   .custom-card-cart .ant-card-head-title {
     font-size: 24px;
     font-weight: 600;
@@ -20,17 +23,18 @@
   }
   .custom-card-cart img{
     width: 445px;
-    padding: 30px;
+    padding: 42px;
 
   }
   .custom-para2-cart{
     margin: 10px 22px;
+    text-align: justify;
   }
   .cart-input input[type="number"] {
     background-color:white;
     border-radius: 5px;
     margin-top: -6px;
-    font-size: 20px;
+    font-size: 16px;
     border:1px solid #D9D9D9;
     width: 172px;
   }
@@ -43,17 +47,27 @@
     border-radius: 30px;
     border: none;
     cursor: pointer;
-    font-size: 18px;
-    width: 55%;
+    font-size: 14px;
+    width: 30%;
+    margin-left: 8px;
     text-align: center;
-    padding: 6px;
+    padding: 8px;
   }
   .cart-btn{
-    margin-top: 50px;
-    text-align: center;
+    margin-top: 25px;
+    margin-left: 21px;
+    /* text-align: center; */
   }
   .long-value {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+
   }
+.btcvalue{
+  margin-bottom: 1px;
+}
+.expected-value{
+  font-size: 14px;
+
+}

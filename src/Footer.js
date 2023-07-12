@@ -6,14 +6,10 @@ import { UpCircleOutlined } from '@ant-design/icons';
 
 function Footer() {
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <div className="footer">
-      <div className="prepaid-logo"><img src={prepaidlogo}></img></div>
-      <Link to="/" className="arrowhead" onClick={scrollToTop}><UpCircleOutlined /></Link>
+      <p className="termscondition">Terms & Conditions <span className="divider-bet">|</span></p>
+      <p className="privacy">Privacy Policy</p>
     </div>
   );
 }

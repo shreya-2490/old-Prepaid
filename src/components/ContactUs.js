@@ -70,7 +70,6 @@ const ContactUs = () => {
           </form>
         </div>
       </div>
-      <Ticker />
     </>
   )
 }

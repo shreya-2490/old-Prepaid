@@ -59,6 +59,7 @@ function App() {
         {/* <Routes>
           <Route path="/" element={<Ticker/>} />
         </Routes> */}
+
         <Routes>
           <Route path="/cart" element={<Cart />} />
         </Routes>

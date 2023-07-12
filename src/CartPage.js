@@ -3,10 +3,12 @@ import { Card, Badge, Button, Modal } from "antd"
 import { CheckCircleOutlined, CloseOutlined } from "@ant-design/icons"
 import { useLocation, useParams } from "react-router-dom"
 import axios from "axios"
-import { CartContext } from './CartContext';
+import { CartContext } from "./CartContext"
+import {AiOutlineSafety} from "react-icons/ai"
 
 import NavbarCart from "./NavbarCart"
-import mastercard from "./assets/mastercard.jpg"
+import mastercard from "./assets/Mastercardcartpage.png"
+import visacard from "./assets/Visacartpage.png"
 import "./CartPage.css"
 import Ticker from "./ticker"
 
@@ -17,11 +19,11 @@ const Cart = ({ params }) => {
   const input2 = queryParams.get("btcValue")
   const input3 = queryParams.get("selectedButton")
   const [selectedButton, setSelectedButton] = useState(input3)
-  const [title, setTitle] = useState("NEW PREPAID MASTERCARD")
+  const [title, setTitle] = useState("MASTER PREPAID CARD")
   const [usdValue, setUSDValue] = useState(input1)
   const [btcValue, setBtcValue] = useState(input2)
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
-  const { addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext)
 
   const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
 
@@ -33,12 +35,12 @@ const Cart = ({ params }) => {
 
   const handleAddToCart = () => {
     setIsSuccessModalVisible(true)
-    addToCart();
-    const queryParams = `?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`;
-  
+    addToCart()
+    const queryParams = `?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`
+
     setTimeout(() => {
-      window.location.href = `/Checkout${queryParams}`;
-    }, 2000); // Redirect after a delay of 1 second (adjust as needed)
+      window.location.href = `/Checkout${queryParams}`
+    }, 1000) // Redirect after a delay of 1 second (adjust as needed)
   }
 
   const handleCloseModal = () => {
@@ -62,49 +64,53 @@ const Cart = ({ params }) => {
               title=""
               bordered={false}
               style={{
-                width: 500,
-                height: 300,
-                borderRadius: "20px",
-                margin: "90px 0px 0px 30px",
+                // width: 500,
+                // height: 300,
+                // borderRadius: "20px",
+                margin: "96px 0px 0px 30px",
               }}
               headStyle={{ borderBottom: "none" }}
             >
-              <img src={mastercard}></img>
+              {selectedButton == 1 ? <img src={visacard}></img> : <img src={mastercard}></img>}
             </Card>
           </div>
           <div className="card2-cart">
             <Card
               className="Contact-title"
-              title={selectedButton == 1 ? "NEW PREPAID VISACARD" : title}
+              title={selectedButton == 1 ? "VISA PREPAID CARD" : title}
               bordered={false}
               headStyle={{ borderBottom: "none" }}
               style={{
                 width: "638px",
-                height: "410px",
-                margin: "90px 0px 0px 30px",
+                height: "426px",
+                margin: "93px 0px 0px 30px",
               }}
             >
-              <p className="custom-para2-cart">
-                Introducing the Prepaid Mastercard - Your Ultimate Financial
-                Freedom! Are you tired of the limitations and restrictions
-                imposed by traditional banking systems? Look no further! Our
-                Prepaid Mastercard is the perfect solution for individuals
-                seeking financial independence and control. With our prepaid
-                Mastercard, you can enjoy all the benefits of a credit or debit
-                card without the hassle of credit checks or tying your finances
-                to a bank account. It's a game-changer for those who value
-                flexibility and convenience.
-              </p>
+              {selectedButton == 1 ? <p className="custom-para2-cart">
+                Embrace the future of financial transactions with our Visa Prepaid
+                Card, where the convenience of prepaid cards meets the power of
+                Bitcoin. Simplify your payments, expand your purchasing
+                possibilities, and enjoy the advantages of digital currency in a
+                secure and sophisticated manner.<br/><br/>
+
+                <span style={{color:"red"}}>NOTE: We will charge a flat rate card fee of $2.98 per card.</span>
+              </p> :
+                <p className="custom-para2-cart">Embrace the future of financial transactions with our Master Prepaid
+                Card, where the convenience of prepaid cards meets the power of
+                Bitcoin. Simplify your payments, expand your purchasing
+                possibilities, and enjoy the advantages of digital currency in a
+                  secure and sophisticated manner.<br /><br />
+                  <span style={{color:"red"}}>NOTE: We will charge a flat rate card fee of $2.98 per card.</span>
+                </p>}
               <div
                 style={{
                   display: "flex",
-                  alignItems: "baseline",
-                  justifyContent: "space-between",
-                  margin: "-30px 40px",
+                  alignItems: "center",
+                  margin: "-30px 10px",
                 }}
               >
-                <div style={{ margin: "50px 0px 0px 20px" }}>
-                  <p>Enter Amount</p>
+                <div style={{ margin: "25px 0px 0px 20px" }}>
+                  <p>Amount</p>
                   <div className="cart-input">
                     <input
                       id="numericInput"
@@ -121,27 +127,16 @@ const Cart = ({ params }) => {
                     />
                   </div>
                 </div>
-                <div style={{ margin: "50px 40px 0px 0px" }}>
-                  <p>Expected BTC</p>
+                <div style={{ margin: "75px 40px 0px 18px" }}>
+                  <p className="btcvalue">Expected BTC</p>
                   <div className="cart-input">
-                    <input
-                      id="numericInput"
-                      inputmode="decimal"
-                      placeholder="0.00"
-                      name="quoteAmount"
-                      autocomplete="off"
-                      step="1"
-                      max="9007199254740991"
-                      type="number"
-                      value={btcValue}
-                      className={btcValue.length > 10 ? "long-value" : ""}
-                    />
+                    <p className="expected-value">{btcValue}</p>
                   </div>
                 </div>
               </div>{" "}
               <div className="cart-btn">
                 <button onClick={handleAddToCart}>Add to Cart</button>
-                <div className="success-modal">
+                {/* <div className="success-modal">
                   <Modal
                     visible={isSuccessModalVisible}
                     onCancel={handleCloseModal}
@@ -158,13 +153,18 @@ const Cart = ({ params }) => {
                       </Button>
                     </div>
                   </Modal>
-                </div>
+                </div> */}
               </div>
+              <div style={{display:"flex",  margin: "14px 10px 10px 28px"}}>
+              <AiOutlineSafety style={{fontSize:"25px", color:"#41D195",marginRight:"10px" }}/><p style={{marginRight:"10px"}}>Simple Checkout Process</p>
+              <AiOutlineSafety style={{fontSize:"25px", color:"#41D195",marginRight:"10px"}}/>  <p style={{marginRight:"10px"}}>Instant, Private, Safe</p>
+              <AiOutlineSafety style={{fontSize:"25px", color:"#41D195",marginRight:"10px"}}/><p style={{marginRight:"10px"}}>Email Delivery</p></div>
+             
             </Card>
           </div>
         </div>
       </div>
-      <Ticker />
+ 
     </>
   )
 }

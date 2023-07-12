@@ -7,8 +7,8 @@ import "./checkout.css"
 import Payment from "./payment"
 import validator from "validator"
 import Ticker from "../ticker"
-import visa from "../assets/visa.svg"
-import mastercard from "../assets/mastercard.png"
+import visa from "../assets/Visacart.png"
+import mastercard from "../assets/Mastercardcart.png"
 import { useLocation, useNavigate } from "react-router-dom"
 
 const Checkout = () => {
@@ -279,9 +279,9 @@ const Checkout = () => {
                   <Button
                     style={{
                       backgroundColor: isChecked2
-                        ? "orangered"
-                        : "rgb(223, 60, 1)",
-                      color: isChecked2 ? "white" : "whitesmoke",
+                        ? "#FDC886"
+                        : "#FDC886",
+                      color: isChecked2 ? "#1b1b1b" : "#1b1b1b",
                     }}
                     className="payment-btn"
                     disabled={!isChecked2}
@@ -297,7 +297,6 @@ const Checkout = () => {
           <Payment email={email} />
         )}
       </div>
-      <Ticker />
     </>
   )
 }

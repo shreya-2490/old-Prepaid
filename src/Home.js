@@ -1,23 +1,22 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Select, Card, Image, Alert } from "antd"
 import { Link } from "react-router-dom"
-import dollar from "./assets/dollar.png"
-import bitcoin from "./assets/bitcoin.png"
-import { ExclamationCircleOutlined } from "@ant-design/icons"
-import visa from "./assets/visa.svg"
-import mastercard from "./assets/mastercard.png"
+import visa from "./assets/Visa.png"
+import mastercard from "./assets/Mastercard.png"
 import ReactTypingEffect from "react-typing-effect"
-import "./home.css" 
+import "./home.css"
+import axios from "axios"
+import Footer from "./Footer"
 
 const { Option } = Select
 
 const Home = () => {
-  const [usdValue, setUSDValue] = useState("")
-  const [btcValue, setBTCValue] = useState("0.00")
+  const [usdValue, setUSDValue] = useState(0)
+  const [btcValue, setBTCValue] = useState(0)
   const [selectedCard, setSelectedCard] = useState(null)
   const [isValueValid, setIsValueValid] = useState(false)
   const [selectedButton, setSelectedButton] = useState(1)
-  const[button, setButton] = useState(2)
+  const [button, setButton] = useState(2)
 
   const handleButtonClick = (event, buttonId) => {
     event.preventDefault()
@@ -40,86 +39,124 @@ const Home = () => {
     }
   }
 
-  const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
-  const handleUSDChange = (event) => {
-    const usdInput = parseFloat(event.target.value)
-    setUSDValue(usdInput)
-    setBTCValue(usdInput * exchangeRate)
+  // const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
+  // const handleUSDChange = (event) => {
+  //   const usdInput = parseFloat(event.target.value)
+  //   setUSDValue(usdInput)
+  //   setBTCValue(usdInput * exchangeRate)
+  //   setIsValueValid(false)
+  // }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+        )
+        const btcPrice = response.data.bitcoin.usd
+        setBTCValue((usdValue / btcPrice).toFixed(5))
+      } catch (error) {
+        console.log("Error fetching data:", error)
+      }
+    }
+
+    fetchData()
+  }, [usdValue])
+  const handleUSDSelect = (selectedValue) => {
+    setUSDValue(selectedValue)
     setIsValueValid(false)
   }
 
   return (
-    <div className="main-body">
-      <div className="home" id="homee">
-        {/* <h1 className="home-heading">{title}</h1> */}
-        <h1 className="home-heading">
-          LOAD IN BTC <br/> SPEND IN DOLLARS
+    <>
+      <div className="main-body">
+        <div className="home" id="homee">
+          <div>
+            {" "}
+            <h1 className="home-heading">Experience the Convenience of</h1>
+          </div>
+          <div>
+            <h1 className="home-heading-1">Cryptocurrency Prepaid Cards</h1>
+          </div>
           {/* <div className="pushEffect">
             <span style={{ animationDelay: "1s" }}>Visa</span>
             <span style={{ animationDelay: "5s" }}>Mastercard</span>
           </div>
           <br />
           <span style={{marginLeft:"40%"}}>Prepaid Card</span> */}
-        </h1>
-        {/* <p className="subtitle">
-          Enjoy the flexibility and accessibility of your digital assets by
-          exchanging them for prepaid cards that can be used for online
-          purchases, in-store transactions, or cash withdrawals at ATMs
-          worldwide.
-        </p> */}
-        {/* <div className="learn-more-btn">
-          <Link to="/">
-            <button>Learn More</button>
-          </Link>
-        </div> */}
-      </div>
-      <div className="sider">
-        <div className="box">
-          <div className="buttons">
-            <div className="first-btn">
-              <button className="buy" style={{
-                backgroundColor: button === 1 ? "#000000" : "white", color: button===1?"white":"#000000",
-              }}  onClick={(event) => handleMainButtonClick(event, 1)}>
-                PreOwned Card
-              </button>
-            </div>
-            <div className="second-btn">
-              <button className="sell" style={{
-                backgroundColor: button === 2 ? "#000000" : "white", color: button===2?"white":"#000000",
-              }}
-              onClick={(event) => handleMainButtonClick(event, 2)}>
-                New Card
-              </button>
-            </div>
+
+          <p className="subtitle">
+            Unlock the power of digital currencies with our cryptocurrency
+            prepaid cards. Simplify your online purchases and enjoy a seamless
+            payment experience. Our user-friendly platform allows you to
+            effortlessly calculate the BTC equivalent of your desired prepaid
+            card amount. Discover the many advantages of using cryptocurrency
+            for your everyday transactions.
+          </p>
+          <div className="learn-more-btn">
+            <Link to="/">
+              <button>How it Works</button>
+            </Link>
           </div>
-          <div className="sider-content">
-            <div style={{ display: "block" }}></div>
-            <div className="forms">
-              <div style={{ marginBottom: "20px" }}>
-                <form>
-                  <div className="card-selector-container">
-                    <p className="choose-card">Choose Card</p>
-                    <div className="selection-cards-visamastercard">
-                      <button
-                        className={`button ${
-                          selectedButton === 1 ? "selected" : ""
-                        }`}
-                        onClick={(event) => handleButtonClick(event, 1)}
-                      >
-                        <img src={visa}></img>
-                      </button>
-                      <button
-                        className={`mastercard-button ${
-                          selectedButton === 2 ? "selected" : ""
-                        }`}
-                        onClick={(event) => handleButtonClick(event, 2)}
-                      >
-                        <div className="mastercard-image">
-                          <img src={mastercard}></img>
-                        </div>
-                      </button>
-                    </div>
-                    {/* <Select
+        </div>
+        <div className="sider">
+          <div className="box">
+            <div className="buttons">
+              <div className="first-btn">
+                <button
+                  className="buy"
+                  style={{
+                    backgroundColor: button === 1 ? "#fdc886" : "white",
+                    color: "#1b1b1b",
+                  }}
+                  onClick={(event) => handleMainButtonClick(event, 1)}
+                >
+                  New Card
+                </button>
+              </div>
+              <div className="second-btn">
+                <button
+                  className="sell"
+                  style={{
+                    backgroundColor: button === 2 ? "#fdc886" : "white",
+                    color: "#1b1b1b",
+                  }}
+                  onClick={(event) => handleMainButtonClick(event, 2)}
+                >
+                  Pre-owned Card
+                </button>
+              </div>
+            </div>
+            <div className="sider-content">
+              <div style={{ display: "block" }}></div>
+              <div className="forms">
+                <div style={{ marginBottom: "20px" }}>
+                  <form>
+                    <div className="card-selector-container">
+                      <p className="choose-card">Select Card</p>
+                      <div className="selection-cards-visamastercard">
+                        <button
+                          className={`button ${
+                            selectedButton === 1 ? "selected" : ""
+                          }`}
+                          onClick={(event) => handleButtonClick(event, 1)}
+                        >
+                          <img src={visa} className="homepage-cards"></img>
+                        </button>
+                        <button
+                          className={`mastercard-button ${
+                            selectedButton === 2 ? "selected" : ""
+                          }`}
+                          onClick={(event) => handleButtonClick(event, 2)}
+                        >
+                          <div className="mastercard-image">
+                            <img
+                              src={mastercard}
+                              className="homepage-cards"
+                            ></img>
+                          </div>
+                        </button>
+                      </div>
+                      {/* <Select
                       value={selectedCard}
                       onChange={handleCardSelect}
                       className="card-selector"
@@ -148,7 +185,7 @@ const Home = () => {
                       </Option>
                     </Select> */}
 
-                    {/* <Select
+                      {/* <Select
                       className="card-selector"
                       value={selectedCard}
                       onChange={handleCardSelect}
@@ -172,89 +209,92 @@ const Home = () => {
                         Mastercard
                       </Option>
                     </Select> */}
-                  </div>
-                </form>
-              </div>
-              <div>
-                <form>
-                  <div className="both-gray">
-                    <div className="first-gray">
-                      <div className="first-gray-1">
-                        <label className="pay">Enter Amount</label>
-                        <div className="input-div">
-                          <div className="input-box">
-                            <input
-                              id="numericInput"
-                              inputmode="decimal"
-                              placeholder="0.00"
-                              name="quoteAmount"
-                              autocomplete="off"
-                              step="1"
-                              max="9007199254740991"
-                              type="number"
-                              value={usdValue}
-                              onChange={handleUSDChange}
-                              className={
-                                btcValue.length > 10 ? "long-value" : ""
-                              }
-                            />
-                          </div>
+                    </div>
+                  </form>
+                </div>
+                <div>
+                  <form>
+                    <div className="both-gray">
+                      <div className="first-gray">
+                        <div className="first-gray-1">
+                          <label className="pay">Select Amount</label>
+                        </div>
+                        <div>
+                          <select
+                            onChange={(event) =>
+                              handleUSDSelect(event.target.value)
+                            }
+                            value={usdValue}
+                            className="dropdown-amount"
+                          >
+                            <option value="50">50</option>
+                            <option value="10">100</option>
+                            <option value="200">200</option>
+                            <option value="500">500</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="second-gray">
+                        <div className="items">
+                          {/* <picture className="usdt-pic">
+                          <img src={dollar}></img>
+                        </picture> */}
+                          <span className="dropdown-1">USD</span>
                         </div>
                       </div>
                     </div>
-                    <div className="second-gray">
-                      <div className="items">
-                        <picture className="usdt-pic">
-                          <img src={dollar}></img>
-                        </picture>
-                        <span className="dropdown-1">USD</span>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-                <p
-                  style={{
-                    color: "black",
-                    marginLeft: "15px",
-                    fontSize: "15px",
-                    fontWeight: "400",
-                    lineHeight: "16ox",
-                    display: "inline",
-                  }}
-                >
-                  <picture className="bit-pic">
-                    <img src={bitcoin}></img>
-                  </picture>
-                  <span style={{ margin: "10px", fontFamily: "Open Sans, sans-serif"}}>{btcValue} BTC</span>
-                </p>
-                {isValueValid && (
-                  <Alert
-                    style={{ marginTop: "15px", position: "relative" }}
-                    message="Please fill all details"
-                    type="warning"
-                    showIcon
-                    closable
-                  />
-                )}
-                <div>
-                  <Link
-                    to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
+                  </form>
+                  <p
+                    style={{
+                      color: "black",
+                      fontSize: "12px",
+                      fontWeight: "400",
+                      marginLeft: "2%",
+                      display: "inline",
+                    }}
                   >
-                    <button
-                      className="buy-usdt"
-                      type="button"
-                      onClick={handleBuyButtonClick}
+                    {/* <picture className="bit-pic">
+                    <img src={bitcoin}></img>
+                  </picture> */}
+                    <span
+                      style={{
+                        margin: "0px",
+                        fontFamily: "Outfit, sans-serif",
+                      }}
                     >
-                      Buy Now
-                    </button>
-                  </Link>
+                      {btcValue} BTC
+                    </span>
+                  </p>
+                  {isValueValid && (
+                    <Alert
+                      style={{ marginTop: "15px", position: "relative" }}
+                      message="Please fill all details"
+                      type="warning"
+                      showIcon
+                      closable
+                    />
+                  )}
+                  <div>
+                    <Link
+                      to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
+                    >
+                      <button
+                        className="buy-usdt"
+                        type="button"
+                        onClick={handleBuyButtonClick}
+                      >
+                        Buy Now
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 export default Home

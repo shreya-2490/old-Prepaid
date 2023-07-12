@@ -1,7 +1,7 @@
 .checkout-main {
   padding-bottom: 30px;
-  background-color: #f8faf9;
-  min-height: calc(100vh - 64px);
+  background-color: #F5F2EA;
+  min-height: calc(100vh - 47px);
   isolation: isolate;
   margin-top: 20px;
 }
@@ -12,6 +12,9 @@
   grid-template-columns: minmax(min-content, 480px) 1fr;
   grid-gap: 20px;
   width: 100%;
+}
+.card1{
+  margin-left: 40px;
 }
 .custom-card .ant-card-head-title {
   font-size: 17px;
@@ -79,7 +82,7 @@
 .Contact-title .ant-card-head-title {
   font-size: 20px;
   font-weight: 600;
-  padding: 30px 30px 1px 0px;
+  padding: 25px 30px 1px 0px;
 }
 .Contact-title {
   padding: 0px 20px 0px 20px;
@@ -110,14 +113,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin: 10px 20px;
   min-height: 46px;
-  font-size: 20px;
+  font-size: 14px;
 }
 .payment button {
-  color: white;
-  background-color: black !important;
+  color: #1b1b1b;
+  background-color: #FDC886 !important;
 }
 .payment {
   display: block;
@@ -128,7 +130,7 @@
   text-align: left;
 }
 .payment-btn:hover {
-  color: white !important;
+  border-color: #FDC886;
   /* background-color: rgba(231, 65, 4, 0.925); */
 }
 .terms {
@@ -160,13 +162,13 @@
     margin-top: 20px;
   }
   .cardtype-img{
-    width:7%;
+    width:25%;
     height: 2%;
     margin-bottom: 3px;
     margin-right: 10px;
   }
   .visacardtype-img{
-    width: 37%;
+    width: 23%;
     height: 0%;
     margin-right: 10px;
   }

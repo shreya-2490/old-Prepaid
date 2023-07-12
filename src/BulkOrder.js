@@ -280,7 +280,7 @@ const BulkOrder = () => {
           </div>
         </div>
       </div>
-      <Ticker />
+   
     </>
   )
 }

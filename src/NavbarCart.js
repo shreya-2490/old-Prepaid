@@ -23,45 +23,6 @@ function NavbarCart() {
     window.location.href = `/`
   }
 
-  const scrolll = (e, id) => {
-    e.preventDefault()
-
-    const target = document.getElementById(id)
-    console.log(target.getBoundingClientRect().top)
-
-    const inid = setInterval(() => {
-      const targetcoo = target.getBoundingClientRect().top
-
-      if (targetcoo < -10) {
-        if (targetcoo >= 80) {
-          clearInterval(inid)
-          return
-        } else {
-          window.scrollBy(0, -70)
-        }
-      } else {
-        if (targetcoo <= 60) {
-          clearInterval(inid)
-          return
-        } else {
-          window.scrollBy(0, 70)
-        }
-      }
-    }, 0)
-  }
-
-  window.addEventListener("scroll", function () {
-    var subheader = document.querySelector(".subheader")
-    var headerHeight = document.querySelector("header").offsetHeight
-    var scrollPosition = window.scrollY
-
-    if (scrollPosition > headerHeight) {
-      subheader.classList.add("fixed")
-    } else {
-      subheader.classList.remove("fixed")
-    }
-  })
-
   return (
     <div className="header">
       <div className="logo">
@@ -92,9 +53,16 @@ function NavbarCart() {
           <Link to="/">HOME</Link>
           <Link to="/bulkorder">BULK ORDERS</Link>
           <Link to="/">HOW IT WORKS</Link>
-          <Link to="/contactus">CONTACT US</Link>
+          <Link to="/contactus">CONTACT </Link>
+          <Link to="/login">
+            <span className="user">
+              <UserOutlined />
+              LOGIN
+            </span>
+          </Link>
         </div>
-        <div className="navlogin">
+        
+        <div className="navlogin-cart">
           <div onClick={handleCartClick}>
             <Badge count={cartCount} className="carticon">
               <ShoppingCartOutlined />

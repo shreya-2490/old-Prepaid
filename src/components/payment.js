@@ -4,8 +4,8 @@ import "./payment.css"
 import { Card, Button, Tooltip, Select, Space, Divider, Checkbox } from "antd"
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons"
 import Scanner from "../assets/scanner.jpg"
-import visa from "../assets/visa.svg"
-import mastercard from "../assets/mastercard.png"
+import visa from "../assets/Visa.png"
+import mastercard from "../assets/Mastercard.png"
 import { useLocation } from "react-router-dom"
 import Navbarlogo from "../Navbarlogo"
 
@@ -28,7 +28,7 @@ const Payment = ({ email }) => {
     const subtotal = usdValue + cardValue + btcFee
     return { btcFee, subtotal }
   }
-console.log("riyaa", email);
+
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const input1 = queryParams.get("usdValue")
@@ -39,11 +39,14 @@ console.log("riyaa", email);
   const { btcFee, subtotal } = calculateSubtotal(parseFloat(usdValue))
   const [cardType, setCardType] = useState("")
   const [displaySelectedButton, setDisplaySelectedButton] = useState(false)
-  const [selectedButton, setSelectedButton] = useState(input3 || "1")
+  const [selectedButton, setSelectedButton] = useState(input3 || "1" )
 
   useEffect(() => {
     setUSDValue(usdValue)
     setBtcValue(btcValue)
+    setSelectedButton(input3)
+    setCardType(queryParams.get("cardType") || "")
+    setDisplaySelectedButton(queryParams.get("selectedButton") !== "null")
   }, [])
 
   const displayCardQuantity = queryParams.get("cardQuantity")
@@ -142,7 +145,7 @@ console.log("riyaa", email);
                                 alt="MasterCard"
                                 className="cardtype-img"
                               />
-                              <p>MasterCard</p>
+                              <p>Shreya</p>
                             </div>
                           </>
                         )}
