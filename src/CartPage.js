@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react"
 import { Card, Badge, Button, Modal } from "antd"
 import { CheckCircleOutlined, CloseOutlined } from "@ant-design/icons"
-import { useLocation, useParams } from "react-router-dom"
+import { useLocation, useParams, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { CartContext } from "./CartContext"
 import {AiOutlineSafety} from "react-icons/ai"
@@ -24,7 +24,7 @@ const Cart = ({ params }) => {
   const [btcValue, setBtcValue] = useState(input2)
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
   const { addToCart } = useContext(CartContext)
-
+  const navigate = useNavigate()
   const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
 
   const handleUSDChange = (event) => {
@@ -35,9 +35,10 @@ const Cart = ({ params }) => {
 
   const handleAddToCart = () => {
     addToCart()
-    const queryParams = `?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`
+  
+     const queryParams = `?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`
     setTimeout(() => {
-      window.location.href = `https://master--prepaid.netlify.app/checkout${queryParams}`
+      navigate(`/checkout${queryParams}`)
     }, 1000) // Redirect after a delay of 1 second (adjust as needed)
   }
 
