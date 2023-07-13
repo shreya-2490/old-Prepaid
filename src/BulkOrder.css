@@ -1,30 +1,63 @@
 .bulk-division {
   display: flex;
   align-items: center;
-  margin: 50px 10px 10px 0px;
+  width: 93%;
+  height: 630px;
+  padding: 0px;
+  margin: 61px 1px 20px 50px;
+  background-color: white;
+  border-radius: 20px;
+  position: relative;
+ 
+}
+.bulk-main{
+  background-color: #F5F2EA;
+  width: 100%;
+  padding-top: 5px;
+  height: 130vh !important;
+  top: 0;
+  position: absolute;
 }
 .bulk-div-1 {
-  background-color: #041b36;
-  margin: 30px 0px 30px 20px;
-  height: 750px;
+  width: 50%;
+  margin-top: 2px;
+}
+.bulk-div-2{
+  width: 50%;
+
+}
+.subtitle-bulk {
+  color: #1b1b1b;
+}
+.subtitle-bulk-2 {
+  color: #1b1b1b;
+  margin-top: -10px;
+}
+.bulk-inner-div-1 {
+  background-color: #fdc886;
+  height: 400px;
   width: 50%;
 }
-.bulk-image {
-  margin: 210px 10px 10px 10px;
-  text-align: center;
+.bulk-inner-div-2 {
+  background-color: #f5f2ea;
+  height: 400px;
+  width: 50%;
 }
-.bulk-div-2 {
-  margin: 30px 10px 30px 0px;
-  width: 52%;
-  height: 750px;
-  background-color: #f6f9fc;
-}
+
 .bulkorder-content {
   text-align: center;
   margin: auto;
   padding-top: 40px;
   color: white;
-
+  
+}
+.bulkorder-content-2 {
+  text-align: center;
+  margin: auto;
+  padding-top: 40px;
+  color: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 .bulk-content-list {
   text-align: center;
@@ -33,12 +66,58 @@
   list-style: none;
   margin: 40px 0px;
 }
-.bulk-content-list ul li{
- margin-right: 60px;
+.bulk-content-list ul li {
+  margin-right: 60px;
 }
 
 .bulk-content-list ul li:before {
   content: "✓";
   margin-right: 5px;
   margin-top: 5px;
+}
+.listing{
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+  color: #1b1b1b;
+  margin: 0px 30px 2px 170px;
+  
+}
+.listing-div{
+  margin-top: 10px;
+}
+.footer-card2{
+  color: #A1A19F;
+  font-size: 10px;
+  text-align: left;
+  padding: 10px;
+  margin: -11px 20px;
+  
+}
+
+.ant-form-item-control-input input:focus,
+.ant-form-item-control-input input:hover,
+.ant-select-selector:hover,
+.ant-select-focused .ant-select-selection,
+.ant-select-selector:focus
+.ant-form-item-control-input .ant-input-number:focus,
+.ant-form-item-control-input .ant-input-number:hover,
+.ant-form-item-control-input input[type="number"]:focus,
+.ant-form-item-control-input input[type="number"]:hover,
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox-wrapper::selection, 
+.ant-form-item-control-input input:focus,
+.ant-form-item-control-select .ant-select-selector:focus
+.ant-checkbox-wrapper:focus .ant-checkbox-inner {
+  border-color: #fdc886 !important; 
+}
+.ant-btn:hover,
+.ant-btn:focus {
+  border-color: #000000 !important; 
+  color: #1b1b1b !important;
+  background-color: #fdc886;/* Change this to your desired color */
+   /* Optional: Add a box shadow */
+}
+.ant-select-item-option[aria-selected="true"]{
+  border-color: #fdc886 !important;
 }

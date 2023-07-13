@@ -11,12 +11,13 @@ import Footer from "./Footer"
 const { Option } = Select
 
 const Home = () => {
-  const [usdValue, setUSDValue] = useState(0)
+  const [usdValue, setUSDValue] = useState("")
   const [btcValue, setBTCValue] = useState(0)
   const [selectedCard, setSelectedCard] = useState(null)
   const [isValueValid, setIsValueValid] = useState(false)
   const [selectedButton, setSelectedButton] = useState(1)
   const [button, setButton] = useState(2)
+  const [loadAmount, setLoadAmount] = useState("")
 
   const handleButtonClick = (event, buttonId) => {
     event.preventDefault()
@@ -30,9 +31,8 @@ const Home = () => {
     setSelectedCard(value)
   }
 
-  const handleBuyButtonClick = (e) => {
-    if (usdValue === "") {
-      e.preventDefault()
+  const handleBuyButtonClick = () => {
+    if (usdValue === "" && btcValue === "0.00") {
       setIsValueValid(true)
     } else {
       setIsValueValid(false)
@@ -61,9 +61,11 @@ const Home = () => {
 
     fetchData()
   }, [usdValue])
-  const handleUSDSelect = (selectedValue) => {
+
+  const handleUSDSelect = (selectedValue, event) => {
     setUSDValue(selectedValue)
     setIsValueValid(false)
+    setLoadAmount(selectedValue)
   }
 
   return (
@@ -221,14 +223,18 @@ const Home = () => {
                         </div>
                         <div>
                           <select
+                            value={loadAmount}
                             onChange={(event) =>
                               handleUSDSelect(event.target.value)
                             }
-                            value={usdValue}
                             className="dropdown-amount"
                           >
+                            <option value="" disabled hidden>
+                              --
+                            </option>
+                            <option value="25">25</option>
                             <option value="50">50</option>
-                            <option value="10">100</option>
+                            <option value="100">100</option>
                             <option value="200">200</option>
                             <option value="500">500</option>
                           </select>
@@ -265,7 +271,7 @@ const Home = () => {
                       {btcValue} BTC
                     </span>
                   </p>
-                  {isValueValid && (
+                  {!isValueValid && usdValue === "--" && btcValue === "0.00"?(
                     <Alert
                       style={{ marginTop: "15px", position: "relative" }}
                       message="Please fill all details"
@@ -273,7 +279,7 @@ const Home = () => {
                       showIcon
                       closable
                     />
-                  )}
+                  ):
                   <div>
                     <Link
                       to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
@@ -287,6 +293,7 @@ const Home = () => {
                       </button>
                     </Link>
                   </div>
+}
                 </div>
               </div>
             </div>

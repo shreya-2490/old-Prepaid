@@ -7,7 +7,8 @@
 }
 .logo img {
   width: 200px;
-  padding: 9px;
+  bottom: 8px;
+  position: relative;
   margin-left: 41px;
 }
 .user {
@@ -21,17 +22,18 @@
 }
 .header {
   height: 40px;
-  /* background: white; */
+  padding: 14px;
   background-color: #F5F2EA;
   position: -webkit-sticky;
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
   z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  border-bottom:1px solid #F0F0F0;
+  border-bottom:1px solid #c4c2be;
 }
 .header .right {
   width: 40%;
@@ -58,7 +60,7 @@
 }
 .first-four-navigation {
   width: 43%;
-  margin-left: 49%;
+  margin-left: 52%;
   display: flex;
   align-items: center;
   justify-content: space-between;
