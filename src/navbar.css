@@ -22,7 +22,7 @@
 }
 .header {
   height: 40px;
-  padding: 14px;
+  padding: 30px 16px 35px 16px;
   background-color: #F5F2EA;
   position: -webkit-sticky;
   display: flex;
@@ -33,7 +33,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  border-bottom:1px solid #c4c2be;
+  border-bottom: 2px solid rgb(0 0 0 / 3%);
 }
 .header .right {
   width: 40%;
