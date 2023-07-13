@@ -54,7 +54,7 @@
   margin-right: 20px;
 }
 .header .left {
-  width: 60%;
+  width: 55%;
   margin: auto;
   display: flex;
   align-items: center;
@@ -85,7 +85,6 @@ text-decoration:overline;
   border-radius: 15px;
 }
 .navlogin-cart{
-  margin-left: inherit;
   padding: 3px 10px;
   color: white;
   border-radius: 15px;
@@ -230,10 +229,9 @@ text-decoration:overline;
   text-decoration: none;
 }
 .carticon {
-  font-size: 28px;
-  margin-right: 30px;
+  font-size: 20px;
   color: #0c0c0c;
-  bottom: 2px;
+  bottom: 3px;
 }
 .anticon svg {
   color: #0c0c0c;

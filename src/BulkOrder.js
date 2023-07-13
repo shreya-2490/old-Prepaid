@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import Navbar from "./navbar"
+import NavbarCart from "./NavbarCart"
 import Ticker from "./ticker"
 import bulkcard from "./assets/bulkcard.png"
 import "./BulkOrder.css"
@@ -141,7 +141,7 @@ const BulkOrder = () => {
 
   return (
     <>
-      <Navbar />
+      <NavbarCart />
       <div className="bulk-main">
         <div className="bulk-division">
           <div className="bulk-div-1">

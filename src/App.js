@@ -17,7 +17,7 @@ import Faq from "./Faq"
 import Explore from "./exploreprepaid"
 import Ticker from "./ticker"
 import Footer from "./Footer"
-import Navbar from "./navbar"
+import Navbar from "./NavbarCart"
 import Checkout from "./components/Checkout"
 import Login from "./components/Login"
 import Cart from "./CartPage"
@@ -30,7 +30,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Navbar />} />
+          <Route path="/" element={<Navbar/>} />
         </Routes>
         <Routes>
           <Route path="/" element={<Home />} />
