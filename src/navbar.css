@@ -5,6 +5,9 @@
   display: flex;
   flex-direction: column;
 }
+.logo{
+  width: 40%;
+}
 .logo img {
   width: 200px;
   bottom: 8px;
@@ -51,20 +54,20 @@
   margin-right: 20px;
 }
 .header .left {
-  width: 84%;
+  width: 60%;
   margin: auto;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   font-size: 14px;
   color: black;
 }
 .first-four-navigation {
-  width: 43%;
-  margin-left: 52%;
+  width: 60%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: inherit;
+  font-size: 12px;
   font-family: 'Outfit', sans-serif;
 }
 .first-four-navigation > a {

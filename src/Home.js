@@ -74,10 +74,10 @@ const Home = () => {
         <div className="home" id="homee">
           <div>
             {" "}
-            <h1 className="home-heading">Experience the Convenience of</h1>
+            <h1 className="home-heading">Effortless Payments with <span style={{color:"#FDC886",fontWeight:"600"}}>BTC</span></h1>
           </div>
           <div>
-            <h1 className="home-heading-1">Cryptocurrency Prepaid Cards</h1>
+            <h1 className="home-heading-1">Experience the Convenience of Prepaid Cards</h1>
           </div>
           {/* <div className="pushEffect">
             <span style={{ animationDelay: "1s" }}>Visa</span>
