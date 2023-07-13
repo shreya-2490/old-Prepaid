@@ -268,7 +268,7 @@ const Home = () => {
                         fontFamily: "Outfit, sans-serif",
                       }}
                     >
-                      {btcValue} BTC
+                      ≈  {btcValue} BTC
                     </span>
                   </p>
                   {!isValueValid && usdValue === "--" && btcValue === "0.00"?(
