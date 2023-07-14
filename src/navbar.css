@@ -108,8 +108,8 @@ text-decoration:overline;
   cursor: pointer;
 }
 .header .left .hamburg > img {
-  height: 40px;
-  width: 40px;
+  height: 44px;
+  width: 56px;
 }
 .header .left .hamburg .navmenu {
   position: absolute;
@@ -271,6 +271,9 @@ text-decoration:overline;
     flex-direction: column;
     height: 100%;
     width: 149%;
+}
+.delete{
+  margin-left: 2px;
 }
 
 .cart-modal .ant-modal-body {

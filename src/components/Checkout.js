@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Card, Button, Tooltip, Select, Checkbox } from "antd"
 import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons"
 import Navbarlogo from "../Navbarlogo"
@@ -8,6 +8,7 @@ import validator from "validator"
 import visa from "../assets/Visacart.png"
 import mastercard from "../assets/Mastercardcart.png"
 import { useLocation, useNavigate } from "react-router-dom"
+import { CartContext } from "../CartContext"
 
 const Checkout = () => {
   const [isChecked1, setIsChecked1] = useState(false)
@@ -27,6 +28,7 @@ const Checkout = () => {
   const [cardType, setCardType] = useState("")
   const [displaySelectedButton, setDisplaySelectedButton] = useState(false)
   const navigate = useNavigate()
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const newValues = []
@@ -44,8 +46,16 @@ const Checkout = () => {
     setDisplaySelectedButton(queryParams.has("selectedButton"))
   }, [location])
 
-  const handleDelete = (usdValue) => {
-    const updatedValues = values.filter((value) => value.usdValue !== usdValue)
+  const addItemToCart = (item) => {
+    addToCart(item);
+    // Other logic for handling the item in the checkout page
+  };
+
+  const handleDelete = (usdValue, selectedButton) => {
+    const updatedValues = values.filter(
+      (value) =>
+        value.usdValue !== usdValue || value.selectedButton !== selectedButton
+    )
     setValues(updatedValues)
   }
 
@@ -332,7 +342,12 @@ const Checkout = () => {
                                     />
                                     <DeleteOutlined
                                       className="divider"
-                                      onClick={() => handleDelete(usdValue)}
+                                      onClick={() =>
+                                        handleDelete(
+                                          usdValue,
+                                          filteredValues[0].selectedButton
+                                        )
+                                      }
                                     />
                                     {queryParams.has("loadAmount") ? (
                                       ""

@@ -166,15 +166,15 @@ const BulkOrder = () => {
             <div>
               <Card
                 style={{
-                  width: "269px",
-                  height: "59px",
+                  width: "260px",
+                  height: "55px",
                   backgroundColor: "white",
                   position: "absolute",
                   zIndex: "100",
-                  top: "217px",
-                  margin: "0px 20px 50px 92px",
+                  top: "208px",
+                  margin: "0px 20px 40px 70px",
                   borderRadius: "100px",
-                  boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+                  boxShadow:" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
                 }}
               >
                 <div
@@ -195,7 +195,7 @@ const BulkOrder = () => {
                     style={{
                       position: "absolute",
                       left: "60px",
-                      bottom: "18px",
+                      bottom: "19px",
                       width: "25px",
                     }}
                   ></img>

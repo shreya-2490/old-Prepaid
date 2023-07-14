@@ -13,7 +13,7 @@
   background-color: #F5F2EA;
   width: 100%;
   padding-top: 5px;
-  height: 130vh !important;
+  height: 120vh !important;
   top: 0;
   position: absolute;
 }
@@ -46,14 +46,14 @@
 .bulkorder-content {
   text-align: center;
   margin: auto;
-  padding-top: 17px;
+  padding-top: 5px;
   color: white;
   
 }
 .bulkorder-content-2 {
   text-align: center;
   margin: auto;
-  padding-top: 40px;
+  padding-top: 0px;
   color: white;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -79,12 +79,12 @@
   align-items: flex-start;
   justify-content: left;
   color: #1b1b1b;
-  margin: 0px 30px 2px 120px;
+  margin: 0px 30px 2px 100px;
   
 }
 .listing-div{
 
-  margin-top: 10px;
+  margin-top: 30px;
 }
 .footer-card2{
   color: #A1A19F;

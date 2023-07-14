@@ -17,11 +17,20 @@ export const CartProvider = ({ children }) => {
 
   // Remove item from the cart
   const removeFromCart = (itemId) => {
-    setCartItems((prevItems) =>
-      prevItems.filter((item) => item.id !== itemId)
-    );
+    setCartItems((prevItems) => {
+      const itemToRemove = prevItems.find((item) => item.id === itemId);
+  
+      if (itemToRemove) {
+        // Decrease the badge count by 1
+        setCartCount((prevCount) => prevCount - 1);
+  
+        return prevItems.filter((item) => item.id !== itemId);
+      }
+  
+      return prevItems;
+    });
   };
-
+  
   // Clear the cart
   const clearCart = () => {
     setCartItems([]);
