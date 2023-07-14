@@ -12,7 +12,7 @@ const { Option } = Select
 
 const Home = () => {
   const [usdValue, setUSDValue] = useState("")
-  const [btcValue, setBTCValue] = useState(0)
+  const [btcValue, setBTCValue] = useState("0")
   const [selectedCard, setSelectedCard] = useState(null)
   const [isValueValid, setIsValueValid] = useState(false)
   const [selectedButton, setSelectedButton] = useState(1)
@@ -23,29 +23,24 @@ const Home = () => {
     event.preventDefault()
     setSelectedButton(buttonId)
   }
+
   const handleMainButtonClick = (event, buttonId) => {
     event.preventDefault()
     setButton(buttonId)
   }
+
   const handleCardSelect = (value) => {
     setSelectedCard(value)
   }
 
   const handleBuyButtonClick = () => {
-    if (usdValue === "" && btcValue === "0.00") {
+    if (btcValue === "0.00000") {
       setIsValueValid(true)
     } else {
       setIsValueValid(false)
     }
   }
 
-  // const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
-  // const handleUSDChange = (event) => {
-  //   const usdInput = parseFloat(event.target.value)
-  //   setUSDValue(usdInput)
-  //   setBTCValue(usdInput * exchangeRate)
-  //   setIsValueValid(false)
-  // }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -60,10 +55,13 @@ const Home = () => {
     }
 
     fetchData()
-  }, [usdValue])
 
-  const handleUSDSelect = (selectedValue, event) => {
-    setUSDValue(selectedValue)
+    setIsValueValid(false)
+  }, [usdValue, loadAmount])
+
+  const handleUSDSelect = (selectedValue) => {
+    const value = parseFloat(selectedValue) // Convert selectedValue to a number
+    setUSDValue(value)
     setIsValueValid(false)
     setLoadAmount(selectedValue)
   }
@@ -74,10 +72,15 @@ const Home = () => {
         <div className="home" id="homee">
           <div>
             {" "}
-            <h1 className="home-heading">Effortless Payments with <span style={{color:"#FDC886",fontWeight:"600"}}>BTC</span></h1>
+            <h1 className="home-heading">
+              Effortless Payments with{" "}
+              <span style={{ color: "#FDC886", fontWeight: "600" }}>BTC</span>
+            </h1>
           </div>
           <div>
-            <h1 className="home-heading-1">Experience the Convenience of Prepaid Cards</h1>
+            <h1 className="home-heading-1">
+              Experience the Convenience of Prepaid Cards
+            </h1>
           </div>
           {/* <div className="pushEffect">
             <span style={{ animationDelay: "1s" }}>Visa</span>
@@ -268,32 +271,43 @@ const Home = () => {
                         fontFamily: "Outfit, sans-serif",
                       }}
                     >
-                      ≈  {btcValue} BTC
+                      ≈ {btcValue} BTC
                     </span>
                   </p>
-                  {!isValueValid && usdValue === "--" && btcValue === "0.00"?(
-                    <Alert
-                      style={{ marginTop: "15px", position: "relative" }}
-                      message="Please fill all details"
-                      type="warning"
-                      showIcon
-                      closable
-                    />
-                  ):
+
                   <div>
-                    <Link
-                      to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
-                    >
+                    {btcValue === "0.00000" && (
+                      <Alert
+                        style={{ marginTop: "15px", position: "relative" }}
+                        message="Please select a valid amount"
+                        type="warning"
+                        showIcon
+                        closable
+                      />
+                    )}
+
+                    {btcValue !== "0.00000" ? (
+                      <Link
+                        to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
+                      >
+                        <button
+                          className="buy-usdt"
+                          type="button"
+                          onClick={handleBuyButtonClick}
+                        >
+                          Buy Now
+                        </button>
+                      </Link>
+                    ) : (
                       <button
-                        className="buy-usdt"
+                        className="buy-usdt disabled"
                         type="button"
-                        onClick={handleBuyButtonClick}
+                        disabled
                       >
                         Buy Now
                       </button>
-                    </Link>
+                    )}
                   </div>
-}
                 </div>
               </div>
             </div>

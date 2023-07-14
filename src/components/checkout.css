@@ -54,11 +54,47 @@
   margin-left: -3px;
 }
 .custom-upper-para {
-  margin: 7px 20px 10px 20px;
+  margin: 7px 20px 10px 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+}
+
+.custom-upper-para-item {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 90%;
+  border-bottom: 2px solid rgb(0 0 0 / 3%);
+}
+
+.custom-upper-para-item img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.custom-upper-para-item .value {
+  margin-right: 10px;
+}
+.item-container{
+  display: contents;
+}
+.item-details{
+  display: flex;
   justify-content: space-between;
 }
+.custom-upper-para-item .BTC {
+  margin-right: 10px;
+}
+
+.custom-upper-para-item .divider {
+  margin-right: 10px;
+}
+
+
 .swiggy {
   font-size: 15px;
   font-weight: 600;

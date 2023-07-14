@@ -1,14 +1,13 @@
 .bulk-division {
-  display: flex;
   align-items: center;
-  width: 93%;
-  height: 630px;
-  padding: 0px;
-  margin: 61px 1px 20px 50px;
-  background-color: white;
+  justify-content: center;
+  background-color: #fff;
   border-radius: 20px;
-  position: relative;
- 
+  display: flex;
+  position: absolute;
+  left: 9%;
+  top: 69px;
+ width: 82%;
 }
 .bulk-main{
   background-color: #F5F2EA;
@@ -19,11 +18,11 @@
   position: absolute;
 }
 .bulk-div-1 {
-  width: 50%;
+  width: 44%;
   margin-top: 2px;
 }
 .bulk-div-2{
-  width: 50%;
+  width: 60%;
 
 }
 .subtitle-bulk {
@@ -47,7 +46,7 @@
 .bulkorder-content {
   text-align: center;
   margin: auto;
-  padding-top: 40px;
+  padding-top: 17px;
   color: white;
   
 }
@@ -80,10 +79,11 @@
   align-items: flex-start;
   justify-content: left;
   color: #1b1b1b;
-  margin: 0px 30px 2px 170px;
+  margin: 0px 30px 2px 120px;
   
 }
 .listing-div{
+
   margin-top: 10px;
 }
 .footer-card2{

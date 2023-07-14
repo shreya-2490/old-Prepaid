@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useState } from "react"
 import "./App.css"
 import {
   BrowserRouter as Router,
@@ -17,25 +17,35 @@ import Faq from "./Faq"
 import Explore from "./exploreprepaid"
 import Ticker from "./ticker"
 import Footer from "./Footer"
-import Navbar from "./NavbarCart"
+import NavbarCart from "./NavbarCart"
 import Checkout from "./components/Checkout"
 import Login from "./components/Login"
 import Cart from "./CartPage"
 import BulkOrder from "./BulkOrder"
 import ContactUs from "./components/ContactUs"
 import Payment from "./components/payment"
+import { CartProvider } from "./CartContext"
 
 function App() {
+  const [cartItems, setCartItems] = useState([])
+
+  const handleAddToCart = (item) => {
+    setCartItems([...cartItems, item])
+  }
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Navbar/>} />
-        </Routes>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-        {/* <Routes>
+      <CartProvider>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={<NavbarCart handleAddToCart={handleAddToCart} />}
+            />
+          </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+          {/* <Routes>
           <Route path="/" element={<About />} />
         </Routes>
         <Routes>
@@ -56,29 +66,33 @@ function App() {
         <Routes>
           <Route path="/" element={<Footer />} />
         </Routes> */}
-        {/* <Routes>
+          {/* <Routes>
           <Route path="/" element={<Ticker/>} />
         </Routes> */}
 
-        <Routes>
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-        <Routes>
-          <Route path="/checkout" element={<Checkout />} />
-        </Routes>
-        <Routes>
-          <Route path="/payment" element={<Payment />} />
-        </Routes>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-        </Routes>
-        <Routes>
-          <Route path="/bulkorder" element={<BulkOrder />} />
-        </Routes>
-        <Routes>
-          <Route path="/contactus" element={<ContactUs/>} />
-        </Routes>
-      </Router>
+          <Routes>
+            <Route
+              path="/cart"
+              element={<Cart handleAddToCart={handleAddToCart} />}
+            />
+          </Routes>
+          <Routes>
+            <Route path="/checkout" element={<Checkout />} />
+          </Routes>
+          <Routes>
+            <Route path="/payment" element={<Payment />} />
+          </Routes>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+          <Routes>
+            <Route path="/bulkorder" element={<BulkOrder />} />
+          </Routes>
+          <Routes>
+            <Route path="/contactus" element={<ContactUs />} />
+          </Routes>
+        </Router>
+      </CartProvider>
     </div>
   )
 }

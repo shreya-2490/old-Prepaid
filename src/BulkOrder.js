@@ -96,26 +96,25 @@ const BulkOrder = () => {
     addMultipleTransactions = false,
     allowInternationalTransactions = false
   ) => {
-    const costPerCard = 2.98;
-    const additionalValue = 5; // Value to be added/subtracted when the checkbox is checked/unchecked
-    const internationalFee = 8; // International fee to be added when the checkbox is checked
-    let parsedCardQuantity = parseFloat(cardQuantity);
+    const costPerCard = 2.98
+    const additionalValue = 5 // Value to be added/subtracted when the checkbox is checked/unchecked
+    const internationalFee = 8 // International fee to be added when the checkbox is checked
+    let parsedCardQuantity = parseFloat(cardQuantity)
     if (isNaN(parsedCardQuantity)) {
-      parsedCardQuantity = 0;
+      parsedCardQuantity = 0
     }
     let sum =
       parsedCardQuantity * costPerCard +
-      parseFloat(loadAmount) * parsedCardQuantity;
+      parseFloat(loadAmount) * parsedCardQuantity
     if (addMultipleTransactions) {
-      sum += additionalValue;
+      sum += additionalValue
     }
     if (allowInternationalTransactions) {
-      sum += internationalFee;
+      sum += internationalFee
     }
-    setSubTotal(sum.toFixed(2));
-    return sum.toFixed(2);
-  };
-  
+    setSubTotal(sum.toFixed(2))
+    return sum.toFixed(2)
+  }
 
   const handleSubmit = () => {
     form.validateFields().then((values) => {
@@ -148,8 +147,8 @@ const BulkOrder = () => {
             <Card
               className="bulkorder-content"
               style={{
-                width: 550,
-                height: 283,
+                width: "93%",
+                height: "227px",
                 backgroundColor: "#FDC886",
                 borderTopLeftRadius: "20px",
                 borderTopRightRadius: "20px",
@@ -167,13 +166,13 @@ const BulkOrder = () => {
             <div>
               <Card
                 style={{
-                  width: 300,
-                  height: 70,
+                  width: "269px",
+                  height: "59px",
                   backgroundColor: "white",
                   position: "absolute",
                   zIndex: "100",
-                  top: "270px",
-                  margin: "0px 20px 50px 140px",
+                  top: "217px",
+                  margin: "0px 20px 50px 92px",
                   borderRadius: "100px",
                   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
                 }}
@@ -189,21 +188,21 @@ const BulkOrder = () => {
                 >
                   <img
                     src={ellipse}
-                    style={{ marginLeft: "10px", width: "50px" }}
+                    style={{ marginLeft: "10px", width: "50px",marginBottom:"4px" }}
                   ></img>
                   <img
                     src={cards}
                     style={{
                       position: "absolute",
                       left: "60px",
-                      bottom: "22px",
+                      bottom: "18px",
                       width: "25px",
                     }}
                   ></img>
                   <h4
                     style={{
                       color: "#FDC886",
-                      marginTop: "20px",
+                      marginTop: "1px",
                       marginLeft: "17px",
                       justifyContent: "flex-end",
                     }}
@@ -217,8 +216,8 @@ const BulkOrder = () => {
             <Card
               className="bulkorder-content-2"
               style={{
-                width: 550,
-                height: 300,
+                width: "93%",
+
                 backgroundColor: "#F5F2EA",
                 borderTopLeftRadius: "0px",
                 borderTopRightRadius: "0px",

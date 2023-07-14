@@ -12,7 +12,7 @@ import visacard from "./assets/Visacartpage.png"
 import "./CartPage.css"
 import Ticker from "./ticker"
 
-const Cart = ({ params }) => {
+const Cart = ({ handleAddToCart }) => {
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const input1 = queryParams.get("usdValue")
@@ -23,7 +23,7 @@ const Cart = ({ params }) => {
   const [usdValue, setUSDValue] = useState(input1)
   const [btcValue, setBtcValue] = useState(input2)
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
-  const { addToCart } = useContext(CartContext)
+  const { addToCart } = useContext(CartContext);
   const navigate = useNavigate()
   const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
 
@@ -32,15 +32,15 @@ const Cart = ({ params }) => {
     setUSDValue(usdInput)
     setBtcValue(usdInput * exchangeRate)
   }
-
-  const handleAddToCart = () => {
-    addToCart()
+  const handleAddToCartClick = () => {
+    addToCart({
+      usdValue: usdValue,
+      btcValue: btcValue,
+      card: selectedButton,
+    });
+    setIsSuccessModalVisible(true);
+  };
   
-     const queryParams = `?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`
-    setTimeout(() => {
-      navigate(`/checkout${queryParams}`)
-    }, 1000) // Redirect after a delay of 1 second (adjust as needed)
-  }
 
   const handleCloseModal = () => {
     setIsSuccessModalVisible(false)
@@ -54,7 +54,7 @@ const Cart = ({ params }) => {
 
   return (
     <>
-      <NavbarCart />
+      <NavbarCart/>
       <div className="cart-main">
         <div className="twocards-cart" style={{ overflowX: "hidden" }}>
           <div className="card1-cart">
@@ -116,7 +116,7 @@ const Cart = ({ params }) => {
                       inputmode="decimal"
                       placeholder="0.00"
                       name="quoteAmount"
-                      autocomplete="off"
+                      autocomplete="on"
                       step="1"
                       max="9007199254740991"
                       type="number"
@@ -134,7 +134,7 @@ const Cart = ({ params }) => {
                 </div>
               </div>{" "}
               <div className="cart-btn">
-                <button onClick={handleAddToCart}>Add to Cart</button>
+                <button onClick={handleAddToCartClick}>Add to Cart</button>
                 {/* <div className="success-modal">
                   <Modal
                     visible={isSuccessModalVisible}
