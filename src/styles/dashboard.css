@@ -46,7 +46,7 @@
 @media (max-width: 768px) {
   .listing-design {
     width: 90%;
-    margin: 50px auto;
+    margin: 158px 0px 0px 0px;
   }
 
   .product-div {
@@ -68,7 +68,7 @@
 @media (max-width: 576px) {
   .listing-design {
     width: 100%;
-    margin: 50px auto;
+    margin: 158px 0px 0px 0px;
     padding: 10px;
   }
 
