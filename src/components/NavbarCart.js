@@ -4,6 +4,7 @@ import {
   UserOutlined,
   ShoppingCartOutlined,
   DeleteOutlined,
+  MenuOutlined
 } from "@ant-design/icons"
 import { Badge, Modal, Button, Divider } from "antd"
 import { CartContext } from "./CartContext"
@@ -64,18 +65,13 @@ function NavbarCart() {
             else setResMenu("none")
           }}
         >
-          <img src={ham} alt="Menu" />
+          <MenuOutlined/>
           <div className="navmenu" style={{ display: resmenu }}>
             <Link to="/">HOME</Link>
             <Link to="/bulkorder">BULK ORDERS</Link>
             <Link to="/contactus">CONTACT US</Link>
-            <Link to="/login">
-              <span className="user">
-                <UserOutlined />
-                LOGIN
-              </span>
-            </Link>
           </div>
+         
         </div>
         <div className="first-four-navigation">
           <Link to="/">HOME</Link>
@@ -96,6 +92,14 @@ function NavbarCart() {
               <ShoppingCartOutlined />
             </Badge>
           </div>
+        </div>
+        <div >
+        <Link to="/login">
+            <span className="usermobile">
+              <UserOutlined classname="user-logo-mobile" />
+             
+            </span>
+          </Link>
         </div>
       </div>
 
@@ -247,14 +251,22 @@ function NavbarCart() {
                           </div>
                         </>
                       )}
-                      <div style={{display:"flex",alignItems:"baseline",justifyContent:"space-between"}}>
-                      <p style={{ marginLeft: "60px", marginTop: "-15px" }}>
-                        ${usdValue} x {quantity} = ${multipliedValue}
-                      </p>
-                      <p   style={{marginTop:"-10px"}}>
-                      <DeleteOutlined
-                        onClick={() => handleRemoveItem(item.id)}
-                      /></p></div>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "baseline",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p style={{ marginLeft: "60px", marginTop: "-15px" }}>
+                          ${usdValue} x {quantity} = ${multipliedValue}
+                        </p>
+                        <p style={{ marginTop: "-10px" }}>
+                          <DeleteOutlined
+                            onClick={() => handleRemoveItem(item.id)}
+                          />
+                        </p>
+                      </div>
                       <Divider />
                     </Fragment>
                   )

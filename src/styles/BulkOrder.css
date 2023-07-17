@@ -2,24 +2,24 @@
   align-items: center;
   justify-content: center;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   display: flex;
   position: absolute;
   left: 9%;
-  top: 69px;
+  top: 4.3125rem;
  width: 82%;
 }
 .bulk-main{
   background-color: #F5F2EA;
   width: 100%;
-  padding-top: 5px;
+  padding-top: 0.3125rem;
   height: 120vh !important;
   top: 0;
   position: absolute;
 }
 .bulk-div-1 {
   width: 44%;
-  margin-top: 2px;
+  margin-top: 0.125rem;
 }
 .bulk-div-2{
   width: 60%;
@@ -30,23 +30,23 @@
 }
 .subtitle-bulk-2 {
   color: #1b1b1b;
-  margin-top: -10px;
+  margin-top: -0.625rem;
 }
 .bulk-inner-div-1 {
   background-color: #fdc886;
-  height: 400px;
+  height: 25rem;
   width: 50%;
 }
 .bulk-inner-div-2 {
   background-color: #f5f2ea;
-  height: 400px;
+  height: 25rem;
   width: 50%;
 }
 
 .bulkorder-content {
   text-align: center;
   margin: auto;
-  padding-top: 5px;
+  padding-top: 0.3125rem;
   color: white;
   
 }
@@ -55,43 +55,43 @@
   margin: auto;
   padding-top: 0px;
   color: white;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
 }
 .bulk-content-list {
   text-align: center;
 }
 .bulk-content-list ul {
   list-style: none;
-  margin: 40px 0px;
+  margin: 2.5rem 0rem;
 }
 .bulk-content-list ul li {
-  margin-right: 60px;
+  margin-right: 3.75rem;
 }
 
 .bulk-content-list ul li:before {
   content: "✓";
-  margin-right: 5px;
-  margin-top: 5px;
+  margin-right: 0.3125rem;
+  margin-top: 0.3125rem;
 }
 .listing{
   display: flex;
   align-items: flex-start;
   justify-content: left;
   color: #1b1b1b;
-  margin: 0px 30px 2px 100px;
+  margin: 0rem 1.875rem 0.125rem 6.25rem;
   
 }
 .listing-div{
 
-  margin-top: 30px;
+  margin-top: 1.875rem;
 }
 .footer-card2{
   color: #A1A19F;
-  font-size: 10px;
+  font-size: 0.625rem;
   text-align: left;
-  padding: 10px;
-  margin: -11px 20px;
+  padding: 0.625rem;
+  margin: -0.6875rem 1.25rem;
   
 }
 

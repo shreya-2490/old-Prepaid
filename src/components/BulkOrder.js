@@ -24,6 +24,8 @@ const { Option } = Select
 const BulkOrder = () => {
   const [form] = Form.useForm()
   const [subTotal, setSubTotal] = useState(0)
+  const [additionalTransactionsVisible, setAdditionalTransactionsVisible] =
+    useState(false)
 
   useEffect(() => {
     form.setFieldsValue({
@@ -61,25 +63,33 @@ const BulkOrder = () => {
   }
 
   const handleAddMultipleTransactionsChange = (e) => {
+    const isChecked = e.target.checked
+    setAdditionalTransactionsVisible(isChecked)
+
     form.setFieldsValue({
       SubTotal: calculateSubTotal(
         form.getFieldValue("Card Quantity"),
         form.getFieldValue("Load Amount"),
         e.target.value,
+        isChecked,
         form.getFieldValue(
           "Will cards be used to make international purchases?"
-        )
+        ),
+        form.getFieldValue("additionalTransactions")
       ),
     })
   }
 
-  const handleAllowInternationalTransactionsChange = (e) => {
+  const handleAdditionalTransactionsChange = (value) => {
     form.setFieldsValue({
       SubTotal: calculateSubTotal(
         form.getFieldValue("Card Quantity"),
         form.getFieldValue("Load Amount"),
         form.getFieldValue("Will cards be used for more than one purchase?"),
-        e.target.value
+        form.getFieldValue(
+          "Will cards be used to make international purchases?"
+        ),
+        value
       ),
     })
   }
@@ -88,31 +98,39 @@ const BulkOrder = () => {
     console.log(value)
   }
 
-  const calculateSubTotal = (
-    cardQuantity,
-    loadAmount,
-    addMultipleTransactions = false,
-    allowInternationalTransactions = false
-  ) => {
-    const costPerCard = 2.98
-    const additionalValue = 5 // Value to be added/subtracted when the checkbox is checked/unchecked
-    const internationalFee = 8 // International fee to be added when the checkbox is checked
-    let parsedCardQuantity = parseFloat(cardQuantity)
-    if (isNaN(parsedCardQuantity)) {
-      parsedCardQuantity = 0
-    }
-    let sum =
-      parsedCardQuantity * costPerCard +
-      parseFloat(loadAmount) * parsedCardQuantity
-    if (addMultipleTransactions) {
-      sum += additionalValue
-    }
-    if (allowInternationalTransactions) {
-      sum += internationalFee
-    }
-    setSubTotal(sum.toFixed(2))
-    return sum.toFixed(2)
+ const calculateSubTotal = (
+  cardQuantity,
+  loadAmount,
+  addMultipleTransactions = false,
+  allowInternationalTransactions = false,
+  additionalTransactions = 1 // Default value is 1 if not provided
+) => {
+  const costPerCard = 2.98;
+  const additionalValue = 5; // Value to be added/subtracted when the checkbox is checked/unchecked
+  const internationalFee = 8; // International fee to be added when the checkbox is checked
+  let parsedCardQuantity = parseFloat(cardQuantity);
+  if (isNaN(parsedCardQuantity)) {
+    parsedCardQuantity = 0;
   }
+
+  // Calculate the additional transaction amount
+  const additionalTransactionAmount = addMultipleTransactions
+    ? additionalValue * additionalTransactions
+    : 0;
+
+  let sum =
+    parsedCardQuantity * costPerCard +
+    parseFloat(loadAmount) * parsedCardQuantity +
+    additionalTransactionAmount;
+
+  if (allowInternationalTransactions) {
+    sum += internationalFee;
+  }
+
+  setSubTotal(sum.toFixed(2));
+  return sum.toFixed(2);
+};
+
 
   const handleSubmit = () => {
     form.validateFields().then((values) => {
@@ -172,7 +190,7 @@ const BulkOrder = () => {
                   top: "208px",
                   margin: "0px 20px 40px 70px",
                   borderRadius: "100px",
-                  boxShadow:" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+                  boxShadow: " rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
                 }}
               >
                 <div
@@ -186,7 +204,11 @@ const BulkOrder = () => {
                 >
                   <img
                     src={ellipse}
-                    style={{ marginLeft: "10px", width: "50px",marginBottom:"4px" }}
+                    style={{
+                      marginLeft: "10px",
+                      width: "50px",
+                      marginBottom: "4px",
+                    }}
                   ></img>
                   <img
                     src={cards}
@@ -348,6 +370,20 @@ const BulkOrder = () => {
                   <Checkbox>
                     Will cards be used for more than one purchase?
                   </Checkbox>
+                </Form.Item>
+                <Form.Item
+                  name="additionalTransactions"
+                  label="Number of additional transactions per card:"
+                  style={{
+                    display: additionalTransactionsVisible ? "block" : "none",
+                  }}
+                >
+                  <InputNumber
+                    min={1}
+                    defaultValue={1}
+                    onChange={handleAdditionalTransactionsChange}
+                    style={{ width: "48%" }}
+                  />
                 </Form.Item>
                 <Form />
                 <Form>
