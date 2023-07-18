@@ -214,7 +214,7 @@ const BulkOrder = () => {
               layout="vertical"
               autoComplete="off"
               style={{
-                margin: "35px 20px 0px 20px",
+                margin: "75px 20px 0px 20px",
                 width: "100%",
                 display: "flex",
                 alignItems: "baseline",
