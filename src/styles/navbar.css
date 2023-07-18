@@ -63,7 +63,7 @@
   color: black;
 }
 .first-four-navigation {
-  width: 60%;
+  width: 40%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -336,6 +336,7 @@ text-decoration:overline;
   .logo{
     display: block;
     margin: auto;
+    cursor: pointer;
   }
   .header {
     height: 1.75rem;

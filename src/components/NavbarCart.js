@@ -55,7 +55,7 @@ function NavbarCart() {
   return (
     <div className="header">
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <Link to="/"><img src={logo} alt="Logo" /></Link>
       </div>
       <div className="left">
         <div
@@ -76,7 +76,7 @@ function NavbarCart() {
         <div className="first-four-navigation">
           <Link to="/">HOME</Link>
           <Link to="/bulkorder">BULK ORDERS</Link>
-          <Link to="/">HOW IT WORKS</Link>
+          {/* <Link to="/">HOW IT WORKS</Link> */}
           <Link to="/contactus">CONTACT </Link>
           <Link to="/login">
             <span className="user">

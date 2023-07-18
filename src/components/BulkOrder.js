@@ -98,39 +98,38 @@ const BulkOrder = () => {
     console.log(value)
   }
 
- const calculateSubTotal = (
-  cardQuantity,
-  loadAmount,
-  addMultipleTransactions = false,
-  allowInternationalTransactions = false,
-  additionalTransactions = 1 // Default value is 1 if not provided
-) => {
-  const costPerCard = 2.98;
-  const additionalValue = 5; // Value to be added/subtracted when the checkbox is checked/unchecked
-  const internationalFee = 8; // International fee to be added when the checkbox is checked
-  let parsedCardQuantity = parseFloat(cardQuantity);
-  if (isNaN(parsedCardQuantity)) {
-    parsedCardQuantity = 0;
+  const calculateSubTotal = (
+    cardQuantity,
+    loadAmount,
+    addMultipleTransactions = false,
+    allowInternationalTransactions = false,
+    additionalTransactions = 1 // Default value is 1 if not provided
+  ) => {
+    const costPerCard = 2.98
+    const additionalValue = 5 // Value to be added/subtracted when the checkbox is checked/unchecked
+    const internationalFee = 8 // International fee to be added when the checkbox is checked
+    let parsedCardQuantity = parseFloat(cardQuantity)
+    if (isNaN(parsedCardQuantity)) {
+      parsedCardQuantity = 0
+    }
+
+    // Calculate the additional transaction amount
+    const additionalTransactionAmount = addMultipleTransactions
+      ? additionalValue * additionalTransactions
+      : 0
+
+    let sum =
+      parsedCardQuantity * costPerCard +
+      parseFloat(loadAmount) * parsedCardQuantity +
+      additionalTransactionAmount
+
+    if (allowInternationalTransactions) {
+      sum += internationalFee
+    }
+
+    setSubTotal(sum.toFixed(2))
+    return sum.toFixed(2)
   }
-
-  // Calculate the additional transaction amount
-  const additionalTransactionAmount = addMultipleTransactions
-    ? additionalValue * additionalTransactions
-    : 0;
-
-  let sum =
-    parsedCardQuantity * costPerCard +
-    parseFloat(loadAmount) * parsedCardQuantity +
-    additionalTransactionAmount;
-
-  if (allowInternationalTransactions) {
-    sum += internationalFee;
-  }
-
-  setSubTotal(sum.toFixed(2));
-  return sum.toFixed(2);
-};
-
 
   const handleSubmit = () => {
     form.validateFields().then((values) => {
@@ -159,7 +158,6 @@ const BulkOrder = () => {
       <NavbarCart />
       <div className="bulk-main">
         <div className="bulk-division">
-          
           <div className="bulk-div-1">
             <Card className="bulkorder-content">
               <img src={success} alt=""></img>
@@ -179,22 +177,22 @@ const BulkOrder = () => {
               </Card>
             </div>
 
-            <div className="bulkorder-content-2" >
+            <div className="bulkorder-content-2">
               <div className="listing-div">
                 <span className="listing">
-                  <img src={tick} className="tick class" alt="" ></img>
+                  <img src={tick} className="tick class" alt=""></img>
                   <p>Streamlined Process</p>
                 </span>
                 <div className="listing">
-                  <img src={tick} alt="" ></img>
+                  <img src={tick} alt=""></img>
                   <p>Flexible Quantities</p>
                 </div>
                 <div className="listing">
-                  <img src={tick} alt="" ></img>
+                  <img src={tick} alt=""></img>
                   <p>Customization Options</p>
                 </div>
                 <div className="listing">
-                  <img src={tick} alt="" ></img>
+                  <img src={tick} alt=""></img>
                   <p>Competitive Pricing</p>
                 </div>
               </div>
@@ -215,9 +213,41 @@ const BulkOrder = () => {
               form={form}
               layout="vertical"
               autoComplete="off"
-              style={{ margin: "20px" }}
+              style={{
+                margin: " 0px 20px",
+                width: "100%",
+                display: "flex",
+                alignItems: "baseline",
+              }}
             >
               <Form.Item name="Customer's Name" label="Customer's Name">
+                <Input />
+              </Form.Item>
+              <Form.Item
+                name="Business Name"
+                label="Business Name"
+                style={{ margin: "0px 20px", width: "50%" }}
+              >
+                <Input />
+              </Form.Item>
+            </Form>
+            <Form
+              form={form}
+              layout="vertical"
+              autoComplete="off"
+              style={{ margin: "20px" }}
+            >
+              <Form.Item name="Address" label="Address">
+                <Input />
+              </Form.Item>
+            </Form>
+            <Form
+              form={form}
+              layout="vertical"
+              autoComplete="off"
+              style={{ margin: "20px" }}
+            >
+              <Form.Item name="Phone" label="Phone">
                 <Input />
               </Form.Item>
             </Form>
@@ -313,12 +343,18 @@ const BulkOrder = () => {
                     display: additionalTransactionsVisible ? "block" : "none",
                   }}
                 >
-                  <InputNumber
-                    min={1}
-                    defaultValue={1}
-                    onChange={handleAdditionalTransactionsChange}
-                    style={{ width: "48%" }}
-                  />
+                  <Form.Item
+                    noStyle // Hide label
+                    name="additionalTransactions"
+                    rules={[{ required: additionalTransactionsVisible }]}
+                  >
+                    <InputNumber
+                      min={1}
+                      defaultValue={1}
+                      onChange={handleAdditionalTransactionsChange}
+                      style={{ width: "50%" }}
+                    />
+                  </Form.Item>
                 </Form.Item>
                 <Form />
                 <Form>
@@ -368,7 +404,7 @@ const BulkOrder = () => {
                 </div>
               </div>
               <Button
-              className="buyNowBtn"
+                className="buyNowBtn"
                 htmlType="submit"
                 onClick={handleSubmit}
               >

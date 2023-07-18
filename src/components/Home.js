@@ -97,11 +97,11 @@ const Home = () => {
             card amount. Discover the many advantages of using cryptocurrency
             for your everyday transactions.
           </p>
-          <div className="learn-more-btn">
+          {/* <div className="learn-more-btn">
             <Link to="/">
               <button>How it Works</button>
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className="sider">
           <div className="box">
