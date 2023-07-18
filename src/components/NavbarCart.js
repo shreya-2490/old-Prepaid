@@ -1,56 +1,56 @@
-import React, { useState, useContext, Fragment } from "react"
-import { Link, useNavigate, useLocation } from "react-router-dom"
+import React, { useState, useContext, Fragment } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   UserOutlined,
   ShoppingCartOutlined,
   DeleteOutlined,
-  MenuOutlined
-} from "@ant-design/icons"
-import { Badge, Modal, Button, Divider } from "antd"
-import { CartContext } from "./CartContext"
-import visa from "../assets/Visacart.png"
-import mastercard from "../assets/Mastercardcart.png"
-import "../styles/navbar.css"
-import logo from "../assets/logo.png"
-import ham from "../assets/ham.png"
+  MenuOutlined,
+} from "@ant-design/icons";
+import { Badge, Modal, Button, Divider } from "antd";
+import { CartContext } from "./CartContext";
+import visa from "../assets/Visacart.png";
+import mastercard from "../assets/Mastercardcart.png";
+import "../styles/navbar.css";
+import logo from "../assets/logo.png";
+import ham from "../assets/ham.png";
 
 function NavbarCart() {
-  const location = useLocation()
-  const queryParams = new URLSearchParams(location.search)
-  const input1 = queryParams.get("usdValue")
-  const input2 = queryParams.get("btcValue")
-  const input3 = queryParams.get("selectedButton")
-  const [selectedButton, setSelectedButton] = useState(input3)
-  const [usdValue, setUSDValue] = useState(input1)
-  const [btcValue, setBtcValue] = useState(input2)
-  const { cartCount, cartItems, removeFromCart } = useContext(CartContext)
-  const [isCartOpen, setIsCartOpen] = useState(false)
-  const [resmenu, setResMenu] = useState("none")
-  const navigate = useNavigate()
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const input1 = queryParams.get("usdValue");
+  const input2 = queryParams.get("btcValue");
+  const input3 = queryParams.get("selectedButton");
+  const [selectedButton, setSelectedButton] = useState(input3);
+  const [usdValue, setUSDValue] = useState(input1);
+  const [btcValue, setBtcValue] = useState(input2);
+  const { cartCount, cartItems, removeFromCart } = useContext(CartContext);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [resmenu, setResMenu] = useState("none");
+  const navigate = useNavigate();
 
   const handleCartClick = () => {
-    setIsCartOpen(true)
-  }
+    setIsCartOpen(true);
+  };
 
   const handleCloseClick = () => {
-    setIsCartOpen(false)
-  }
+    setIsCartOpen(false);
+  };
 
   const handleKeepShopping = () => {
-    setIsCartOpen(false)
-    navigate("/")
-  }
+    setIsCartOpen(false);
+    navigate("/");
+  };
   const handleRemoveItem = (itemId) => {
-    removeFromCart(itemId)
-  }
+    removeFromCart(itemId);
+  };
   const handleCheckout = () => {
     const queryParams = cartItems
       .map((item) => {
-        return `usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}`
+        return `usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}`;
       })
-      .join("&")
-    navigate(`/checkout?${queryParams}`)
-  }
+      .join("&");
+    navigate(`/checkout?${queryParams}`);
+  };
 
   return (
     <div className="header">
@@ -61,17 +61,16 @@ function NavbarCart() {
         <div
           className="hamburg"
           onClick={() => {
-            if (resmenu === "none") setResMenu("flex")
-            else setResMenu("none")
+            if (resmenu === "none") setResMenu("flex");
+            else setResMenu("none");
           }}
         >
-          <MenuOutlined/>
+          <MenuOutlined />
           <div className="navmenu" style={{ display: resmenu }}>
             <Link to="/">HOME</Link>
             <Link to="/bulkorder">BULK ORDERS</Link>
             <Link to="/contactus">CONTACT US</Link>
           </div>
-         
         </div>
         <div className="first-four-navigation">
           <Link to="/">HOME</Link>
@@ -92,11 +91,10 @@ function NavbarCart() {
             </Badge>
           </div>
         </div>
-        <div >
-        <Link to="/login">
+        <div>
+          <Link to="/login">
             <span className="usermobile">
               <UserOutlined classname="user-logo-mobile" />
-             
             </span>
           </Link>
         </div>
@@ -211,19 +209,19 @@ function NavbarCart() {
                     (uniqueItem) =>
                       uniqueItem.usdValue === item.usdValue &&
                       uniqueItem.card === item.card
-                  )
+                  );
 
                   if (existingItem) {
-                    existingItem.quantity += 1
+                    existingItem.quantity += 1;
                   } else {
-                    uniqueItems.push({ ...item, quantity: 1 })
+                    uniqueItems.push({ ...item, quantity: 1 });
                   }
 
-                  return uniqueItems
+                  return uniqueItems;
                 }, [])
                 .map((item) => {
-                  const { usdValue, card, quantity } = item
-                  const multipliedValue = usdValue * quantity
+                  const { usdValue, card, quantity } = item;
+                  const multipliedValue = usdValue * quantity;
 
                   return (
                     <Fragment key={item.id}>
@@ -268,7 +266,7 @@ function NavbarCart() {
                       </div>
                       <Divider />
                     </Fragment>
-                  )
+                  );
                 })}
             </>
           )}
@@ -284,7 +282,7 @@ function NavbarCart() {
         </div>
       </Modal>
     </div>
-  )
+  );
 }
 
-export default NavbarCart
+export default NavbarCart;
