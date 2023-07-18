@@ -80,8 +80,7 @@ function NavbarCart() {
           <Link to="/contactus">CONTACT </Link>
           <Link to="/login">
             <span className="user">
-              <UserOutlined />
-              LOGIN
+              <UserOutlined style={{fontSize:"1.1rem"}} />
             </span>
           </Link>
         </div>
