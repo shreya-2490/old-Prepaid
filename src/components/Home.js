@@ -16,7 +16,7 @@ const Home = () => {
   const [selectedCard, setSelectedCard] = useState(null)
   const [isValueValid, setIsValueValid] = useState(false)
   const [selectedButton, setSelectedButton] = useState(1)
-  const [button, setButton] = useState(2)
+  const [button, setButton] = useState(1)
   const [loadAmount, setLoadAmount] = useState("")
 
   const handleButtonClick = (event, buttonId) => {

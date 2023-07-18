@@ -159,20 +159,10 @@ const BulkOrder = () => {
       <NavbarCart />
       <div className="bulk-main">
         <div className="bulk-division">
+          
           <div className="bulk-div-1">
-            <Card
-              className="bulkorder-content"
-              style={{
-                width: "93%",
-                height: "227px",
-                backgroundColor: "#FDC886",
-                borderTopLeftRadius: "20px",
-                borderTopRightRadius: "20px",
-                borderBottomLeftRadius: "0px",
-                borderBottomRightRadius: "0px",
-              }}
-            >
-              <img src={success}></img>
+            <Card className="bulkorder-content">
+              <img src={success} alt=""></img>
               <h3>Bulk Prepaid Card</h3>
               <p className="subtitle-bulk">
                 You can buy from 5 - 100 Prepaid Cards in one go{" "}
@@ -180,86 +170,31 @@ const BulkOrder = () => {
               <p className="subtitle-bulk-2">Cards in one go</p>
             </Card>
             <div>
-              <Card
-                style={{
-                  width: "260px",
-                  height: "55px",
-                  backgroundColor: "white",
-                  position: "absolute",
-                  zIndex: "100",
-                  top: "208px",
-                  margin: "0px 20px 40px 70px",
-                  borderRadius: "100px",
-                  boxShadow: " rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-end",
-                    marginLeft: "38px",
-                    marginRight: "120px",
-                  }}
-                >
-                  <img
-                    src={ellipse}
-                    style={{
-                      marginLeft: "10px",
-                      width: "50px",
-                      marginBottom: "4px",
-                    }}
-                  ></img>
-                  <img
-                    src={cards}
-                    style={{
-                      position: "absolute",
-                      left: "60px",
-                      bottom: "19px",
-                      width: "25px",
-                    }}
-                  ></img>
-                  <h4
-                    style={{
-                      color: "#FDC886",
-                      marginTop: "1px",
-                      marginLeft: "17px",
-                      justifyContent: "flex-end",
-                    }}
-                  >
-                    Benefits
-                  </h4>
+              <Card className="benefits-card">
+                <div className="benefits-card-content">
+                  <img src={ellipse} className="benefits-card-img" alt="" />
+                  <img src={cards} className="benefits-card-badge" alt="" />
+                  <h4 className="benefits-card-title">Benefits</h4>
                 </div>
               </Card>
             </div>
 
-            <Card
-              className="bulkorder-content-2"
-              style={{
-                width: "93%",
-
-                backgroundColor: "#F5F2EA",
-                borderTopLeftRadius: "0px",
-                borderTopRightRadius: "0px",
-                borderBottomLeftRadius: "20px",
-                borderBottomRightRadius: "20px",
-              }}
-            >
+            <div className="bulkorder-content-2" >
               <div className="listing-div">
                 <span className="listing">
-                  <img src={tick} className="tick class"></img>
+                  <img src={tick} className="tick class" alt="" ></img>
                   <p>Streamlined Process</p>
                 </span>
                 <div className="listing">
-                  <img src={tick}></img>
+                  <img src={tick} alt="" ></img>
                   <p>Flexible Quantities</p>
                 </div>
                 <div className="listing">
-                  <img src={tick}></img>
+                  <img src={tick} alt="" ></img>
                   <p>Customization Options</p>
                 </div>
                 <div className="listing">
-                  <img src={tick}></img>
+                  <img src={tick} alt="" ></img>
                   <p>Competitive Pricing</p>
                 </div>
               </div>
@@ -273,7 +208,7 @@ const BulkOrder = () => {
                 pricing guarantees cost-effectiveness, making it an ideal choice
                 for individuals and businesses alike.
               </p>
-            </Card>
+            </div>
           </div>
           <div className="bulk-div-2">
             <Form
@@ -433,14 +368,8 @@ const BulkOrder = () => {
                 </div>
               </div>
               <Button
+              className="buyNowBtn"
                 htmlType="submit"
-                style={{
-                  borderRadius: "20px",
-                  marginLeft: "120px",
-                  textAlign: "center",
-                  backgroundColor: "#FDC886",
-                  width: "55%",
-                }}
                 onClick={handleSubmit}
               >
                 Buy Now
@@ -464,7 +393,7 @@ const BulkOrder = () => {
               }}
             >
               <Form.Item
-                name="CardType"
+                name="CardType";
                 label="Card Type"
                 rules={[
                   {
