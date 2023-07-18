@@ -214,7 +214,7 @@ const BulkOrder = () => {
               layout="vertical"
               autoComplete="off"
               style={{
-                margin: " 0px 20px",
+                margin: "35px 20px 0px 20px",
                 width: "100%",
                 display: "flex",
                 alignItems: "baseline",
@@ -235,7 +235,7 @@ const BulkOrder = () => {
               form={form}
               layout="vertical"
               autoComplete="off"
-              style={{ margin: "20px" }}
+              style={{ margin: "0px 20px" }}
             >
               <Form.Item name="Address" label="Address">
                 <Input />
