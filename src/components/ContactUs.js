@@ -31,7 +31,7 @@ const ContactUs = () => {
   return (
     <>
       <NavbarCart />
-      <div style={{height:"94vh"}}>
+      <div className="contactus">
         <div className="contactus-container">
    
         </div>
@@ -88,7 +88,7 @@ const ContactUs = () => {
           </div>
           <div  className="images-sideform">
             <div className="phone-image"><img src={phone}></img><p>+2347026290389</p><p>You can call us at anytime</p></div>
-            <div className="phone-image"><img src={email}></img><p>contact@prepaidfriends.com</p><p>Send us a detailed message</p></div>
+            <div className="email-image"><img src={email}></img><p>contact@prepaidfriends.com</p><p>Send us a detailed message</p></div>
           </div>
         </div>
       </div>

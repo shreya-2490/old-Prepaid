@@ -107,38 +107,35 @@ text-decoration:overline;
   position: relative;
   cursor: pointer;
 }
+.header .left .hamburg .navmenu {
+  position: absolute;
+  background-color:white;
+  display: flex;
+  flex-direction: column;
+  padding: 0rem 1.875rem;
+}
+.header .left .hamburg .navmenu > a {
+  margin: 0.625rem 0rem;
+  color: #1b1b1b;
+  text-decoration: none;
+  border-bottom: #333;
+} 
 /* .header .left .hamburg .navmenu {
   position: absolute;
   background-color: #d9dcdf;
   display: flex;
   flex-direction: column;
-
   padding: 0rem 1.875rem;
-}
-.header .left .hamburg .navmenu > a {
-  margin: 0.625rem 0rem;
-  color: rgb(19, 18, 18);
-  text-decoration: none;
-  border-bottom: #333;
+  width: 100%;
 } */
-/* Add the following styles to your existing CSS */
 
-.header .left .hamburg .navmenu {
-  position: absolute;
-  background-color: #d9dcdf;
-  display: flex;
-  flex-direction: column;
-  padding: 0rem 1.875rem;
-  width: 100%; /* Set the width to 100% */
-}
-
-.header .left .hamburg .navmenu > a {
+/* .header .left .hamburg .navmenu > a {
   margin: 0.625rem 0rem;
   color: rgb(19, 18, 18);
   text-decoration: none;
   border-bottom: #333;
-  width: 100%; /* Set the width to 100% */
-}
+  width: 100%; 
+} */
 
 .usernav{
   display: flex;

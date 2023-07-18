@@ -10,6 +10,7 @@ import NavbarCart from "./NavbarCart"
 import mastercard from "../assets/Mastercardcartpage.png"
 import visacard from "../assets/Visacartpage.png"
 import "../styles/CartPage.css"
+import { Footer } from "antd/es/layout/layout"
 
 const Cart = ({ handleAddToCart }) => {
   const location = useLocation()
@@ -61,12 +62,6 @@ const Cart = ({ handleAddToCart }) => {
               className="custom-card-cart"
               title=""
               bordered={false}
-              style={{
-                // width: 500,
-                // height: 300,
-                // borderRadius: "20px",
-                margin: "96px 0px 0px 30px",
-              }}
               headStyle={{ borderBottom: "none" }}
             >
               {selectedButton == 1 ? <img src={visacard}></img> : <img src={mastercard}></img>}
@@ -78,11 +73,6 @@ const Cart = ({ handleAddToCart }) => {
               title={selectedButton == 1 ? "VISA PREPAID CARD" : title}
               bordered={false}
               headStyle={{ borderBottom: "none" }}
-              style={{
-                width: "638px",
-                height: "426px",
-                margin: "93px 0px 0px 30px",
-              }}
             >
               {selectedButton == 1 ? <p className="custom-para2-cart">
                 Embrace the future of financial transactions with our Visa Prepaid
@@ -101,13 +91,8 @@ const Cart = ({ handleAddToCart }) => {
                   <span style={{color:"red"}}>NOTE: We will charge a flat rate card fee of $2.98 per card.</span>
                 </p>}
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  margin: "-30px 10px",
-                }}
               >
-                <div style={{ margin: "25px 0px 0px 20px" }}>
+                <div >
                   <p>Amount</p>
                   <div className="cart-input">
                     <input
@@ -135,26 +120,9 @@ const Cart = ({ handleAddToCart }) => {
               </div>{" "}
               <div className="cart-btn">
                 <button onClick={handleAddToCartClick}>Add to Cart</button>
-                {/* <div className="success-modal">
-                  <Modal
-                    visible={isSuccessModalVisible}
-                    onCancel={handleCloseModal}
-                    footer={null}
-                    closable={false}
-                  >
-                    <div style={{ textAlign: "center" }}>
-                      <CheckCircleOutlined
-                        style={{ fontSize: "64px", color: "#52c41a" }}
-                      />
-                      <h2>Success!</h2>
-                      <Button type="primary" onClick={handleCloseModal}>
-                        Close
-                      </Button>
-                    </div>
-                  </Modal>
-                </div> */}
+              
               </div>
-              <div style={{display:"flex",  margin: "14px 10px 10px 28px"}}>
+              <div  className="icons" >
               <AiOutlineSafety style={{fontSize:"25px", color:"#41D195",marginRight:"10px" }}/><p style={{marginRight:"10px"}}>Simple Checkout Process</p>
               <AiOutlineSafety style={{fontSize:"25px", color:"#41D195",marginRight:"10px"}}/>  <p style={{marginRight:"10px"}}>Instant, Private, Safe</p>
               <AiOutlineSafety style={{fontSize:"25px", color:"#41D195",marginRight:"10px"}}/><p style={{marginRight:"10px"}}>Email Delivery</p></div>
@@ -163,7 +131,6 @@ const Cart = ({ handleAddToCart }) => {
           </div>
         </div>
       </div>
- 
     </>
   )
 }
