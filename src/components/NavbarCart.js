@@ -1,5 +1,5 @@
 import React, { useState, useContext, Fragment } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -12,17 +12,8 @@ import visa from "../assets/Visacart.png";
 import mastercard from "../assets/Mastercardcart.png";
 import "../styles/navbar.css";
 import logo from "../assets/logo.png";
-import ham from "../assets/ham.png";
 
 function NavbarCart() {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const input1 = queryParams.get("usdValue");
-  const input2 = queryParams.get("btcValue");
-  const input3 = queryParams.get("selectedButton");
-  const [selectedButton, setSelectedButton] = useState(input3);
-  const [usdValue, setUSDValue] = useState(input1);
-  const [btcValue, setBtcValue] = useState(input2);
   const { cartCount, cartItems, removeFromCart } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [resmenu, setResMenu] = useState("none");
@@ -46,7 +37,7 @@ function NavbarCart() {
   const handleCheckout = () => {
     const queryParams = cartItems
       .map((item) => {
-        return `usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}`;
+        return `usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}&id=${item?.id}`;
       })
       .join("&");
     navigate(`/checkout?${queryParams}`);
@@ -55,7 +46,9 @@ function NavbarCart() {
   return (
     <div className="header">
       <div className="logo">
-        <Link to="/"><img src={logo} alt="Logo" /></Link>
+        <Link to="/">
+          <img src={logo} alt="Logo" />
+        </Link>
       </div>
       <div className="left">
         <div
@@ -79,7 +72,7 @@ function NavbarCart() {
           <Link to="/contactus">CONTACT </Link>
           <Link to="/login">
             <span className="user">
-              <UserOutlined style={{fontSize:"1.1rem"}} />
+              <UserOutlined style={{ fontSize: "1.1rem" }} />
             </span>
           </Link>
         </div>
