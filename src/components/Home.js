@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Select, Card, Image, Alert } from "antd"
+import { Select, Card, Image, Alert, Slider } from "antd"
 import { Link } from "react-router-dom"
 import visa from "../assets/Visa.png"
 import mastercard from "../assets/Mastercard.png"
@@ -39,6 +39,11 @@ const Home = () => {
     } else {
       setIsValueValid(false)
     }
+  }
+
+  const handleSliderChange = (value) => {
+    console.log("Selected Range:", value)
+    // You can work with the selected range value here.
   }
 
   useEffect(() => {
@@ -260,19 +265,19 @@ const Home = () => {
               )}
               {button === 2 && (
                 <div className="forms">
-                  <div style={{ marginBottom: "20px" }}>
-                  <form>
+                  <div style={{ margin: "15px 0px" }}>
+                    <form>
                       <div className="both-gray">
                         <div className="first-gray">
                           <div className="first-gray-1">
                             <label className="pay">Select Provider</label>
                           </div>
                           <div>
-                          <select className="dropdown-amount">
-                          <option value="Visa">Visa</option>
-                          <option value="MasterCard">Mastercard</option>
-                          <option value="All">All</option>
-                        </select>
+                            <select className="dropdown-amount">
+                              <option value="All">All</option>
+                              <option value="Visa">Visa</option>
+                              <option value="MasterCard">MasterCard</option>
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -285,12 +290,10 @@ const Home = () => {
                           <div className="first-gray-1">
                             <label className="pay">Price</label>
                           </div>
-                          <div>
-                            <select className="dropdown-amount">
-                              <option value="Low">Low to High(Price)</option>
-                              <option value="High">High to Low(Price)</option>
-                            </select>
-                          </div>
+                          <select className="dropdown-amount">
+                            <option value=""></option>
+                            <option value=""></option>
+                          </select>
                         </div>
                       </div>
                     </form>

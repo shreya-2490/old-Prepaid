@@ -1,5 +1,7 @@
+
+/******************* Full Screen ****************************/
+
 .main-body {
-  /* background: linear-gradient(98deg, #ffffff, #ffffff, #ffffff); */
   background-color: #f5f2ea;
   background-size: 500% 500%;
   animation: gradient-animation 3s ease infinite;
@@ -11,6 +13,8 @@
   overflow-x: hidden;
   overflow-y: hidden;
 }
+
+
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -25,42 +29,42 @@
 
 .home {
   margin-top: 7.5rem;
-  padding-left: 3.5rem !important;
-  padding: 3.125rem -2.5625rem 3.125rem 5.625rem;
+  padding-left: 3.5rem;
   text-align: left;
   box-sizing: border-box;
+  width: 80%;
 }
 
 .home-heading {
-  margin-bottom: 2.1875rem;
-  margin: auto;
+  margin-bottom: 1.7875rem;
   font-family: "Typold Extended Black";
-  font-size: 2.5rem;
-  font-weight: 400;
-  line-height: 2;
+  font-size: 2rem;
+  font-weight: 500;
+  width: 100%;
   display: block;
   color: #1b1b1b;
 }
+
 .home-heading-1 {
   margin-bottom: 1.5625rem;
-  margin: auto;
   font-family: "Typold Extended Black";
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   line-height: 1.2;
   display: block;
   color: #1b1b1b;
-  /* font-weight: 700; */
   white-space: nowrap;
 }
+
 .subtitle {
   color: #1b1b1b;
   font-family: "Outfit", sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 2;
   padding-left: 0.125rem;
   padding-right: 4.375rem;
   margin-top: 1.875rem;
 }
+
 .buttons {
   align-items: stretch;
   background: linear-gradient(180deg, #ffffff 50%, #ffffff 0);
@@ -72,18 +76,22 @@
   overflow: hidden;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
 .box {
   padding: 3.125rem;
-  width: 26.25rem;
+  width: 30rem;
 }
+
 .sider {
   margin: auto;
   width: 45%;
   margin-top: 3.125rem;
 }
+
 .first-btn {
   width: 12.25rem;
 }
+
 .buttons .buy {
   height: 3.75rem;
   text-align: center;
@@ -91,21 +99,19 @@
   width: 10rem;
   font-size: 1rem;
   font-weight: 600 !important;
-  /* font-weight: bold; */
   margin-left: -0.125rem;
   cursor: pointer;
-  /* border-top-right-radius: 45px; */
 }
+
 .buttons .sell {
   height: 3.75rem;
   border: none;
   width: 10rem;
   font-size: 1rem;
   font-weight: 600 !important;
-  /* font-weight: bold; */
   cursor: pointer;
-  /* border-bottom-left-radius: 120px; */
 }
+
 .sider-content {
   padding: 0.4375rem 1.125rem 1.125rem 1.125rem;
   background-color: #ffffff;
@@ -113,18 +119,21 @@
   border-bottom-right-radius: 1rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
 .forms {
   display: flex;
   flex-direction: column;
 }
+
 .first-gray {
   display: flex;
 }
+
 .first-gray-1 {
   margin-left: 0.25rem;
-  /* margin-right: -24px; */
   margin-top: 0.8125rem;
 }
+
 .pay {
   color: black;
   display: block;
@@ -135,12 +144,14 @@
   text-align: left;
   font-family: "Outfit", sans-serif;
 }
+
 .input-div {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   margin: 0.625rem 0rem;
 }
+
 .input-box {
   border: none !important;
   box-shadow: none !important;
@@ -148,6 +159,7 @@
   padding: 0 !important;
   border: none;
 }
+
 input {
   color: rgb(12, 12, 12);
   font-size: 1.625rem;
@@ -157,20 +169,24 @@ input {
   height: 2.25rem;
   background-color: transparent;
 }
+
 input[type="number"] {
   border: none;
   outline: none;
   font-size: 1.3125rem;
   caret-color: #004cff;
 }
+
 .input-div[type="number"]:focus {
   box-shadow: 0 0 5px 2px blue;
 }
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 .second-gray-1 {
   background-color: #efefef;
   border: none;
@@ -179,14 +195,17 @@ input[type="number"]::-webkit-outer-spin-button {
   min-height: 2.75rem;
   padding: 0.625rem 0.6875rem;
 }
+
 .second-gray {
   margin-left: -1.3125rem;
 }
+
 .items {
   align-items: center;
   display: flex;
   margin-left: -1.8125rem;
 }
+
 .usdt-pic img {
   overflow: hidden;
   position: relative;
@@ -194,10 +213,12 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 1.125rem;
   margin-right: 0.3125rem;
 }
+
 .bit-pic img {
   height: 1.25rem;
   width: 1.25rem;
 }
+
 .both-gray {
   display: flex;
   justify-content: space-between;
@@ -206,12 +227,14 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 0.75rem;
   padding: 0.3125rem;
 }
+
 .dropdown-1 {
   font-size: 0.75rem;
   margin-right: 2.8125rem;
   line-height: 1.5rem;
   color: black;
 }
+
 .buy-usdt {
   color: #1b1b1b;
   background-color: #fdc886;
@@ -230,10 +253,12 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-bottom: 0.625rem;
   border: none;
 }
+
 .effect-text {
   color: #33cccc;
   margin-left: 0.4375rem;
 }
+
 .learn-more-btn button {
   font-family: "Outfit", sans-serif;
   font-size: 1rem;
@@ -253,27 +278,27 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-top: 0.0625rem;
   margin-left: 0.3125rem;
 }
+
 .card-selector-container {
-  /* display: flex; */
   align-items: center;
   justify-content: space-between;
   margin-top: 0rem;
   border: none;
-  /* background-color: #f0f0f0; */
   padding: 0.4375rem;
   border-radius: 0.75rem;
 }
+
 .card-selector .ant-select-selector {
-  font-size: 1rem; /* Adjust font size as desired */
-  border-color: black !important; /* Set border color to black on hover */
+  font-size: 1rem; 
+  border-color: black !important; 
   border: none;
   margin-bottom: 0.625rem;
 }
+
 .selection-cards-visamastercard {
   display: flex;
-  /* margin: 10px; */
-  /* margin-right: 10px; */
 }
+
 .selection-cards-visamastercard button {
   background-color: #f5f2ea;
   border: none;
@@ -292,12 +317,15 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: #fdc886;
   color: #fff;
 }
+
 .homepage-cards {
   width: 74%;
 }
+
 .mastercard-button {
   width: 5.3125rem;
 }
+
 .choose-card {
   margin: 0.625rem 0.125rem;
   text-align: justify;
@@ -305,6 +333,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-family: "Outfit", sans-serif;
   color: black;
 }
+
 .dropdown-amount {
   border-radius: 0.25rem;
   width: 100%;
@@ -320,157 +349,20 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .dropdown-amount:focus {
   outline: none;
-  border-color: #29262624; /* Set the border color when the select element is focused */
+  border-color: #29262624; 
 }
 
 .dropdown-amount option {
-  background-color: #f0f0f0; /* Set the background color of the options */
+  background-color: #f0f0f0; 
 }
 
-/*-------PUSH EFFECT CSS----*/
-/* .pushEffect span:nth-child(1) {
-  animation-delay: 7.5s;
-  -ms-animation-delay: 2.5s;
-  -webkit-animation-delay: 2.5s;
-}
 
-.pushEffect span:nth-child(2) {
-  animation-delay: 1.5s;
-  -ms-animation-delay: 7.5s;
-  -webkit-animation-delay: 7.5s;
-} */
-
-/* Push Effect */
-/* .pushEffect {
-  display: inline;
-  text-indent: 8px;
-  position: relative;
-}
-
-.pushEffect span {
-  animation: push 8s linear infinite;
-  -ms-animation: push 8s linear infinite;
-  -webkit-animation: push 8s linear infinite;
-  color: #080808;
-  opacity: 0;
-  margin-left: 10px;
-  overflow: hidden;
-  position: absolute;
-}
-
-@keyframes push {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-  60% {
-    opacity: 0;
-    transform: translateX(0px);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-moz-keyframes push {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 0;
-    -moz-transform: rotate(0deg) scale(2) skew(0deg) translate(0px);
-  }
-  10% {
-    opacity: 1;
-    -moz-transform: translateX(0px);
-  }
-  25% {
-    opacity: 1;
-    -moz-transform: translateX(0px);
-  }
-  30% {
-    opacity: 0;
-    -moz-transform: translateX(0px);
-  }
-  80% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes push {
-  0% {
-    opacity: 0;
-    -webkit-transform: rotate(0deg) scale(2) skew(0deg) translate(0px);
-  }
-  5% {
-    opacity: 0;
-    -webkit-transform: rotate(0deg) scale(2) skew(0deg) translate(0px);
-  }
-  10% {
-    opacity: 1;
-    -webkit-transform: translateX(0px);
-  }
-  25% {
-    opacity: 1;
-    -webkit-transform: translateX(0px);
-  }
-  30% {
-    opacity: 0;
-    -webkit-transform: translateX(0px);
-  }
-  80% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-ms-keyframes push {
-  0% {
-    opacity: 0;
-    -ms-transform: rotate(0deg) scale(2) skew(0deg) translate(0px);
-  }
-  5% {
-    opacity: 0;
-    -ms-transform: rotate(0deg) scale(2) skew(0deg) translate(0px);
-  }
-  10% {
-    opacity: 1;
-    -ms-transform: translateX(0px);
-  }
-  25% {
-    opacity: 1;
-    -ms-transform: translateX(0px);
-  }
-  30% {
-    opacity: 0;
-    -ms-transform: translateX(0px);
-  }
-  80% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-} */
-
-/* Add media query for screens with max width of 768px */
+/***************   Mobile screen **********************/
 @media (max-width: 767px) {
   .main-body {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
   }
 
   .home {
@@ -481,10 +373,12 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   .home-heading {
-    font-size: 1.4rem;
+    font-size: 2rem;
     font-weight: 600;
     text-align: center;
+    width: 95%;
   }
+
   .home-heading-1 {
     font-size: 14px;
     text-align: center;
@@ -498,6 +392,7 @@ input[type="number"]::-webkit-outer-spin-button {
   .learn-more-btn button {
     display: none;
   }
+
   .box{
    margin: 0rem 2rem;
    width: auto;
@@ -507,7 +402,6 @@ input[type="number"]::-webkit-outer-spin-button {
   .sider {
    margin:  0rem 0rem 3.125rem 0rem;
     width: auto;
-
   }
 
   .buttons .buy,
@@ -515,38 +409,43 @@ input[type="number"]::-webkit-outer-spin-button {
     font-size: 1rem;
   }
 
-  /* Adjust font size for card selector buttons */
   .button,
   .mastercard-button {
     font-size: 0.75rem;
   }
 }
 
+/****************** Tablet screen *********************/
+
+
 @media screen and (min-device-width: 767px) and (max-device-width: 1024px) {
   .main-body {
     display: flex;
     flex-direction: column;
+    height: 100vh;
   }
 
   .home {
     width: 100%;
-    padding-left: 1.25rem !important;
-    height: 30rem;
+    padding-left: 1.25rem ;
+    height: 30vh;
   }
 
   .home-heading {
+    width: 100%;
     margin-top: 2rem;
     font-size: 2.5rem;
     font-weight: 600;
     text-align: center;
   }
   .home-heading-1 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    width: 100%;
     text-align: center;
   }
 
   .subtitle {
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1.5rem;
     display: block;
     margin-top: 2rem;
@@ -564,13 +463,13 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   .sider {
-    margin-top: 1.5rem;
-    margin-bottom: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .box {
-    padding: 3.125rem 4.0625rem 3.125rem 0.75rem;
-    margin-bottom: 3rem;
+    justify-content: center;
   }
 
   .buttons .buy,

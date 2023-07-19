@@ -81,7 +81,7 @@ function App() {
             <Route path="/payment" element={<Payment />} />
           </Routes>
           <Routes>
-            <Route path="/login" element={<Dashboard />} />
+            <Route path="/login" element={<Login/>} />
           </Routes>
           <Routes>
             <Route path="/bulkorder" element={<BulkOrder />} />
