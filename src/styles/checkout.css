@@ -6,7 +6,7 @@
   margin-top: 1.25rem;
 }
 
-.twocards {
+.twocards1 {
   position: relative;
   display: grid;
   grid-template-columns: minmax(min-content, 30rem) 1fr;

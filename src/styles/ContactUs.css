@@ -8,6 +8,12 @@
   width: 100%;
   background-color: #fdc886;
 }
+.globe-img{
+  position: absolute;
+  bottom: 18rem;
+  left: 45rem;
+  height: 50%;
+}
 .contactus-heading {
   padding: 1.875rem;
 }
@@ -19,7 +25,7 @@
 .form-container {
   width: 38%;
   height: 70%;
-  background-color: #f4f1e9;
+  background-color: #f4f1e9cf;;
   border-radius: 1.25rem;
   padding: 1.5rem;
   bottom: 0rem;
@@ -32,10 +38,9 @@
 .form-title h2 {
   font-size: 1rem;
   font-weight: bold;
-  background-color: #f5f2ea;
 }
-.form-title {
-  background-color: rgb(14, 13, 13);
+.bold{
+  font-weight: 600;
 }
 .contact-submit-btn {
   background-color: #fdc886;
@@ -51,22 +56,27 @@
 .images-sideform {
   display: flex;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
   margin: auto;
   flex-direction: column;
-  margin-left: 70%;
+  margin-left: 45%;
 }
 .images-sideform img {
-  width: 1.875rem;
+  width: 4.875rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2.5rem;
+  margin-top: 1.8rem;
 }
 .phone-image {
   display: flex;
   flex-direction: column;
-  align-items: baseline;
+  align-items: center;
+}
+.email-image{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .ant-form-item-has-error .ant-input,
 .ant-form-item-has-error .ant-input-affix-wrapper {
@@ -96,7 +106,7 @@
 }
 }
 /* =====================Tablet Veiw=========================== */
-@media (min-width: 641px) and (max-width: 1023px) {
+@media screen and (min-device-width: 767px) and (max-device-width: 1024px) {
 
   .contactus-container {
     margin: 3rem 0rem 0rem 0rem;
@@ -124,7 +134,12 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     position: absolute;
   }
-  
+  .globe-img{
+    position: absolute;
+    bottom: 48rem;
+    left: 18rem;
+    height: 30%;
+  }
   .form-title h2 {
     font-size: 1rem;
     font-weight: bold;
@@ -147,22 +162,30 @@
   .images-sideform {
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
     margin: auto;
     flex-direction: column;
-    margin-left: 70%;
+    margin-left: 66%;
   }
   .images-sideform img {
-    width: 1.875rem;
+    width: 3.875rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 2.5rem;
+    margin-top: 1.8rem;
   }
   .phone-image {
     display: flex;
     flex-direction: column;
-    align-items: baseline;
+    align-items: center;
+  }
+  .email-image{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bold{
+    font-weight: 600;
   }
   .ant-form-item-has-error .ant-input,
   .ant-form-item-has-error .ant-input-affix-wrapper {
@@ -206,6 +229,12 @@
     width: 100%;
     background-color: #fdc886;
   }
+  .globe-img{
+    position: absolute;
+    bottom: 38rem;
+    left: 2rem;
+    height: 25%;
+  }
   .contactus-heading {
     padding: 1.875rem;
   }
@@ -219,7 +248,7 @@
   }
   .form-container {
     margin-bottom: 10px;
-    height: 70%;
+    height: 75%;
     background-color: #f4f1e9;
     border-radius: 1.25rem;
     padding: 1.5rem;
@@ -246,39 +275,37 @@
     position: relative;
     bottom: 0.625rem;
   }
-
-  .images-sideform {  
-    white-space: break-spaces;
-    flex-direction: column;
+  .images-sideform {
     display: flex;
-    margin-top: 30rem;
-    justify-content: space-between;
+    justify-content: center;
     align-items: baseline;
+    margin: auto;
+    margin-left: 0%;
+    margin-bottom: 9rem;
   }
   .images-sideform img {
-    width: 1.875rem;
+    width: 2.875rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 2.5rem;
-  }
-  .images-sideform .phone-image {
-    text-align: center;
-
-  }
-  .images-sideform .email-image {
-    text-align: center;
-    margin-bottom: 1.9rem;
+    margin-top: 1.8rem;
   }
   .phone-image {
     display: flex;
     flex-direction: column;
-    align-items: baseline;
+    align-items: center;
+    padding: 2rem;
+
   }
   .email-image{
     display: flex;
     flex-direction: column;
-    align-items: baseline;
+    align-items: center;
+    padding: 1rem;
+  }
+  .bold{
+    font-weight: 600;
+    word-break: break-all;
   }
   .ant-form-item-has-error .ant-input,
   .ant-form-item-has-error .ant-input-affix-wrapper {

@@ -18,6 +18,8 @@ const Home = () => {
   const [selectedButton, setSelectedButton] = useState(1)
   const [button, setButton] = useState(1)
   const [loadAmount, setLoadAmount] = useState("")
+  const [selectedProvider, setSelectedProvider] = useState("All");
+  const [selectedPrice, setSelectedPrice] = useState("low");
 
   const handleButtonClick = (event, buttonId) => {
     event.preventDefault()
@@ -44,6 +46,14 @@ const Home = () => {
   const handleSliderChange = (value) => {
     console.log("Selected Range:", value)
     // You can work with the selected range value here.
+  }
+  const handleProviderChange = (event) => {
+    setSelectedProvider(event.target.value)
+  }
+
+  // Handler for the price filter
+  const handlePriceChange = (event) => {
+    setSelectedPrice(event.target.value)
   }
 
   useEffect(() => {
@@ -273,7 +283,11 @@ const Home = () => {
                             <label className="pay">Select Provider</label>
                           </div>
                           <div>
-                            <select className="dropdown-amount">
+                            <select
+                              className="dropdown-amount"
+                              value={selectedProvider}
+                              onChange={handleProviderChange}
+                            >
                               <option value="All">All</option>
                               <option value="Visa">Visa</option>
                               <option value="MasterCard">MasterCard</option>
@@ -290,16 +304,20 @@ const Home = () => {
                           <div className="first-gray-1">
                             <label className="pay">Price</label>
                           </div>
-                          <select className="dropdown-amount">
-                            <option value=""></option>
-                            <option value=""></option>
+                          <select
+                            className="price-amount"
+                            value={selectedPrice}
+                            onChange={handlePriceChange}
+                          >
+                            <option value="low">Low to High </option>
+                            <option value="high">High to Low</option>
                           </select>
                         </div>
                       </div>
                     </form>
 
                     <div>
-                      <Link to={""}>
+                      <Link to="/preowned">
                         <button
                           className="buy-usdt"
                           type="button"

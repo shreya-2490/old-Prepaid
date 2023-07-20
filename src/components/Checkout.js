@@ -183,7 +183,7 @@ const Checkout = () => {
       <Navbarlogo />
       <div className="checkout-main">
         {!paymentStatus ? (
-          <div className="twocards" style={{ overflowX: "hidden" }}>
+          <div className="twocards1" style={{ overflowX: "hidden" }}>
             <div className="card1">
               <Card
                 className="custom-card"

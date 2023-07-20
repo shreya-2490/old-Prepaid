@@ -302,50 +302,89 @@ text-decoration:overline;
   display: none;
 }
 
+/* Existing CSS styles */
+
+/* Mobile-responsive styles */
 @media (max-width: 767px) {
-  .header .left > .first-four-navigation, .navlogin {
+  .header .left > .first-four-navigation,
+  .navlogin,
+  .cartlogin {
     display: none;
   }
+
   .header .left .hamburg {
     display: block;
-    position: relative;
-    right: 16.25rem;
-  }
-  .header .left {
- 
-    bottom: 1rem;
-    align-items: baseline;
-    position: relative;
-  }
-  .usermobile{
-    display: block;
-    bottom: 0.2rem;
+    cursor: pointer;
     position: relative;
   }
 
-  .usermobile a{
+  .hamburger-menu {
+    display: block;
+  }
+
+  .hamburg .navmenu {
+    position: relative;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .hamburg .navmenu > a {
+    margin: 0.5rem 0rem;
     color: #1b1b1b;
     text-decoration: none;
   }
-  .logo img {
-    width: 120%;
-    position: relative;
-    left: 2.6875rem;
-    bottom: 0.8125rem;
+
+  .user-mobile {
+    display: block;
   }
-  .logo{
+
+  .user-mobile a {
+    color: #1b1b1b;
+    text-decoration: none;
+  }
+
+  .logo img {
+    width: 12.5rem;
+    position: relative;
+    left: 1rem;
+    bottom: 0.5rem;
+  }
+
+  .logo {
     display: block;
     margin: auto;
     cursor: pointer;
   }
+
   .header {
-    height: 1.75rem;
+    height: 4rem;
   }
+
   .header .left .hamburg > img {
     height: 2.1875rem;
     width: 2.5rem;
   }
-  .user-logo-mobile{
+
+  .user-logo-mobile {
     width: 1.0625rem;
   }
+
+  .first-four-navigation {
+    display: none;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .usernav {
+    display: none;
+  }
+
+  .user-login {
+    display: none;
+  }
 }
+

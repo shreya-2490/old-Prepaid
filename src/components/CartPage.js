@@ -118,7 +118,7 @@ const Cart = ({ handleAddToCart }) => {
                     />
                   </div>
                 </div>
-                <div style={{ margin: "75px 40px 0px 18px" }}>
+                <div>
                   <p className="btcvalue">Expected BTC</p>
                   <div className="cart-input">
                     <p className="expected-value">{btcValue}</p>
