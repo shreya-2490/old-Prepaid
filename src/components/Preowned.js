@@ -10,7 +10,7 @@ function Preowned({ selectedProvider, selectedPrice }) {
 
   useEffect(() => {
     axios
-      .get("https://main--prepaid.netlify.app/get-card-with-type")
+      .get("/get-card-with-type")
       .then((response) => {
         setCardData(response.data.cards)
       })
