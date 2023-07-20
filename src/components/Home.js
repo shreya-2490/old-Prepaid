@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Select, Card, Image, Alert, Slider } from "antd"
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import visa from "../assets/Visa.png"
 import mastercard from "../assets/Mastercard.png"
 import ReactTypingEffect from "react-typing-effect"
@@ -20,7 +20,7 @@ const Home = () => {
   const [loadAmount, setLoadAmount] = useState("")
   const [selectedProvider, setSelectedProvider] = useState("All");
   const [selectedPrice, setSelectedPrice] = useState("low");
-
+  const navigate=useNavigate()
   const handleButtonClick = (event, buttonId) => {
     event.preventDefault()
     setSelectedButton(buttonId)
@@ -41,6 +41,7 @@ const Home = () => {
     } else {
       setIsValueValid(false)
     }
+    navigate('/preowned',{state:{selectedProvider,selectedPrice}})
   }
 
   const handleSliderChange = (value) => {
@@ -289,8 +290,8 @@ const Home = () => {
                               onChange={handleProviderChange}
                             >
                               <option value="All">All</option>
-                              <option value="Visa">Visa</option>
-                              <option value="MasterCard">MasterCard</option>
+                              <option value="visa">Visa</option>
+                              <option value="master">MasterCard</option>
                             </select>
                           </div>
                         </div>
@@ -317,7 +318,7 @@ const Home = () => {
                     </form>
 
                     <div>
-                      <Link to="/preowned">
+                   
                         <button
                           className="buy-usdt"
                           type="button"
@@ -325,7 +326,7 @@ const Home = () => {
                         >
                           Buy Now
                         </button>
-                      </Link>
+                    
                     </div>
                   </div>
                 </div>

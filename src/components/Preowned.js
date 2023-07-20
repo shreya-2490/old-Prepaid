@@ -4,46 +4,42 @@ import NavbarCart from "./NavbarCart"
 import Footer from "./Footer"
 import "../styles/preowned.css"
 import { Button } from "antd"
+import { useLocation } from "react-router"
 
-function Preowned({ selectedProvider, selectedPrice }) {
+function Preowned() {
   const [cardData, setCardData] = useState([])
+  const location = useLocation()
+  const { selectedProvider, selectedPrice } = location.state || {}
 
   useEffect(() => {
     axios
       .get("/get-card-with-type")
       .then((response) => {
-        setCardData(response.data.cards)
+        let filteredData = response.data.cards
+        if (selectedProvider !== "All") {
+          filteredData = filteredData.filter(
+            (card) => card.type === selectedProvider
+          )
+        }
+
+        if (selectedPrice === "low") {
+          filteredData = filteredData.sort((a, b) => a.price - b.price)
+        } else if (selectedPrice === "high") {
+          filteredData = filteredData.sort((a, b) => b.price - a.price)
+        }
+        setCardData(filteredData)
       })
       .catch((error) => {
         console.error("Error fetching card data:", error)
       })
   }, [])
 
-  const filterCardData = () => {
-    let filteredData = [...cardData]
-
-    if (selectedProvider !== "All") {
-      filteredData = filteredData.filter(
-        (card) => card.type === selectedProvider
-      )
-    }
-
-    if (selectedPrice === "low") {
-      filteredData.sort((a, b) => a.price - b.price)
-    } else {
-      filteredData.sort((a, b) => b.price - a.price)
-    }
-
-    return filteredData
-  }
-
-  const filteredData = filterCardData()
   return (
     <>
       <NavbarCart />
       <div className="card-container">
-        {filteredData.length > 0 ? (
-          filteredData.map((card) => (
+        {cardData.length > 0 ? (
+          cardData.map((card) => (
             <div class="wrappercard">
               <div class="container" key={card.id}>
                 <div class="card">
@@ -97,7 +93,7 @@ function Preowned({ selectedProvider, selectedPrice }) {
           <div>No card data available</div>
         )}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
