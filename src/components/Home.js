@@ -1,86 +1,75 @@
-import { useState, useEffect } from "react"
-import { Select, Card, Image, Alert, Slider } from "antd"
-import { Link, Navigate, useNavigate } from "react-router-dom"
-import visa from "../assets/Visa.png"
-import mastercard from "../assets/Mastercard.png"
-import ReactTypingEffect from "react-typing-effect"
-import "../styles/home.css"
-import axios from "axios"
-import Footer from "./Footer"
-
-const { Option } = Select
+import { useState, useEffect } from "react";
+import { Alert } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import visa from "../assets/Visa.png";
+import mastercard from "../assets/Mastercard.png";
+import "../styles/home.css";
+import axios from "axios";
+import Footer from "./Footer";
 
 const Home = () => {
-  const [usdValue, setUSDValue] = useState("")
-  const [btcValue, setBTCValue] = useState("0")
-  const [selectedCard, setSelectedCard] = useState(null)
-  const [isValueValid, setIsValueValid] = useState(false)
-  const [selectedButton, setSelectedButton] = useState(1)
-  const [button, setButton] = useState(1)
-  const [loadAmount, setLoadAmount] = useState("")
+  const [usdValue, setUSDValue] = useState("");
+  const [btcValue, setBTCValue] = useState("0");
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [isValueValid, setIsValueValid] = useState(false);
+  const [selectedButton, setSelectedButton] = useState(1);
+  const [button, setButton] = useState(1);
+  const [loadAmount, setLoadAmount] = useState("");
   const [selectedProvider, setSelectedProvider] = useState("All");
   const [selectedPrice, setSelectedPrice] = useState("low");
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const handleButtonClick = (event, buttonId) => {
-    event.preventDefault()
-    setSelectedButton(buttonId)
-  }
+    event.preventDefault();
+    setSelectedButton(buttonId);
+  };
 
   const handleMainButtonClick = (event, buttonId) => {
-    event.preventDefault()
-    setButton(buttonId)
-  }
-
-  const handleCardSelect = (value) => {
-    setSelectedCard(value)
-  }
+    event.preventDefault();
+    setButton(buttonId);
+  };
 
   const handleBuyButtonClick = () => {
     if (btcValue === "0.00000") {
-      setIsValueValid(true)
+      setIsValueValid(true);
     } else {
-      setIsValueValid(false)
+      setIsValueValid(false);
     }
-    navigate('/preowned',{state:{selectedProvider,selectedPrice}})
-  }
+    navigate("/preowned", { state: { selectedProvider, selectedPrice } });
+  };
 
-  const handleSliderChange = (value) => {
-    console.log("Selected Range:", value)
-    // You can work with the selected range value here.
-  }
   const handleProviderChange = (event) => {
-    setSelectedProvider(event.target.value)
-  }
+    setSelectedProvider(event.target.value);
+  };
 
   // Handler for the price filter
   const handlePriceChange = (event) => {
-    setSelectedPrice(event.target.value)
-  }
+    setSelectedPrice(event.target.value);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-        )
-        const btcPrice = response.data.bitcoin.usd
-        setBTCValue((usdValue / btcPrice).toFixed(5))
+        );
+        const btcPrice = response.data.bitcoin.usd;
+        setBTCValue((usdValue / btcPrice).toFixed(5));
       } catch (error) {
-        console.log("Error fetching data:", error)
+        console.log("Error fetching data:", error);
       }
-    }
+    };
 
-    fetchData()
+    fetchData();
 
-    setIsValueValid(false)
-  }, [usdValue, loadAmount])
+    setIsValueValid(false);
+  }, [usdValue, loadAmount]);
 
   const handleUSDSelect = (selectedValue) => {
-    const value = parseFloat(selectedValue) // Convert selectedValue to a number
-    setUSDValue(value)
-    setIsValueValid(false)
-    setLoadAmount(selectedValue)
-  }
+    const value = parseFloat(selectedValue); // Convert selectedValue to a number
+    setUSDValue(value);
+    setIsValueValid(false);
+    setLoadAmount(selectedValue);
+  };
 
   return (
     <>
@@ -98,7 +87,6 @@ const Home = () => {
               Experience the Convenience of Prepaid Cards
             </h1>
           </div>
-          
 
           <p className="subtitle">
             Unlock the power of digital currencies with our cryptocurrency
@@ -108,7 +96,6 @@ const Home = () => {
             card amount. Discover the many advantages of using cryptocurrency
             for your everyday transactions.
           </p>
-         
         </div>
         <div className="sider">
           <div className="box">
@@ -199,7 +186,6 @@ const Home = () => {
                         </div>
                         <div className="second-gray">
                           <div className="items">
-                            
                             <span className="dropdown-1">USD</span>
                           </div>
                         </div>
@@ -284,7 +270,7 @@ const Home = () => {
                       </div>
                     </form>
                   </div>
-                  <div style={{  margin: "15px 0px" }}>
+                  <div style={{ margin: "15px 0px" }}>
                     <form>
                       <div className="both-gray">
                         <div className="first-gray">
@@ -304,15 +290,13 @@ const Home = () => {
                     </form>
 
                     <div>
-                   
-                        <button
-                          className="buy-usdt"
-                          type="button"
-                          onClick={handleBuyButtonClick}
-                        >
-                          Buy Now
-                        </button>
-                    
+                      <button
+                        className="buy-usdt"
+                        type="button"
+                        onClick={handleBuyButtonClick}
+                      >
+                        Buy Now
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -323,6 +307,6 @@ const Home = () => {
       </div>
       <Footer />
     </>
-  )
-}
-export default Home
+  );
+};
+export default Home;

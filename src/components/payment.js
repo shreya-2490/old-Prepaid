@@ -1,76 +1,55 @@
-import React from "react"
-import { useState, useEffect } from "react"
-import "../styles/payment.css"
-import { Card, Button, Tooltip, Select, Space, Divider, Checkbox } from "antd"
-import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons"
-import Scanner from "../assets/scanner.jpg"
-import visa from "../assets/Visa.png"
-import mastercard from "../assets/Mastercardcart.png"
-import { useLocation } from "react-router-dom"
-import Navbarlogo from "./Navbarlogo"
-import axios from "axios"
+import React from "react";
+import { useState, useEffect } from "react";
+import "../styles/payment.css";
+import { Card, Divider } from "antd";
+import Scanner from "../assets/scanner.jpg";
+import visa from "../assets/Visa.png";
+import mastercard from "../assets/Mastercardcart.png";
+import { useLocation } from "react-router-dom";
+import Navbarlogo from "./Navbarlogo";
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
+import { usdToBTC } from "../utils/helper";
 
-function generateInvoiceId(length) {
-  const characters = "0123456789";
-  const charactersLength = characters.length;
-  let invoiceId = "";
-
-  for (let i = 0; i < length; i++) {
-    invoiceId += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-
-  return invoiceId;
-}
-
-const Payment = ({ email }) => {
-  const calculateSubtotal = (totalAmount) => {
-    const cardValue = 2.98
-    const btcFee = (totalAmount + cardValue) * 0.01
-    const subtotal = totalAmount + cardValue + btcFee
-    return { btcFee, subtotal }
-  }
-
-  const location = useLocation()
-  const queryParams = new URLSearchParams(location.search)
-  const input1 = queryParams.get("usdValue")
-  const input2 = parseFloat(queryParams.get("btcValue"));
-  const input3 = queryParams.get("selectedButton")
-  const totalAmount = queryParams.get("totalAmount");
-  const totalBTC = parseFloat(queryParams.get("totalBTC"));
-  const [usdValue, setUSDValue] = useState(input1)
-  const [btcValue, setBtcValue] = useState(input2)
-  const { btcFee, subtotal } = calculateSubtotal(parseFloat(totalAmount))
-  const [cardType, setCardType] = useState("")
-  const [displaySelectedButton, setDisplaySelectedButton] = useState(false)
-  const [selectedButton, setSelectedButton] = useState(input3 || "1" )
+const Payment = () => {
+  const [btcRate, setBTCRate] = useState(null);
+  const location = useLocation();
+  const { cards, email } = location?.state || {};
+  const queryParams = new URLSearchParams(location.search);
+  const input1 = queryParams.get("usdValue");
+  const [usdValue, setUSDValue] = useState(input1);
 
   useEffect(() => {
-    setUSDValue(usdValue)
-    setBtcValue(totalBTC)
-    setSelectedButton(input3)
-    setCardType(queryParams.get("cardType") || "")
-    setDisplaySelectedButton(queryParams.get("selectedButton") !== "null")
-  }, [])
+    setUSDValue(usdValue);
+  }, []);
 
-  const displayCardQuantity = queryParams.get("cardQuantity");
-  const displayLoadAmount = queryParams.get("loadAmount");
-  const displaySubtotal = queryParams.get("subtotal");
-  const displayEmail = queryParams.get("email");
-  const exchangeRate = 0.000032 // Example exchange rate, replace with the actual rate
-  const subtotalBTC = subtotal * exchangeRate
-  const invoiceId = generateInvoiceId(10);
-  const btcfeeforbulkorder = parseFloat(displaySubtotal) * 0.02;
-  const totalbulkorder = (
-    parseFloat(displaySubtotal) + btcfeeforbulkorder
-  ).toFixed(2);
-  const bulktotal = parseFloat(
-    displayLoadAmount * displayCardQuantity * exchangeRate
-  );
-  const totalbulkamt = displayLoadAmount * displayCardQuantity;
-  const formattedTotal =
-    typeof totalbulkorder === "number"
-      ? totalbulkorder.toFixed(2)
-      : totalbulkorder;
+  useEffect(() => {
+    axios
+      ?.get(
+        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+      )
+      .then((response) => setBTCRate(response?.data?.bitcoin?.usd))
+      .catch((error) => console.error(error));
+  }, []);
+
+  const totalCards = cards?.reduce((accumulator, object) => {
+    return accumulator + (object.quantity ?? 1);
+  }, 0);
+
+  const totalCardsValue = cards?.reduce((accumulator, object) => {
+    return (
+      accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
+    );
+  }, 0);
+
+  const calculateTotalBTCExchangeFee = (totalCardValue) => {
+    return (totalCardValue + totalCards * 2.98) / 100;
+  };
+
+  const subTotalUsdValue =
+    totalCardsValue +
+    totalCards * 2.98 +
+    calculateTotalBTCExchangeFee(totalCardsValue);
 
   return (
     <>
@@ -82,12 +61,11 @@ const Payment = ({ email }) => {
               className="custom-card"
               title="Order Details"
               bordered={false}
-              
             >
               <div className="order-details">
                 <p>Email Address</p>
                 <div className="email-div">
-                  <p className="emailad">{displayEmail}</p>
+                  <p className="emailad">{email}</p>
                 </div>
               </div>
               <div className="payment-details">
@@ -98,134 +76,72 @@ const Payment = ({ email }) => {
               </div>
               <div className="payment-details">
                 <p>Invoice Id</p>
+                {/* TODO: Invoice ID should be generated on the server */}
                 <div className="email-div">
-                  <p className="emailad">{invoiceId}</p>
+                  <p className="emailad">{uuidv4()}</p>
                 </div>
               </div>
               <Divider className="custom-divider" />
-              <div className="custom-upper-para-pay">
-                <div>
-                  <p className="swiggy">
-                    {displaySelectedButton ? (
-                      <div className="value">
-                        {selectedButton === "1" ? (
-                          <>
-                            <div >
-                              <img
-                                src={visa}
-                                alt="Visa"
-                                className="visacardtype-img"
-                              />
-                              <p>Visa</p>
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            <div>
-                              <img
-                                src={mastercard}
-                                alt="MasterCard"
-                                className="cardtype-img"
-                              />
-                              <p>MasterCard</p>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    ) : (
-                      <div className="value">
-                        {cardType === "card1" ? (
-                          <>
-                            <div >
-                              <img
-                                src={visa}
-                                alt="Visa"
-                                className="visacardtype-img"
-                              />
-                              <p>Visa</p>
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            <div >
-                              <img
-                                src={mastercard}
-                                alt="MasterCard"
-                                className="cardtype-img"
-                              />
-                              <p>MasterCard</p>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    )}
-                  </p>
-                  {queryParams.has("loadAmount") &&
-                  queryParams.get("loadAmount") !== "null" ? (
-                    <>
-                      <p className="value">
-                        Card Quantity: {queryParams.get("cardQuantity")}
+              {cards &&
+                cards?.map((card) => (
+                  <div className="custom-upper-para-pay">
+                    <div>
+                      <p className="swiggy">
+                        <div className="value">
+                          {card?.selectedButton === "1" ? (
+                            <>
+                              <div style={{ display: "flex" }}>
+                                <img
+                                  src={visa}
+                                  alt="Visa"
+                                  className="visacardtype-img"
+                                  style={{ width: "15%" }}
+                                />
+                                <p>Visa</p>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div style={{ display: "flex" }}>
+                                <img
+                                  src={mastercard}
+                                  alt="MasterCard"
+                                  className="cardtype-img"
+                                  style={{ width: "15%" }}
+                                />
+                                <p>MasterCard</p>
+                              </div>
+                            </>
+                          )}
+                        </div>
                       </p>
-                      <p className="value">
-                        Load Amount: ${queryParams.get("loadAmount")}
-                      </p>
-                    </>
-                  ) : (
-                    <p className="value">${totalAmount}</p>
-                  )}
-                  {queryParams.has("multipletransaction") &&
-                  queryParams.get("multipletransaction") === "Yes" ? (
-                    <p>Multiple Use Allowance Fee: $5</p>
-                  ) : null}
-                  {queryParams.has("internationaltransaction") &&
-                  queryParams.get("internationaltransaction") === "Yes" ? (
-                    <p>International Use Allowance Fee: $8</p>
-                  ) : null}
-                  <p className="value">Prepaid Card Purchase Price: $2.98</p>
-                  {!queryParams.has("loadAmount") ||
-                  queryParams.get("loadAmount") === "null" ? (
-                    <p className="value">
-                      BTC Exchange Fee: ${btcFee.toFixed(2)}
-                    </p>
-                  ) : null}
-                </div>
-                <div className="se-box">
-                  {queryParams.has("loadAmount") &&
-                  queryParams.get("loadAmount") !== "null" ? (
-                    <p className="BTC-payment">
-                      {displayLoadAmount} x {displayCardQuantity} = $
-                      {totalbulkamt}
-                    </p>
-                  ) : (
-                    <p className="BTC-simplecard">{totalBTC} BTC</p>
-                  )}
-                </div>
+                      <div className="w-100 d-flex justify-content-between">
+                        <p className="value">{`${card?.quantity || 1} x $${
+                          card?.usdValue
+                        }`}</p>
+                        <p className="BTC-simplecard">{card?.btcValue} BTC</p>
+                      </div>
+                    </div>
+                    <Divider className="custom-divider" />
+                  </div>
+                ))}
+              <div>
+                <p className="value">
+                  Prepaid Card Purchase Price: {totalCards} x $2.98
+                </p>
+                <p className="value">
+                  BTC Exchange Fee: $
+                  {calculateTotalBTCExchangeFee(totalCardsValue)}
+                </p>
               </div>
-              {queryParams.has("loadAmount") &&
-              queryParams.get("loadAmount") !== "null" ? (
-                <p className="subtotal">SubTotal : {displaySubtotal}</p>
-              ) : null}
               <Divider className="custom-divider2" />
               <p className="subtotal">Total</p>
-              {queryParams.has("loadAmount") &&
-              queryParams.get("loadAmount") !== "null" ? (
-                <p className="fee-footer">
-                  BTC Exchange Fee: ${btcfeeforbulkorder.toFixed(2)}
-                </p>
-              ) : null}
               <div className="custom-bottom-para pay-para">
-                {queryParams.has("loadAmount") &&
-                queryParams.get("loadAmount") !== "null" ? (
-                  <p className="value">${formattedTotal}</p>
-                ) : (
-                  <p className="value">${subtotal.toFixed(2)}</p>
-                )}
-                {queryParams.has("loadAmount") &&
-                queryParams.get("loadAmount") !== "null" ? (
-                  <p className="BTC-total"> {bulktotal.toFixed(5)} BTC</p>
-                ) : (
-                  <p className="BTC-total"> {subtotalBTC.toFixed(5)} BTC</p>
-                )}
+                <p className="value">${subTotalUsdValue}</p>
+                <p className="BTC-total">
+                  {" "}
+                  {usdToBTC(subTotalUsdValue, btcRate)} BTC
+                </p>
               </div>
             </Card>
           </div>
@@ -235,7 +151,6 @@ const Payment = ({ email }) => {
               title="Pay with Bitcoin"
               bordered={false}
               headStyle={{ borderBottom: "none" }}
-              
             >
               <div className="scanner-pic">
                 <img src={Scanner} alt="Scanner" />
@@ -249,12 +164,9 @@ const Payment = ({ email }) => {
               </div>
               <div className="pay-h">
                 <p className="pay-h4">Amount to pay</p>
-                {queryParams.has("loadAmount") &&
-                queryParams.get("loadAmount") !== "null" ? (
-                  <p className="value"> {bulktotal.toFixed(5)} BTC</p>
-                ) : (
-                  <p className="value"> {subtotalBTC.toFixed(5)} BTC</p>
-                )}
+                <p className="value">
+                  {usdToBTC(subTotalUsdValue, btcRate)} BTC
+                </p>
               </div>
               <div>
                 <p className="pay-h6">Expires in</p>

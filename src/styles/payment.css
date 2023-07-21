@@ -1,10 +1,8 @@
 /* / =====================Desktop Veiw=========================== / */
 
 @media (min-width: 1024px) {
-
-
   .checkout-main1 {
-    background-color: #F5F2EA;
+    background-color: #f5f2ea;
     height: 120vh;
     display: flex;
 
@@ -12,239 +10,214 @@
     justify-content: center;
   }
 
-  .twocards1{
+  .twocards1 {
     width: 100%;
-   display: flex;
-   align-items: flex-start;
-   gap: 3rem;
-   justify-content: center;
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    justify-content: center;
   }
 
-  .payment-card1{
+  .payment-card1 {
     width: 30%;
   }
 
-.ant-card-head-title {
-  font-size: 2rem;
-  color: black;
-}
+  .ant-card-head-title {
+    font-size: 2rem;
+    color: black;
+  }
 
-.email-div {
-  display: flex;
-  justify-content: space-between;
-}
+  .email-div {
+    display: flex;
+    justify-content: space-between;
+  }
 
+  .change {
+    color: black;
+    text-decoration: underline;
+    border: none;
+  }
 
-.change {
-  color: black;
-  text-decoration: underline;
-  border: none;
-}
+  .change:hover {
+    color: black;
+  }
 
-.change:hover {
-  color: black;
-}
+  .scanner-pic {
+    display: flex;
+  }
+  .scanner-pic img {
+    margin: 0 auto;
+    width: 40%;
+  }
 
-.scanner-pic {
-  display: flex;
-}
-.scanner-pic img {
-  margin: 0 auto;
-  width: 40%;
-}
+  .pay-h {
+    font-weight: 600;
+  }
 
+  .pay-h1 {
+    color: #99a29e;
+    font-size: 1.25rem;
+  }
 
-.pay-h {
-  font-weight: 600;
-}
+  .pay-h2,
+  .pay-h3,
+  .pay-h4,
+  .pay-h5 {
+    font-size: 1rem;
+  }
 
-.pay-h1 {
-  color: #99a29e;
-  font-size: 1.25rem;
-}
+  .pay-h6 {
+    font-weight: 600;
+    font-size: 1rem;
+  }
 
-.pay-h2,
-.pay-h3,
-.pay-h4,
-.pay-h5 {
-  font-size: 1rem;
-}
+  .pay-adv {
+    text-decoration: underline;
+    color: black;
+    margin: auto;
+    font-size: 1rem;
+  }
+  .pay-adv:hover {
+    color: black;
+  }
+  .adv {
+    display: flex;
+  }
+  .subtotal {
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
 
-.pay-h6 {
-  font-weight: 600;
-  font-size: 1rem;
-}
+  .BTC-payment {
+    font-size: 1.2rem;
+  }
 
-.pay-adv {
-  text-decoration: underline;
-  color: black;
-  margin: auto;
-  font-size: 1rem;
-}
-.pay-adv:hover {
-  color: black;
-}
-.adv {
-  display: flex;
-}
+  .BTC-simplecard {
+    font-size: 1.2em;
+  }
 
-.custom-upper-para-pay {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.subtotal {
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.BTC-payment {
-  font-size: 1.2rem;
-}
-
-.BTC-simplecard{
-  font-size: 1.2em;
-  
-}
-
-.payment-card2{
-  width: 40%;
-}
-
-
+  .payment-card2 {
+    width: 40%;
+  }
 }
 
 /* / **************** Tablet Design ********************* / */
 
 @media (min-width: 641px) and (max-width: 1023px) {
-
   .checkout-main1 {
-    background-color: #F5F2EA;
+    background-color: #f5f2ea;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .twocards1{
+  .twocards1 {
     width: 100%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  
- 
-  .payment-card1{
+
+  .payment-card1 {
     width: 40%;
   }
 
+  .payment-card2 {
+    width: 40%;
+  }
 
+  .ant-card-head-title {
+    font-size: 2rem;
+    color: black;
+  }
 
-.payment-card2{
-  width: 40%;
+  .email-div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .change {
+    color: black;
+    text-decoration: underline;
+    border: none;
+  }
+
+  .change:hover {
+    color: black;
+  }
+
+  .scanner-pic {
+    display: flex;
+  }
+  .scanner-pic img {
+    margin: 0 auto;
+    width: 40%;
+  }
+
+  .pay-h {
+    font-weight: 600;
+  }
+
+  .pay-h1 {
+    color: #99a29e;
+    font-size: 1.25rem;
+  }
+
+  .pay-h2,
+  .pay-h4,
+  .pay-h5 {
+    font-size: 1rem;
+  }
+
+  .pay-h3 {
+    width: 90%;
+    max-width: 90%;
+    font-size: 0.6rem;
+  }
+  .pay-h6 {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .pay-adv {
+    text-decoration: underline;
+    color: black;
+    margin: auto;
+    font-size: 1rem;
+  }
+  .pay-adv:hover {
+    color: black;
+  }
+  .adv {
+    display: flex;
+  }
+
+  .custom-upper-para-pay {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .subtotal {
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  .BTC-payment {
+    font-size: 1.2rem;
+  }
+
+  .BTC-simplecard {
+    font-size: 1.2em;
+  }
 }
-
-.ant-card-head-title {
-  font-size: 2rem;
-  color: black;
-}
-
-.email-div {
-  display: flex;
-  justify-content: space-between;
-}
-
-
-.change {
-  color: black;
-  text-decoration: underline;
-  border: none;
-}
-
-.change:hover {
-  color: black;
-}
-
-.scanner-pic {
-  display: flex;
-}
-.scanner-pic img {
-  margin: 0 auto;
-  width: 40%;
-}
-
-
-.pay-h {
-  font-weight: 600;
-}
-
-.pay-h1 {
-  color: #99a29e;
-  font-size: 1.25rem;
-}
-
-.pay-h2,
-.pay-h4,
-.pay-h5 {
-  font-size: 1rem;
-}
-
-.pay-h3{
-  width: 90%;
-  max-width: 90%;
-  font-size: 0.6rem;
-}
-.pay-h6 {
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.pay-adv {
-  text-decoration: underline;
-  color: black;
-  margin: auto;
-  font-size: 1rem;
-}
-.pay-adv:hover {
-  color: black;
-}
-.adv {
-  display: flex;
-}
-
-.custom-upper-para-pay {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.subtotal {
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.BTC-payment {
-  font-size: 1.2rem;
-}
-
-.BTC-simplecard{
-  font-size: 1.2em;
-  
-}
-
-
-}
-
 
 /* / ********************** Mobile design ***************** / */
 
 @media (min-width: 10px) and (max-width: 640px) {
-
   .checkout-main1 {
-    background-color: #F5F2EA;
+    background-color: #f5f2ea;
     padding: 3rem 0;
     display: flex;
     flex-direction: column;
@@ -252,109 +225,102 @@
     justify-content: center;
   }
 
-  .twocards1{
+  .twocards1 {
     width: 100%;
-   display: flex;
-   gap: 3rem;
-   justify-content: center;
-   flex-direction: column;
-   align-items: center;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
- 
-  
 
-  .payment-card1{
+  .payment-card1 {
     width: 85%;
   }
 
-.ant-card-head-title {
-  font-size: 2rem;
-  color: black;
-}
+  .ant-card-head-title {
+    font-size: 2rem;
+    color: black;
+  }
 
-.email-div {
-  display: flex;
-  justify-content: space-between;
-}
+  .email-div {
+    display: flex;
+    justify-content: space-between;
+  }
 
+  .change {
+    color: black;
+    text-decoration: underline;
+    border: none;
+  }
 
-.change {
-  color: black;
-  text-decoration: underline;
-  border: none;
-}
+  .change:hover {
+    color: black;
+  }
 
-.change:hover {
-  color: black;
-}
+  .scanner-pic {
+    display: flex;
+  }
+  .scanner-pic img {
+    margin: 0 auto;
+    width: 40%;
+  }
 
-.scanner-pic {
-  display: flex;
-}
-.scanner-pic img {
-  margin: 0 auto;
-  width: 40%;
-}
+  .pay-h {
+    font-weight: 600;
+  }
 
+  .pay-h1 {
+    color: #99a29e;
+    font-size: 1.25rem;
+  }
 
-.pay-h {
-  font-weight: 600;
-}
+  .pay-h2,
+  .pay-h4,
+  .pay-h5 {
+    font-size: 1rem;
+  }
 
-.pay-h1 {
-  color: #99a29e;
-  font-size: 1.25rem;
-}
+  .pay-h6 {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .pay-h3 {
+    font-size: 0.7rem;
+  }
+  .pay-adv {
+    text-decoration: underline;
+    color: black;
+    margin: auto;
+    font-size: 1rem;
+  }
+  .pay-adv:hover {
+    color: black;
+  }
+  .adv {
+    display: flex;
+  }
 
-.pay-h2,
-.pay-h4,
-.pay-h5 {
-  font-size: 1rem;
-}
+  .custom-upper-para-pay {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.pay-h6 {
-  font-weight: 600;
-  font-size: 1rem;
-}
- .pay-h3{
-  font-size: 0.7rem;
- }
-.pay-adv {
-  text-decoration: underline;
-  color: black;
-  margin: auto;
-  font-size: 1rem;
-}
-.pay-adv:hover {
-  color: black;
-}
-.adv {
-  display: flex;
-}
+  .subtotal {
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
 
-.custom-upper-para-pay {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  .BTC-payment {
+    font-size: 1.2rem;
+  }
 
+  .BTC-simplecard {
+    font-size: 1.2em;
+  }
 
-.subtotal {
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.BTC-payment {
-  font-size: 1.2rem;
-}
-
-.BTC-simplecard{
-  font-size: 1.2em;
-  
-}
-
-.payment-card2{
-  width: 95%;
-}
-
+  .payment-card2 {
+    width: 95%;
+  }
 }

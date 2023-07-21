@@ -15,21 +15,13 @@ const Checkout = () => {
   const navigate = useNavigate();
   const { removeFromCart } = useContext(CartContext);
   const queryParams = new URLSearchParams(location.search);
-  const input3 = queryParams.get("selectedButton");
-  const input1 = queryParams.get("usdValue");
-  const input2 = queryParams.get("btcValue");
   const valuesCount = queryParams.getAll("usdValue").length;
 
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [paymentStatus, setPaymentstatus] = useState(false);
   const [values, setValues] = useState([]);
-  const [selectedButton, setSelectedButton] = useState(input3 || "1");
-  const [usdValue, setUSDValue] = useState(input1 || "");
-  const [btcValue, setBtcValue] = useState(parseFloat(input2) || 0);
   const [email, setEmail] = useState("");
-  const [cardType, setCardType] = useState("");
-  const [displaySelectedButton, setDisplaySelectedButton] = useState(false);
 
   useEffect(() => {
     const newValues = [];
@@ -41,11 +33,6 @@ const Checkout = () => {
       newValues.push({ usdValue, btcValue, selectedButton, id });
     }
     setValues(newValues);
-    setUSDValue(input1);
-    setBtcValue(parseFloat(input2));
-    setSelectedButton(input3);
-    setCardType(queryParams.get("cardType") || "");
-    setDisplaySelectedButton(queryParams.has("selectedButton"));
   }, [location]);
 
   const handleDelete = (usdValue, selectedButton) => {
@@ -68,17 +55,7 @@ const Checkout = () => {
       alert("Invalid email format. Please enter a correct email address.");
     }
 
-    const queryParams = new URLSearchParams({
-      cardType: cardType,
-      email: email,
-      usdValue: usdValue,
-      btcValue: btcValue,
-      selectedButton: selectedButton,
-      totalAmount: totalAmount,
-      totalBTC: totalBTC,
-    });
-
-    navigate(`/payment?${queryParams}`);
+    navigate(`/payment`, { state: { cards: values, email } });
   };
 
   const handleCheckboxChange1 = () => {
@@ -382,7 +359,7 @@ const Checkout = () => {
             </div>
           </div>
         ) : (
-          <Payment email={email} />
+          <Payment />
         )}
       </div>
     </>
