@@ -35,13 +35,13 @@ function App() {
         <Router>
           <Routes>
             <Route
-              path="/"
+              path="/front-demo"
               element={<NavbarCart handleAddToCart={handleAddToCart} />}
             />
           </Routes>
           <Routes>
             <Route
-              path="/"
+              path="/front-demo"
               element={
                 <Home
                   selectedProvider={selectedProvider}
@@ -77,28 +77,28 @@ function App() {
 
           <Routes>
             <Route
-              path="/cart"
+              path="front-demo/cart"
               element={<Cart handleAddToCart={handleAddToCart} />}
             />
           </Routes>
           <Routes>
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="front-demo/checkout" element={<Checkout />} />
           </Routes>
           <Routes>
-            <Route path="/payment" element={<Payment />} />
+            <Route path="front-demo/payment" element={<Payment />} />
           </Routes>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route path="front-demo/login" element={<Login />} />
           </Routes>
           <Routes>
-            <Route path="/bulkorder" element={<BulkOrder />} />
+            <Route path="front-demo/bulkorder" element={<BulkOrder />} />
           </Routes>
           <Routes>
-            <Route path="/contactus" element={<ContactUs />} />
+            <Route path="front-demo/contactus" element={<ContactUs />} />
           </Routes>
           <Routes>
             <Route
-              path="/preowned"
+              path="front-demo/preowned"
               element={
                 <Preowned
                   selectedProvider={selectedProvider}

@@ -4,9 +4,7 @@
   "private": true,
   "engines": {
     "node": "18.16.1"
-    
   },
-  "proxy":"https://prepaidfriends.com",
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
     "@emotion/react": "^11.9.0",
