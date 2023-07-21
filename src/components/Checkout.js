@@ -35,13 +35,11 @@ const Checkout = () => {
     setValues(newValues);
   }, [location]);
 
-  const handleDelete = (usdValue, selectedButton) => {
-    const updatedValues = values.filter(
-      (value) =>
-        value.usdValue !== usdValue || value.selectedButton !== selectedButton
-    )
-    setValues(updatedValues)
-  }
+  const handleDelete = (card) => {
+    const updatedValues = values.filter((value) => value?.id !== card?.id);
+    setValues(updatedValues);
+    removeFromCart(card?.id);
+  };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -250,10 +248,7 @@ const Checkout = () => {
                                     <DeleteOutlined
                                       className="divider"
                                       onClick={() =>
-                                        handleDelete(
-                                          usdValue,
-                                          filteredValues[0].selectedButton
-                                        )
+                                        handleDelete(filteredValues[0])
                                       }
                                     />
                                     {queryParams.has("loadAmount") ? (
@@ -304,7 +299,6 @@ const Checkout = () => {
                 title="Contact Information"
                 bordered={false}
                 headStyle={{ borderBottom: "none" }}
-               
               >
                 <div>
                   <p className="email">

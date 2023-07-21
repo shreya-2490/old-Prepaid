@@ -46,7 +46,7 @@ function NavbarCart() {
   const handleCheckout = () => {
     const queryParams = cartItems
       .map((item) => {
-        return `usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}`;
+        return `id=${item?.id}&usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}`;
       })
       .join("&");
     navigate(`/front-demo/checkout?${queryParams}`);
@@ -55,7 +55,9 @@ function NavbarCart() {
   return (
     <div className="header">
       <div className="logo">
-        <Link to="/front-demo"><img src={logo} alt="Logo" /></Link>
+        <Link to="/front-demo">
+          <img src={logo} alt="Logo" />
+        </Link>
       </div>
       <div className="left">
         <div
@@ -78,7 +80,7 @@ function NavbarCart() {
           <Link to="/front-demo/contactus">CONTACT </Link>
           <Link to="/front-demo/login">
             <span className="user">
-              <UserOutlined style={{fontSize:"1.5rem"}} />
+              <UserOutlined style={{ fontSize: "1.5rem" }} />
             </span>
           </Link>
         </div>
@@ -98,11 +100,9 @@ function NavbarCart() {
         footer={null}
         className="cart-modal"
         style={{
-          width:"10%"
+          width: "10%",
         }}
       >
-       
-
         <Fragment>
           {cartItems.length === 0 ? (
             <p>Cart is empty</p>
@@ -143,7 +143,7 @@ function NavbarCart() {
                         </>
                       ) : (
                         <>
-                          <div className="visadiv" >
+                          <div className="visadiv">
                             <img
                               src={mastercard}
                               alt="MasterCard"
@@ -153,9 +153,8 @@ function NavbarCart() {
                           </div>
                         </>
                       )}
-                      <div className="delete"
-                      >
-                        <p >
+                      <div className="delete">
+                        <p>
                           ${usdValue} x {quantity} = ${multipliedValue}
                         </p>
                         <p>
