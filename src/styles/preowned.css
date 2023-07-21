@@ -2,20 +2,29 @@
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  margin: 2rem -0.5rem; /* Add negative margin to compensate for the margin on each card */
+  margin: -6rem 2rem; /* Add negative margin to compensate for the margin on each card */
   justify-content: space-between;
-  max-width: 1300px; /* Adjust this value based on your desired width */
-  margin: 1rem auto;
+  max-width: 1200px; /* Adjust this value based on your desired width */
+}
+
+.preloader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 1.5rem;
 }
 
 .wrappercard {
   width: 296px;
   height: 188px;
-  margin: 0.5rem; /* Add margin to create space between cards */
+  margin: 0.5rem auto; /* Add margin to create space between cards */
   padding: 8rem 0; /* Add padding for the card content */
   
 }
-
+.selection-container{
+  margin: 1rem;
+}
 /* Style the "Add to Cart" button */
 .wrappercard Button {
   margin: 1rem 5.5rem;

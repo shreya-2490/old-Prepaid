@@ -56,12 +56,13 @@
   }
 
   .cart-modal{
-    top: 9%;
-    left: 28%;
-   
+    top: 13%;
+    left: 40%;
    border-radius: 1.5rem;
   }
-
+  .cart-modal  .ant-modal-content {
+    width: 60%;
+  }
   .visadiv{
     display: flex;
   }
