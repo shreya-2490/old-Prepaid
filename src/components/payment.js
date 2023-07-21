@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "../styles/payment.css";
 import { Card, Divider } from "antd";
 import Scanner from "../assets/scanner.jpg";
-import visa from "../assets/Visa.png";
+import visa from "../assets/Visacart.png";
 import mastercard from "../assets/Mastercardcart.png";
 import { useLocation } from "react-router-dom";
 import Navbarlogo from "./Navbarlogo";

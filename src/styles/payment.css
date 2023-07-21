@@ -99,6 +99,11 @@
   .payment-card2 {
     width: 40%;
   }
+  .visacardtype-img{
+    width: 15%;
+    height: 0%;
+    margin-right: 0.625rem;
+  }
 }
 
 /* / **************** Tablet Design ********************* / */
