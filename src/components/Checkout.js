@@ -48,11 +48,13 @@ const Checkout = () => {
     setDisplaySelectedButton(queryParams.has("selectedButton"));
   }, [location]);
 
-  const handleDelete = (item) => {
-    const updatedValues = values.filter((value) => value.id !== item?.id);
-    setValues(updatedValues);
-    removeFromCart(item?.id);
-  };
+  const handleDelete = (usdValue, selectedButton) => {
+    const updatedValues = values.filter(
+      (value) =>
+        value.usdValue !== usdValue || value.selectedButton !== selectedButton
+    )
+    setValues(updatedValues)
+  }
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -183,13 +185,12 @@ const Checkout = () => {
       <Navbarlogo />
       <div className="checkout-main">
         {!paymentStatus ? (
-          <div className="twocards1" style={{ overflowX: "hidden" }}>
+          <div className="twocards" style={{ overflowX: "hidden" }}>
             <div className="card1">
               <Card
-                className="custom-card"
+                className="custom-card1"
                 title="Order Summary"
                 bordered={false}
-                style={{ width: 450, margin: "90px 0px 0px 30px" }}
                 headStyle={{ borderBottom: "none" }}
               >
                 <div className="custom-upper-para">
@@ -271,9 +272,12 @@ const Checkout = () => {
                                     />
                                     <DeleteOutlined
                                       className="divider"
-                                      onClick={() => {
-                                        handleDelete(filteredItems[0]);
-                                      }}
+                                      onClick={() =>
+                                        handleDelete(
+                                          usdValue,
+                                          filteredValues[0].selectedButton
+                                        )
+                                      }
                                     />
                                     {queryParams.has("loadAmount") ? (
                                       ""
@@ -319,15 +323,11 @@ const Checkout = () => {
             </div>
             <div className="card2">
               <Card
-                className="Contact-title"
+                className="Contact-title1"
                 title="Contact Information"
                 bordered={false}
                 headStyle={{ borderBottom: "none" }}
-                style={{
-                  width: "638px",
-                  height: 380,
-                  margin: "90px 0px 0px 30px",
-                }}
+               
               >
                 <div>
                   <p className="email">

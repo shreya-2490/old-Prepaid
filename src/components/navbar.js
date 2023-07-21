@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from "react"
 import "../styles/trial.css"
-import { Link } from "react-router-dom"
-import logo from "../assets/logo.png"
-import ham from "../assets/ham.png"
-import { UserOutlined } from "@ant-design/icons"
+// import { Link } from "react-router-dom"
+// import logo from "../assets/logo.png"
+// import ham from "../assets/ham.png"
+// import { UserOutlined } from "@ant-design/icons"
 function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [cartCount, setCartCount] = useState(0)
@@ -49,45 +49,8 @@ function Navbar() {
   }, []);
 
   return (
-    // <div className="header">
-    //   <div className="logo">
-    //     <img src={logo}></img>
-    //   </div>
-    //   <div className="left">
-    //     <div
-    //       className="hamburg"
-    //       onClick={() => {
-    //         if (resmenu == "none") setresmenu("flex")
-    //         else setresmenu("none")
-    //       }}
-    //     >
-    //       <img src={ham}></img>
-    //       <div className="navmenu" style={{ display: resmenu }}>
-    //         <Link to="/">HOME</Link>
-    //         <Link to="/bulkorder">BULK ORDERS</Link>
-    //         <Link to="/contactus">CONTACT</Link>
-    //         <Link to="/login">
-    //           <span className="usernav">
-    //             <UserOutlined />
-    //             LOGIN
-    //           </span>
-    //         </Link>
-    //       </div>
-    //     </div>
-    //     <div className="first-four-navigation">
-    //       <Link to="/">HOME</Link>
-    //       <Link to="/bulkorder">BULK ORDERS</Link>
-    //       <Link to="/">HOW IT WORKS</Link>
-    //       <Link to="/contactus">CONTACT</Link>
-    //       <Link to="/login">
-    //         <span className="user">
-    //           <UserOutlined />
-    //           LOGIN
-    //         </span>
-    //       </Link>
-    //     </div>
-    //   </div>
-    // </div>
+    
+    
     <nav className="navbar">
     <a href="#" className="nav-branding">
       Dev

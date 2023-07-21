@@ -1,15 +1,12 @@
-/* =====================Desktop Veiw=========================== */
+/* / =====================Desktop Veiw=========================== / */
 
 @media (min-width: 1024px) {
   .bulk-main {
     background-color: #f5f2ea;
     width: 100%;
-    /* padding-top: 0.3125rem; */
-    /* top: 0; */
-    /* position: absolute; */
     display: flex;
     flex-direction: column;
-    padding: 6rem 0rem;
+    padding: 3rem 0rem;
     align-items: center;
     justify-content: center;
   }
@@ -18,14 +15,11 @@
     width: 90%;
     background-color: #fff;
     border-radius: 1.25rem;
-    padding: 1rem 1.9rem;
+    padding: 1rem;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* position: absolute; */
-    /* left: 9%; */
-    /* top: 4.3125rem; */
   }
 
   .bulk-div-1 {
@@ -43,12 +37,9 @@
 
   .subtitle-bulk-2 {
     color: #1b1b1b;
-    /* margin-top: -0.625rem; */
   }
 
   .bulkorder-content {
-    /* margin: auto; */
-    /* padding-top: 0.3125rem; */
     color: white;
     width: 100%;
     background-color: #fdc886;
@@ -97,8 +88,6 @@
   }
 
   .bulkorder-content-2 {
-    /* margin: auto; */
-    /* padding-top: 0px; */
     color: white;
     width: 100%;
     border-radius: 0rem 0rem 0.5rem 0.5rem;
@@ -169,8 +158,7 @@
     border-color: #000000 !important;
     color: #1b1b1b !important;
     background-color: #fdc886;
-    /* Change this to your desired color */
-    /* Optional: Add a box shadow */
+
   }
 
   .ant-select-item-option[aria-selected="true"] {
@@ -185,14 +173,14 @@
   }
 }
 
-/* =====================Tablet Veiw=========================== */
+/* / =====================Tablet Veiw=========================== / */
 @media (min-width: 641px) and (max-width: 1023px) {
   .bulk-main {
     background-color: #f5f2ea;
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 6rem 0rem;
+    padding: 3rem 0rem;
     align-items: center;
     justify-content: center;
   }
@@ -239,7 +227,7 @@
     height: 3.5rem;
     background-color: white;
     position: absolute;
-    top: 22.5%;
+    top: 21.5%;
     left: 50%;
     z-index: 100;
     transform: translate(-50%, -50%);
@@ -258,14 +246,12 @@
   .benefits-card-img {
     width: 2.3rem;
     position: absolute;
-    /* bottom: 0.4rem; */
     left: 15%;
     transform: translateX(-90%);
   }
 
   .benefits-card-badge {
     position: absolute;
-    /* bottom: 0.9rem; */
     width: 1.2rem;
     left: 13%;
     transform: translateX(-90%);
@@ -344,14 +330,14 @@
   }
 }
 
-/* =====================Mobile Veiw=========================== */
+/* / =====================Mobile Veiw=========================== / */
 @media (min-width: 10px) and (max-width: 640px) {
   .bulk-main {
     background-color: #f5f2ea;
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 5rem 0rem;
+    padding: 3rem 0rem;
     align-items: center;
     justify-content: center;
   }

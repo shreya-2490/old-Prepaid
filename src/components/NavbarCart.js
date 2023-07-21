@@ -1,5 +1,5 @@
 import React, { useState, useContext, Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -12,8 +12,17 @@ import visa from "../assets/Visacart.png";
 import mastercard from "../assets/Mastercardcart.png";
 import "../styles/navbar.css";
 import logo from "../assets/logo.png";
+import "../styles/NavbarCart.css";
 
 function NavbarCart() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const input1 = queryParams.get("usdValue");
+  const input2 = queryParams.get("btcValue");
+  const input3 = queryParams.get("selectedButton");
+  const [selectedButton, setSelectedButton] = useState(input3);
+  const [usdValue, setUSDValue] = useState(input1);
+  const [btcValue, setBtcValue] = useState(input2);
   const { cartCount, cartItems, removeFromCart } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [resmenu, setResMenu] = useState("none");
@@ -37,7 +46,7 @@ function NavbarCart() {
   const handleCheckout = () => {
     const queryParams = cartItems
       .map((item) => {
-        return `usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}&id=${item?.id}`;
+        return `usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}`;
       })
       .join("&");
     navigate(`/checkout?${queryParams}`);
@@ -46,9 +55,7 @@ function NavbarCart() {
   return (
     <div className="header">
       <div className="logo">
-        <Link to="/">
-          <img src={logo} alt="Logo" />
-        </Link>
+        <Link to="/"><img src={logo} alt="Logo" /></Link>
       </div>
       <div className="left">
         <div
@@ -68,11 +75,10 @@ function NavbarCart() {
         <div className="first-four-navigation">
           <Link to="/">HOME</Link>
           <Link to="/bulkorder">BULK ORDERS</Link>
-          {/* <Link to="/">HOW IT WORKS</Link> */}
           <Link to="/contactus">CONTACT </Link>
           <Link to="/login">
             <span className="user">
-              <UserOutlined style={{ fontSize: "1.1rem" }} />
+              <UserOutlined style={{fontSize:"1.5rem"}} />
             </span>
           </Link>
         </div>
@@ -84,13 +90,6 @@ function NavbarCart() {
             </Badge>
           </div>
         </div>
-        <div>
-          <Link to="/login">
-            <span className="usermobile">
-              <UserOutlined classname="user-logo-mobile" />
-            </span>
-          </Link>
-        </div>
       </div>
 
       <Modal
@@ -99,97 +98,10 @@ function NavbarCart() {
         footer={null}
         className="cart-modal"
         style={{
-          borderRadius: "8px",
-          top: "60px",
-          left: "31%",
-          width: "80%",
+          width:"10%"
         }}
       >
-        {/* <Fragment>
-          {cartItems.length === 0 ? (
-            <p>Cart is empty</p>
-          ) : (
-            cartItems.map((item) => (
-              <Fragment key={item.id}>
-                {item.card === "1" ? (
-                  <>
-                    <div style={{ display: "flex" }}>
-                      <img src={visa} alt="Visa" className="visacardtype-img" />
-                      <p>Visa</p>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div style={{ display: "flex" }}>
-                      <img
-                        src={mastercard}
-                        alt="MasterCard"
-                        className="cardtype-img"
-                      />
-                      <p>MasterCard</p>
-                    </div>
-                  </>
-                )}
-
-                <p style={{marginLeft:"60px",marginTop:"-15px"}}>${item.usdValue}</p>
-                <Divider />
-              </Fragment>
-            ))
-          )}
-        </Fragment> */}
-        {/* <Fragment>
-  {cartItems.length === 0 ? (
-    <p>Cart is empty</p>
-  ) : (
-    <>
-      {cartItems.reduce((uniqueItems, item) => {
-        const existingItem = uniqueItems.find(
-          (uniqueItem) => uniqueItem.usdValue === item.usdValue && uniqueItem.card === item.card
-        );
-
-        if (existingItem) {
-          existingItem.quantity += 1;
-        } else {
-          uniqueItems.push({ ...item, quantity: 1 });
-        }
-
-        return uniqueItems;
-      }, []).map((item) => {
-        const { usdValue, card, quantity } = item;
-        const multipliedValue = usdValue * quantity;
-
-        return (
-          <Fragment key={item.id}>
-            {card === "1" ? (
-              <>
-                <div style={{ display: "flex" }}>
-                  <img src={visa} alt="Visa" className="visacardtype-img" />
-                  <p>Visa</p>
-                </div>
-              </>
-            ) : (
-              <>
-                <div style={{ display: "flex" }}>
-                  <img
-                    src={mastercard}
-                    alt="MasterCard"
-                    className="cardtype-img"
-                  />
-                  <p>MasterCard</p>
-                </div>
-              </>
-            )}
-
-            <p style={{ marginLeft: "60px", marginTop: "-15px" }}>
-              ${usdValue} x {quantity} = ${multipliedValue}
-            </p>
-            <Divider />
-          </Fragment>
-        );
-      })}
-    </>
-  )}
-</Fragment> */}
+       
 
         <Fragment>
           {cartItems.length === 0 ? (
@@ -220,7 +132,7 @@ function NavbarCart() {
                     <Fragment key={item.id}>
                       {card === "1" ? (
                         <>
-                          <div style={{ display: "flex" }}>
+                          <div className="visadiv">
                             <img
                               src={visa}
                               alt="Visa"
@@ -231,7 +143,7 @@ function NavbarCart() {
                         </>
                       ) : (
                         <>
-                          <div style={{ display: "flex" }}>
+                          <div className="visadiv" >
                             <img
                               src={mastercard}
                               alt="MasterCard"
@@ -241,17 +153,12 @@ function NavbarCart() {
                           </div>
                         </>
                       )}
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "baseline",
-                          justifyContent: "space-between",
-                        }}
+                      <div className="delete"
                       >
-                        <p style={{ marginLeft: "60px", marginTop: "-15px" }}>
+                        <p >
                           ${usdValue} x {quantity} = ${multipliedValue}
                         </p>
-                        <p style={{ marginTop: "-10px" }}>
+                        <p>
                           <DeleteOutlined
                             onClick={() => handleRemoveItem(item.id)}
                           />

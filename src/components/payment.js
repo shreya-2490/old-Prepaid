@@ -75,15 +75,14 @@ const Payment = ({ email }) => {
   return (
     <>
       <Navbarlogo />
-      <div className="checkout-main">
-        <div className="twocards" style={{ overflowX: "hidden" }}>
+      <div className="checkout-main1">
+        <div className="twocards1">
           <div className="payment-card1">
             <Card
               className="custom-card"
               title="Order Details"
               bordered={false}
-              style={{ width: 500, margin: "90px 0px 0px 70px" }}
-              headStyle={{ borderBottom: "none" }}
+              
             >
               <div className="order-details">
                 <p>Email Address</p>
@@ -111,7 +110,7 @@ const Payment = ({ email }) => {
                       <div className="value">
                         {selectedButton === "1" ? (
                           <>
-                            <div style={{ display: "flex" }}>
+                            <div >
                               <img
                                 src={visa}
                                 alt="Visa"
@@ -122,7 +121,7 @@ const Payment = ({ email }) => {
                           </>
                         ) : (
                           <>
-                            <div style={{ display: "flex" }}>
+                            <div>
                               <img
                                 src={mastercard}
                                 alt="MasterCard"
@@ -137,7 +136,7 @@ const Payment = ({ email }) => {
                       <div className="value">
                         {cardType === "card1" ? (
                           <>
-                            <div style={{ display: "flex" }}>
+                            <div >
                               <img
                                 src={visa}
                                 alt="Visa"
@@ -148,7 +147,7 @@ const Payment = ({ email }) => {
                           </>
                         ) : (
                           <>
-                            <div style={{ display: "flex" }}>
+                            <div >
                               <img
                                 src={mastercard}
                                 alt="MasterCard"
@@ -230,17 +229,13 @@ const Payment = ({ email }) => {
               </div>
             </Card>
           </div>
-          <div className="card2">
+          <div className="payment-card2">
             <Card
               className="Contact-title"
               title="Pay with Bitcoin"
               bordered={false}
               headStyle={{ borderBottom: "none" }}
-              style={{
-                width: "638px",
-                height: 800,
-                margin: "90px 0px 0px 30px",
-              }}
+              
             >
               <div className="scanner-pic">
                 <img src={Scanner} alt="Scanner" />

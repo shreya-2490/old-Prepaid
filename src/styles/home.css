@@ -1,17 +1,12 @@
-
-/******************* Full Screen ****************************/
+/* / ******************* Full Screen **************************** / */
 
 .main-body {
   background-color: #f5f2ea;
-  background-size: 500% 500%;
   animation: gradient-animation 3s ease infinite;
   display: flex;
-  margin-top: 1.875rem;
-  height: 94vh;
+  height: 100vh;
   width: 100%;
   justify-content: space-evenly;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 
@@ -19,96 +14,83 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
 }
 
 .home {
-  margin-top: 7.5rem;
-  padding-left: 3.5rem;
   text-align: left;
-  box-sizing: border-box;
-  width: 80%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.3rem;
 }
 
 .home-heading {
-  margin-bottom: 1.7875rem;
   font-family: "Typold Extended Black";
   font-size: 2rem;
   font-weight: 500;
-  width: 100%;
-  display: block;
   color: #1b1b1b;
 }
 
 .home-heading-1 {
-  margin-bottom: 1.5625rem;
   font-family: "Typold Extended Black";
-  font-size: 1.6rem;
-  line-height: 1.2;
-  display: block;
+  font-size: 1.9rem;
   color: #1b1b1b;
-  white-space: nowrap;
 }
 
 .subtitle {
   color: #1b1b1b;
-  font-family: "Outfit", sans-serif;
   font-size: 1rem;
-  line-height: 2;
-  padding-left: 0.125rem;
-  padding-right: 4.375rem;
-  margin-top: 1.875rem;
 }
 
 .buttons {
-  align-items: stretch;
   background: linear-gradient(180deg, #ffffff 50%, #ffffff 0);
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
   display: flex;
-  height: 3.875rem;
-  justify-content: space-between;
-  overflow: hidden;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 1rem 1rem 0 0 ;
+  overflow: hidden;
 }
 
 .box {
-  padding: 3.125rem;
-  width: 30rem;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .sider {
-  margin: auto;
-  width: 45%;
-  margin-top: 3.125rem;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .first-btn {
-  width: 12.25rem;
+  width: 50%;
 }
 
 .buttons .buy {
   height: 3.75rem;
   text-align: center;
   border: none;
-  width: 12rem;
+  width: 120%;
   font-size: 1rem;
-  font-weight: 600 !important;
-  margin-left: -0.125rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .buttons .sell {
   height: 3.75rem;
   border: none;
-  width: 12rem;
+  width: 10rem;
   font-size: 1rem;
-  font-weight: 600 !important;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -122,6 +104,7 @@
 
 .forms {
   display: flex;
+  
   flex-direction: column;
 }
 
@@ -133,23 +116,49 @@
   margin-left: 0.25rem;
   margin-top: 0.8125rem;
 }
+.buttons {
+  align-items: stretch;
+  background: linear-gradient(180deg, #ffffff 50%, #ffffff 0);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: flex;
+  height: 3.875rem;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.price-amount{
+  border-radius: 0.25rem;
+  width: 100%;
+  margin-left: 5.7375rem;
+  border: solid 1px #29262624;
+  padding: 0.3125rem;
+  box-shadow: none !important;
+  height: 2.375rem !important;
+  font-size: 0.875rem;
+  color: #1b1b1b;
+  background-color: #f0f0f0;
+}
+.price-amount:focus{
+  outline: none;
+  border-color: #29262624; 
+}
+.price-amount option{
+  background-color: #f0f0f0; 
+  padding: 3rem;
+}
 
 .pay {
   color: black;
-  display: block;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  line-height: 0.625rem;
-  margin-bottom: 0rem;
-  text-align: left;
-  font-family: "Outfit", sans-serif;
+  padding-left: 2rem;
 }
 
 .input-div {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  margin: 0.625rem 0rem;
 }
 
 .input-box {
@@ -194,16 +203,12 @@ input[type="number"]::-webkit-outer-spin-button {
   box-shadow: none !important;
   min-height: 2.75rem;
   padding: 0.625rem 0.6875rem;
-}
 
-.second-gray {
-  margin-left: -1.3125rem;
 }
 
 .items {
   align-items: center;
   display: flex;
-  margin-left: -1.8125rem;
 }
 
 .usdt-pic img {
@@ -225,18 +230,19 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   background-color: #f5f2ea;
   border-radius: 0.75rem;
-  padding: 0.8125rem;
+  padding: 0.3125rem;
 }
 
 .dropdown-1 {
   font-size: 0.75rem;
   margin-right: 2.8125rem;
-  line-height: 1.5rem;
+
   color: black;
 }
 
 .buy-usdt {
   color: #1b1b1b;
+
   background-color: #fdc886;
   border-radius: 3.125rem;
   width: 100%;
@@ -282,30 +288,29 @@ input[type="number"]::-webkit-outer-spin-button {
 .card-selector-container {
   align-items: center;
   justify-content: space-between;
-  margin-top: 0rem;
   border: none;
-  padding: 0.4375rem;
+  padding: 0 0.5rem;
   border-radius: 0.75rem;
 }
 
 .card-selector .ant-select-selector {
-  font-size: 1rem; 
-  border-color: black !important; 
+  font-size: 1rem;
+  border-color: black !important;
   border: none;
   margin-bottom: 0.625rem;
 }
 
 .selection-cards-visamastercard {
   display: flex;
+  gap: 1rem;
+
 }
 
 .selection-cards-visamastercard button {
   background-color: #f5f2ea;
   border: none;
   border-radius: 0.25rem;
-  padding: 0.5rem 1rem;
-  margin-right: 0.3125rem;
-  font-size: 0.875rem;
+
   cursor: pointer;
 }
 
@@ -320,6 +325,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .homepage-cards {
   width: 74%;
+
 }
 
 .mastercard-button {
@@ -332,6 +338,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 0.875rem;
   font-family: "Outfit", sans-serif;
   color: black;
+
 }
 
 .dropdown-amount {
@@ -346,37 +353,18 @@ input[type="number"]::-webkit-outer-spin-button {
   color: #1b1b1b;
   background-color: #f0f0f0;
 }
-.price-amount{
-  border-radius: 0.25rem;
-  width: 100%;
-  margin-left: 5.7375rem;
-  border: solid 1px #29262624;
-  padding: 0.3125rem;
-  box-shadow: none !important;
-  height: 2.375rem !important;
-  font-size: 0.875rem;
-  color: #1b1b1b;
-  background-color: #f0f0f0;
-}
-.price-amount:focus{
-  outline: none;
-  border-color: #29262624; 
-}
-.price-amount option{
-  background-color: #f0f0f0; 
-  padding: 3rem;
-}
+
 .dropdown-amount:focus {
   outline: none;
-  border-color: #29262624; 
+  border-color: #29262624;
 }
 
 .dropdown-amount option {
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
 }
 
 
-/***************   Mobile screen **********************/
+/* / ***************   Mobile screen ********************** / */
 @media (max-width: 767px) {
   .main-body {
     display: flex;
@@ -386,22 +374,18 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .home {
     width: 100%;
-    padding-left: 1.25rem !important;
-    height: 10.5625rem;
-    margin-top: 4.5rem;
   }
 
   .home-heading {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
     text-align: center;
-    width: 95%;
+    width: 90%;
   }
 
   .home-heading-1 {
-    font-size: 14px;
+    font-size: 1rem;
     text-align: center;
-    white-space: pre-wrap;
   }
 
   .subtitle {
@@ -412,15 +396,12 @@ input[type="number"]::-webkit-outer-spin-button {
     display: none;
   }
 
-  .box{
-   margin: 0rem 2rem;
-   width: auto;
-   padding: inherit;
+  .box {
+    width: 80%;
   }
 
   .sider {
-   margin:  0rem 0rem 3.125rem 0rem;
-    width: auto;
+    width: 100%;
   }
 
   .buttons .buy,
@@ -435,29 +416,29 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
-/****************** Tablet screen *********************/
+/* / ****************** Tablet screen ********************* / */
 
 
 @media screen and (min-device-width: 767px) and (max-device-width: 1024px) {
   .main-body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 110vh;
   }
 
   .home {
-    width: 100%;
-    padding-left: 1.25rem ;
-    height: 30vh;
+    width: 90%;
+    margin: 0 auto;
+    padding: 4rem 0;
   }
 
   .home-heading {
     width: 100%;
-    margin-top: 2rem;
     font-size: 2.5rem;
     font-weight: 600;
     text-align: center;
   }
+
   .home-heading-1 {
     font-size: 1.5rem;
     width: 100%;
@@ -465,12 +446,8 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   .subtitle {
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-    display: block;
-    margin-top: 2rem;
+    font-size: 1.5rem;
     text-align: center;
-    padding: 0rem 2rem;
   }
 
   .learn-more-btn button {
@@ -480,12 +457,16 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 10.125rem;
     height: 3.5rem;
     margin-top: 2rem;
+
   }
 
   .sider {
-    width: 100%;
+    width: 50%;
     display: flex;
     justify-content: center;
+    margin: 0 auto;
+    padding: 4rem 0;
+
   }
 
   .box {
@@ -495,20 +476,24 @@ input[type="number"]::-webkit-outer-spin-button {
   .buttons .buy,
   .buttons .sell {
     font-size: 1rem;
-    width: 12rem;
+    text-align: center;
   }
 
   .sider-content {
     padding: 1rem;
+
   }
+
   .first-btn {
-    width: 100%;
+    width: 50%;
   }
 
   .button,
   .mastercard-button {
     font-size: 0.75rem;
+    
   }
+
   .first-four-navigation {
     width: 85% !important;
   }

@@ -98,12 +98,7 @@ const Home = () => {
               Experience the Convenience of Prepaid Cards
             </h1>
           </div>
-          {/* <div className="pushEffect">
-            <span style={{ animationDelay: "1s" }}>Visa</span>
-            <span style={{ animationDelay: "5s" }}>Mastercard</span>
-          </div>
-          <br />
-          <span style={{marginLeft:"40%"}}>Prepaid Card</span> */}
+          
 
           <p className="subtitle">
             Unlock the power of digital currencies with our cryptocurrency
@@ -113,11 +108,7 @@ const Home = () => {
             card amount. Discover the many advantages of using cryptocurrency
             for your everyday transactions.
           </p>
-          {/* <div className="learn-more-btn">
-            <Link to="/">
-              <button>How it Works</button>
-            </Link>
-          </div> */}
+         
         </div>
         <div className="sider">
           <div className="box">
@@ -208,9 +199,7 @@ const Home = () => {
                         </div>
                         <div className="second-gray">
                           <div className="items">
-                            {/* <picture className="usdt-pic">
-                          <img src={dollar}></img>
-                        </picture> */}
+                            
                             <span className="dropdown-1">USD</span>
                           </div>
                         </div>
@@ -225,9 +214,6 @@ const Home = () => {
                         display: "inline",
                       }}
                     >
-                      {/* <picture className="bit-pic">
-                    <img src={bitcoin}></img>
-                  </picture> */}
                       <span
                         style={{
                           margin: "0px",
@@ -298,7 +284,7 @@ const Home = () => {
                       </div>
                     </form>
                   </div>
-                  <div>
+                  <div style={{  margin: "15px 0px" }}>
                     <form>
                       <div className="both-gray">
                         <div className="first-gray">

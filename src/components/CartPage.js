@@ -101,6 +101,7 @@ const Cart = ({ handleAddToCart }) => {
               <div>
                 <div>
                   <p>Amount</p>
+                 
                   <div className="cart-input">
                     <input
                       id="numericInput"
@@ -116,12 +117,12 @@ const Cart = ({ handleAddToCart }) => {
                       readOnly
                       className={btcValue.length > 10 ? "long-value" : ""}
                     />
-                  </div>
-                </div>
-                <div>
+                    <div>
                   <p className="btcvalue">Expected BTC</p>
                   <div className="cart-input">
                     <p className="expected-value">{btcValue}</p>
+                  </div>
+                </div>
                   </div>
                 </div>
               </div>{" "}

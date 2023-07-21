@@ -1,217 +1,42 @@
-/*  =====================  Desktop Veiw ===========================  */
+/* / / / =====================  Desktop Veiw =========================== / / / */
 
 @media (min-width: 1024px) {
 
-.cart-main {
-  background-color: #F5F2EA;
-  height: 120vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
- 
-}
-
-.twocards-cart {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  width: 100%;
-  align-items: center;
-}
-
-
-.custom-card-cart  {
-  border-radius: 0.7rem;
-  width: 75%;
-  margin: 0 auto;
-}
-
-.Contact-title{
-  width: 95%;
-  margin: 0 auto;
-}
-
-.custom-card-cart img{
-  width: 100%;
-  padding: 2.7rem;
-}
-.custom-para2-cart{
-  text-align: justify;
-}
-
-.cart-input input[type="number"] {
-  background-color:white;
-  border-radius: 0.4rem;
-  font-size: 1rem;
-  border: 0.1rem solid #D9D9D9;
-  width: 30%;
-  border: 1px solid blue; 
-}
-
-.cart-input input:hover{
-  border-color: rgb(87, 180, 211);
-}
-
-.cart-btn button{
-  background-color: black;
-  color: white;
-  border-radius: 1.9rem;
-  border: none;
-  cursor: pointer;
-  font-size: 0.9rem;
-  width: 30%;
-  text-align: center;
-  padding: 0.5rem;
-}
-
-.long-value {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  
-}
-.btcvalue{
- margin-bottom: 0.07rem; 
-}
-
-
-.expected-value{
-font-size: 0.9rem;
-
-}
-
-.icons{
-  display: flex;
-  margin: 1rem 0;
-}
-
-}
-
-/*  =====================Tablet Veiw=========================== */
-@media(min-width : 641px) and (max-width: 1023px) {
   .cart-main {
     background-color: #F5F2EA;
-    height: 130vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-   
   }
   
   .twocards-cart {
     display: grid;
-    grid-template-columns: repeat(1,1fr);
-    grid-gap: 3rem;
+    grid-template-columns: repeat(2,1fr);
     width: 100%;
     align-items: center;
   }
   
   
   .custom-card-cart  {
-    border-radius: 0.7rem;
-    width: 60%;
-    margin: 0 auto;
-  }
-  
-  .Contact-title{
-    width: 85%;
-    margin: 0 auto;
-  }
-  
-  .custom-card-cart img{
-    width: 100%;
-    padding: 2.7rem;
-  }
-  .custom-para2-cart{
-    text-align: justify;
-  }
-  
-  .cart-input input[type="number"] {
-    background-color:white;
-    border-radius: 0.4rem;
-    font-size: 1rem;
-    border: 0.1rem solid #D9D9D9;
-    width: 10.8rem;
-  }
-  
-  .cart-input input:hover{
-    border-color: rgb(87, 180, 211);
-  }
-  
-  .cart-btn button{
-    background-color: black;
-    color: white;
-    border-radius: 1.9rem;
-    border: none;
-    cursor: pointer;
-    font-size: 0.9rem;
-    width: 30%;
-   
-    text-align: center;
-    padding: 0.5rem;
-  }
-  
-  .long-value {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  
-  }
-  .btcvalue{
-  margin-bottom: 0.07rem;
-  }
-  
-  .expected-value{
-  font-size: 0.9rem;
-  }
-
-  .icons{
-    display: flex;
-    margin: 3rem 0;
-  }
-
-
-}
-
- /* =====================Mobile Veiw===========================  */
-@media(min-width : 10px) and (max-width:640px) {
- 
-
-
-  .cart-main {
-    background-color: #F5F2EA;
-    height: 160vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-  }
-  
-  .twocards-cart {
-    display: grid;
-    grid-template-columns: repeat(1,1fr);
-    grid-gap: 3rem;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  
-  .custom-card-cart  {
-    border-radius: 0.7rem;
+    border-radius: 2rem;
     width: 80%;
     margin: 0 auto;
   }
   
+  .card2-cart{
+    width: 90%;
+  }
+  
   .Contact-title{
-    width: 85%;
+    width: 95%;
     margin: 0 auto;
   }
   
   .custom-card-cart img{
     width: 100%;
-    padding: 0.5rem;
   }
-
+  
   .custom-para2-cart{
     text-align: justify;
   }
@@ -221,7 +46,7 @@ font-size: 0.9rem;
     border-radius: 0.4rem;
     font-size: 1rem;
     border: 0.1rem solid #D9D9D9;
-    width: 10.8rem;
+    width: 30%;
   }
   
   .cart-input input:hover{
@@ -243,20 +68,220 @@ font-size: 0.9rem;
   .long-value {
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
-  
   }
+  
   .btcvalue{
-  margin-bottom: 0.07rem;
+  display: flex;
+  flex-direction: column;
+  }
+  
+  .cart-input{
+   display: flex;
+   gap: 2rem;
+   flex-direction: row;
   }
   
   
   .expected-value{
-  font-size: 0.9rem;
+  font-size:1rem;
   
   }
-
+  
   .icons{
-    margin: 2rem 0;
+    display: flex;
+    margin: 1rem 0;
   }
-}
+  
+  .outline{
+    font-size: 1.5rem;
+     color: #41D195;
+    margin-right: 1rem;
+  }
+  
+  }
+  
+  /* / / / =====================Tablet Veiw=========================== / / / */
+  @media(min-width : 641px) and (max-width: 1023px) {
+    .cart-main {
+      background-color: #F5F2EA;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 7rem 0;
+     
+    }
+    
+    .twocards-cart {
+      display: grid;
+      grid-template-columns: repeat(1,1fr);
+      grid-gap: 3rem;
+      width: 100%;
+      align-items: center;
+    }
+    
+    
+    .custom-card-cart  {
+      border-radius: 1.8rem;
+      width: 60%;
+      margin: 0 auto;
+    }
+    
+    .Contact-title{
+      width: 85%;
+      margin: 0 auto;
+    }
+    .cart-input{
+      display: flex;
+      gap: 2rem;
+      flex-direction: row;
+     }
+    .custom-card-cart img{
+      width: 100%;
+      padding: 2.7rem;
+    }
+    .custom-para2-cart{
+      text-align: justify;
+    }
+    
+    .cart-input input[type="number"] {
+      background-color:white;
+      border-radius: 0.4rem;
+      font-size: 1rem;
+      border: 0.1rem solid #D9D9D9;
+      width: 10.8rem;
+    }
+    
+    .cart-input input:hover{
+      border-color: rgb(87, 180, 211);
+    }
+
+
+    /* .btcvalue{
+      display: flex;
+      flex-direction: row;
+      } */
+
+      .cart-btn button{
+      background-color: black;
+      color: white;
+      border-radius: 1.9rem;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      width: 30%;
+     
+      text-align: center;
+      padding: 0.5rem;
+    }
+    
+    .long-value {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    
+    }
+    .btcvalue{
+    margin-bottom: 0.07rem;
+    }
+    
+    .expected-value{
+    font-size: 0.9rem;
+    }
+  
+    .icons{
+      display: flex;
+      margin: 3rem 0;
+    }
+  
+  
+  }
+  
+  /* / / / =====================Mobile Veiw=========================== / / / */
+  @media(min-width : 10px) and (max-width:640px) {
+   
+  
+  
+    .cart-main {
+      background-color: #F5F2EA;
+      /* height: 160vh; */
+      padding: 4rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
+    }
+    
+    .twocards-cart {
+      display: grid;
+      grid-template-columns: repeat(1,1fr);
+      grid-gap: 3rem;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    
+    .custom-card-cart  {
+      border-radius: 1.8rem;
+      width: 80%;
+      margin: 0 auto;
+    }
+    
+    .Contact-title{
+      width: 85%;
+      margin: 0 auto;
+    }
+    
+    .custom-card-cart img{
+      width: 100%;
+      padding: 0.5rem;
+    }
+  
+    .custom-para2-cart{
+      text-align: justify;
+    }
+    
+    .cart-input input[type="number"] {
+      background-color:white;
+      border-radius: 0.4rem;
+      font-size: 1rem;
+      border: 0.1rem solid #D9D9D9;
+      width: 10.8rem;
+    }
+    
+    .cart-input input:hover{
+      border-color: rgb(87, 180, 211);
+    }
+    
+    .cart-btn button{
+      background-color: black;
+      color: white;
+      border-radius: 1.9rem;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      width: 60%;
+      text-align: center;
+      padding: 0.5rem;
+    }
+    
+    .long-value {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    
+    }
+    .btcvalue{
+    margin-bottom: 0.07rem;
+    }
+    
+    
+    .expected-value{
+    font-size: 0.9rem;
+    
+    }
+  
+    .icons{
+      margin: 2rem 0;
+    }
+  }

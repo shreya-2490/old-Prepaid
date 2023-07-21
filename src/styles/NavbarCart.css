@@ -1,0 +1,216 @@
+
+* {
+  font-family: 'Outfit', sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+/* ********************* Full Screen ****************** */
+@media (min-width: 1024px) {
+
+  .hamburger-menu {
+    display: none;
+    cursor: pointer;
+  }
+
+  .carticon {
+    font-size: 1.8rem;
+    color: #0c0c0c;
+    bottom: 0.1875rem;
+  }
+
+  .anticon svg {
+    color: #0c0c0c;
+  }
+
+  .ant-badge .ant-badge-count {
+    background: #FDC886;
+    margin-top: 0.625rem;
+  }
+
+  .headerlogo {
+    background-color: #F5F2EA;
+    padding-top: 0.5rem;
+    height: 1.6875rem;
+  }
+
+  .logocheckout{
+    background-color: #F5F2EA;
+    height: 2.9375rem;
+  }
+  
+  .logocheckout img {
+    width: 11.25rem;
+    margin-left: 1.0625rem;
+    margin-top: 0.125rem;
+  
+  }
+
+  .back-arrow {
+    font-size: 1.25rem;
+    margin-left: 2.1875rem;
+    cursor: pointer;
+    border: 1px;
+  }
+
+  .cart-modal{
+    top: 9%;
+    left: 28%;
+   
+   border-radius: 1.5rem;
+  }
+
+  .visadiv{
+    display: flex;
+  }
+
+  .delete{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .cart-modal-footer{
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+  /* **************************** Tablet ************************ */
+  @media(min-width : 641px) and (max-width: 1023px) {
+    .hamburger-menu {
+      display: none;
+      cursor: pointer;
+    }
+  
+    .carticon {
+      font-size: 1.8rem;
+      color: #0c0c0c;
+      bottom: 0.1875rem;
+    }
+  
+    .anticon svg {
+      color: #0c0c0c;
+    }
+  
+    .ant-badge .ant-badge-count {
+      background: #FDC886;
+      margin-top: 0.625rem;
+    }
+  
+    .headerlogo {
+      background-color: #F5F2EA;
+      padding-top: 0.5rem;
+      height: 1.6875rem;
+    }
+  
+    .logocheckout{
+      background-color: #F5F2EA;
+      height: 2.9375rem;
+    }
+    
+    .logocheckout img {
+      width: 11.25rem;
+      margin-left: 1.0625rem;
+      margin-top: 0.125rem;
+    
+    }
+  
+    .back-arrow {
+      font-size: 1.25rem;
+      margin-left: 2.1875rem;
+      cursor: pointer;
+      border: 1px;
+    }
+  
+    .cart-modal{
+      top: 9%;
+      left: 28%;
+     
+     border-radius: 1.5rem;
+    }
+  
+    .visadiv{
+      display: flex;
+    }
+  
+    .delete{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+  
+    .cart-modal-footer{
+      display: flex;
+      gap: 1rem;
+    }
+
+  }
+
+  /* ********************** Mobile **************************** */
+  @media(min-width : 10px) and (max-width:640px) {
+ 
+    .hamburger-menu {
+      display: none;
+      cursor: pointer;
+    }
+  
+    .carticon {
+      font-size: 1.8rem;
+      color: #0c0c0c;
+      bottom: 0.1875rem;
+    }
+  
+    .anticon svg {
+      color: #0c0c0c;
+    }
+  
+    .ant-badge .ant-badge-count {
+      background: #FDC886;
+      margin-top: 0.625rem;
+    }
+  
+    .headerlogo {
+      background-color: #F5F2EA;
+      padding-top: 0.5rem;
+      height: 1.6875rem;
+    }
+  
+    .logocheckout{
+      background-color: #F5F2EA;
+      height: 2.9375rem;
+    }
+    
+    .logocheckout img {
+      width: 11.25rem;
+      margin-left: 1.0625rem;
+      margin-top: 0.125rem;
+    
+    }
+  
+   
+  
+    .cart-modal{
+      top: 9%;
+      left: 3%;
+     
+     border-radius: 1.5rem;
+    }
+  
+    .visadiv{
+      display: flex;
+    }
+  
+    .delete{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+  
+    .cart-modal-footer{
+      display: flex;
+      gap: 1rem;
+    }
+  }

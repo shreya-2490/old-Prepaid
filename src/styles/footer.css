@@ -2,26 +2,17 @@
   color: #1b1b1b;
   background-color: #F5F2EA;
   display: flex;
-  align-items: baseline;
-  font-size: 0.75rem;
-  position: fixed;
-  Width: 100%;
-  bottom: 0;
+  width: 100%;
+}
 
-}
-.prepaid-logo{
-  margin: 0.125rem;
-  padding: 0.625rem;
-}
 .prepaid-logo img{
   width:50%;
 }
 .arrowhead{
   font-size: 2.5rem;
   color: white;
+
   position: relative;
-  bottom: 0.75rem;
-  margin: 0.625rem;
   border: none;
   background: none;
   
@@ -37,6 +28,6 @@
 }
 @media (max-width: 768px) {
   .footer{
-    width: 145vh;
+    width: 100%;
   }
 }
