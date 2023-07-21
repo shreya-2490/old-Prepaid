@@ -55,7 +55,7 @@ const Checkout = () => {
       alert("Invalid email format. Please enter a correct email address.");
     }
 
-    navigate(`/payment`, { state: { cards: values, email } });
+    navigate(`/front-demo/payment`, { state: { cards: values, email } });
   };
 
   const handleCheckboxChange1 = () => {

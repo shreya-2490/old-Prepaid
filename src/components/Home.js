@@ -34,8 +34,8 @@ const Home = () => {
     } else {
       setIsValueValid(false);
     }
-    navigate("/preowned", { state: { selectedProvider, selectedPrice } });
-  };
+    navigate('/front-demo/preowned',{state:{selectedProvider,selectedPrice}})
+  }
 
   const handleProviderChange = (event) => {
     setSelectedProvider(event.target.value);
@@ -223,7 +223,7 @@ const Home = () => {
 
                       {btcValue !== "0.00000" ? (
                         <Link
-                          to={`/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
+                          to={`/front-demo/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
                         >
                           <button
                             className="buy-usdt"

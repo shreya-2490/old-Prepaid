@@ -30,7 +30,7 @@ function Login() {
               Remember me
             </label>
           </div>
-          <Link to="/">
+          <Link to="/front-demo">
             <button type="submit" className="btn  w-100 mt-2">
               SIGN IN
             </button>

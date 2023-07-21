@@ -38,7 +38,7 @@ function NavbarCart() {
 
   const handleKeepShopping = () => {
     setIsCartOpen(false);
-    navigate("/");
+    navigate("/front-demo");
   };
   const handleRemoveItem = (itemId) => {
     removeFromCart(itemId);
@@ -49,13 +49,13 @@ function NavbarCart() {
         return `usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}`;
       })
       .join("&");
-    navigate(`/checkout?${queryParams}`);
+    navigate(`/front-demo/checkout?${queryParams}`);
   };
 
   return (
     <div className="header">
       <div className="logo">
-        <Link to="/"><img src={logo} alt="Logo" /></Link>
+        <Link to="/front-demo"><img src={logo} alt="Logo" /></Link>
       </div>
       <div className="left">
         <div
@@ -67,16 +67,16 @@ function NavbarCart() {
         >
           <MenuOutlined />
           <div className="navmenu" style={{ display: resmenu }}>
-            <Link to="/">HOME</Link>
-            <Link to="/bulkorder">BULK ORDERS</Link>
-            <Link to="/contactus">CONTACT US</Link>
+            <Link to="/front-demo">HOME</Link>
+            <Link to="/front-demo/bulkorder">BULK ORDERS</Link>
+            <Link to="/front-demo/contactus">CONTACT US</Link>
           </div>
         </div>
         <div className="first-four-navigation">
-          <Link to="/">HOME</Link>
-          <Link to="/bulkorder">BULK ORDERS</Link>
-          <Link to="/contactus">CONTACT </Link>
-          <Link to="/login">
+          <Link to="/front-demo">HOME</Link>
+          <Link to="/front-demo/bulkorder">BULK ORDERS</Link>
+          <Link to="/front-demo/contactus">CONTACT </Link>
+          <Link to="/front-demo/login">
             <span className="user">
               <UserOutlined style={{fontSize:"1.5rem"}} />
             </span>
