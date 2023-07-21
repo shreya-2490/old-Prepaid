@@ -5,6 +5,10 @@ import Footer from "./Footer"
 import "../styles/preowned.css"
 import { Button, Select } from "antd"
 import { useLocation } from "react-router"
+import wifi from "../assets/wifi1.png"
+import map from "../assets/map1.png"
+import master from "../assets/mastercard preowned.png"
+import visa from "../assets/visa preowned.png"
 
 function Preowned() {
   const [cardData, setCardData] = useState([])
@@ -13,9 +17,12 @@ function Preowned() {
   // const [selectedProvider, setSelectedProvider] = useState("All");
   // const [selectedPrice, setSelectedPrice] = useState("");
   const location = useLocation()
-  const { selectedProvider: defaultProvider, selectedPrice: defaultPrice } = location.state || {};
-  const [selectedProvider, setSelectedProvider] = useState(defaultProvider || "All");
-  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "");
+  const { selectedProvider: defaultProvider, selectedPrice: defaultPrice } =
+    location.state || {}
+  const [selectedProvider, setSelectedProvider] = useState(
+    defaultProvider || "All"
+  )
+  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "")
 
   useEffect(() => {
     axios
@@ -40,7 +47,7 @@ function Preowned() {
         console.error("Error fetching card data:", error)
         setLoading(false)
       })
-  }, [selectedProvider, selectedPrice])
+  }, [])
 
   const handleProviderChange = (value) => {
     setSelectedProvider(value)
@@ -53,7 +60,7 @@ function Preowned() {
   return (
     <>
       <NavbarCart />
-      <div className="selection-container">
+      {/* <div className="selection-container">
         <Select
           defaultValue="All"
           onChange={handleProviderChange}
@@ -68,9 +75,19 @@ function Preowned() {
           <Option value="low">Lowest Price</Option>
           <Option value="high">Highest Price</Option>
         </Select>
-      </div>
+      </div> */}
       {loading ? (
-        <div className="preloader">Loading...</div>
+        <div className="preloader">
+          <div class="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
       ) : (
         <div className="card-container">
           {cardData.length > 0 ? (
@@ -79,7 +96,7 @@ function Preowned() {
                 <div class="container" key={card.id}>
                   <div class="card">
                     <img
-                      src="https://i.ibb.co/PYss3yv/map.png"
+                      src={map}
                       class="map-img"
                     />
                     <div class="top">
@@ -87,7 +104,7 @@ function Preowned() {
                       <h2 className="h2heading">
                         <b>${`${card.price}`}</b>
                       </h2>
-                      <img src="https://cdn-icons-png.flaticon.com/512/1436/1436392.png" />
+                      <img src={wifi} />
                     </div>
 
                     <div class="infos">
@@ -109,12 +126,12 @@ function Preowned() {
                           <section>
                             {`${card.type}` === "visa" ? (
                               <img
-                                src="https://i.ibb.co/WHZ3nRJ/visa.png"
+                                src={visa}
                                 class="brand"
                               />
                             ) : (
                               <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MasterCard_logo.png/320px-MasterCard_logo.png"
+                                src={master}
                                 class="brand1"
                               />
                             )}
