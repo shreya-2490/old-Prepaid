@@ -97,12 +97,13 @@
 
   .value{
     font: 1rem;
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     display: flex;
     justify-content: space-between;
    margin-left: 1rem;
    font-weight: 400;
    margin-right: 2rem;
+   /* border: 1px solid red; */
   }
 
 
@@ -110,6 +111,7 @@
   .item-details{
     display: flex;
     justify-content: space-between;
+   align-items: center;
   }
  
   
@@ -117,6 +119,7 @@
     font-size: 0.9375rem;
     font-weight: 600;
     margin: 0.125rem 0rem 0rem 0rem;
+    
   }
 
   .select-box {
@@ -126,13 +129,15 @@
 
 
   .select {
-    margin: 0rem 1.375rem 0rem 0rem;
+    margin: 4rem 1.375rem 0rem 0rem;
+    /* border: 1px solid red; */
   }
 
 
   .se-box {
     display: flex;
     flex-direction: column;
+    
   }
   
   
