@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import "../styles/payment.css";
 import { Card, Divider } from "antd";
@@ -10,11 +10,14 @@ import Navbarlogo from "./Navbarlogo";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { usdToBTC } from "../utils/helper";
+import { CartContext } from "./CartContext";
 
 const Payment = () => {
+  const { cartItems, cartCount } = useContext(CartContext);
+
   const [btcRate, setBTCRate] = useState(null);
   const location = useLocation();
-  const { cards, email } = location?.state || {};
+  const { email } = location?.state || {};
   const queryParams = new URLSearchParams(location.search);
   const input1 = queryParams.get("usdValue");
   const [usdValue, setUSDValue] = useState(input1);
@@ -32,23 +35,19 @@ const Payment = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  const totalCards = cards?.reduce((accumulator, object) => {
-    return accumulator + (object.quantity ?? 1);
-  }, 0);
-
-  const totalCardsValue = cards?.reduce((accumulator, object) => {
+  const totalCardsValue = cartItems?.reduce((accumulator, object) => {
     return (
       accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
     );
   }, 0);
 
   const calculateTotalBTCExchangeFee = (totalCardValue) => {
-    return (totalCardValue + totalCards * 2.98) / 100;
+    return (totalCardValue + cartCount * 2.98) / 100;
   };
 
   const subTotalUsdValue =
     totalCardsValue +
-    totalCards * 2.98 +
+    cartCount * 2.98 +
     calculateTotalBTCExchangeFee(totalCardsValue);
 
   return (
@@ -82,20 +81,19 @@ const Payment = () => {
                 </div>
               </div>
               <Divider className="custom-divider" />
-              {cards &&
-                cards?.map((card) => (
+              {cartItems &&
+                cartItems?.map((card) => (
                   <div className="custom-upper-para-pay">
                     <div>
                       <p className="swiggy">
                         <div className="value">
-                          {card?.selectedButton === "1" ? (
+                          {card?.card === "1" ? (
                             <>
                               <div style={{ display: "flex" }}>
                                 <img
                                   src={visa}
                                   alt="Visa"
                                   className="visacardtype-img1"
-                                  // style={{ width: "15%" }}
                                 />
                                 <p>Visa</p>
                               </div>
@@ -107,7 +105,6 @@ const Payment = () => {
                                   src={mastercard}
                                   alt="MasterCard"
                                   className="cardtype-img1"
-                                  // style={{ width: "15%" }}
                                 />
                                 <p>MasterCard</p>
                               </div>
@@ -127,7 +124,7 @@ const Payment = () => {
                 ))}
               <div>
                 <p className="value">
-                  Prepaid Card Purchase Price: {totalCards} x $2.98
+                  Prepaid Card Purchase Price: {cartCount} x $2.98
                 </p>
                 <p className="value">
                   BTC Exchange Fee: $

@@ -1,5 +1,5 @@
 import React, { useState, useContext, Fragment } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -15,14 +15,6 @@ import logo from "../assets/logo.png";
 import "../styles/NavbarCart.css";
 
 function NavbarCart() {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const input1 = queryParams.get("usdValue");
-  const input2 = queryParams.get("btcValue");
-  const input3 = queryParams.get("selectedButton");
-  const [selectedButton, setSelectedButton] = useState(input3);
-  const [usdValue, setUSDValue] = useState(input1);
-  const [btcValue, setBtcValue] = useState(input2);
   const { cartCount, cartItems, removeFromCart } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [resmenu, setResMenu] = useState("none");
@@ -44,12 +36,7 @@ function NavbarCart() {
     removeFromCart(itemId);
   };
   const handleCheckout = () => {
-    const queryParams = cartItems
-      .map((item) => {
-        return `id=${item?.id}&usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}`;
-      })
-      .join("&");
-    navigate(`/front-demo/checkout?${queryParams}`);
+    navigate(`/front-demo/checkout`);
   };
 
   return (
@@ -108,65 +95,47 @@ function NavbarCart() {
             <p>Cart is empty</p>
           ) : (
             <>
-              {cartItems
-                .reduce((uniqueItems, item) => {
-                  const existingItem = uniqueItems.find(
-                    (uniqueItem) =>
-                      uniqueItem.usdValue === item.usdValue &&
-                      uniqueItem.card === item.card
-                  );
+              {cartItems?.map((cartItem) => {
+                const { id, usdValue, card, quantity } = cartItem;
+                const multipliedValue = usdValue * quantity;
 
-                  if (existingItem) {
-                    existingItem.quantity += 1;
-                  } else {
-                    uniqueItems.push({ ...item, quantity: 1 });
-                  }
-
-                  return uniqueItems;
-                }, [])
-                .map((item) => {
-                  const { usdValue, card, quantity } = item;
-                  const multipliedValue = usdValue * quantity;
-
-                  return (
-                    <Fragment key={item.id}>
-                      {card === "1" ? (
-                        <>
-                          <div className="visadiv">
-                            <img
-                              src={visa}
-                              alt="Visa"
-                              className="visacardtype-img"
-                            />
-                            <p>Visa</p>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div className="visadiv">
-                            <img
-                              src={mastercard}
-                              alt="MasterCard"
-                              className="cardtype-img"
-                            />
-                            <p>MasterCard</p>
-                          </div>
-                        </>
-                      )}
-                      <div className="delete">
-                        <p>
-                          ${usdValue} x {quantity} = ${multipliedValue}
-                        </p>
-                        <p>
-                          <DeleteOutlined
-                            onClick={() => handleRemoveItem(item.id)}
+                return (
+                  <Fragment key={id}>
+                    {card === "1" ? (
+                      <>
+                        <div className="visadiv">
+                          <img
+                            src={visa}
+                            alt="Visa"
+                            className="visacardtype-img"
                           />
-                        </p>
-                      </div>
-                      <Divider />
-                    </Fragment>
-                  );
-                })}
+                          <p>Visa</p>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="visadiv">
+                          <img
+                            src={mastercard}
+                            alt="MasterCard"
+                            className="cardtype-img"
+                          />
+                          <p>MasterCard</p>
+                        </div>
+                      </>
+                    )}
+                    <div className="delete">
+                      <p>
+                        ${usdValue} x {quantity} = ${multipliedValue}
+                      </p>
+                      <p>
+                        <DeleteOutlined onClick={() => handleRemoveItem(id)} />
+                      </p>
+                    </div>
+                    <Divider />
+                  </Fragment>
+                );
+              })}
             </>
           )}
         </Fragment>
@@ -176,7 +145,7 @@ function NavbarCart() {
             Keep Shopping
           </Button>
           <Button key="checkout" type="primary" onClick={handleCheckout}>
-            Checkout ({cartItems.length})
+            Checkout ({cartCount})
           </Button>
         </div>
       </Modal>

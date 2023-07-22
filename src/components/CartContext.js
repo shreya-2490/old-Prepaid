@@ -5,32 +5,47 @@ export const CartContext = createContext();
 
 // Create the CartProvider component
 export const CartProvider = ({ children }) => {
-  // Define the cart state  
-  const [cartCount, setCartCount] = useState(0);
   const [cartItems, setCartItems] = useState([]);
+
+  const cartCount = cartItems?.reduce((accumulator, object) => {
+    return accumulator + object?.quantity || 1;
+  }, 0);
 
   // Add item to the cart
   const addToCart = (item) => {
-    setCartCount(cartCount + 1);
-    setCartItems((prevItems) => [...prevItems, item]);
+    const existingCartItemIndex = cartItems.findIndex(
+      (cartItem) =>
+        cartItem.usdValue === item.usdValue && cartItem.card === item.card
+    );
+    if (existingCartItemIndex !== -1) {
+      const updatedItems = [...cartItems];
+      updatedItems[existingCartItemIndex].quantity += 1;
+      setCartItems(updatedItems);
+    } else {
+      setCartItems((prevItems) => [...prevItems, { ...item, quantity: 1 }]);
+    }
   };
 
   // Remove item from the cart
   const removeFromCart = (itemId) => {
-    setCartItems((prevItems) => {
-      const itemToRemove = prevItems.find((item) => item.id === itemId);
-  
-      if (itemToRemove) {
-        // Decrease the badge count by 1
-        setCartCount((prevCount) => prevCount - 1);
-  
-        return prevItems.filter((item) => item.id !== itemId);
-      }
-  
-      return prevItems;
-    });
+    const updatedCartItems = cartItems?.filter(
+      (cartItem) => cartItem?.id !== itemId
+    );
+    setCartItems(updatedCartItems);
   };
-  
+
+  const updateQuantity = (itemId, quantity) => {
+    const cartItemIndex = cartItems.findIndex(
+      (cartItem) => cartItem.id === itemId
+    );
+
+    if (cartItemIndex !== -1) {
+      const updatedItems = [...cartItems];
+      updatedItems[cartItemIndex].quantity = quantity;
+      setCartItems(updatedItems);
+    }
+  };
+
   // Clear the cart
   const clearCart = () => {
     setCartItems([]);
@@ -45,6 +60,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         clearCart,
         cartCount,
+        updateQuantity,
       }}
     >
       {children}

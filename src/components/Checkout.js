@@ -7,38 +7,23 @@ import Payment from "./payment";
 import validator from "validator";
 import visa from "../assets/Visacart.png";
 import mastercard from "../assets/Mastercardcart.png";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "./CartContext";
+import axios from "axios";
+import { usdToBTC } from "../utils/helper";
 
 const Checkout = () => {
-  const location = useLocation();
+  const [btcRate, setBTCRate] = useState(null);
   const navigate = useNavigate();
-  const { removeFromCart } = useContext(CartContext);
-  const queryParams = new URLSearchParams(location.search);
-  const valuesCount = queryParams.getAll("usdValue").length;
+  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
 
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [paymentStatus, setPaymentstatus] = useState(false);
-  const [values, setValues] = useState([]);
   const [email, setEmail] = useState("");
 
-  useEffect(() => {
-    const newValues = [];
-    for (let i = 0; i < valuesCount; i++) {
-      const usdValue = queryParams.getAll("usdValue")[i];
-      const btcValue = parseFloat(queryParams.getAll("btcValue")[i]);
-      const selectedButton = queryParams.getAll("selectedButton")[i];
-      const id = queryParams.getAll("id")[i];
-      newValues.push({ usdValue, btcValue, selectedButton, id });
-    }
-    setValues(newValues);
-  }, [location]);
-
-  const handleDelete = (card) => {
-    const updatedValues = values.filter((value) => value?.id !== card?.id);
-    setValues(updatedValues);
-    removeFromCart(card?.id);
+  const handleDelete = (cartItem) => {
+    removeFromCart(cartItem?.id);
   };
 
   const handleEmailChange = (event) => {
@@ -53,7 +38,7 @@ const Checkout = () => {
       alert("Invalid email format. Please enter a correct email address.");
     }
 
-    navigate(`/front-demo/payment`, { state: { cards: values, email } });
+    navigate(`/front-demo/payment`, { state: { email } });
   };
 
   const handleCheckboxChange1 = () => {
@@ -66,94 +51,24 @@ const Checkout = () => {
 
   const tooltipText = "This is the text that will be displayed on hover.";
 
-  const handleChange = (items, quantity) => {
-    const newState = values?.map((value) => {
-      const matchedItem = items?.find((item) => item?.id === value?.id);
-      if (matchedItem) {
-        return { ...matchedItem, quantity };
-      }
-      return value;
-    });
-
-    setValues(newState);
+  const handleChange = (item, quantity) => {
+    updateQuantity(item?.id, quantity);
   };
 
-  const displayCardQuantity = queryParams.get("cardQuantity");
-  const displayLoadAmount = queryParams.get("loadAmount");
+  useEffect(() => {
+    axios
+      ?.get(
+        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+      )
+      .then((response) => setBTCRate(response?.data?.bitcoin?.usd))
+      .catch((error) => console.error(error));
+  }, []);
 
-  const exchangeRate = 0.000038; // Example exchange rate, replace with the actual rate
-  const getMultipliedValue = (usdValue, selectedButton) => {
-    const filteredValues = values.filter(
-      (value) =>
-        value.usdValue === usdValue && value.selectedButton === selectedButton
+  const totalCardsValue = cartItems?.reduce((accumulator, object) => {
+    return (
+      accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
     );
-    const duplicateItemCount = filteredValues.length;
-
-    if (duplicateItemCount === 1) {
-      return {
-        multipliedValue: usdValue,
-        btcValue: filteredValues[0].btcValue,
-      };
-    } else {
-      const multipliedValue = usdValue * duplicateItemCount;
-      const btcValue = filteredValues[0].btcValue * duplicateItemCount;
-
-      return {
-        multipliedValue,
-        btcValue,
-      };
-    }
-  };
-
-  const getTotalAmount = () => {
-    let totalAmount = 0;
-    let totalBTC = 0;
-
-    const totalUsdSum = values.reduce((accumulator, object) => {
-      return accumulator + object.usdValue * (object?.quantity || 1);
-    }, 0);
-
-    const uniqueValues = Array.from(
-      new Set(values.map((value) => value.usdValue))
-    );
-    uniqueValues.forEach((usdValue) => {
-      const filteredValues = values.filter(
-        (value) => value.usdValue === usdValue
-      );
-      const cardTypes = new Set(
-        filteredValues.map((value) => value.selectedButton)
-      );
-
-      cardTypes.forEach((cardType) => {
-        const filteredValuesForCard = filteredValues.filter(
-          (value) => value.selectedButton === cardType
-        );
-        const duplicateItemCount = filteredValuesForCard.length;
-
-        if (duplicateItemCount === 1) {
-          const { multipliedValue, btcValue } = getMultipliedValue(
-            usdValue,
-            cardType
-          );
-          totalAmount += parseFloat(multipliedValue);
-          totalBTC += btcValue;
-        } else {
-          const multipliedValue = usdValue * duplicateItemCount;
-          const btcValue =
-            filteredValuesForCard[0].btcValue * duplicateItemCount;
-          totalAmount += parseFloat(multipliedValue);
-          totalBTC += btcValue;
-        }
-      });
-    });
-
-    return { totalAmount: totalUsdSum, totalBTC: totalBTC.toFixed(5) };
-  };
-
-  const { totalAmount, totalBTC } = getTotalAmount();
-
-  const bulktotal = displayLoadAmount * displayCardQuantity * exchangeRate;
-  const totalbulkamt = displayLoadAmount * displayCardQuantity;
+  }, 0);
 
   return (
     <>
@@ -169,147 +84,57 @@ const Checkout = () => {
                 headStyle={{ borderBottom: "none" }}
               >
                 <div className="custom-upper-para">
-                  {Array.from(
-                    new Set(values.map((value) => value.usdValue))
-                  ).map((usdValue) => {
-                    const filteredValues = values.filter(
-                      (value) => value.usdValue === usdValue
-                    );
-                    const uniqueSelectedButtons = Array.from(
-                      new Set(
-                        filteredValues.map((value) => value.selectedButton)
-                      )
-                    );
+                  {cartItems?.map((cartItem) => {
+                    const { id, usdValue, quantity, btcValue, card } = cartItem;
 
+                    const totalValue = usdValue * quantity;
                     return (
-                      <div key={usdValue} className="custom-upper-para-item">
-                        {uniqueSelectedButtons.map((selectedButton) => {
-                          const filteredItems = filteredValues.filter(
-                            (value) => value.selectedButton === selectedButton
-                          );
-                          const duplicateItemCount = filteredItems.length;
-                          const { multipliedValue, btcValue } =
-                            getMultipliedValue(usdValue, selectedButton);
-
-                          return (
-                            <div
-                              key={selectedButton}
-                              className="item-container"
-                            >
-                              <div className="value">
-                                {selectedButton === "1" ? (
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <img src={visa} alt="Visa" />
-                                    <div className="item-details">
-                                <p className="value">
-                                  {usdValue}{" "}
-                                  {duplicateItemCount > 1
-                                    ? `x ${duplicateItemCount}`
-                                    : ""}{" "}
-                                  = ${multipliedValue}
+                      <div key={id} className="item-container">
+                        <div className="value">
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <img
+                              src={card === "1" ? visa : mastercard}
+                              alt="Visa"
+                            />
+                            <div className="item-details">
+                              <p className="value">
+                                {usdValue} x {quantity} = {totalValue}
+                              </p>
+                              <div className="item-actions">
+                                <Select
+                                  className="select"
+                                  defaultValue={quantity}
+                                  style={{ width: 54 }}
+                                  onChange={(value) =>
+                                    handleChange(cartItem, value)
+                                  }
+                                  options={[
+                                    { value: 1, label: "1" },
+                                    { value: 2, label: "2" },
+                                    { value: 3, label: "3" },
+                                    { value: 4, label: "4" },
+                                    { value: 5, label: "5" },
+                                    { value: 6, label: "6" },
+                                    { value: 7, label: "7" },
+                                    { value: 8, label: "8" },
+                                  ]}
+                                />
+                                <DeleteOutlined
+                                  className="divider"
+                                  onClick={() => handleDelete(cartItem)}
+                                />
+                                <p className="BTC">
+                                  {Number(btcValue)?.toFixed(5)} BTC
                                 </p>
-                                {!queryParams.has("loadAmount") && (
-                                  <div className="item-actions">
-                                    <Select
-                                      className="select"
-                                      defaultValue="1"
-                                      style={{ width: 54 }}
-                                      onChange={(value) =>
-                                        handleChange(filteredItems, value)
-                                      }
-                                      options={[
-                                        { value: 1, label: "1" },
-                                        { value: 2, label: "2" },
-                                        { value: 3, label: "3" },
-                                        { value: 4, label: "4" },
-                                        { value: 5, label: "5" },
-                                        { value: 6, label: "6" },
-                                        { value: 7, label: "7" },
-                                        { value: 8, label: "8" },
-                                      ]}
-                                    />
-                                    <DeleteOutlined
-                                      className="divider"
-                                      onClick={() =>
-                                        handleDelete(filteredValues[0])
-                                      }
-                                    />
-                                    {queryParams.has("loadAmount") ? (
-                                      ""
-                                    ) : (
-                                      <p className="BTC">
-                                        {btcValue.toFixed(5)} BTC
-                                      </p>
-                                    )}
-                                  </div>
-                                )}
                               </div>
-                                  </div>
-                                  
-                                ) : (
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <img src={mastercard} alt="MasterCard" />
-                                    <div className="item-details">
-                                <p className="value">
-                                  {usdValue}{" "}
-                                  {duplicateItemCount > 1
-                                    ? `x ${duplicateItemCount}`
-                                    : ""}{" "}
-                                  = ${multipliedValue}
-                                </p>
-                                {!queryParams.has("loadAmount") && (
-                                  <div className="item-actions">
-                                    <Select
-                                      className="select"
-                                      defaultValue="1"
-                                      style={{ width: 54 }}
-                                      onChange={(value) =>
-                                        handleChange(filteredItems, value)
-                                      }
-                                      options={[
-                                        { value: 1, label: "1" },
-                                        { value: 2, label: "2" },
-                                        { value: 3, label: "3" },
-                                        { value: 4, label: "4" },
-                                        { value: 5, label: "5" },
-                                        { value: 6, label: "6" },
-                                        { value: 7, label: "7" },
-                                        { value: 8, label: "8" },
-                                      ]}
-                                    />
-                                    <DeleteOutlined
-                                      className="divider"
-                                      onClick={() =>
-                                        handleDelete(filteredValues[0])
-                                      }
-                                    />
-                                    {queryParams.has("loadAmount") ? (
-                                      ""
-                                    ) : (
-                                      <p className="BTC">
-                                        {btcValue.toFixed(5)} BTC
-                                      </p>
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                                  </div>
-                                )}
-                              </div>
-                              
                             </div>
-                          );
-                        })}
+                          </div>
+                        </div>
                       </div>
                     );
                   })}
@@ -325,16 +150,10 @@ const Checkout = () => {
                     </div>
                   </div>
                   <div className="custom-upper-cardvalue">
-                    {queryParams.has("loadAmount") ? (
-                      <p className="value">${totalbulkamt}</p>
-                    ) : (
-                      <p className="value">${totalAmount}</p>
-                    )}
-                    {queryParams.has("loadAmount") ? (
-                      <p className="BTC-total">{bulktotal.toFixed(5)} BTC</p>
-                    ) : (
-                      <p className="BTC-total">{totalBTC} BTC</p>
-                    )}
+                    <p className="value">${totalCardsValue}</p>
+                    <p className="BTC-total">
+                      {usdToBTC(totalCardsValue, btcRate)} BTC
+                    </p>
                   </div>
                 </div>
               </Card>

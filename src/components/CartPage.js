@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext , Fragment } from "react";
+import React, { useEffect, useState, useContext, Fragment } from "react";
 import { Card } from "antd";
 import { useLocation } from "react-router-dom";
 import { CartContext } from "./CartContext";
@@ -9,16 +9,9 @@ import visacard from "../assets/Visacartpage.png";
 import "../styles/CartPage.css";
 import visa from "../assets/Visacart.png";
 import { v4 as uuidv4 } from "uuid";
-import {
-  UserOutlined,
-  ShoppingCartOutlined,
-  DeleteOutlined,
-  MenuOutlined,
-} from "@ant-design/icons";
-import { Badge, Modal, Button, Divider } from "antd";
-import { Link, useNavigate  } from "react-router-dom";
-
-
+import { DeleteOutlined } from "@ant-design/icons";
+import { Modal, Button, Divider } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Cart = ({ handleAddToCart }) => {
   const location = useLocation();
@@ -31,41 +24,29 @@ const Cart = ({ handleAddToCart }) => {
   const [usdValue, setUSDValue] = useState(input1);
   const [btcValue, setBtcValue] = useState(input2);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, cartCount, cartItems, removeFromCart } =
+    useContext(CartContext);
   const exchangeRate = 0.000038; // Example exchange rate, replace with the actual rate
   const [isCartOpen, setIsCartOpen] = useState(false);
-  
 
-    
-    
-    const { cartCount, cartItems, removeFromCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
-    const [resmenu, setResMenu] = useState("none");
-    const navigate = useNavigate();
-  
-    const handleCartClick = () => {
-      setIsCartOpen(true);
-    };
-  
-    const handleCloseClick = () => {
-      setIsCartOpen(false);
-    };
-  
-    const handleKeepShopping = () => {
-      setIsCartOpen(false);
-      navigate("/front-demo");
-    };
-    const handleRemoveItem = (itemId) => {
-      removeFromCart(itemId);
-    };
-    const handleCheckout = () => {
-      const queryParams = cartItems
-        .map((item) => {
-          return `id=${item?.id}&usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}`;
-        })
-        .join("&");
-      navigate(`/front-demo/checkout?${queryParams}`);
-    };
+  const handleCloseClick = () => {
+    setIsCartOpen(false);
+  };
+
+  const handleKeepShopping = () => {
+    setIsCartOpen(false);
+    navigate("/front-demo");
+  };
+
+  const handleRemoveItem = (itemId) => {
+    removeFromCart(itemId);
+  };
+
+  const handleCheckout = () => {
+    navigate(`/front-demo/checkout`);
+  };
 
   const handleUSDChange = (event) => {
     const usdInput = parseFloat(event.target.value);
@@ -146,7 +127,7 @@ const Cart = ({ handleAddToCart }) => {
               <div>
                 <div>
                   <p>Amount</p>
-                 
+
                   <div className="cart-input">
                     <input
                       id="numericInput"
@@ -163,11 +144,11 @@ const Cart = ({ handleAddToCart }) => {
                       className={btcValue.length > 10 ? "long-value" : ""}
                     />
                     <div>
-                  <p className="btcvalue">Expected BTC</p>
-                  <div className="cart-input">
-                    <p className="expected-value">{btcValue}</p>
-                  </div>
-                </div>
+                      <p className="btcvalue">Expected BTC</p>
+                      <div className="cart-input">
+                        <p className="expected-value">{btcValue}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>{" "}
@@ -219,65 +200,47 @@ const Cart = ({ handleAddToCart }) => {
             <p>Cart is empty</p>
           ) : (
             <>
-              {cartItems
-                .reduce((uniqueItems, item) => {
-                  const existingItem = uniqueItems.find(
-                    (uniqueItem) =>
-                      uniqueItem.usdValue === item.usdValue &&
-                      uniqueItem.card === item.card
-                  );
+              {cartItems?.map((cartItem) => {
+                const { id, usdValue, card, quantity } = cartItem;
+                const multipliedValue = usdValue * quantity;
 
-                  if (existingItem) {
-                    existingItem.quantity += 1;
-                  } else {
-                    uniqueItems.push({ ...item, quantity: 1 });
-                  }
-
-                  return uniqueItems;
-                }, [])
-                .map((item) => {
-                  const { usdValue, card, quantity } = item;
-                  const multipliedValue = usdValue * quantity;
-
-                  return (
-                    <Fragment key={item.id}>
-                      {card === "1" ? (
-                        <>
-                          <div className="visadiv">
-                            <img
-                              src={visa}
-                              alt="Visa"
-                              className="visacardtype-img"
-                            />
-                            <p>Visa</p>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div className="visadiv">
-                            <img
-                              src={mastercard}
-                              alt="MasterCard"
-                              className="cardtype-img"
-                            />
-                            <p>MasterCard</p>
-                          </div>
-                        </>
-                      )}
-                      <div className="delete">
-                        <p>
-                          ${usdValue} x {quantity} = ${multipliedValue}
-                        </p>
-                        <p>
-                          <DeleteOutlined
-                            onClick={() => handleRemoveItem(item.id)}
+                return (
+                  <Fragment key={id}>
+                    {card === "1" ? (
+                      <>
+                        <div className="visadiv">
+                          <img
+                            src={visa}
+                            alt="Visa"
+                            className="visacardtype-img"
                           />
-                        </p>
-                      </div>
-                      <Divider />
-                    </Fragment>
-                  );
-                })}
+                          <p>Visa</p>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="visadiv">
+                          <img
+                            src={mastercard}
+                            alt="MasterCard"
+                            className="cardtype-img"
+                          />
+                          <p>MasterCard</p>
+                        </div>
+                      </>
+                    )}
+                    <div className="delete">
+                      <p>
+                        ${usdValue} x {quantity} = ${multipliedValue}
+                      </p>
+                      <p>
+                        <DeleteOutlined onClick={() => handleRemoveItem(id)} />
+                      </p>
+                    </div>
+                    <Divider />
+                  </Fragment>
+                );
+              })}
             </>
           )}
         </Fragment>
@@ -287,7 +250,7 @@ const Cart = ({ handleAddToCart }) => {
             Keep Shopping
           </Button>
           <Button key="checkout" type="primary" onClick={handleCheckout}>
-            Checkout ({cartItems.length})
+            Checkout ({cartCount})
           </Button>
         </div>
       </Modal>
