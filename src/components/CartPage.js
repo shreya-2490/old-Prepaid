@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext , Fragment } from "react";
 import { Card } from "antd";
 import { useLocation } from "react-router-dom";
 import { CartContext } from "./CartContext";
@@ -7,7 +7,18 @@ import NavbarCart from "./NavbarCart";
 import mastercard from "../assets/Mastercardcartpage.png";
 import visacard from "../assets/Visacartpage.png";
 import "../styles/CartPage.css";
+import visa from "../assets/Visacart.png";
 import { v4 as uuidv4 } from "uuid";
+import {
+  UserOutlined,
+  ShoppingCartOutlined,
+  DeleteOutlined,
+  MenuOutlined,
+} from "@ant-design/icons";
+import { Badge, Modal, Button, Divider } from "antd";
+import { Link, useNavigate  } from "react-router-dom";
+
+
 
 const Cart = ({ handleAddToCart }) => {
   const location = useLocation();
@@ -22,6 +33,39 @@ const Cart = ({ handleAddToCart }) => {
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const { addToCart } = useContext(CartContext);
   const exchangeRate = 0.000038; // Example exchange rate, replace with the actual rate
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  
+
+    
+    
+    const { cartCount, cartItems, removeFromCart } = useContext(CartContext);
+
+    const [resmenu, setResMenu] = useState("none");
+    const navigate = useNavigate();
+  
+    const handleCartClick = () => {
+      setIsCartOpen(true);
+    };
+  
+    const handleCloseClick = () => {
+      setIsCartOpen(false);
+    };
+  
+    const handleKeepShopping = () => {
+      setIsCartOpen(false);
+      navigate("/front-demo");
+    };
+    const handleRemoveItem = (itemId) => {
+      removeFromCart(itemId);
+    };
+    const handleCheckout = () => {
+      const queryParams = cartItems
+        .map((item) => {
+          return `id=${item?.id}&usdValue=${item.usdValue}&btcValue=${item.btcValue}&selectedButton=${item.card}`;
+        })
+        .join("&");
+      navigate(`/front-demo/checkout?${queryParams}`);
+    };
 
   const handleUSDChange = (event) => {
     const usdInput = parseFloat(event.target.value);
@@ -37,6 +81,7 @@ const Cart = ({ handleAddToCart }) => {
       id: uuidv4(),
     });
     setIsSuccessModalVisible(true);
+    setIsCartOpen(true);
   };
 
   useEffect(() => {
@@ -159,6 +204,93 @@ const Cart = ({ handleAddToCart }) => {
           </div>
         </div>
       </div>
+
+      <Modal
+        visible={isCartOpen}
+        onCancel={handleCloseClick}
+        footer={null}
+        className="cart-modal"
+        style={{
+          width: "10%",
+        }}
+      >
+        <Fragment>
+          {cartItems.length === 0 ? (
+            <p>Cart is empty</p>
+          ) : (
+            <>
+              {cartItems
+                .reduce((uniqueItems, item) => {
+                  const existingItem = uniqueItems.find(
+                    (uniqueItem) =>
+                      uniqueItem.usdValue === item.usdValue &&
+                      uniqueItem.card === item.card
+                  );
+
+                  if (existingItem) {
+                    existingItem.quantity += 1;
+                  } else {
+                    uniqueItems.push({ ...item, quantity: 1 });
+                  }
+
+                  return uniqueItems;
+                }, [])
+                .map((item) => {
+                  const { usdValue, card, quantity } = item;
+                  const multipliedValue = usdValue * quantity;
+
+                  return (
+                    <Fragment key={item.id}>
+                      {card === "1" ? (
+                        <>
+                          <div className="visadiv">
+                            <img
+                              src={visa}
+                              alt="Visa"
+                              className="visacardtype-img"
+                            />
+                            <p>Visa</p>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="visadiv">
+                            <img
+                              src={mastercard}
+                              alt="MasterCard"
+                              className="cardtype-img"
+                            />
+                            <p>MasterCard</p>
+                          </div>
+                        </>
+                      )}
+                      <div className="delete">
+                        <p>
+                          ${usdValue} x {quantity} = ${multipliedValue}
+                        </p>
+                        <p>
+                          <DeleteOutlined
+                            onClick={() => handleRemoveItem(item.id)}
+                          />
+                        </p>
+                      </div>
+                      <Divider />
+                    </Fragment>
+                  );
+                })}
+            </>
+          )}
+        </Fragment>
+
+        <div className="cart-modal-footer">
+          <Button key="keepShopping" onClick={handleKeepShopping}>
+            Keep Shopping
+          </Button>
+          <Button key="checkout" type="primary" onClick={handleCheckout}>
+            Checkout ({cartItems.length})
+          </Button>
+        </div>
+      </Modal>
     </>
   );
 };
