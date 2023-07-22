@@ -94,8 +94,8 @@ const Payment = () => {
                                 <img
                                   src={visa}
                                   alt="Visa"
-                                  className="visacardtype-img"
-                                  style={{ width: "15%" }}
+                                  className="visacardtype-img1"
+                                  // style={{ width: "15%" }}
                                 />
                                 <p>Visa</p>
                               </div>
@@ -106,8 +106,8 @@ const Payment = () => {
                                 <img
                                   src={mastercard}
                                   alt="MasterCard"
-                                  className="cardtype-img"
-                                  style={{ width: "15%" }}
+                                  className="cardtype-img1"
+                                  // style={{ width: "15%" }}
                                 />
                                 <p>MasterCard</p>
                               </div>
@@ -115,7 +115,7 @@ const Payment = () => {
                           )}
                         </div>
                       </p>
-                      <div className="w-100 d-flex justify-content-between">
+                      <div className="final-payment">
                         <p className="value">{`${card?.quantity || 1} x $${
                           card?.usdValue
                         }`}</p>

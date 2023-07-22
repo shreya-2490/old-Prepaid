@@ -127,20 +127,28 @@
     }
   
     .cart-modal{
-      top: 9%;
-      left: 28%;
-     
+      top: 8%;
+      left: 10%;
      border-radius: 1.5rem;
     }
   
     .visadiv{
       display: flex;
     }
+
+    .visadiv p {
+      font-size: 1.5rem;
+    }
   
     .delete{
       display: flex;
       align-items: baseline;
       justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .delete p {
+      font-size: 1.5rem;
     }
   
     .cart-modal-footer{
@@ -202,6 +210,11 @@
   
     .visadiv{
       display: flex;
+    }
+
+    .big {
+      font-size: 1rem;
+      border: 1px solid red;
     }
   
     .delete{

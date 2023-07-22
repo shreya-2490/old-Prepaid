@@ -3,10 +3,9 @@
 @media (min-width: 1024px) {
   .checkout-main1 {
     background-color: #f5f2ea;
-    height: 120vh;
+    min-height: 100vh;
     display: flex;
-
-    align-items: center;
+    padding: 4rem 0;
     justify-content: center;
   }
 
@@ -99,10 +98,10 @@
   .payment-card2 {
     width: 40%;
   }
-  .visacardtype-img{
-    width: 15%;
-    height: 0%;
-    margin-right: 0.625rem;
+
+  .visacardtype-img1, .cardtype-img1{
+    width: 40%;
+    margin-right: 2rem;
   }
 }
 
@@ -111,9 +110,9 @@
 @media (min-width: 641px) and (max-width: 1023px) {
   .checkout-main1 {
     background-color: #f5f2ea;
-    height: 100vh;
+    min-height:100vh;
     display: flex;
-    align-items: center;
+    padding: 4rem 0;
     justify-content: center;
   }
 
@@ -216,6 +215,12 @@
   .BTC-simplecard {
     font-size: 1.2em;
   }
+
+  .visacardtype-img1, .cardtype-img1{
+    width: 80%;
+    /* border: 2px solid red; */
+    margin-right: 1rem;
+  }
 }
 
 /* / ********************** Mobile design ***************** / */
@@ -310,6 +315,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+   margin-bottom: 1rem;
   }
 
   .subtotal {
@@ -327,5 +333,21 @@
 
   .payment-card2 {
     width: 95%;
+  }
+
+  .custom-divider{
+    display: none;
+  }
+
+  .final-payment{
+    display: flex;
+    width: 120%;
+    margin-left: 2rem;
+    justify-content: space-between;
+  }
+
+  .visacardtype-img1, .cardtype-img1{
+    width: 20%;
+    margin-right: 0.5rem;
   }
 }
