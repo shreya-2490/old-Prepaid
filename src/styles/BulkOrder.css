@@ -15,7 +15,7 @@
     width: 90%;
     background-color: #fff;
     border-radius: 1.25rem;
-    padding: 1rem;
+    padding: 1rem 1rem 3rem 2rem;
     position: relative;
     display: flex;
     align-items: center;
@@ -44,6 +44,7 @@
     width: 100%;
     background-color: #fdc886;
     border-radius: 0.5rem 0.5rem 0rem 0rem;
+    padding-top: 2rem;
   }
 
   .benefits-card {
@@ -60,6 +61,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 1rem;
   }
 
   .benefits-card-content {
@@ -169,7 +171,7 @@
     text-align: center;
     background-color: #fdc886;
     width: 70%;
-    margin: 0 15%;
+    margin: 0 7rem;
   }
 }
 

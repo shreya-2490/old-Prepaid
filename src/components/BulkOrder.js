@@ -226,7 +226,7 @@ const BulkOrder = () => {
               <Form.Item
                 name="Business Name"
                 label="Business Name"
-                style={{ margin: "0px 20px", width: "50%" }}
+                style={{ margin: "0px 20px", width: "61%" }}
               >
                 <Input />
               </Form.Item>

@@ -65,7 +65,7 @@
 }
 
 .sider {
-  width: 30%;
+  width: 25%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -108,14 +108,15 @@
   flex-direction: column;
 }
 
-.first-gray {
+.first-gray , .First-gray{
   display: flex;
+  width: 100%;
 }
 
-.first-gray-1 {
-  margin-left: 0.25rem;
-  margin-top: 0.8125rem;
+.first-gray-1, .First-gray-1 {
+  margin-top: 0.5rem;
 }
+
 .buttons {
   align-items: stretch;
   background: linear-gradient(180deg, #ffffff 50%, #ffffff 0);
@@ -129,13 +130,10 @@
 }
 .price-amount{
   border-radius: 0.25rem;
-  width: 100%;
-  margin-left: 5.7375rem;
+  margin-left: 5rem;
+  margin-right: 1rem;
   border: solid 1px #29262624;
-  padding: 0.3125rem;
-  box-shadow: none !important;
-  height: 2.375rem !important;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #1b1b1b;
   background-color: #f0f0f0;
 }
@@ -148,9 +146,9 @@
   padding: 3rem;
 }
 
-.pay {
+.pay , .Pay {
   color: black;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 500;
   padding-left: 2rem;
 }
@@ -203,7 +201,7 @@ input[type="number"]::-webkit-outer-spin-button {
   box-shadow: none !important;
   min-height: 2.75rem;
   padding: 0.625rem 0.6875rem;
-
+ 
 }
 
 .items {
@@ -224,19 +222,18 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 1.25rem;
 }
 
-.both-gray {
+.both-gray , .Both-gray{
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #f5f2ea;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   padding: 0.3125rem;
 }
 
 .dropdown-1 {
   font-size: 0.75rem;
-  margin-right: 2.8125rem;
-
+  margin-right: 1rem;
   color: black;
 }
 
@@ -332,6 +329,11 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 5.3125rem;
 }
 
+.mastercard-image{
+  padding: 0.5rem 0;
+}
+
+
 .choose-card {
   margin: 0.625rem 0.125rem;
   text-align: justify;
@@ -344,12 +346,11 @@ input[type="number"]::-webkit-outer-spin-button {
 .dropdown-amount {
   border-radius: 0.25rem;
   width: 100%;
-  margin-left: 1.4375rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
   border: solid 1px #29262624;
   padding: 0.3125rem;
-  box-shadow: none !important;
-  height: 2.375rem !important;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #1b1b1b;
   background-color: #f0f0f0;
 }
@@ -381,10 +382,12 @@ input[type="number"]::-webkit-outer-spin-button {
     font-weight: 600;
     text-align: center;
     width: 90%;
+    margin: 0 auto;
   }
 
   .home-heading-1 {
-    font-size: 1rem;
+    font-size: 0.8rem;
+    margin: 0 auto;
     text-align: center;
   }
 
@@ -400,6 +403,28 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 80%;
   }
 
+  .both-gray{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+    font-size: 1rem;
+  }
+
+  .first-gray{
+   
+    padding: 1rem 0;
+  }
+
+  .second-gray{
+    padding: 0.8rem 0;
+  }
+
+  .dropdown-amount{
+    margin-top: 0.5rem;
+
+  }
   .sider {
     width: 100%;
   }
@@ -414,6 +439,25 @@ input[type="number"]::-webkit-outer-spin-button {
   .mastercard-button {
     font-size: 0.75rem;
   }
+
+  .dropdown-1{
+    margin-left: 3rem;
+  }
+
+
+  .First-gray{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 1rem;
+    background-color: #f5f2ea;
+    border-radius: 0.5rem;
+  }
+
+  .Pay{
+    padding-top: 0.5rem;
+    font-size: 1rem;
+  }
+
 }
 
 /* / ****************** Tablet screen ********************* / */

@@ -65,7 +65,7 @@ const Home = () => {
   }, [usdValue, loadAmount]);
 
   const handleUSDSelect = (selectedValue) => {
-    const value = parseFloat(selectedValue); // Convert selectedValue to a number
+    const value = parseFloat(selectedValue); 
     setUSDValue(value);
     setIsValueValid(false);
     setLoadAmount(selectedValue);
@@ -250,10 +250,10 @@ const Home = () => {
                 <div className="forms">
                   <div style={{ margin: "15px 0px" }}>
                     <form>
-                      <div className="both-gray">
-                        <div className="first-gray">
-                          <div className="first-gray-1">
-                            <label className="pay">Select Provider</label>
+                      <div className="Both-gray">
+                        <div className="First-gray">
+                          <div className="First-gray-1">
+                            <label className="Pay">Select Provider</label>
                           </div>
                           <div>
                             <select
@@ -272,10 +272,10 @@ const Home = () => {
                   </div>
                   <div style={{ margin: "15px 0px" }}>
                     <form>
-                      <div className="both-gray">
-                        <div className="first-gray">
-                          <div className="first-gray-1">
-                            <label className="pay">Price</label>
+                      <div className="Both-gray">
+                        <div className="First-gray">
+                          <div className="First-gray-1">
+                            <label className="Pay">Price</label>
                           </div>
                           <select
                             className="price-amount"

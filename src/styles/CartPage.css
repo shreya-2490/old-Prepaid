@@ -19,7 +19,7 @@
   
   
   .custom-card-cart  {
-    border-radius: 2rem;
+    border-radius: 1.6rem;
     width: 80%;
     margin: 0 auto;
   }
@@ -34,7 +34,7 @@
   }
   
   .custom-card-cart img{
-    width: 100%;
+    width:100%;
   }
   
   .custom-para2-cart{

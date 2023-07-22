@@ -205,19 +205,7 @@ const Checkout = () => {
                                     }}
                                   >
                                     <img src={visa} alt="Visa" />
-                                  </div>
-                                ) : (
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <img src={mastercard} alt="MasterCard" />
-                                  </div>
-                                )}
-                              </div>
-                              <div className="item-details">
+                                    <div className="item-details">
                                 <p className="value">
                                   {usdValue}{" "}
                                   {duplicateItemCount > 1
@@ -261,6 +249,64 @@ const Checkout = () => {
                                   </div>
                                 )}
                               </div>
+                                  </div>
+                                  
+                                ) : (
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <img src={mastercard} alt="MasterCard" />
+                                    <div className="item-details">
+                                <p className="value">
+                                  {usdValue}{" "}
+                                  {duplicateItemCount > 1
+                                    ? `x ${duplicateItemCount}`
+                                    : ""}{" "}
+                                  = ${multipliedValue}
+                                </p>
+                                {!queryParams.has("loadAmount") && (
+                                  <div className="item-actions">
+                                    <Select
+                                      className="select"
+                                      defaultValue="1"
+                                      style={{ width: 54 }}
+                                      onChange={(value) =>
+                                        handleChange(filteredItems, value)
+                                      }
+                                      options={[
+                                        { value: 1, label: "1" },
+                                        { value: 2, label: "2" },
+                                        { value: 3, label: "3" },
+                                        { value: 4, label: "4" },
+                                        { value: 5, label: "5" },
+                                        { value: 6, label: "6" },
+                                        { value: 7, label: "7" },
+                                        { value: 8, label: "8" },
+                                      ]}
+                                    />
+                                    <DeleteOutlined
+                                      className="divider"
+                                      onClick={() =>
+                                        handleDelete(filteredValues[0])
+                                      }
+                                    />
+                                    {queryParams.has("loadAmount") ? (
+                                      ""
+                                    ) : (
+                                      <p className="BTC">
+                                        {btcValue.toFixed(5)} BTC
+                                      </p>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                                  </div>
+                                )}
+                              </div>
+                              
                             </div>
                           );
                         })}
