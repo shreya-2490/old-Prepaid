@@ -236,8 +236,11 @@
     }
     .visacardtype-img{
       width: 15%;
-      height: 0%;
+      height: 0% !important;
       margin-right: 0.625rem;
+    }
+    .visa-mastercard-checkout{
+      width:3rem;
     }
     
   }
@@ -496,7 +499,7 @@
   
       .visacardtype-img{
         width: 23%;
-        height: 0%;
+        height: 0% !important;
         margin-right: 0.625rem;
       }
   }
@@ -751,7 +754,7 @@
   
       .visacardtype-img{
         width: 15%;
-        height: 0%;
+        height: 0% !important;
         margin-right: 0.625rem;
       }
   }

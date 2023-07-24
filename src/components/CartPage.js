@@ -6,6 +6,10 @@ import { AiOutlineSafety } from "react-icons/ai";
 import NavbarCart from "./NavbarCart";
 import mastercard from "../assets/Mastercardcartpage.png";
 import visacard from "../assets/Visacartpage.png";
+import wifi from "../assets/wifi1.png"
+import map from "../assets/map1.png"
+import master from "../assets/mastercard preowned.png"
+import visa from "../assets/visa preowned.png"
 import "../styles/CartPage.css";
 import { v4 as uuidv4 } from "uuid";
 import { Modal, Button } from "antd";
@@ -71,7 +75,7 @@ const Cart = ({ handleAddToCart }) => {
       <div className="cart-main">
         <div className="twocards-cart" style={{ overflowX: "hidden" }}>
           <div className="card1-cart">
-            <Card
+            {/* <Card
               className="custom-card-cart"
               title=""
               bordered={false}
@@ -83,6 +87,50 @@ const Cart = ({ handleAddToCart }) => {
                 <img src={mastercard}></img>
               )}
             </Card>
+            </Card> */}
+            <div className="card-containercartpage">
+              <div class="wrappercardcartpage">
+                <div class="container">
+                  <div class="card">
+                    <img src={map} class="map-img" />
+                    <div class="top">
+                      <h2 className="h2heading">CARDHOLDER</h2>
+                      <h2 className="h2heading">
+                        <b>${usdValue}</b>
+                      </h2>
+                      <img src={wifi} />
+                    </div>
+
+                    <div class="infos">
+                      <section class="card-number">
+                        <h1 className="h1heading">**** **** **** ****</h1>
+                      </section>
+                      <div class="bottom">
+                        <aside class="infos--bottom">
+                          <section>
+                            <h2 className="h2heading">Expiry date</h2>
+                            <h3 className="h3heading">00/00</h3>
+                          </section>
+                          <section>
+                            <h2 className="h2heading">CVV</h2>
+                            <h3 className="h3heading">***</h3>
+                          </section>
+                        </aside>
+                        <aside>
+                          <section>
+                            {selectedButton == 1 ? (
+                              <img src={visa} class="brand" />
+                            ) : (
+                              <img src={master} class="brand1" />
+                            )}
+                          </section>
+                        </aside>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="card2-cart">
             <Card

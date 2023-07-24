@@ -150,7 +150,7 @@ text-decoration:overline;
 }
 .visacardtype-img{
   width: 15%;
-  height: 0%;
+  height: 0% !important;
   margin-right: 0.625rem;
 }
 

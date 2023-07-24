@@ -20,6 +20,8 @@ import Payment from "./components/payment"
 import { CartProvider } from "./components/CartContext"
 import Dashboard from "./components/Dashboard"
 import Preowned from "./components/Preowned"
+import Terms from "./components/Terms&condition"
+import Policy from "./components/Privacypolicy"
 
 function App() {
   const [cartItems, setCartItems] = useState([])
@@ -95,6 +97,15 @@ function App() {
           </Routes>
           <Routes>
             <Route path="front-demo/contactus" element={<ContactUs />} />
+          </Routes>
+          <Routes>
+            <Route path="front-demo/terms&conditions" element={<Terms />} />
+          </Routes>
+          <Routes>
+            <Route path="front-demo/privacypolicy" element={<Policy />} />
+          </Routes>
+          <Routes>
+            <Route path="front-demo/dashboard" element={<Dashboard />} />
           </Routes>
           <Routes>
             <Route

@@ -19,12 +19,17 @@
 }
 .termscondition{
   margin-left: 5%;
+  text-decoration: underline;
+  color: #1b1b1b;
 }
+
 .divider-bet{
   margin: 0.625rem;
 }
 .privacy{
   margin-left: 1%;
+  text-decoration: underline;
+  color: #1b1b1b;
 }
 @media (max-width: 768px) {
   .footer{

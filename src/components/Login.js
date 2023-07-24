@@ -1,11 +1,13 @@
 import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/Login.css"
+import logo from "../assets/logo.png"
 import { Link } from "react-router-dom"
 
 function Login() {
   return (
     <div className="wrapper d-flex align-items-center justify-content-center w-100">
+      <img src={logo} className="login-logo"></img>
       <div className="login">
         <h2 className="mb-4 login-heading">Login to your Account</h2>
         <form className="needs-validation">
@@ -30,7 +32,7 @@ function Login() {
               Remember me
             </label>
           </div>
-          <Link to="/front-demo">
+          <Link to="/front-demo/dashboard">
             <button type="submit" className="btn  w-100 mt-2">
               SIGN IN
             </button>

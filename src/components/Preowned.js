@@ -60,6 +60,7 @@ function Preowned() {
   return (
     <>
       <NavbarCart />
+      <div className="preloader-main">
       {/* <div className="selection-container">
         <Select
           defaultValue="All"
@@ -148,7 +149,8 @@ function Preowned() {
             <div>No card data available</div>
           )}
         </div>
-      )}
+        )}
+        </div>
       {/* <Footer /> */}
     </>
   )

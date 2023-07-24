@@ -87,8 +87,8 @@ const ContactUs = () => {
             </Form>
           </div>
           <div  className="images-sideform">
-            <div className="phone-image"><img src={phone}></img><p className="bold">+2347026290389</p><p>You can call us at anytime</p></div>
-            <div className="email-image"><img src={email}></img><p className="bold">contact@prepaidfriends.com</p><p>Send us a detailed message</p></div>
+            <div className="phone-image"><img src={phone}></img><p className="bold">+1-000-111-0000</p></div>
+            <div className="email-image"><img src={email}></img><p className="bold">support@prepaidfriends.com</p></div>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 
 .card-container {
+  background-color: #f5f2ea;
   display: flex;
   flex-wrap: wrap;
   margin: -6rem 2rem; /* Add negative margin to compensate for the margin on each card */
@@ -11,6 +12,9 @@
 	display: grid;
 	place-items: center;
 	height: 100vh;
+}
+.preloader-main{
+  background-color: #f5f2ea;
 }
 .loader div {
 	height: 15px;

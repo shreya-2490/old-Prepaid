@@ -5,8 +5,8 @@ import Navbarlogo from "./Navbarlogo"
 import "../styles/checkout.css"
 import Payment from "./payment"
 import validator from "validator"
-import visa from "../assets/Visacart.png"
-import mastercard from "../assets/Mastercardcart.png"
+import visa from "../assets/Visacartpage.png"
+import mastercard from "../assets/Mastercardcartpage.png"
 import { useNavigate } from "react-router-dom"
 import { CartContext } from "./CartContext"
 import axios from "axios"
@@ -20,6 +20,7 @@ const Checkout = () => {
   const [isChecked1, setIsChecked1] = useState(false)
   const [isChecked2, setIsChecked2] = useState(false)
   const [paymentStatus, setPaymentstatus] = useState(false)
+  const [title, setTitle] = useState("Visa")
   const [email, setEmail] = useState("")
 
   const handleDelete = (cartItem) => {
@@ -96,6 +97,7 @@ const Checkout = () => {
                             }}
                           >
                             <img
+                              className="visa-mastercard-checkout"
                               src={card === "1" ? visa : mastercard}
                               alt="Visa"
                             />

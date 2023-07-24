@@ -5,9 +5,7 @@
     height: 38vh;
     width: 100%;
     background-color: #fdc886;
-  
   }
-
 
   .contactus-heading {
     padding: 1.875rem;
@@ -18,22 +16,23 @@
     height: 70vh;
     width: 100%;
     padding: 0 5rem;
-
   }
 
   .form-container {
-    width: 38%;
-    background-color: #f4f1e9;
+    width: 30%;
+    /* background-color: #f4f1e9; */
     border-radius: 1.25rem;
-    padding: 1.5rem;
-    top: 30%;
+    padding: 1.1rem;
+    top: 50%;
     left: 10%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
     position: absolute;
   }
 
   .form-title h2 {
+    padding-bottom: 1rem;
     font-size: 1rem;
+    text-align: center;
     font-weight: bold;
     background-color: #f5f2ea;
   }
@@ -46,6 +45,7 @@
     background-color: #fdc886;
     color: #1b1b1b;
     width: 70%;
+    margin-left: 2.5rem;
     text-align: center;
     border-radius: 1.25rem;
     position: relative;
@@ -58,17 +58,140 @@
     flex-direction: column;
     width: 20%;
     margin-left: 70%;
-    padding-top: 2rem;
+    padding-top: 4rem;
   }
 
   .images-sideform img {
-    width: 1.9rem;
+    width: 3rem;
   }
 
   .phone-image {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  .email-image {
+    display: flex;
+    align-items: center;
+  }
+  .bold {
+    margin-top: 0.7rem;
+    margin-left: 0.7rem;
+  }
+  .ant-form-item-has-error .ant-input,
+  .ant-form-item-has-error .ant-input-affix-wrapper {
+    border-color: #fdc886 !important;
+
+    box-shadow: 0 0 0 2px rgba(253, 200, 134, 0.2) !important;
+  }
+
+  .ant-form-item-has-error .ant-input:focus,
+  .ant-form-item-has-error .ant-input-affix-wrapper:focus {
+    border-color: #fdc886 !important;
+    box-shadow: 0 0 0 2px rgba(253, 200, 134, 0.2) !important;
+  }
+
+  .ant-input,
+  .ant-input-affix-wrapper {
+    border-color: #fdc886 !important;
+  }
+  .ant-form-item .ant-form-item-control-input-content {
+    width: 120% !important;
+  }
+  .ant-input:focus,
+  .ant-input-affix-wrapper:focus {
+    border-color: #fdc886 !important;
+    box-shadow: none !important;
+  }
+
+  .ant-btn-primary:hover {
+    background-color: #e9d5b7 !important;
+    color: #1b1b1b !important;
+    border-color: #fdc886 !important;
+  }
+
+  .globe-img {
+    position: absolute;
+    bottom: 43%;
+    left: 50%;
+    overflow: hidden;
+    height: 50%;
+  }
+}
+
+/* / =====================Tablet Veiw=========================== / / */
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  .contactus-container {
+    height: 38vh;
+    width: 100%;
+    background-color: #fdc886;
+  }
+
+  .contactus-heading {
+    padding: 1rem;
+  }
+
+  .bottom-contact-container {
+    background-color: #f5f2ea;
+    height: 62vh;
+    width: 100%;
+  }
+
+  .form-container {
+    width: 50%;
+    /* background-color: #f4f1e9; */
+    border-radius: 1.25rem;
+    padding: 1.1rem;
+    top: 46%;
+    left: 10%;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+    position: absolute;
+  }
+  .form-title h2 {
+    padding-bottom: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: bold;
+    background-color: #f5f2ea;
+  }
+
+  .form-title {
+    background-color: rgb(14, 13, 13);
+  }
+
+  .contact-submit-btn {
+    background-color: #fdc886;
+    color: #1b1b1b;
+    width: 70%;
+    margin-left: 2.5rem;
+    text-align: center;
+    border-radius: 1.25rem;
+    position: relative;
+  }
+
+  .images-sideform {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: auto;
+    flex-direction: column;
+    margin-left: 70%;
+  }
+
+  .images-sideform img {
+    width: 1.875rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .phone-image {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
   }
 
   .ant-form-item-has-error .ant-input,
@@ -102,120 +225,6 @@
 
   .globe-img {
     position: absolute;
-    bottom: 43%;
-    left: 50%;
-    overflow: hidden;
-    height: 50%;
-  }
-  
-}
-
-
-/* / =====================Tablet Veiw=========================== / / */
-
-
-@media(min-width : 641px) and (max-width: 1023px) {
-  .contactus-container {
-    height: 38vh;
-    width: 100%;
-    background-color: #fdc886;
-  }
-
-  .contactus-heading {
-    padding: 1rem;
-  }
-
-  .bottom-contact-container {
-    background-color: #f5f2ea;
-    height: 62vh;
-    width: 100%;
-  }
-
-  .form-container {
-    width: 50%;
-    margin-left: 2rem;
-    top: 30%;
-    left: 5%;
-    background-color: #f4f1e9;
-    border-radius: 1.25rem;
-    padding: 2rem 0 1rem 1rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    position: absolute;
-  }
-
-  .form-title h2 {
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #f5f2ea;
-  }
-
-  .form-title {
-    background-color: rgb(14, 13, 13);
-  }
-
-  .contact-submit-btn {
-    background-color: #fdc886;
-    color: #1b1b1b;
-    width: 70%;
-    text-align: center;
-    border-radius: 1.25rem;
-    position: relative;
-  }
-
-  .images-sideform {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    margin: auto;
-    flex-direction: column;
-    margin-left: 70%;
-  }
-
-  .images-sideform img {
-    width: 1.875rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-  }
-
-  .phone-image {
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-  }
-
-  .ant-form-item-has-error .ant-input,
-  .ant-form-item-has-error .ant-input-affix-wrapper {
-    border-color: #fdc886 !important;
-    box-shadow: 0 0 0 2px rgba(253, 200, 134, 0.2) !important;
-  }
-
-  .ant-form-item-has-error .ant-input:focus,
-  .ant-form-item-has-error .ant-input-affix-wrapper:focus {
-    border-color: #fdc886 !important;
-    box-shadow: 0 0 0 2px rgba(253, 200, 134, 0.2) !important;
-  }
-
-  .ant-input,
-  .ant-input-affix-wrapper {
-    border-color: #fdc886 !important;
-  }
-
-  .ant-input:focus,
-  .ant-input-affix-wrapper:focus {
-    border-color: #fdc886 !important;
-    box-shadow: none !important;
-  }
-
-  .ant-btn-primary:hover {
-    background-color: #e9d5b7 !important;
-    color: #1b1b1b !important;
-    border-color: #fdc886 !important;
-  }
-
-  .globe-img{
-    position: absolute;
     bottom: 65%;
     left: 30%;
     overflow: hidden;
@@ -223,12 +232,9 @@
   }
 }
 
-
-
 /************************** Mobile View  ************************/
 
 @media (min-width: 10px) and (max-width: 640px) {
-
   .contactus-heading {
     padding: 1.875rem;
   }
@@ -322,7 +328,7 @@
     border-color: #fdc886 !important;
   }
 
-  .globe-img{
+  .globe-img {
     position: absolute;
     overflow: hidden;
     bottom: 65%;
