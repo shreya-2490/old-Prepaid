@@ -20,7 +20,7 @@ import Payment from "./components/payment"
 import { CartProvider } from "./components/CartContext"
 import Dashboard from "./components/Dashboard"
 import Preowned from "./components/Preowned"
-import Terms from "./components/Terms&condition"
+import Terms from "./components/terms&condition"
 import Policy from "./components/Privacypolicy"
 
 function App() {
