@@ -114,7 +114,7 @@
 }
 
 .first-gray-1, .First-gray-1 {
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
 }
 
 .buttons {
@@ -130,7 +130,8 @@
 }
 .price-amount{
   border-radius: 0.25rem;
-  margin-left: 5rem;
+  padding: 0.31rem;
+  margin-left: 5.6rem;
   margin-right: 1rem;
   border: solid 1px #29262624;
   font-size: 1rem;
@@ -343,11 +344,11 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .dropdown-amount {
   border-radius: 0.25rem;
-  width: 100%;
+  /* width: 100%; */
   margin-left: 1rem;
   margin-right: 1rem;
   border: solid 1px #29262624;
-  padding: 0.3125rem;
+  padding: 0.31rem;
   font-size: 1rem;
   color: #1b1b1b;
   background-color: #f0f0f0;
