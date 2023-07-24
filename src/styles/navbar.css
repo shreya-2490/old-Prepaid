@@ -148,11 +148,6 @@ text-decoration:overline;
 .header .left .hamburg .navmenu > a:hover {
   color: rgb(73, 73, 218);
 }
-.visacardtype-img{
-  width: 15%;
-  height: 0% !important;
-  margin-right: 0.625rem;
-}
 
 @media (max-width: 767px) {
   
