@@ -73,6 +73,7 @@
   .btcvalue{
   display: flex;
   flex-direction: column;
+  margin-bottom: 0rem;
   }
   
   .cart-input{

@@ -150,7 +150,7 @@
   color: black;
   font-size: 1rem;
   font-weight: 500;
-  padding-left: 2rem;
+  padding-left: 1.0rem;
 }
 
 .input-div {
@@ -321,7 +321,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .homepage-cards {
-  width: 74%;
+  width: 60%;
 
 }
 

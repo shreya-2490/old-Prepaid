@@ -1,59 +1,59 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Card, Button, Tooltip, Select, Checkbox } from "antd";
-import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons";
-import Navbarlogo from "./Navbarlogo";
-import "../styles/checkout.css";
-import Payment from "./payment";
-import validator from "validator";
-import visa from "../assets/Visacart.png";
-import mastercard from "../assets/Mastercardcart.png";
-import { useNavigate } from "react-router-dom";
-import { CartContext } from "./CartContext";
-import axios from "axios";
-import { usdToBTC } from "../utils/helper";
+import React, { useState, useEffect, useContext } from "react"
+import { Card, Button, Tooltip, Select, Checkbox } from "antd"
+import { InfoCircleOutlined, DeleteOutlined } from "@ant-design/icons"
+import Navbarlogo from "./Navbarlogo"
+import "../styles/checkout.css"
+import Payment from "./payment"
+import validator from "validator"
+import visa from "../assets/Visacart.png"
+import mastercard from "../assets/Mastercardcart.png"
+import { useNavigate } from "react-router-dom"
+import { CartContext } from "./CartContext"
+import axios from "axios"
+import { usdToBTC } from "../utils/helper"
 
 const Checkout = () => {
-  const [btcRate, setBTCRate] = useState(null);
-  const navigate = useNavigate();
-  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
+  const [btcRate, setBTCRate] = useState(null)
+  const navigate = useNavigate()
+  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext)
 
-  const [isChecked1, setIsChecked1] = useState(false);
-  const [isChecked2, setIsChecked2] = useState(false);
-  const [paymentStatus, setPaymentstatus] = useState(false);
-  const [email, setEmail] = useState("");
+  const [isChecked1, setIsChecked1] = useState(false)
+  const [isChecked2, setIsChecked2] = useState(false)
+  const [paymentStatus, setPaymentstatus] = useState(false)
+  const [email, setEmail] = useState("")
 
   const handleDelete = (cartItem) => {
-    removeFromCart(cartItem?.id);
-  };
+    removeFromCart(cartItem?.id)
+  }
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
+    setEmail(event.target.value)
+  }
 
   const handleSubmit = () => {
-    setPaymentstatus(true);
+    setPaymentstatus(true)
     if (validator.isEmail(email)) {
-      setEmail(email);
+      setEmail(email)
     } else {
-      alert("Invalid email format. Please enter a correct email address.");
+      alert("Invalid email format. Please enter a correct email address.")
     }
 
-    navigate(`/front-demo/payment`, { state: { email } });
-  };
+    navigate(`/front-demo/payment`, { state: { email } })
+  }
 
   const handleCheckboxChange1 = () => {
-    setIsChecked1(!isChecked1);
-  };
+    setIsChecked1(!isChecked1)
+  }
 
   const handleCheckboxChange2 = () => {
-    setIsChecked2(!isChecked2);
-  };
+    setIsChecked2(!isChecked2)
+  }
 
-  const tooltipText = "This is the text that will be displayed on hover.";
+  const tooltipText = "This is the text that will be displayed on hover."
 
   const handleChange = (item, quantity) => {
-    updateQuantity(item?.id, quantity);
-  };
+    updateQuantity(item?.id, quantity)
+  }
 
   useEffect(() => {
     axios
@@ -61,14 +61,12 @@ const Checkout = () => {
         "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
       )
       .then((response) => setBTCRate(response?.data?.bitcoin?.usd))
-      .catch((error) => console.error(error));
-  }, []);
+      .catch((error) => console.error(error))
+  }, [])
 
   const totalCardsValue = cartItems?.reduce((accumulator, object) => {
-    return (
-      accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
-    );
-  }, 0);
+    return accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
+  }, 0)
 
   return (
     <>
@@ -85,9 +83,9 @@ const Checkout = () => {
               >
                 <div className="custom-upper-para">
                   {cartItems?.map((cartItem) => {
-                    const { id, usdValue, quantity, btcValue, card } = cartItem;
+                    const { id, usdValue, quantity, btcValue, card } = cartItem
 
-                    const totalValue = usdValue * quantity;
+                    const totalValue = usdValue * quantity
                     return (
                       <div key={id} className="item-container">
                         <div className="value">
@@ -103,7 +101,7 @@ const Checkout = () => {
                             />
                             <div className="item-details">
                               <p className="value">
-                                {usdValue} x {quantity} = {totalValue}
+                                {quantity} x {usdValue} = {totalValue}
                               </p>
                               <div className="item-actions">
                                 <Select
@@ -136,7 +134,7 @@ const Checkout = () => {
                           </div>
                         </div>
                       </div>
-                    );
+                    )
                   })}
                 </div>
 
@@ -222,7 +220,7 @@ const Checkout = () => {
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Checkout;
+export default Checkout

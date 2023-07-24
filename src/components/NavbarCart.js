@@ -1,43 +1,43 @@
-import React, { useState, useContext, Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useContext, Fragment } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import {
   UserOutlined,
   ShoppingCartOutlined,
   DeleteOutlined,
   MenuOutlined,
-} from "@ant-design/icons";
-import { Badge, Modal, Button, Divider } from "antd";
-import { CartContext } from "./CartContext";
-import visa from "../assets/Visacart.png";
-import mastercard from "../assets/Mastercardcart.png";
-import "../styles/navbar.css";
-import logo from "../assets/logo.png";
-import "../styles/NavbarCart.css";
+} from "@ant-design/icons"
+import { Badge, Modal, Button, Divider } from "antd"
+import { CartContext } from "./CartContext"
+import visa from "../assets/Visacartpage.png"
+import mastercard from "../assets/Mastercardcart.png"
+import "../styles/navbar.css"
+import logo from "../assets/logo.png"
+import "../styles/NavbarCart.css"
 
 function NavbarCart() {
-  const { cartCount, cartItems, removeFromCart } = useContext(CartContext);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [resmenu, setResMenu] = useState("none");
-  const navigate = useNavigate();
+  const { cartCount, cartItems, removeFromCart } = useContext(CartContext)
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  const [resmenu, setResMenu] = useState("none")
+  const navigate = useNavigate()
 
   const handleCartClick = () => {
-    setIsCartOpen(true);
-  };
+    setIsCartOpen(true)
+  }
 
   const handleCloseClick = () => {
-    setIsCartOpen(false);
-  };
+    setIsCartOpen(false)
+  }
 
   const handleKeepShopping = () => {
-    setIsCartOpen(false);
-    navigate("/front-demo");
-  };
+    setIsCartOpen(false)
+    navigate("/front-demo")
+  }
   const handleRemoveItem = (itemId) => {
-    removeFromCart(itemId);
-  };
+    removeFromCart(itemId)
+  }
   const handleCheckout = () => {
-    navigate(`/front-demo/checkout`);
-  };
+    navigate(`/front-demo/checkout`)
+  }
 
   return (
     <div className="header">
@@ -50,8 +50,8 @@ function NavbarCart() {
         <div
           className="hamburg"
           onClick={() => {
-            if (resmenu === "none") setResMenu("flex");
-            else setResMenu("none");
+            if (resmenu === "none") setResMenu("flex")
+            else setResMenu("none")
           }}
         >
           <MenuOutlined />
@@ -96,8 +96,8 @@ function NavbarCart() {
           ) : (
             <>
               {cartItems?.map((cartItem) => {
-                const { id, usdValue, card, quantity } = cartItem;
-                const multipliedValue = usdValue * quantity;
+                const { id, usdValue, card, quantity } = cartItem
+                const multipliedValue = usdValue * quantity
 
                 return (
                   <Fragment key={id}>
@@ -126,7 +126,7 @@ function NavbarCart() {
                     )}
                     <div className="delete">
                       <p>
-                        ${usdValue} x {quantity} = ${multipliedValue}
+                        {quantity} x ${usdValue} = ${multipliedValue}
                       </p>
                       <p>
                         <DeleteOutlined onClick={() => handleRemoveItem(id)} />
@@ -134,7 +134,7 @@ function NavbarCart() {
                     </div>
                     <Divider />
                   </Fragment>
-                );
+                )
               })}
             </>
           )}
@@ -150,7 +150,7 @@ function NavbarCart() {
         </div>
       </Modal>
     </div>
-  );
+  )
 }
 
-export default NavbarCart;
+export default NavbarCart
