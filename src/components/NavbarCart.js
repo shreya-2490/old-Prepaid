@@ -1,21 +1,19 @@
-import React, { useState, useContext, Fragment } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   UserOutlined,
   ShoppingCartOutlined,
-  DeleteOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
-import { Badge, Modal, Button, Divider } from "antd";
+import { Badge, Modal, Button } from "antd";
 import { CartContext } from "./CartContext";
-import visa from "../assets/Visacartpage.png";
-import mastercard from "../assets/Mastercardcart.png";
 import "../styles/navbar.css";
 import logo from "../assets/logo.png";
 import "../styles/NavbarCart.css";
+import Cart from "../shared-components/cart";
 
 function NavbarCart() {
-  const { cartCount, cartItems, removeFromCart } = useContext(CartContext);
+  const { cartCount } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [resmenu, setResMenu] = useState("none");
   const navigate = useNavigate();
@@ -32,9 +30,7 @@ function NavbarCart() {
     setIsCartOpen(false);
     navigate("/front-demo");
   };
-  const handleRemoveItem = (itemId) => {
-    removeFromCart(itemId);
-  };
+
   const handleCheckout = () => {
     navigate(`/front-demo/checkout`);
   };
@@ -90,55 +86,7 @@ function NavbarCart() {
           width: "10%",
         }}
       >
-        <Fragment>
-          {cartItems.length === 0 ? (
-            <p>Cart is empty</p>
-          ) : (
-            <>
-              {cartItems?.map((cartItem) => {
-                const { id, usdValue, card, quantity } = cartItem;
-                const multipliedValue = usdValue * quantity;
-
-                return (
-                  <Fragment key={id}>
-                    {card === "1" ? (
-                      <>
-                        <div className="visadiv">
-                          <img
-                            src={visa}
-                            alt="Visa"
-                            className="visacardtype-img"
-                          />
-                          <p>Visa</p>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="visadiv">
-                          <img
-                            src={mastercard}
-                            alt="MasterCard"
-                            className="cardtype-img"
-                          />
-                          <p>MasterCard</p>
-                        </div>
-                      </>
-                    )}
-                    <div className="delete">
-                      <p>
-                        {quantity} x ${usdValue} = ${multipliedValue}
-                      </p>
-                      <p>
-                        <DeleteOutlined onClick={() => handleRemoveItem(id)} />
-                      </p>
-                    </div>
-                    <Divider />
-                  </Fragment>
-                );
-              })}
-            </>
-          )}
-        </Fragment>
+        <Cart />
 
         <div className="cart-modal-footer">
           <Button key="keepShopping" onClick={handleKeepShopping}>
