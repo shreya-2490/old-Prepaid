@@ -307,7 +307,7 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: #f5f2ea;
   border: none;
   border-radius: 0.25rem;
-
+  width: 50%;
   cursor: pointer;
 }
 
@@ -316,19 +316,17 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .selection-cards-visamastercard button.selected {
-  background-color: #fdc886;
+  background-color: #1ED760;
   color: #fff;
 }
 
-.homepage-cards {
-  width: 60%;
+.visa-card {
+  width: 30%;
 
 }
-
-.mastercard-button {
-  width: 5.3125rem;
+.master-card{
+  width: 30%;
 }
-
 .mastercard-image{
   padding: 0.5rem 0;
 }

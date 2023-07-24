@@ -17,9 +17,24 @@
     align-items: center;
   }
   
+  .wrappercardcartpage {
   
+    margin: 0.5rem auto; /* Add margin to create space between cards */
+    padding: 3.5rem 0; /* Add padding for the card content */
+    
+  }
+  .card-containercartpage {
+    height: 20rem;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    margin: 0rem 8rem; /* Add negative margin to compensate for the margin on each card */
+    justify-content: space-between;
+    max-width: 35rem; /* Adjust this value based on your desired width */
+  }
   .custom-card-cart  {
-    border-radius: 1.6rem;
+    border-radius: 0.6rem;
     width: 80%;
     margin: 0 auto;
   }
@@ -27,6 +42,10 @@
   .card2-cart{
     width: 90%;
   }
+  .card2-cart .ant-card .ant-card-body {
+    padding: 0rem 1.6rem;
+  }
+
   
   .Contact-title{
     width: 95%;
@@ -40,7 +59,9 @@
   .custom-para2-cart{
     text-align: justify;
   }
-  
+  .amountoncart{
+    margin-bottom: 0.3rem ;
+  }
   .cart-input input[type="number"] {
     background-color:white;
     border-radius: 0.4rem;
@@ -78,13 +99,13 @@
   
   .cart-input{
    display: flex;
-   gap: 2rem;
+   gap: 1.2rem;
    flex-direction: row;
   }
   
   
   .expected-value{
-  font-size:1rem;
+  font-size:0.85rem;
   
   }
   
@@ -119,10 +140,25 @@
       width: 100%;
       align-items: center;
     }
-    
+    .wrappercardcartpage {
+  
+      margin: 0.5rem auto; /* Add margin to create space between cards */
+      padding: 3.5rem 0; /* Add padding for the card content */
+      
+    }
+    .card-containercartpage {
+      height: 20rem;
+      border-radius: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #ffffff;
+      margin: 0rem 8rem; /* Add negative margin to compensate for the margin on each card */
+      justify-content: space-between;
+      max-width: 35rem; /* Adjust this value based on your desired width */
+    }
     
     .custom-card-cart  {
-      border-radius: 1.8rem;
+      border-radius: 0.6rem;
       width: 60%;
       margin: 0 auto;
     }
@@ -220,10 +256,26 @@
       justify-content: center;
       align-items: center;
     }
+    .wrappercardcartpage {
+  
+      margin: 0.5rem auto; /* Add margin to create space between cards */
+      padding: 3.5rem 0; /* Add padding for the card content */
+      
+    }
+    .card-containercartpage {
+      height: 20rem;
+      border-radius: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #ffffff;
+      margin: 0rem 8rem; /* Add negative margin to compensate for the margin on each card */
+      justify-content: space-between;
+      max-width: 35rem; /* Adjust this value based on your desired width */
+    }
     
     
     .custom-card-cart  {
-      border-radius: 1.8rem;
+      border-radius: 0.6rem;
       width: 80%;
       margin: 0 auto;
     }

@@ -1,58 +1,62 @@
-import React, { useEffect, useState, useContext, Fragment } from "react";
-import { Card } from "antd";
-import { useLocation } from "react-router-dom";
-import { CartContext } from "./CartContext";
-import { AiOutlineSafety } from "react-icons/ai";
-import NavbarCart from "./NavbarCart";
-import mastercard from "../assets/Mastercardcartpage.png";
-import visacard from "../assets/Visacartpage.png";
-import "../styles/CartPage.css";
-import visa from "../assets/Visacart.png";
-import { v4 as uuidv4 } from "uuid";
-import { DeleteOutlined } from "@ant-design/icons";
-import { Modal, Button, Divider } from "antd";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useContext, Fragment } from "react"
+import { Card } from "antd"
+import { useLocation } from "react-router-dom"
+import { CartContext } from "./CartContext"
+import { AiOutlineSafety } from "react-icons/ai"
+import NavbarCart from "./NavbarCart"
+import mastercard from "../assets/Mastercardcartpage.png"
+import visacard from "../assets/Visacartpage.png"
+import "../styles/CartPage.css"
+import wifi from "../assets/wifi1.png"
+import map from "../assets/map1.png"
+import master from "../assets/mastercard preowned.png"
+import visa from "../assets/visa preowned.png"
+// import visa from "../assets/Visacart.png";
+import { v4 as uuidv4 } from "uuid"
+import { DeleteOutlined } from "@ant-design/icons"
+import { Modal, Button, Divider } from "antd"
+import { useNavigate } from "react-router-dom"
 
 const Cart = ({ handleAddToCart }) => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const input1 = queryParams.get("usdValue");
-  const input2 = queryParams.get("btcValue");
-  const input3 = queryParams.get("selectedButton");
-  const [selectedButton, setSelectedButton] = useState(input3);
-  const [title, setTitle] = useState("MASTER PREPAID CARD");
-  const [usdValue, setUSDValue] = useState(input1);
-  const [btcValue, setBtcValue] = useState(input2);
-  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const input1 = queryParams.get("usdValue")
+  const input2 = queryParams.get("btcValue")
+  const input3 = queryParams.get("selectedButton")
+  const [selectedButton, setSelectedButton] = useState(input3)
+  const [title, setTitle] = useState("MASTER PREPAID CARD")
+  const [usdValue, setUSDValue] = useState(input1)
+  const [btcValue, setBtcValue] = useState(input2)
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
   const { addToCart, cartCount, cartItems, removeFromCart } =
-    useContext(CartContext);
-  const exchangeRate = 0.000038; // Example exchange rate, replace with the actual rate
-  const [isCartOpen, setIsCartOpen] = useState(false);
+    useContext(CartContext)
+  const exchangeRate = 0.000038 // Example exchange rate, replace with the actual rate
+  const [isCartOpen, setIsCartOpen] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleCloseClick = () => {
-    setIsCartOpen(false);
-  };
+    setIsCartOpen(false)
+  }
 
   const handleKeepShopping = () => {
-    setIsCartOpen(false);
-    navigate("/front-demo");
-  };
+    setIsCartOpen(false)
+    navigate("/front-demo")
+  }
 
   const handleRemoveItem = (itemId) => {
-    removeFromCart(itemId);
-  };
+    removeFromCart(itemId)
+  }
 
   const handleCheckout = () => {
-    navigate(`/front-demo/checkout`);
-  };
+    navigate(`/front-demo/checkout`)
+  }
 
   const handleUSDChange = (event) => {
-    const usdInput = parseFloat(event.target.value);
-    setUSDValue(usdInput);
-    setBtcValue(usdInput * exchangeRate);
-  };
+    const usdInput = parseFloat(event.target.value)
+    setUSDValue(usdInput)
+    setBtcValue(usdInput * exchangeRate)
+  }
   const handleAddToCartClick = () => {
     addToCart({
       usdValue: usdValue,
@@ -60,16 +64,16 @@ const Cart = ({ handleAddToCart }) => {
       card: selectedButton,
       // Using UUID to generate random ID until we finalize any unique identifier for each card transactions.
       id: uuidv4(),
-    });
-    setIsSuccessModalVisible(true);
-    setIsCartOpen(true);
-  };
+    })
+    setIsSuccessModalVisible(true)
+    setIsCartOpen(true)
+  }
 
   useEffect(() => {
-    setUSDValue(usdValue);
-    setBtcValue(btcValue);
-    setSelectedButton(selectedButton);
-  }, []);
+    setUSDValue(usdValue)
+    setBtcValue(btcValue)
+    setSelectedButton(selectedButton)
+  }, [])
 
   return (
     <>
@@ -89,6 +93,49 @@ const Cart = ({ handleAddToCart }) => {
                 <img src={mastercard}></img>
               )}
             </Card>
+            {/* <div className="card-containercartpage">
+              <div class="wrappercardcartpage">
+                <div class="container">
+                  <div class="card">
+                    <img src={map} class="map-img" />
+                    <div class="top">
+                      <h2 className="h2heading">CARDHOLDER</h2>
+                      <h2 className="h2heading">
+                        <b>${usdValue}</b>
+                      </h2>
+                      <img src={wifi} />
+                    </div>
+
+                    <div class="infos">
+                      <section class="card-number">
+                        <h1 className="h1heading">**** **** **** ****</h1>
+                      </section>
+                      <div class="bottom">
+                        <aside class="infos--bottom">
+                          <section>
+                            <h2 className="h2heading">Expiry date</h2>
+                            <h3 className="h3heading">00/00</h3>
+                          </section>
+                          <section>
+                            <h2 className="h2heading">CVV</h2>
+                            <h3 className="h3heading">***</h3>
+                          </section>
+                        </aside>
+                        <aside>
+                          <section>
+                            {selectedButton == 1 ? (
+                              <img src={visa} class="brand" />
+                            ) : (
+                              <img src={master} class="brand1" />
+                            )}
+                          </section>
+                        </aside>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> */}
           </div>
           <div className="card2-cart">
             <Card
@@ -126,7 +173,7 @@ const Cart = ({ handleAddToCart }) => {
               )}
               <div>
                 <div>
-                  <p>Amount</p>
+                  <p className="amountoncart">Amount</p>
 
                   <div className="cart-input">
                     <input
@@ -201,8 +248,8 @@ const Cart = ({ handleAddToCart }) => {
           ) : (
             <>
               {cartItems?.map((cartItem) => {
-                const { id, usdValue, card, quantity } = cartItem;
-                const multipliedValue = usdValue * quantity;
+                const { id, usdValue, card, quantity } = cartItem
+                const multipliedValue = usdValue * quantity
 
                 return (
                   <Fragment key={id}>
@@ -239,7 +286,7 @@ const Cart = ({ handleAddToCart }) => {
                     </div>
                     <Divider />
                   </Fragment>
-                );
+                )
               })}
             </>
           )}
@@ -255,7 +302,7 @@ const Cart = ({ handleAddToCart }) => {
         </div>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

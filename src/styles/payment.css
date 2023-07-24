@@ -22,8 +22,9 @@
   }
 
   .ant-card-head-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: black;
+    margin-top: 0.3rem;
   }
 
   .email-div {
@@ -132,7 +133,7 @@
   }
 
   .ant-card-head-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: black;
   }
 
@@ -249,7 +250,7 @@
   }
 
   .ant-card-head-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: black;
   }
 

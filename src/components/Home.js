@@ -1,75 +1,77 @@
-import { useState, useEffect } from "react";
-import { Alert } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-import visa from "../assets/Visa.png";
-import mastercard from "../assets/Mastercard.png";
-import "../styles/home.css";
-import axios from "axios";
-import Footer from "./Footer";
+import { useState, useEffect } from "react"
+import { Alert } from "antd"
+import { Link, useNavigate } from "react-router-dom"
+import visa from "../assets/visahome.png"
+import mastercard from "../assets/masterhome.png"
+import "../styles/home.css"
+import axios from "axios"
+import Footer from "./Footer"
 
 const Home = () => {
-  const [usdValue, setUSDValue] = useState("");
-  const [btcValue, setBTCValue] = useState("0");
-  const [selectedCard, setSelectedCard] = useState(null);
-  const [isValueValid, setIsValueValid] = useState(false);
-  const [selectedButton, setSelectedButton] = useState(1);
-  const [button, setButton] = useState(1);
-  const [loadAmount, setLoadAmount] = useState("");
-  const [selectedProvider, setSelectedProvider] = useState("All");
-  const [selectedPrice, setSelectedPrice] = useState("low");
-  const navigate = useNavigate();
+  const [usdValue, setUSDValue] = useState("")
+  const [btcValue, setBTCValue] = useState("0")
+  const [selectedCard, setSelectedCard] = useState(null)
+  const [isValueValid, setIsValueValid] = useState(false)
+  const [selectedButton, setSelectedButton] = useState(1)
+  const [button, setButton] = useState(1)
+  const [loadAmount, setLoadAmount] = useState("")
+  const [selectedProvider, setSelectedProvider] = useState("All")
+  const [selectedPrice, setSelectedPrice] = useState("low")
+  const navigate = useNavigate()
   const handleButtonClick = (event, buttonId) => {
-    event.preventDefault();
-    setSelectedButton(buttonId);
-  };
+    event.preventDefault()
+    setSelectedButton(buttonId)
+  }
 
   const handleMainButtonClick = (event, buttonId) => {
-    event.preventDefault();
-    setButton(buttonId);
-  };
+    event.preventDefault()
+    setButton(buttonId)
+  }
 
   const handleBuyButtonClick = () => {
     if (btcValue === "0.00000") {
-      setIsValueValid(true);
+      setIsValueValid(true)
     } else {
-      setIsValueValid(false);
+      setIsValueValid(false)
     }
-    navigate('/front-demo/preowned',{state:{selectedProvider,selectedPrice}})
+    navigate("/front-demo/preowned", {
+      state: { selectedProvider, selectedPrice },
+    })
   }
 
   const handleProviderChange = (event) => {
-    setSelectedProvider(event.target.value);
-  };
+    setSelectedProvider(event.target.value)
+  }
 
   // Handler for the price filter
   const handlePriceChange = (event) => {
-    setSelectedPrice(event.target.value);
-  };
+    setSelectedPrice(event.target.value)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-        );
-        const btcPrice = response.data.bitcoin.usd;
-        setBTCValue((usdValue / btcPrice).toFixed(5));
+        )
+        const btcPrice = response.data.bitcoin.usd
+        setBTCValue((usdValue / btcPrice).toFixed(5))
       } catch (error) {
-        console.log("Error fetching data:", error);
+        console.log("Error fetching data:", error)
       }
-    };
+    }
 
-    fetchData();
+    fetchData()
 
-    setIsValueValid(false);
-  }, [usdValue, loadAmount]);
+    setIsValueValid(false)
+  }, [usdValue, loadAmount])
 
   const handleUSDSelect = (selectedValue) => {
-    const value = parseFloat(selectedValue); 
-    setUSDValue(value);
-    setIsValueValid(false);
-    setLoadAmount(selectedValue);
-  };
+    const value = parseFloat(selectedValue)
+    setUSDValue(value)
+    setIsValueValid(false)
+    setLoadAmount(selectedValue)
+  }
 
   return (
     <>
@@ -139,7 +141,7 @@ const Home = () => {
                             }`}
                             onClick={(event) => handleButtonClick(event, 1)}
                           >
-                            <img src={visa} className="homepage-cards"></img>
+                            <img src={visa} className="visa-card"></img>
                           </button>
                           <button
                             className={`mastercard-button ${
@@ -147,12 +149,7 @@ const Home = () => {
                             }`}
                             onClick={(event) => handleButtonClick(event, 2)}
                           >
-                            <div className="mastercard-image">
-                              <img
-                                src={mastercard}
-                                className="homepage-cards"
-                              ></img>
-                            </div>
+                            <img src={mastercard} className="master-card"></img>
                           </button>
                         </div>
                       </div>
@@ -307,6 +304,6 @@ const Home = () => {
       </div>
       <Footer />
     </>
-  );
-};
-export default Home;
+  )
+}
+export default Home
