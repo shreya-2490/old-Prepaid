@@ -17,6 +17,7 @@ const Home = () => {
   const [loadAmount, setLoadAmount] = useState("")
   const [selectedProvider, setSelectedProvider] = useState("All")
   const [selectedPrice, setSelectedPrice] = useState("low")
+  const [alert, showAlert] = useState(false)
   const navigate = useNavigate()
   const handleButtonClick = (event, buttonId) => {
     event.preventDefault()
@@ -29,14 +30,22 @@ const Home = () => {
   }
 
   const handleBuyButtonClick = () => {
+    navigate("/front-demo/preowned", {
+      state: { selectedProvider, selectedPrice },
+    })
+  }
+
+  const handleBuyButtonClickMain = () => {
     if (btcValue === "0.00000") {
       setIsValueValid(true)
     } else {
       setIsValueValid(false)
     }
-    navigate("/front-demo/preowned", {
-      state: { selectedProvider, selectedPrice },
-    })
+    usdValue
+      ? navigate(
+          `/front-demo/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`
+        )
+      : showAlert(true)
   }
 
   const handleProviderChange = (event) => {
@@ -71,6 +80,7 @@ const Home = () => {
     setUSDValue(value)
     setIsValueValid(false)
     setLoadAmount(selectedValue)
+    selectedValue ? showAlert(false) : showAlert(true)
   }
 
   return (
@@ -208,7 +218,7 @@ const Home = () => {
                     </p>
 
                     <div>
-                      {btcValue === "0.00000" && (
+                      {alert && (
                         <Alert
                           style={{ marginTop: "15px", position: "relative" }}
                           message="Please select a valid amount"
@@ -218,27 +228,13 @@ const Home = () => {
                         />
                       )}
 
-                      {btcValue !== "0.00000" ? (
-                        <Link
-                          to={`/front-demo/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`}
-                        >
-                          <button
-                            className="buy-usdt"
-                            type="button"
-                            onClick={handleBuyButtonClick}
-                          >
-                            Buy Now
-                          </button>
-                        </Link>
-                      ) : (
-                        <button
-                          className="buy-usdt disabled"
-                          type="button"
-                          disabled
-                        >
-                          Buy Now
-                        </button>
-                      )}
+                      <button
+                        className="buy-usdt"
+                        type="button"
+                        onClick={handleBuyButtonClickMain}
+                      >
+                        Buy Now
+                      </button>
                     </div>
                   </div>
                 </div>
