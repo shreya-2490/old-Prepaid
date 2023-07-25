@@ -19,8 +19,10 @@ export const CartProvider = ({ children }) => {
     );
     if (existingCartItemIndex !== -1) {
       const updatedItems = [...cartItems];
-      updatedItems[existingCartItemIndex].quantity += 1;
-      setCartItems(updatedItems);
+      if (updatedItems[existingCartItemIndex].quantity < 4) {
+        updatedItems[existingCartItemIndex].quantity += 1;
+        setCartItems(updatedItems);
+      }
     } else {
       setCartItems((prevItems) => [...prevItems, { ...item, quantity: 1 }]);
     }
