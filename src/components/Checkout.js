@@ -7,7 +7,7 @@ import Payment from "./payment"
 import validator from "validator"
 import visa from "../assets/Visacartpage.png"
 import mastercard from "../assets/Mastercardcartpage.png"
-import { useNavigate } from "react-router-dom"
+import { useNavigate,Link } from "react-router-dom"
 import { CartContext } from "./CartContext"
 import axios from "axios"
 import { usdToBTC } from "../utils/helper"
@@ -90,52 +90,49 @@ const Checkout = () => {
                     return (
                       <div key={id} className="item-container">
                         <div className="valuess">
-                         
-                            <img
-                              className="visa-mastercard-checkout"
-                              src={card === "1" ? visa : mastercard}
-                              alt="Visa"
-                            />
-                            <div className="item-details">
-                              <p className="value">
-                                {quantity} x {usdValue} = {totalValue}
-                              </p>
-
-                             
+                          <img
+                            className="visa-mastercard-checkout"
+                            src={card === "1" ? visa : mastercard}
+                            alt="Visa"
+                          />
+                          <div className="item-details">
+                            <p className="valueheading">
+                              {card === "1" ? "Visa" : "MasterCard"}
+                            </p>
+                            <p className="value">
+                              {quantity} x {usdValue} = {totalValue}
+                            </p>
+                          </div>
+                          <div className="item-actions">
+                            <div>
+                              <Select
+                                className="select"
+                                defaultValue={quantity}
+                                onChange={(value) =>
+                                  handleChange(cartItem, value)
+                                }
+                                options={[
+                                  { value: 1, label: "1" },
+                                  { value: 2, label: "2" },
+                                  { value: 3, label: "3" },
+                                  { value: 4, label: "4" },
+                                  { value: 5, label: "5" },
+                                  { value: 6, label: "6" },
+                                  { value: 7, label: "7" },
+                                  { value: 8, label: "8" },
+                                ]}
+                              />
+                              <DeleteOutlined
+                                className="divider"
+                                onClick={() => handleDelete(cartItem)}
+                              />
                             </div>
-                            <div className="item-actions">
-                                <div>
-                        
-                                <Select
-                                  className="select"
-                                  defaultValue={quantity}
-                            
-                                  onChange={(value) =>
-                                    handleChange(cartItem, value)
-                                  }
-                                  options={[
-                                    { value: 1, label: "1" },
-                                    { value: 2, label: "2" },
-                                    { value: 3, label: "3" },
-                                    { value: 4, label: "4" },
-                                    { value: 5, label: "5" },
-                                    { value: 6, label: "6" },
-                                    { value: 7, label: "7" },
-                                    { value: 8, label: "8" },
-                                  ]}
-                                />
-                                <DeleteOutlined
-                                  className="divider"
-                                  onClick={() => handleDelete(cartItem)}
-                                />
-                                </div>
-                                <p className="BTC">
-                                  {Number(btcValue)?.toFixed(5)} BTC
-                                </p>
-                              </div>
+                            <p className="BTC">
+                              {Number(btcValue)?.toFixed(5)} BTC
+                            </p>
                           </div>
                         </div>
-
+                      </div>
                     )
                   })}
                 </div>
@@ -144,9 +141,7 @@ const Checkout = () => {
                   <div className="custom-bottom-para">
                     <div className="custom-tooltip">
                       <p className="custom-para">Total Estimate</p>
-                      <Tooltip title={tooltipText}>
-                        <InfoCircleOutlined />
-                      </Tooltip>
+                    
                     </div>
                   </div>
                   <div className="custom-upper-cardvalue">
@@ -195,9 +190,9 @@ const Checkout = () => {
                   />
                   <p>
                     I have read and agree with the Prepaid Friends
-                    <a href="" className="terms">
-                      Terms & Conditions and the Privacy Policy
-                    </a>
+                    <span className="terms">
+                      <Link to="/front-demo/terms&conditions">Terms & Conditions</Link> and <Link to="/front-demo/privacypolicy"> Privacy Policy</Link>
+                    </span>
                   </p>
                 </div>
                 <div className="payment">

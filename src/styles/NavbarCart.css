@@ -34,6 +34,11 @@
     background-color: #F5F2EA;
     padding-top: 0.5rem;
     height: 1.6875rem;
+    display: flex;
+  }
+  .logopayment{
+    width:11.25rem;
+    margin-left: 1rem;
   }
 
   .logocheckout{
@@ -100,11 +105,15 @@
       background: #FDC886;
       margin-top: 0.625rem;
     }
-  
     .headerlogo {
       background-color: #F5F2EA;
       padding-top: 0.5rem;
       height: 1.6875rem;
+      display: flex;
+    }
+    .logopayment{
+      width:11.25rem;
+      margin-left: 1rem;
     }
   
     .logocheckout{
@@ -180,11 +189,15 @@
       background: #FDC886;
       margin-top: 0.625rem;
     }
-  
     .headerlogo {
       background-color: #F5F2EA;
       padding-top: 0.5rem;
       height: 1.6875rem;
+      display: flex;
+    }
+    .logopayment{
+      width:11.25rem;
+      margin-left: 1rem;
     }
   
     .logocheckout{

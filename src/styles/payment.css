@@ -27,7 +27,7 @@
  }
 
  .nayasa{
-  margin-left: 1.5rem;
+  margin-left: 0.8rem;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -41,7 +41,8 @@
 }
 
 .visacardtype-img1, .cardtype-img1{
-  width: 40%;
+  width: 21%;
+  height: 50%;
 }
 
   .twocards1 {
@@ -72,6 +73,9 @@
     font-size: 1.4rem;
     color: black;
     margin-top: 0.3rem;
+  }
+  .custom-divider{
+    width: 100%;
   }
 
   .email-div {
@@ -137,13 +141,11 @@
 
   .BTC-payment {
     font-size: 1.2rem;
-  }
-
- 
-
- 
+  } 
 }
-
+.order-detail-para{
+  margin-bottom: 0rem;
+}
 /* / **************** Tablet Design ********************* / */
 
 @media (min-width: 641px) and (max-width: 1023px) {
@@ -216,6 +218,9 @@
   .ant-card-head-title {
     font-size: 1.5rem;
     color: black;
+  }
+  .custom-card .ant-card .ant-card-head {
+    border-bottom: 0px solid white !important;
   }
 
   .email-div {

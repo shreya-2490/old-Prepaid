@@ -192,7 +192,9 @@
       border-color: rgb(87, 180, 211);
     }
 
-
+    .card2-cart .ant-card .ant-card-body {
+      padding: 0rem 1.6rem;
+    }
     /* .btcvalue{
       display: flex;
       flex-direction: row;
@@ -260,7 +262,7 @@
     }
 
     .card-containercartpage {
-      width: 95%;
+      width: 87%;
       padding: 2rem;
       margin: 0 auto;
       display: flex;
@@ -303,7 +305,9 @@
       border-color: rgb(87, 180, 211);
     }
 
-
+    .card2-cart .ant-card .ant-card-body {
+      padding: 0rem 1.6rem;
+    }
       .cart-btn button{
       background-color: black;
       color: white;

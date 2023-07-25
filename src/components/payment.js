@@ -59,28 +59,27 @@ const Payment = () => {
             <Card
               className="custom-card"
               title="Order Details"
-              bordered={false}
+              style={{borderBottom:"none"}}
             >
               <div className="order-details">
-                <p>Email Address</p>
+                <p className="order-detail-para">Email Address</p>
                 <div className="email-div">
                   <p className="emailad">{email}</p>
                 </div>
               </div>
               <div className="payment-details">
-                <p>Payment Mode</p>
+                <p className="order-detail-para">Payment Mode</p>
                 <div className="email-div">
                   <p className="emailad">Bitcoin</p>
                 </div>
               </div>
-              <div className="payment-details">
-                <p>Invoice Id</p>
-                {/* TODO: Invoice ID should be generated on the server */}
+              <div className="invoice-details">
+                <p className="order-detail-para">Invoice Id</p>
                 <div className="email-div">
                   <p className="emailad">{uuidv4()}</p>
                 </div>
               </div>
-              {/* <Divider className="custom-divider" /> */}
+              <Divider className="custom-divider" />
               {cartItems &&
                 cartItems?.map((card) => (
                   <div className="custom-upper-para-pay">
@@ -97,7 +96,7 @@ const Payment = () => {
                                 />
                                
                                 <div className="nayasa">
-                                <p>Visa</p>
+                                <p className="order-detail-para">Visa</p>
                                 <p >{`${card?.quantity || 1} x $${
                                   card?.usdValue
                                  }`}</p>
@@ -114,7 +113,7 @@ const Payment = () => {
                                 />
                                
                                 <div className="nayasa">
-                                <p>MasterCard</p>
+                                <p className="order-detail-para">MasterCard</p>
                                 <p >{`${card?.quantity || 1} x $${
                           card?.usdValue
                         }`}</p>
