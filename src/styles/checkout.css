@@ -102,7 +102,7 @@
   }
 
   .item-actions {
-    margin-left: auto;
+    margin-left: 6.8rem;
     /* align-items: center;
     justify-content: center; */
   }
@@ -219,8 +219,11 @@
   .bottom-para-total {
     margin: 0.125rem 1.25rem;
   }
+  .BTC{
+    padding-top: 0.5rem;
+  }
   .BTC-total {
-    font-size: 1.0625rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     margin-top: 1.25rem;
   }

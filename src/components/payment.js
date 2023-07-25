@@ -142,7 +142,7 @@ const Payment = () => {
               </div>
              
               <p className="subtotal">Total</p>
-              <div className="custom-bottom-para pay-para">
+              <div className="custom-bottom-para-pay-para">
                 <p >${subTotalUsdValue}</p>
                 <p className="BTC-total">
                   {" "}

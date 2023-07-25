@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.3rem;
+  gap: 1rem;
 }
 
 .home-heading {
@@ -42,7 +42,7 @@
 
 .home-heading-1 {
   font-family: "Typold Extended Black";
-  font-size: 1.9rem;
+  font-size: 1.3rem;
   color: #1b1b1b;
 }
 

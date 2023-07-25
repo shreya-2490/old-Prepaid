@@ -27,7 +27,7 @@
  }
 
  .nayasa{
-  margin-left: 0.8rem;
+  margin-left: 0.4rem;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -41,8 +41,8 @@
 }
 
 .visacardtype-img1, .cardtype-img1{
-  width: 21%;
-  height: 50%;
+  width: 25%;
+  height: 75%;
 }
 
   .twocards1 {
@@ -137,6 +137,14 @@
   .subtotal {
     font-size: 0.9375rem;
     font-weight: 600;
+    margin-top: 2rem;
+  }
+  .custom-bottom-para-pay-para{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: -1.7rem 0rem;
+    padding-bottom: 1rem;
   }
 
   .BTC-payment {
@@ -194,7 +202,7 @@
 
    .custom-upper-para-pay{
     display: flex;
-    padding-top: 2rem;
+    padding-top: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     }
   
@@ -287,14 +295,23 @@
   .subtotal {
     font-size: 0.9375rem;
     font-weight: 600;
+    margin-top: 2rem;
   }
-
+  .custom-bottom-para-pay-para{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: -1.7rem 0rem;
+    padding-bottom: 1rem;
+  }
   .BTC-payment {
     font-size: 1.2rem;
   }
 
   .BTC-simplecard {
-    font-size: 1.2em;
+    font-size: 1.2rem;
+    margin-left: 4rem;
+    margin-top: 2.6rem;
   }
 
  
@@ -325,6 +342,7 @@
 
     display: flex;
     width: 70%;
+    align-items: center;
    padding-right: 2rem;
   
    }
@@ -339,7 +357,7 @@
    }
   
    .nayasa{
-    margin-left: 1.5rem;
+    margin-left: 0.4rem;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -349,7 +367,7 @@
 
    .custom-upper-para-pay{
     display: flex;
-    padding-top: 2rem;
+    padding-top: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     }
   
@@ -360,7 +378,7 @@
   
   .visacardtype-img1, .cardtype-img1{
     width: 40%;
-    height: 60%;
+    height: 65%;
   }
 
   .payment-card1 {
@@ -435,6 +453,14 @@
   .subtotal {
     font-size: 0.9375rem;
     font-weight: 600;
+    margin-top: 2rem;
+  }
+  .custom-bottom-para-pay-para{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: -1.7rem 0rem;
+    padding-bottom: 1rem;
   }
 
   .BTC-payment {
@@ -442,7 +468,7 @@
   }
 
   .BTC-simplecard {
-    font-size: 1.2em;
+    font-size: 0.84em;
   }
 
   .payment-card2 {
