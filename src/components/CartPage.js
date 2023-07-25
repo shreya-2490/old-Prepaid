@@ -4,12 +4,10 @@ import { useLocation } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import { AiOutlineSafety } from "react-icons/ai";
 import NavbarCart from "./NavbarCart";
-import mastercard from "../assets/Mastercardcartpage.png";
-import visacard from "../assets/Visacartpage.png";
-import wifi from "../assets/wifi1.png"
-import map from "../assets/map1.png"
-import master from "../assets/mastercard preowned.png"
-import visa from "../assets/visa preowned.png"
+import wifi from "../assets/wifi1.png";
+import map from "../assets/map1.png";
+import master from "../assets/mastercard preowned.png";
+import visa from "../assets/visa preowned.png";
 import "../styles/CartPage.css";
 import { v4 as uuidv4 } from "uuid";
 import { Modal, Button } from "antd";
@@ -75,7 +73,6 @@ const Cart = ({ handleAddToCart }) => {
       <div className="cart-main">
         <div className="twocards-cart" style={{ overflowX: "hidden" }}>
           <div className="card1-cart">
-            
             <div className="card-containercartpage">
               <div className="wrappercardcartpage">
                 <div className="container">
