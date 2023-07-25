@@ -106,14 +106,14 @@ const Payment = () => {
                             </>
                           ) : (
                             <>
-                              <div className="nayasa" >
+                              <div  >
                                 <img
                                   src={mastercard}
                                   alt="MasterCard"
                                   className="cardtype-img1"
                                 />
                                
-                                <div>
+                                <div className="nayasa">
                                 <p>MasterCard</p>
                                 <p >{`${card?.quantity || 1} x $${
                           card?.usdValue
