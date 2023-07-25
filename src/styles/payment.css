@@ -9,16 +9,63 @@
     justify-content: center;
   }
 
+ .value2{
+
+  display: flex;
+  width: 70%;
+ padding-right: 2rem;
+
+ }
+
+ .value2>div{
+  display: flex;
+  width: 100%;
+ }
+
+ .final-pay{
+  margin-top: 2rem;
+ }
+
+ .nayasa{
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+ 
+ }
+
+.final-payment{
+  width: 30%;
+
+}
+
+.visacardtype-img1, .cardtype-img1{
+  width: 40%;
+}
+
   .twocards1 {
     width: 100%;
     display: flex;
     align-items: flex-start;
-    gap: 3rem;
-    justify-content: center;
+     padding: 2rem 5rem 0 5rem;
+    justify-content: space-between;
   }
 
   .payment-card1 {
-    width: 30%;
+    width: 37%;
+  }
+
+  .custom-upper-para-pay{
+  display: flex;
+  padding-top: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  }
+
+
+  .payment-card2 {
+    width: 60%;
+   
   }
 
   .ant-card-head-title {
@@ -92,18 +139,9 @@
     font-size: 1.2rem;
   }
 
-  .BTC-simplecard {
-    font-size: 1.2em;
-  }
+ 
 
-  .payment-card2 {
-    width: 40%;
-  }
-
-  .visacardtype-img1, .cardtype-img1{
-    width: 20%;
-    margin-right: 2rem;
-  }
+ 
 }
 
 /* / **************** Tablet Design ********************* / */
@@ -120,16 +158,59 @@
   .twocards1 {
     width: 100%;
     display: flex;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
+    gap: 3rem;
+  }
+
+  .value2{
+
+    display: flex;
+    width: 70%;
+   padding-right: 2rem;
+  
+   }
+  
+   .value2>div{
+    display: flex;
+    width: 100%;
+   }
+  
+   .final-pay{
+    margin-top: 2rem;
+   }
+  
+   .nayasa{
+    margin-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+   
+   }
+
+   .custom-upper-para-pay{
+    display: flex;
+    padding-top: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    }
+  
+  .final-payment{
+    width: 30%;
+  
+  }
+  
+  .visacardtype-img1, .cardtype-img1{
+    width: 40%;
   }
 
   .payment-card1 {
-    width: 40%;
+    width: 85%;
   }
 
   .payment-card2 {
-    width: 40%;
+    width: 100%;
   }
 
   .ant-card-head-title {
@@ -198,12 +279,6 @@
     display: flex;
   }
 
-  .custom-upper-para-pay {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   .subtotal {
     font-size: 0.9375rem;
     font-weight: 600;
@@ -217,11 +292,7 @@
     font-size: 1.2em;
   }
 
-  .visacardtype-img1, .cardtype-img1{
-    width: 80%;
-    /* border: 2px solid red; */
-    margin-right: 1rem;
-  }
+ 
 }
 
 /* / ********************** Mobile design ***************** / */
@@ -241,8 +312,50 @@
     display: flex;
     gap: 3rem;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
+  }
+
+  .value2{
+
+    display: flex;
+    width: 70%;
+   padding-right: 2rem;
+  
+   }
+  
+   .value2>div{
+    display: flex;
+    width: 100%;
+   }
+  
+   .final-pay{
+    margin-top: 2rem;
+   }
+  
+   .nayasa{
+    margin-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+   
+   }
+
+   .custom-upper-para-pay{
+    display: flex;
+    padding-top: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    }
+  
+  .final-payment{
+    width: 30%;
+  
+  }
+  
+  .visacardtype-img1, .cardtype-img1{
+    width: 40%;
+    height: 60%;
   }
 
   .payment-card1 {
@@ -312,12 +425,7 @@
     display: flex;
   }
 
-  .custom-upper-para-pay {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-   margin-bottom: 1rem;
-  }
+  
 
   .subtotal {
     font-size: 0.9375rem;
@@ -336,19 +444,9 @@
     width: 95%;
   }
 
-  .custom-divider{
-    display: none;
-  }
+ 
 
-  .final-payment{
-    display: flex;
-    width: 120%;
-    margin-left: 2rem;
-    justify-content: space-between;
-  }
+  
 
-  .visacardtype-img1, .cardtype-img1{
-    width: 20%;
-    margin-right: 0.5rem;
-  }
+ 
 }

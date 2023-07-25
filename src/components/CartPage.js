@@ -75,28 +75,16 @@ const Cart = ({ handleAddToCart }) => {
       <div className="cart-main">
         <div className="twocards-cart" style={{ overflowX: "hidden" }}>
           <div className="card1-cart">
-            {/* <Card
-              className="custom-card-cart"
-              title=""
-              bordered={false}
-              headStyle={{ borderBottom: "none" }}
-            >
-              {selectedButton == 1 ? (
-                <img src={visacard} alt="visa card" />
-              ) : (
-                <img src={mastercard}></img>
-              )}
-            </Card>
-            </Card> */}
+            
             <div className="card-containercartpage">
-              <div class="wrappercardcartpage">
-                <div class="container">
-                  <div class="card">
-                    <img src={map} class="map-img" />
-                    <div class="top">
+              <div className="wrappercardcartpage">
+                <div className="container">
+                  <div className="card">
+                    <img src={map} className="map-img" />
+                    <div className="top">
                       <h2 className="h2heading">CARDHOLDER</h2>
                       <h2 className="h2heading">
-                        <b>${usdValue}</b>
+                        <b className="number">${usdValue}</b>
                       </h2>
                       <img src={wifi} />
                     </div>

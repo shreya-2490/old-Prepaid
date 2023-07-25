@@ -80,61 +80,71 @@ const Payment = () => {
                   <p className="emailad">{uuidv4()}</p>
                 </div>
               </div>
-              <Divider className="custom-divider" />
+              {/* <Divider className="custom-divider" /> */}
               {cartItems &&
                 cartItems?.map((card) => (
                   <div className="custom-upper-para-pay">
-                    <div>
-                      <p className="swiggy">
-                        <div className="value">
+                
+                    
+                        <div className="value2">
                           {card?.card === "1" ? (
                             <>
-                              <div style={{ display: "flex" }}>
+                              <div>
                                 <img
                                   src={visa}
                                   alt="Visa"
                                   className="visacardtype-img1"
                                 />
+                               
+                                <div className="nayasa">
                                 <p>Visa</p>
+                                <p >{`${card?.quantity || 1} x $${
+                                  card?.usdValue
+                                 }`}</p>
+                                </div>
                               </div>
                             </>
                           ) : (
                             <>
-                              <div style={{ display: "flex" }}>
+                              <div className="nayasa" >
                                 <img
                                   src={mastercard}
                                   alt="MasterCard"
                                   className="cardtype-img1"
                                 />
+                               
+                                <div>
                                 <p>MasterCard</p>
+                                <p >{`${card?.quantity || 1} x $${
+                          card?.usdValue
+                        }`}</p>
+                                </div>
                               </div>
                             </>
                           )}
-                        </div>
-                      </p>
-                      <div className="final-payment">
-                        <p className="value">{`${card?.quantity || 1} x $${
-                          card?.usdValue
-                        }`}</p>
+                    
+                    
+                     
+                    </div>
+                    <div className="final-payment">
+                        
                         <p className="BTC-simplecard">{card?.btcValue} BTC</p>
                       </div>
-                    </div>
-                    <Divider className="custom-divider" />
                   </div>
                 ))}
-              <div>
-                <p className="value">
+              <div className="final-pay">
+                <p >
                   Prepaid Card Purchase Price: {cartCount} x $2.98
                 </p>
-                <p className="value">
+                <p >
                   BTC Exchange Fee: $
                   {calculateTotalBTCExchangeFee(totalCardsValue)}
                 </p>
               </div>
-              <Divider className="custom-divider2" />
+             
               <p className="subtotal">Total</p>
               <div className="custom-bottom-para pay-para">
-                <p className="value">${subTotalUsdValue}</p>
+                <p >${subTotalUsdValue}</p>
                 <p className="BTC-total">
                   {" "}
                   {usdToBTC(subTotalUsdValue, btcRate)} BTC

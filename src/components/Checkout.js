@@ -89,13 +89,8 @@ const Checkout = () => {
                     const totalValue = usdValue * quantity
                     return (
                       <div key={id} className="item-container">
-                        <div className="value">
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                            }}
-                          >
+                        <div className="valuess">
+                         
                             <img
                               className="visa-mastercard-checkout"
                               src={card === "1" ? visa : mastercard}
@@ -105,11 +100,16 @@ const Checkout = () => {
                               <p className="value">
                                 {quantity} x {usdValue} = {totalValue}
                               </p>
-                              <div className="item-actions">
+
+                             
+                            </div>
+                            <div className="item-actions">
+                                <div>
+                        
                                 <Select
                                   className="select"
                                   defaultValue={quantity}
-                                  style={{ width: 54 }}
+                            
                                   onChange={(value) =>
                                     handleChange(cartItem, value)
                                   }
@@ -128,14 +128,14 @@ const Checkout = () => {
                                   className="divider"
                                   onClick={() => handleDelete(cartItem)}
                                 />
+                                </div>
                                 <p className="BTC">
                                   {Number(btcValue)?.toFixed(5)} BTC
                                 </p>
                               </div>
-                            </div>
                           </div>
                         </div>
-                      </div>
+
                     )
                   })}
                 </div>

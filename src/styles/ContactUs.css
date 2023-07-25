@@ -239,10 +239,18 @@
     padding: 1.875rem;
   }
 
+  /* .contactus{
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column-reverse;
+  } */
+
   .bottom-contact-container {
     background-color: #f5f2ea;
-    height: 135vh;
+    min-height: 120vh;
     width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
   }
 
   .form-container {
@@ -252,7 +260,7 @@
     padding: 1.5rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     position: absolute;
-    top: 43%;
+    top: 33%;
     left: 4%;
   }
 
@@ -282,7 +290,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 2rem 0 0 4rem;
+    padding: 50rem 0 0 4rem;
     gap: 1rem;
   }
 
