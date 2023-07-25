@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   margin: -6rem 2rem; /* Add negative margin to compensate for the margin on each card */
   justify-content: space-between;
-  max-width: 1200px; /* Adjust this value based on your desired width */
+  max-width: 79.5rem; /* Adjust this value based on your desired width */
 }
 
 .preloader {
