@@ -87,7 +87,7 @@ const NavbarCart = () => {
                  <li>
                  <Link to="/front-demo/login">
                   <span className="user">
-                   < UserOutlined style={{ fontSize: "1rem" }} />
+                   < UserOutlined style={{ fontSize: "1.5rem" }} />
                    </span>
                      </Link>
                        </li>   
