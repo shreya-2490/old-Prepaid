@@ -341,15 +341,7 @@ const BulkOrder = () => {
                   },
                 ]}
               >
-                <Space>
-                  <InputNumber
-                    min={1}
-                    max={100}
-                    defaultValue=""
-                    onChange={handleNumberChange}
-                    style={{ width: "100%" }}
-                  />
-                </Space>
+             <Input/>
               </Form.Item>
               </Form>
               <Form layout="vertical" style={{ margin: "20px 20px" }}>
