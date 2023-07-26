@@ -9,7 +9,6 @@
   justify-content: space-evenly;
 }
 
-
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -55,7 +54,7 @@
   background: linear-gradient(180deg, #ffffff 50%, #ffffff 0);
   display: flex;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  border-radius: 1rem 1rem 0 0 ;
+  border-radius: 1rem 1rem 0 0;
   overflow: hidden;
 }
 
@@ -105,16 +104,18 @@
 
 .forms {
   display: flex;
-  
+
   flex-direction: column;
 }
 
-.first-gray , .First-gray{
+.first-gray,
+.First-gray {
   display: flex;
   width: 100%;
 }
 
-.first-gray-1, .First-gray-1 {
+.first-gray-1,
+.First-gray-1 {
   margin-top: 0.35rem;
 }
 
@@ -129,7 +130,7 @@
   overflow: hidden;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.price-amount{
+.price-amount {
   border-radius: 0.25rem;
   padding: 0.31rem;
   margin-left: 5.6rem;
@@ -139,20 +140,21 @@
   color: #1b1b1b;
   background-color: #f0f0f0;
 }
-.price-amount:focus{
+.price-amount:focus {
   outline: none;
-  border-color: #29262624; 
+  border-color: #29262624;
 }
-.price-amount option{
-  background-color: #f0f0f0; 
+.price-amount option {
+  background-color: #f0f0f0;
   padding: 3rem;
 }
 
-.pay , .Pay {
+.pay,
+.Pay {
   color: black;
   font-size: 1rem;
   font-weight: 500;
-  padding-left: 1.0rem;
+  padding-left: 1rem;
 }
 
 .input-div {
@@ -203,7 +205,6 @@ input[type="number"]::-webkit-outer-spin-button {
   box-shadow: none !important;
   min-height: 2.75rem;
   padding: 0.625rem 0.6875rem;
- 
 }
 
 .items {
@@ -224,7 +225,8 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 1.25rem;
 }
 
-.both-gray , .Both-gray{
+.both-gray,
+.Both-gray {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -302,7 +304,6 @@ input[type="number"]::-webkit-outer-spin-button {
 .selection-cards-visamastercard {
   display: flex;
   gap: 1rem;
-
 }
 
 .selection-cards-visamastercard button {
@@ -318,21 +319,19 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .selection-cards-visamastercard button.selected {
-  background-color: #1ED760;
+  background-color: #1ed760;
   color: #fff;
 }
 
 .visa-card {
   width: 30%;
-
 }
-.master-card{
+.master-card {
   width: 30%;
 }
-.mastercard-image{
+.mastercard-image {
   padding: 0.5rem 0;
 }
-
 
 .choose-card {
   margin: 0.625rem 0.125rem;
@@ -340,14 +339,13 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 0.875rem;
   font-family: "Outfit", sans-serif;
   color: black;
-
 }
 
 .dropdown-amount {
   border-radius: 0.25rem;
   /* width: 100%; */
   margin-left: 1rem;
-  margin-right: 1rem;
+  margin-right: 0rem;
   border: solid 1px #29262624;
   padding: 0.31rem;
   font-size: 1rem;
@@ -363,8 +361,9 @@ input[type="number"]::-webkit-outer-spin-button {
 .dropdown-amount option {
   background-color: #f0f0f0;
 }
-
-
+.second-gray {
+  margin-right: 2.5rem;
+}
 /* / ***************   Mobile screen ********************** / */
 @media (max-width: 767px) {
   .main-body {
@@ -403,7 +402,7 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 80%;
   }
 
-  .both-gray{
+  .both-gray {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -412,18 +411,17 @@ input[type="number"]::-webkit-outer-spin-button {
     font-size: 1rem;
   }
 
-  .first-gray{
-   
+  .first-gray {
     padding: 1rem 0;
   }
 
-  .second-gray{
+  .second-gray {
     padding: 0.8rem 0;
+    margin-right: 2rem;
   }
 
-  .dropdown-amount{
+  .dropdown-amount {
     margin-top: 0.5rem;
-
   }
   .sider {
     width: 100%;
@@ -440,12 +438,11 @@ input[type="number"]::-webkit-outer-spin-button {
     font-size: 0.75rem;
   }
 
-  .dropdown-1{
+  .dropdown-1 {
     margin-left: 3rem;
   }
 
-
-  .First-gray{
+  .First-gray {
     display: flex;
     flex-direction: row;
     padding: 1rem 1rem;
@@ -453,15 +450,13 @@ input[type="number"]::-webkit-outer-spin-button {
     border-radius: 0.5rem;
   }
 
-  .Pay{
+  .Pay {
     padding-top: 0.5rem;
     font-size: 1rem;
   }
-
 }
 
 /* / ****************** Tablet screen ********************* / */
-
 
 @media screen and (min-device-width: 767px) and (max-device-width: 1024px) {
   .main-body {
@@ -501,7 +496,6 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 10.125rem;
     height: 3.5rem;
     margin-top: 2rem;
-
   }
 
   .sider {
@@ -510,7 +504,6 @@ input[type="number"]::-webkit-outer-spin-button {
     justify-content: center;
     margin: 0 auto;
     padding: 4rem 0;
-
   }
 
   .box {
@@ -525,7 +518,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .sider-content {
     padding: 1rem;
-
   }
 
   .first-btn {
@@ -535,7 +527,6 @@ input[type="number"]::-webkit-outer-spin-button {
   .button,
   .mastercard-button {
     font-size: 0.75rem;
-    
   }
 
   .first-four-navigation {
