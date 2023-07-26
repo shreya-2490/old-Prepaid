@@ -88,6 +88,7 @@ const Checkout = () => {
                     return (
                       <div key={id} className="item-container">
                         <div className="valuess">
+                          <div className="valuessinner">
                           <img
                             className="visa-mastercard-checkout"
                             src={card === "1" ? visa : mastercard}
@@ -101,6 +102,9 @@ const Checkout = () => {
                               {quantity} x {usdValue} = {totalValue}
                             </div>
                           </div>
+                          </div>
+                          
+                         
                           <div className="item-actions">
                             <div>
                               <Select

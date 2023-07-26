@@ -1,4 +1,4 @@
-/* / =====================Desktop Veiw=========================== / */
+/* / / =====================Desktop Veiw=========================== / / */
 
 @media (min-width: 1024px) {
   .checkout-main {
@@ -79,7 +79,6 @@
   .custom-upper-para-item img {
     width: 2rem;
     height: 3rem;
-    border: 2px solid red;
   }
 
   .value {
@@ -94,18 +93,21 @@
     font-weight: 600;
     margin-bottom: 0rem;
   }
+
   .valuess {
     display: flex;
-    margin-left: 0.5rem;
-    padding-top: 1rem;
+    padding: 1rem 1rem 0 0;
+    width: 100%;
+    justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   }
 
-  .item-actions {
-    margin-left: 6.8rem;
+  .valuessinner {
+    display: flex;
+    width: 70%;
   }
 
-  .item-actions > div {
+  .item-actions>div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -118,8 +120,8 @@
   }
 
   .visa-mastercard-checkout {
-    width: 19%;
-    height: 10%;
+    width: 25%;
+    height: 60%;
   }
 
   .swiggy {
@@ -158,6 +160,7 @@
     font-size: 1rem;
     color: black;
   }
+
   .email {
     font-size: 1rem;
     color: #6a716e;
@@ -205,32 +208,39 @@
     align-items: baseline;
     justify-content: space-between;
   }
+
   .custom-upper-cardvalue1 {
     margin: -1.125rem 1.25rem 0.625rem 1.25rem;
     display: flex;
     flex-direction: column;
   }
+
   .custom-bottom-para-total {
     display: flex;
     flex-direction: column;
   }
+
   .bottom-para-total {
     margin: 0.125rem 1.25rem;
   }
-  .BTC{
+
+  .BTC {
     padding-top: 0.5rem;
   }
+
   .BTC-total {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-top: 1.25rem;
   }
+
   .cardtype-img {
     width: 25%;
     height: 2%;
     margin-bottom: 0.1875rem;
     margin-right: 0.625rem;
   }
+
   .visacardtype-img {
     width: 23%;
     height: 1% !important;
@@ -238,7 +248,7 @@
   }
 }
 
-/* / ******************** Tablet Screen ******************* / */
+/* / / ******************* Tablet Screen ****************** / / */
 
 @media (min-width: 641px) and (max-width: 1023px) {
   .checkout-main {
@@ -288,7 +298,7 @@
     font-size: 1rem;
     margin-left: 1rem;
     padding-right: 1rem;
-    /* padding: 0.3125rem 0.625rem 0.625rem 0rem; */
+    /* / padding: 0.3125rem 0.625rem 0.625rem 0rem; / */
   }
 
   .custom-tooltip {
@@ -308,6 +318,7 @@
     display: flex;
     font-weight: 400;
   }
+
   .valueheading {
     font-weight: 600;
     margin-bottom: 0rem;
@@ -315,34 +326,33 @@
 
   .valuess {
     display: flex;
-    justify-content: space-around;
-    padding-top: 1rem;
+    padding: 1rem 1rem 0 0;
+    width: 100%;
+    justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   }
 
-  .item-actions {
-    align-items: center;
-    justify-content: center;
+  .valuessinner {
+    display: flex;
+    width: 70%;
+    text-align: left;
   }
 
-  .item-actions > div {
+  .item-actions>div {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
   .item-details {
+    margin-left: 0.5rem;
     display: flex;
     flex-direction: column;
-    text-align: left;
-    margin-right: 9rem;
-    margin-top: 1rem;
-    /* border: 1px solid red; */
   }
 
   .visa-mastercard-checkout {
     width: 25%;
-    height: 10%;
+    height: 70%;
   }
 
   .custom-upper-para {
@@ -512,7 +522,7 @@
   }
 }
 
-/* / *********************** Mobile Screen ******************** / */
+/* / / ********************** Mobile Screen ******************* / / */
 
 @media (min-width: 10px) and (max-width: 640px) {
   .checkout-main {
@@ -577,6 +587,7 @@
     display: flex;
     font-weight: 400;
   }
+
   .valueheading {
     font-weight: 600;
     margin-bottom: 0rem;
@@ -584,26 +595,34 @@
 
   .valuess {
     display: flex;
+    padding: 1rem 1rem 0 0;
+    width: 100%;
     justify-content: space-between;
-    padding-top: 1rem;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   }
 
-  .item-actions > div {
+  .valuessinner {
+    display: flex;
+    width: 70%;
+    text-align: left;
+  }
+
+  .item-actions>div {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
   .item-details {
+    margin-left: 0.5rem;
     display: flex;
+    flex-direction: column;
   }
 
   .visa-mastercard-checkout {
-    width: 20%;
-    height: 10%;
+    width: 25%;
+    height: 70%;
   }
-
   .BTC {
     font-size: 1rem;
   }

@@ -1,4 +1,4 @@
-/* / =====================Desktop Veiw=========================== / */
+/* / / =====================Desktop Veiw=========================== / / */
 
 @media (min-width: 1024px) {
   .checkout-main1 {
@@ -154,7 +154,7 @@
 .order-detail-para{
   margin-bottom: 0rem;
 }
-/* / **************** Tablet Design ********************* / */
+/* / / *************** Tablet Design ******************** / / */
 
 @media (min-width: 641px) and (max-width: 1023px) {
   .checkout-main1 {
@@ -212,7 +212,8 @@
   }
   
   .visacardtype-img1, .cardtype-img1{
-    width: 40%;
+    width: 22%;
+    height: 70%;
   }
 
   .payment-card1 {
@@ -317,7 +318,7 @@
  
 }
 
-/* / ********************** Mobile design ***************** / */
+/* / / ********************* Mobile design **************** / / */
 
 @media (min-width: 10px) and (max-width: 640px) {
   .checkout-main1 {
@@ -377,7 +378,7 @@
   }
   
   .visacardtype-img1, .cardtype-img1{
-    width: 40%;
+    width: 25%;
     height: 65%;
   }
 
