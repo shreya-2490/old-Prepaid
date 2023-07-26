@@ -20,7 +20,7 @@
   top: 0;
   z-index: 9999;
   padding: 0 4rem 0 4rem;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 17px;
+  box-shadow: 0 1px 4px hsla(210,8%,62%,.2);
 }
 
 ul {
