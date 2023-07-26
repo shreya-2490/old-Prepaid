@@ -29,6 +29,7 @@
 
   .bulk-div-2 {
     width: 52%;
+    display: block;
   }
 
   .subtitle-bulk {
@@ -160,7 +161,6 @@
     border-color: #000000 !important;
     color: #1b1b1b !important;
     background-color: #fdc886;
-
   }
 
   .ant-select-item-option[aria-selected="true"] {
@@ -202,10 +202,6 @@
   .bulk-div-1 {
     width: 100%;
     text-align: center;
-  }
-
-  .bulk-div-2 {
-    width: 100%;
   }
 
   .subtitle-bulk {
@@ -359,10 +355,6 @@
   .bulk-div-1 {
     width: 100%;
     text-align: center;
-  }
-
-  .bulk-div-2 {
-    width: 100%;
   }
 
   .subtitle-bulk {

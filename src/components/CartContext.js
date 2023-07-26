@@ -6,6 +6,7 @@ export const CartContext = createContext();
 // Create the CartProvider component
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [bulkCartItems, setBulkCartItems] = useState([]);
 
   const cartCount = cartItems?.reduce((accumulator, object) => {
     return accumulator + object?.quantity || 1;
@@ -27,6 +28,9 @@ export const CartProvider = ({ children }) => {
       setCartItems((prevItems) => [...prevItems, { ...item, quantity: 1 }]);
     }
   };
+  const addToBulkCart = (item) => {
+    setBulkCartItems([...bulkCartItems, { ...item }]);
+  };
 
   // Remove item from the cart
   const removeFromCart = (itemId) => {
@@ -34,6 +38,12 @@ export const CartProvider = ({ children }) => {
       (cartItem) => cartItem?.id !== itemId
     );
     setCartItems(updatedCartItems);
+  };
+  const removeBulkFromCart = (itemId) => {
+    const updatedCartItems = bulkCartItems?.filter(
+      (bulkCartItem) => bulkCartItem?.id !== itemId
+    );
+    setBulkCartItems(updatedCartItems);
   };
 
   const updateQuantity = (itemId, quantity) => {
@@ -59,6 +69,9 @@ export const CartProvider = ({ children }) => {
       value={{
         cartItems,
         addToCart,
+        addToBulkCart,
+        removeBulkFromCart,
+        bulkCartItems,
         removeFromCart,
         clearCart,
         cartCount,

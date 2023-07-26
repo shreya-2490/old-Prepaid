@@ -13,14 +13,15 @@ import { usdToBTC } from "../utils/helper";
 import { CartContext } from "./CartContext";
 
 const Payment = () => {
-  const { cartItems, cartCount } = useContext(CartContext);
+  const { cartItems, cartCount, bulkCartItems } = useContext(CartContext);
 
   const [btcRate, setBTCRate] = useState(null);
   const location = useLocation();
-  const { email } = location?.state || {};
+  const { email, orderType } = location?.state || {};
   const queryParams = new URLSearchParams(location.search);
   const input1 = queryParams.get("usdValue");
   const [usdValue, setUSDValue] = useState(input1);
+  const isBulkOrder = orderType === "bulk-order";
 
   useEffect(() => {
     setUSDValue(usdValue);
@@ -50,6 +51,10 @@ const Payment = () => {
     cartCount * 2.98 +
     calculateTotalBTCExchangeFee(totalCardsValue);
 
+  const totalBulkCartAmount = bulkCartItems?.reduce((accumulator, object) => {
+    return accumulator + Number(object?.amount) * Number(object?.quantity);
+  }, 0);
+
   return (
     <>
       <Navbarlogo />
@@ -59,7 +64,7 @@ const Payment = () => {
             <Card
               className="custom-card"
               title="Order Details"
-              style={{borderBottom:"none"}}
+              style={{ borderBottom: "none" }}
             >
               <div className="order-details">
                 <p className="order-detail-para">Email Address</p>
@@ -80,11 +85,70 @@ const Payment = () => {
                 </div>
               </div>
               <Divider className="custom-divider" />
-              {cartItems &&
-                cartItems?.map((card) => (
-                  <div className="custom-upper-para-pay">
-                
-                    
+              {isBulkOrder ? (
+                <>
+                  {bulkCartItems?.map((bulkCartItem) => {
+                    const { id, quantity, amount, subTotal, cardType } =
+                      bulkCartItem;
+
+                    return (
+                      <div key={id} className="item-container">
+                        <div className="valuess">
+                          <img
+                            className="visa-mastercard-checkout"
+                            src={cardType === "visa" ? visa : mastercard}
+                            alt="Visa"
+                          />
+                          <div className="item-details">
+                            <p className="valueheading">
+                              {cardType === "visa" ? "Visa" : "MasterCard"}
+                            </p>
+                            <p className="value">
+                              {quantity || 0} x ${amount || 0}
+                            </p>
+                          </div>
+                          <div className="item-actions">
+                            <p className="BTC">
+                              {usdToBTC(subTotal, btcRate)} BTC
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className="d-flex justify-content-between align-items-center">
+                    <p className="subtotal">Subtotal</p>
+                    <p className="BTC-total">${totalBulkCartAmount}</p>
+                  </div>
+                  <div>
+                    <p>
+                      Number of additional transactions per card:{" "}
+                      {bulkCartItems[0]?.additionalPurchaseQt || "$0"}
+                    </p>
+                    <p>
+                      International allowance fee:{" "}
+                      {bulkCartItems[0]?.isUsedForInternationalTransaction
+                        ? "$7.5"
+                        : "$0"}
+                    </p>
+                    <p>
+                      Prepaid card purchase price: {bulkCartItems[0]?.quantity}{" "}
+                      x 2.98
+                    </p>
+                    <p>BTC exchange fee: $25.00</p>
+                  </div>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <p className="subtotal">Total</p>
+                    <p className="BTC-total">
+                      {bulkCartItems[0]?.subTotal + 25}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {cartItems &&
+                    cartItems?.map((card) => (
+                      <div className="custom-upper-para-pay">
                         <div className="value2">
                           {card?.card === "1" ? (
                             <>
@@ -94,61 +158,59 @@ const Payment = () => {
                                   alt="Visa"
                                   className="visacardtype-img1"
                                 />
-                               
+
                                 <div className="nayasa">
-                                <p className="order-detail-para">Visa</p>
-                                <p >{`${card?.quantity || 1} x $${
-                                  card?.usdValue
-                                 }`}</p>
+                                  <p className="order-detail-para">Visa</p>
+                                  <p>{`${card?.quantity || 1} x $${
+                                    card?.usdValue
+                                  }`}</p>
                                 </div>
                               </div>
                             </>
                           ) : (
                             <>
-                              <div  >
+                              <div>
                                 <img
                                   src={mastercard}
                                   alt="MasterCard"
                                   className="cardtype-img1"
                                 />
-                               
+
                                 <div className="nayasa">
-                                <p className="order-detail-para">MasterCard</p>
-                                <p >{`${card?.quantity || 1} x $${
-                          card?.usdValue
-                        }`}</p>
+                                  <p className="order-detail-para">
+                                    MasterCard
+                                  </p>
+                                  <p>{`${card?.quantity || 1} x $${
+                                    card?.usdValue
+                                  }`}</p>
                                 </div>
                               </div>
                             </>
                           )}
-                    
-                    
-                     
-                    </div>
-                    <div className="final-payment">
-                        
-                        <p className="BTC-simplecard">{card?.btcValue} BTC</p>
+                        </div>
+                        <div className="final-payment">
+                          <p className="BTC-simplecard">{card?.btcValue} BTC</p>
+                        </div>
                       </div>
+                    ))}
+                  <div className="final-pay">
+                    <p>Prepaid Card Purchase Price: {cartCount} x $2.98</p>
+                    <p>
+                      BTC Exchange Fee: $
+                      {calculateTotalBTCExchangeFee(totalCardsValue)}
+                    </p>
                   </div>
-                ))}
-              <div className="final-pay">
-                <p >
-                  Prepaid Card Purchase Price: {cartCount} x $2.98
-                </p>
-                <p >
-                  BTC Exchange Fee: $
-                  {calculateTotalBTCExchangeFee(totalCardsValue)}
-                </p>
-              </div>
-             
-              <p className="subtotal">Total</p>
-              <div className="custom-bottom-para-pay-para">
-                <p >${subTotalUsdValue}</p>
-                <p className="BTC-total">
-                  {" "}
-                  {usdToBTC(subTotalUsdValue, btcRate)} BTC
-                </p>
-              </div>
+
+                  <p className="subtotal">Total</p>
+                  <div className="custom-bottom-para pay-para">
+                    <p>${subTotalUsdValue}</p>
+                    <p className="BTC-total">
+                      {" "}
+                      {usdToBTC(subTotalUsdValue, btcRate)} BTC
+                    </p>
+                  </div>
+                </>
+              )}
             </Card>
           </div>
           <div className="payment-card2">
