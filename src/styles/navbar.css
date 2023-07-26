@@ -13,14 +13,14 @@
   left: 0;
   height: 10vh;
   display: flex;
-  font-size: 1rem;
-  font-family: sans-serif;
+  font-family: Outfit,sans-serif;
+  font-size: .85rem;
   justify-content: space-between;
   position: sticky;
   top: 0;
-  z-index: 9999;
-  padding: 0 4rem 0 8rem;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* z-index: 9999 */
+  padding: 0 4rem 0 4rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 17px;
 }
 
 ul {
@@ -31,6 +31,10 @@ ul {
 .navbarrrr a {
   color: black;
   text-decoration: none;
+  font-weight: normal;
+}
+.navbarrrr a:hover{
+  font-weight: bold;
 }
 
 .navbarrrr::before {
@@ -61,13 +65,13 @@ ul {
 .menu ul {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 1.4rem;
   color: black;
 }
 
 .menu ul div{
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .hamburger {

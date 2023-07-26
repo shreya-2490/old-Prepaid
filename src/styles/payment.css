@@ -296,7 +296,8 @@
   .subtotal {
     font-size: 0.9375rem;
     font-weight: 600;
-    margin-top: 2rem;
+
+    margin: 2rem auto;
   }
   .custom-bottom-para-pay-para{
     display: flex;
@@ -452,9 +453,11 @@
   
 
   .subtotal {
+    margin-bottom: 0.5rem;
     font-size: 0.9375rem;
     font-weight: 600;
     margin-top: 2rem;
+
   }
   .custom-bottom-para-pay-para{
     display: flex;

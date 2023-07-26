@@ -1,38 +1,81 @@
 .footer {
   color: #1b1b1b;
-  background-color: #F5F2EA;
+  background-color: #f5f2ea;
   display: flex;
   width: 100%;
+  display: flex;
+  /* align-items: flex-end; */
+  /* justify-content: space-between; */
+}
+.footer-mobile {
+  display: none;
 }
 
-.prepaid-logo img{
-  width:50%;
+.prepaid-logo img {
+  width: 50%;
 }
-.arrowhead{
+.arrowhead {
   font-size: 2.5rem;
   color: white;
 
   position: relative;
   border: none;
   background: none;
-  
 }
-.termscondition{
+.termscondition {
   margin-left: 5%;
+  width: 25%;
   text-decoration: underline;
   color: #1b1b1b;
 }
-
-.divider-bet{
+.copyright {
+  text-align: right;
+  width: 51%;
+  margin: auto 5rem auto 0rem;
+}
+.divider-bet {
   margin: 0.625rem;
 }
-.privacy{
-  margin-left: 1%;
+.privacy {
   text-decoration: underline;
   color: #1b1b1b;
+  width: 100%;
 }
-@media (max-width: 768px) {
-  .footer{
+@media (min-width: 10px) and (max-width: 640px) {
+  .footer-mobile {
+    color: #1b1b1b;
+    background-color: #f5f2ea;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .copyright {
+    text-align: right;
+    width: auto;
+    margin: auto;
+  }
+
+  .termscondition {
+    margin-left: 0%;
+    width: 100%;
+    text-decoration: underline;
+    color: #1b1b1b;
+
+  }
+  .termandprivacy {
+    display: flex;
+    margin: auto;
+    width: auto;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .privacy {
+    margin-left: 0.5rem;
+  }
+  .divider-bet {
+    display: none;
+  }
+  .footer {
+    display: none;
   }
 }

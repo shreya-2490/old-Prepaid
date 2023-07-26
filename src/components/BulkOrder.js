@@ -303,11 +303,15 @@ const BulkOrder = () => {
               layout="vertical"
               style={{
                 margin: "20px",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
               <Form.Item
                 name="Load Amount"
                 label="Load Amount"
+                style={{ width: "50%" }}
                 rules={[
                   {
                     required: true,
@@ -317,7 +321,7 @@ const BulkOrder = () => {
                 <Select
                   defaultValue="Select--"
                   onChange={handleLoadAmountChange}
-                  style={{ width: "48%" }}
+                  style={{ width: "100%" }}
                 >
                   <Option value="25">25</Option>
                   <Option value="50">50 </Option>
@@ -326,7 +330,29 @@ const BulkOrder = () => {
                   <Option value="300">300 </Option>
                 </Select>
               </Form.Item>
-              <Form layout="vertical" style={{ margin: "20px 5px" }}>
+              
+              <Form.Item
+                name="Broker Id"
+                label="Broker Id"
+                style={{ marginLeft: "20px", width: "50%" }}
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Space>
+                  <InputNumber
+                    min={1}
+                    max={100}
+                    defaultValue=""
+                    onChange={handleNumberChange}
+                    style={{ width: "100%" }}
+                  />
+                </Space>
+              </Form.Item>
+              </Form>
+              <Form layout="vertical" style={{ margin: "20px 20px" }}>
                 <Form.Item
                   name="disabled"
                   valuePropName="checked"
@@ -368,7 +394,6 @@ const BulkOrder = () => {
                     </Checkbox>
                   </Form.Item>
                 </Form>
-              </Form>
               <div
                 style={{
                   display: "flex",

@@ -91,7 +91,7 @@ const Home = () => {
             {" "}
             <h1 className="home-heading">
               Effortless Payments with{" "}
-              <span style={{ color: "#FDC886", fontWeight: "600" }}>BTC</span>
+              <span style={{ color: "#FDC886", fontWeight: "400", fontFamily:"Typold Extended Black" }}>BTC</span>
             </h1>
           </div>
           <div>
