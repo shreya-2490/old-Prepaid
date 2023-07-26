@@ -620,11 +620,11 @@
   }
 
   .visa-mastercard-checkout {
-    width: 25%;
-    height: 70%;
+    width: 35%;
+    height: 50%;
   }
   .BTC {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   .custom-upper-para {

@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   UserOutlined,
   ShoppingCartOutlined,
-  MenuOutlined,
 } from "@ant-design/icons";
 import { Badge, Modal, Button } from "antd";
 import { CartContext } from "./CartContext";
@@ -12,7 +11,12 @@ import logo from "../assets/logo.png";
 import "../styles/NavbarCart.css";
 import Cart from "../shared-components/cart";
 
-function NavbarCart() {
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { RxCross2 } from "react-icons/rx"
+
+
+const NavbarCart = () => {
+  const [showMedia, setMedia] = useState(false);
   const { cartCount } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [resmenu, setResMenu] = useState("none");
@@ -31,52 +35,89 @@ function NavbarCart() {
     navigate("/front-demo");
   };
 
+
   const handleCheckout = () => {
     navigate(`/front-demo/checkout`);
   };
 
+  const handleHamburgerClick = (event) => {
+    event.preventDefault();
+    setMedia(!showMedia);
+    document.body.classList.toggle('menu-open', !showMedia);
+  };
+
   return (
-    <div className="header">
-      <div className="logo">
-        <Link to="/front-demo">
+  
+      <>
+             <nav className="navbarrrr">
+              {/* { hamburger menu } */}
+<button className="hamburger" onClick={handleHamburgerClick}>
+  {showMedia ? (
+    <RxCross2 style={{ color: 'black' , marginRight:"1.5rem" }} />
+  ) : (
+    <RxHamburgerMenu style={{ color: 'black' }} />
+  )}
+</button>
+
+
+              {/* { logo } */}
+           <div className='logo'>
+           <Link to="/front-demo">
           <img src={logo} alt="Logo" />
         </Link>
-      </div>
-      <div className="left">
-        <div
-          className="hamburg"
-          onClick={() => {
-            if (resmenu === "none") setResMenu("flex");
-            else setResMenu("none");
-          }}
-        >
-          <MenuOutlined />
-          <div className="navmenu" style={{ display: resmenu }}>
-            <Link to="/front-demo">HOME</Link>
-            <Link to="/front-demo/bulkorder">BULK ORDERS</Link>
-            <Link to="/front-demo/contactus">CONTACT US</Link>
-          </div>
-        </div>
-        <div className="first-four-navigation">
-          <Link to="/front-demo">HOME</Link>
-          <Link to="/front-demo/bulkorder">BULK ORDERS</Link>
-          <Link to="/front-demo/contactus">CONTACT </Link>
-          <Link to="/front-demo/login">
-            <span className="user">
-              <UserOutlined style={{ fontSize: "1.5rem" }} />
-            </span>
-          </Link>
-        </div>
+              </div>
 
-        <div className="navlogin-cart">
-          <div onClick={handleCartClick}>
-            <Badge count={cartCount} className="carticon">
-              <ShoppingCartOutlined />
-            </Badge>
-          </div>
-        </div>
-      </div>
+             {/* { menu } */}
+           <div className={showMedia ? "menu mobile-menu" : "menu"}>
 
+            <ul>
+           <div>
+             <li>
+             <Link to="/front-demo">HOME</Link>
+             </li>
+
+              <li>
+              <Link to="/front-demo/bulkorder">BULK ORDERS</Link>
+              </li>
+
+                <li>
+                <Link to="/front-demo/contactus">CONTACT US</Link>
+                 </li>
+                 </div>
+                 <li>
+                 <Link to="/front-demo/login">
+                  <span className="user">
+                   < UserOutlined style={{ fontSize: "1rem" }} />
+                   </span>
+                     </Link>
+                       </li>   
+       
+                        <li>
+                    <div className="nav-cart" onClick={handleCartClick}>
+                   <Badge count={cartCount} className="carticon">
+                   <ShoppingCartOutlined />
+                     </Badge>
+                     </div>
+
+                        </li>  
+                     </ul>
+ 
+                  
+                 </div>
+
+                 <div className="nav-cart1" onClick={handleCartClick}>
+                   <Badge count={cartCount} className="carticon">
+                   <ShoppingCartOutlined />
+                     </Badge>
+                     </div>
+
+
+
+
+</nav>
+
+      
+        
       <Modal
         visible={isCartOpen}
         onCancel={handleCloseClick}
@@ -97,9 +138,12 @@ function NavbarCart() {
           </Button>
         </div>
       </Modal>
-    </div>
+   
+    </>  
   );
 }
 
 export default NavbarCart;
+
+
 
