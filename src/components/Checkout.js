@@ -94,12 +94,12 @@ const Checkout = () => {
                             alt="Visa"
                           />
                           <div className="item-details">
-                            <p className="valueheading">
+                            <div className="valueheading">
                               {card === "1" ? "Visa" : "MasterCard"}
-                            </p>
-                            <p className="value">
+                            </div>
+                            <div className="value">
                               {quantity} x {usdValue} = {totalValue}
-                            </p>
+                            </div>
                           </div>
                           <div className="item-actions">
                             <div>

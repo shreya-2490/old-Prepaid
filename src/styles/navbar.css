@@ -122,18 +122,19 @@ text-decoration:overline;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem 10rem;
+  padding: 6rem 10rem;
   margin-top: 1rem;
+  margin-right: 10rem;
   width: 100%;
   gap: 2rem;
-  border-radius: 1rem;
+
 }
 
 .header .left .hamburg .navmenu > a {
   color: rgb(19, 18, 18);
   text-decoration: none;
-  width: 10rem; 
-  font-size: 1.3rem;
+  width: 15rem; 
+  font-size: 0.8rem;
 }
 
 .usernav{

@@ -77,8 +77,9 @@
   }
 
   .custom-upper-para-item img {
-    width: 4rem;
+    width: 2rem;
     height: 3rem;
+    border: 2px solid red;
   }
 
   .value {
@@ -87,8 +88,8 @@
     margin-left: 0rem;
     font-weight: 400;
     margin-right: 2rem;
-    /* border: 1px solid red; */
   }
+
   .valueheading {
     font-weight: 600;
     margin-bottom: 0rem;
@@ -96,15 +97,12 @@
   .valuess {
     display: flex;
     margin-left: 0.5rem;
-    /* justify-content: space-evenly; */
     padding-top: 1rem;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   }
 
   .item-actions {
     margin-left: 6.8rem;
-    /* align-items: center;
-    justify-content: center; */
   }
 
   .item-actions > div {
@@ -335,6 +333,11 @@
 
   .item-details {
     display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-right: 9rem;
+    margin-top: 1rem;
+    /* border: 1px solid red; */
   }
 
   .visa-mastercard-checkout {
