@@ -79,7 +79,7 @@
   height: 3.75rem;
   text-align: center;
   border: none;
-  width: 120%;
+  width: 10rem;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -87,6 +87,7 @@
 
 .buttons .sell {
   height: 3.75rem;
+  text-align: center;
   border: none;
   width: 10rem;
   font-size: 1rem;
