@@ -9,6 +9,8 @@
 
 /***************************Laptop View**********************/
 @media (min-width: 1024px) {
+
+
 .navbarrrr {
   left: 0;
   height: 10vh;
@@ -86,12 +88,21 @@ ul {
   display: block;
 }
 
+.headerlogo img{
+  padding-top: 1rem;
+ }
+
+ .back-arrow {
+   padding-top: 1.3rem;
+   padding-left: 2rem;
+  }
+
 
 }
 
 /* / / / ****************** Mobile View *************************** / / / */
 
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
 
 
   .menu {
@@ -213,9 +224,97 @@ ul {
   
 }
 
+/* ******************** Tablet screen ********************* */
 
+@media screen and (min-device-width: 767px) and (max-device-width: 1024px) {
 
+  .navbarrrr {
+    left: 0;
+    height: 10vh;
+    display: flex;
+    font-family: Outfit,sans-serif;
+    font-size: .85rem;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    padding: 0 4rem 0 4rem;
+    box-shadow: 0 1px 4px hsla(210,8%,62%,.2);
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  
+  .navbarrrr a {
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+  }
+  .navbarrrr a:hover{
+    font-weight: bold;
+  }
+  
+  .navbarrrr::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f2ea;
+    z-index: -1;
+  }
+  
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu {
+    width: 65%;
+    display: flex;
+    padding-top: 1.2rem;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .menu ul {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    color: black;
+  }
+  
+  .menu ul div{
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .hamburger {
+    display: none;
+  }
+  
+  .nav-cart1{
+    display: none;
+  }
+  
+  .nav-cart{
+    display: block;
+  }
+  
+  .headerlogo img{
+    padding-top: 1.5rem;
+   }
+ 
+   .back-arrow {
+     padding-top: 1.7rem;
+     padding-left: 1.8rem;
+    }
 
+}
 
 
 

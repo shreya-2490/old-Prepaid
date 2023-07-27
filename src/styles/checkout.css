@@ -297,8 +297,7 @@
   .custom-para {
     font-size: 1rem;
     margin-left: 1rem;
-    padding-right: 1rem;
-    /* / padding: 0.3125rem 0.625rem 0.625rem 0rem; / */
+   
   }
 
   .custom-tooltip {
@@ -310,7 +309,6 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin: 0.4375rem 0rem;
   }
 
   .value {
@@ -342,11 +340,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 0.6rem;
   }
 
   .item-details {
-    margin-left: 0.5rem;
+    margin-left: 0.8rem;
     display: flex;
+    padding-top: 0.5rem;
     flex-direction: column;
   }
 
@@ -486,7 +486,9 @@
   .custom-upper-cardvalue {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-left: 1rem;
+    width: 90%;
   }
 
   .custom-upper-cardvalue1 {
@@ -505,7 +507,7 @@
       } */
 
   .BTC-total {
-    font-size: 1.0625rem;
+    font-size: 1rem;
   }
 
   .cardtype-img {
@@ -525,6 +527,7 @@
 /* / / ********************** Mobile Screen ******************* / / */
 
 @media (min-width: 10px) and (max-width: 640px) {
+
   .checkout-main {
     background-color: #f5f2ea;
     padding: 3rem 0;
@@ -567,8 +570,7 @@
   }
 
   .custom-para {
-    font-size: 1.0625rem;
-    padding: 0.3125rem 0.625rem 0.625rem 0rem;
+    font-size: 1rem;
   }
 
   .custom-tooltip {
@@ -625,6 +627,8 @@
   }
   .BTC {
     font-size: 0.8rem;
+    padding-top: 0.5rem;
+    /* border: 1px solid red; */
   }
 
   .custom-upper-para {
@@ -765,7 +769,6 @@
   .custom-bottom-para-total {
     display: flex;
     flex-direction: column;
-    padding: 0.5rem;
   }
 
   .bottom-para-total {
@@ -773,9 +776,7 @@
   }
 
   .BTC-total {
-    font-size: 1.0625rem;
-    line-height: 1.5;
-    margin-top: 1.25rem;
+    font-size: 1rem;
   }
 
   .cardtype-img {

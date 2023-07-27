@@ -105,6 +105,8 @@ const NavbarCart = () => {
                   
                  </div>
 
+                 
+
                  <div className="nav-cart1" onClick={handleCartClick}>
                    <Badge count={cartCount} className="carticon">
                    <ShoppingCartOutlined />
