@@ -1,12 +1,17 @@
+
+/***************************Laptop View**********************/
+@media (min-width: 1024px) {
+
 .footer {
   color: #1b1b1b;
   background-color: #f5f2ea;
   display: flex;
   width: 100%;
   display: flex;
-  /* align-items: flex-end; */
-  /* justify-content: space-between; */
+  padding-bottom: 2rem;
 }
+
+
 .footer-mobile {
   display: none;
 }
@@ -14,41 +19,52 @@
 .prepaid-logo img {
   width: 50%;
 }
+
 .arrowhead {
   font-size: 2.5rem;
   color: white;
-
   position: relative;
   border: none;
   background: none;
 }
+
 .termscondition {
-  margin-left: 5%;
-  width: 25%;
+  margin-left: 5rem;
   text-decoration: underline;
   color: #1b1b1b;
 }
+
 .copyright {
   text-align: right;
-  width: 51%;
-  margin: auto 5rem auto 0rem;
+  width: 60%;
+  margin-left: 10rem;
 }
+
 .divider-bet {
-  margin: 0.625rem;
+  margin: 0.5rem;
 }
+
 .privacy {
   text-decoration: underline;
   color: #1b1b1b;
-  width: 100%;
 }
-@media (min-width: 10px) and (max-width: 640px) {
+}
+
+
+
+/* ****************** Mobile ********************** */
+
+
+@media (max-width: 767px) {
   .footer-mobile {
     color: #1b1b1b;
     background-color: #f5f2ea;
     width: 100%;
     display: flex;
     flex-direction: column;
+    padding-bottom: 2rem;
   }
+
   .copyright {
     text-align: right;
     width: auto;
@@ -79,4 +95,60 @@
   .footer {
     display: none;
   }
+}
+
+
+/* **************** Tablet SCreen **************** */
+
+@media screen and (min-device-width: 767px) and (max-device-width: 1024px) {
+
+  .footer {
+    color: #1b1b1b;
+    background-color: #f5f2ea;
+    display: flex;
+    width: 100%;
+    display: flex;
+  }
+  
+  
+  .footer-mobile {
+    display: none;
+  }
+  
+  .prepaid-logo img {
+    width: 50%;
+  }
+
+
+  .arrowhead {
+    font-size: 2.5rem;
+    color: white;
+    position: relative;
+    border: none;
+    background: none;
+  }
+
+
+  .termscondition {
+    margin-left: 5rem;
+    text-decoration: underline;
+    color: #1b1b1b;
+  }
+
+  .copyright {
+    text-align: right;
+    margin-left: 7rem;
+    width: 40%;
+  }
+
+  
+  .divider-bet {
+    margin: 0.5rem;
+  }
+
+  .privacy {
+    text-decoration: underline;
+    color: #1b1b1b;
+  }
+
 }
