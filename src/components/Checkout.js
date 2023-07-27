@@ -16,13 +16,23 @@ const Checkout = () => {
 
   const [btcRate, setBTCRate] = useState(null);
   const navigate = useNavigate();
-  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
+  const {
+    cartItems,
+    removeFromCart,
+    updateQuantity,
+    preOwnedCards,
+    removePreOwnedFromCart,
+  } = useContext(CartContext);
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [email, setEmail] = useState("");
 
   const handleDelete = (cartItem) => {
     removeFromCart(cartItem?.id);
+  };
+
+  const handleDeletePreOwned = (card) => {
+    removePreOwnedFromCart(card?.id);
   };
 
   const handleEmailChange = (event) => {
@@ -62,11 +72,20 @@ const Checkout = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  const totalCardsValue = cartItems?.reduce((accumulator, object) => {
+  const totalNewCardValue = cartItems?.reduce((accumulator, object) => {
     return (
       accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
     );
   }, 0);
+
+  const totalPreOwnedCardsValue = preOwnedCards?.reduce(
+    (accumulator, object) => {
+      return accumulator + Number(object.price);
+    },
+    0
+  );
+
+  const totalCardsValue = totalNewCardValue + totalPreOwnedCardsValue;
 
   return (
     <>
@@ -100,7 +119,7 @@ const Checkout = () => {
                               {card === "1" ? "Visa" : "MasterCard"}
                             </div>
                             <div className="value">
-                              {quantity} x {usdValue} = {totalValue}
+                              {quantity} x ${usdValue} = ${totalValue}
                             </div>
                           </div>
                         </div>
@@ -137,6 +156,49 @@ const Checkout = () => {
                           type="warning"
                         />
                       )}
+                    </div>
+                  );
+                })}
+                {preOwnedCards?.map((preOwnedCard) => {
+                  const { id, bin, card, price, type } = preOwnedCard;
+
+                  const totalValue = price * 1;
+                  return (
+                    <div key={id} className="item-container">
+                      <div className="valuess">
+                        <div className="valuessinner">
+                          <img
+                            className="visa-mastercard-checkout"
+                            src={type === "visa" ? visa : mastercard}
+                            alt="Visa"
+                          />
+                          <div className="item-details">
+                            <div className="valueheading">
+                              {card === "visa" ? "Visa" : "MasterCard"}
+                            </div>
+                            <div className="value">
+                              {1} x ${price} = ${totalValue}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="item-actions">
+                          <div>
+                            <Select
+                              className="select"
+                              defaultValue={1}
+                              options={[{ value: 1, label: "1" }]}
+                            />
+                            <DeleteOutlined
+                              className="divider"
+                              onClick={() => handleDeletePreOwned(preOwnedCard)}
+                            />
+                          </div>
+                          <p className="BTC">
+                            {usdToBTC(totalValue, btcRate)} BTC
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
