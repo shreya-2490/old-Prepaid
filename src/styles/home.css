@@ -155,7 +155,7 @@
 .pay,
 .Pay {
   color: black;
-  font-size: 1rem;
+  font-size: 0.87rem;
   font-weight: 500;
   padding-left: 1rem;
 }
@@ -432,6 +432,10 @@ input[type="number"]::-webkit-outer-spin-button {
   .dropdown-amount {
     margin-top: 0.5rem;
   }
+  .dropdown-amount option {
+    font-size: 0.6rem;
+  }
+
   .sider {
     width: 100%;
   }
@@ -461,7 +465,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .Pay {
     padding-top: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
 }
 
