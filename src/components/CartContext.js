@@ -7,10 +7,21 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [bulkCartItems, setBulkCartItems] = useState([]);
+  const [preOwnedCards, setPreOwnedCards] = useState([]);
 
-  const cartCount = cartItems?.reduce((accumulator, object) => {
+  const newCardsCount = cartItems?.reduce((accumulator, object) => {
     return accumulator + object?.quantity || 1;
   }, 0);
+
+  const preOwnedCardsCount = preOwnedCards?.reduce((accumulator, object) => {
+    return accumulator + 1;
+  }, 0);
+
+  const cartCount = newCardsCount + preOwnedCardsCount;
+
+  const addToCartPreownedCards = (item) => {
+    setPreOwnedCards([...preOwnedCards, { ...item }]);
+  };
 
   // Add item to the cart
   const addToCart = (item) => {
@@ -45,6 +56,12 @@ export const CartProvider = ({ children }) => {
     );
     setBulkCartItems(updatedCartItems);
   };
+  const removePreOwnedFromCart = (itemId) => {
+    const updatedCartItems = preOwnedCards?.filter(
+      (preOwnedCard) => preOwnedCard?.id !== itemId
+    );
+    setPreOwnedCards(updatedCartItems);
+  };
 
   const updateQuantity = (itemId, quantity) => {
     const cartItemIndex = cartItems.findIndex(
@@ -61,6 +78,8 @@ export const CartProvider = ({ children }) => {
   // Clear the cart
   const clearCart = () => {
     setCartItems([]);
+    setPreOwnedCards([]);
+    setBulkCartItems([]);
   };
 
   // Provide the cart state and actions to the children components
@@ -68,11 +87,14 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cartItems,
+        bulkCartItems,
+        preOwnedCards,
         addToCart,
         addToBulkCart,
+        addToCartPreownedCards,
         removeBulkFromCart,
-        bulkCartItems,
         removeFromCart,
+        removePreOwnedFromCart,
         clearCart,
         cartCount,
         updateQuantity,

@@ -145,11 +145,14 @@ const BulkCheckout = () => {
                   })}
                 </div>
 
-                <div className="w-100 d-flex justify-content-between align-items-center">
+                <div className="custom-bottom-para-total">
                   <p className="custom-para">Total Estimate</p>
-                  <p style={{ fontSize: "1.0625rem" }}>
-                    {usdToBTC(totalCartValue, btcRate)} BTC
-                  </p>
+                  <div className="custom-upper-cardvalue">
+                    {/* <p className="value123">${subtotal}</p> */}
+                    <p className="BTC-total">
+                      {usdToBTC(totalCartValue, btcRate)} BTC
+                    </p>
+                  </div>
                 </div>
               </Card>
             </div>

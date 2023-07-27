@@ -92,18 +92,18 @@ const Payment = () => {
                       bulkCartItem;
 
                     return (
-                      <div key={id} className="item-container">
-                        <div className="valuess">
+                      <div key={id} className="custom-upper-para-pay">
+                        <div className="value2">
                           <img
-                            className="visa-mastercard-checkout"
+                            className="visacardtype-img1"
                             src={cardType === "visa" ? visa : mastercard}
                             alt="Visa"
                           />
-                          <div className="item-details">
-                            <p className="valueheading">
+                          <div className="nayasa">
+                            <p className="order-detail-para">
                               {cardType === "visa" ? "Visa" : "MasterCard"}
                             </p>
-                            <p className="value">
+                            <p>
                               {quantity || 0} x ${amount || 0}
                             </p>
                           </div>
@@ -116,7 +116,7 @@ const Payment = () => {
                       </div>
                     );
                   })}
-                  <div className="d-flex justify-content-between align-items-center">
+                   <div className="custom-bottom-para pay-para">
                     <p className="subtotal">Subtotal</p>
                     <p className="BTC-total">${totalBulkCartAmount}</p>
                   </div>
@@ -137,8 +137,9 @@ const Payment = () => {
                     </p>
                     <p>BTC exchange fee: $25.00</p>
                   </div>
+                  
+                  <p className="subtotal">Total</p>
                   <div className="d-flex justify-content-between align-items-center">
-                    <p className="subtotal">Total</p>
                     <p className="BTC-total">
                       {bulkCartItems[0]?.subTotal + 25}
                     </p>
