@@ -4,11 +4,12 @@
 
 .footer {
   color: #1b1b1b;
-  background-color: #f5f2ea;
+  background-color: #fdc886;
   display: flex;
   width: 100%;
   display: flex;
-  padding-bottom: 2rem;
+  padding-top: 0.4rem;
+  height: 2.5rem;
 }
 
 
