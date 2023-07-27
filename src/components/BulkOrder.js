@@ -130,6 +130,11 @@ const BulkOrder = () => {
                 name="Customer's Name"
                 label="Customer's Name"
                 style={{ display: "inline-block", width: "calc(50% - 8px)" }}
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -141,13 +146,34 @@ const BulkOrder = () => {
                   width: "calc(50% - 8px)",
                   margin: "0 8px",
                 }}
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
-              <Form.Item name="Address" label="Address">
+              <Form.Item
+                name="Address"
+                label="Address"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
-              <Form.Item name="Phone" label="Phone">
+              <Form.Item
+                name="Phone"
+                label="Phone"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
                 <Input />
               </Form.Item>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -219,11 +245,6 @@ const BulkOrder = () => {
                   name="Broker Id"
                   label="Broker Id"
                   style={{ width: "80%" }}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
                 >
                   <Input />
                 </Form.Item>

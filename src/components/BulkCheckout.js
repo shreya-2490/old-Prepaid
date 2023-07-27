@@ -1,41 +1,41 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Card, Button, Checkbox } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
-import Navbarlogo from "./Navbarlogo";
-import "../styles/checkout.css";
-import Payment from "./payment";
-import validator from "validator";
-import visa from "../assets/Visacartpage.png";
-import mastercard from "../assets/Mastercardcartpage.png";
-import { useNavigate, Link } from "react-router-dom";
-import { CartContext } from "./CartContext";
-import axios from "axios";
-import { usdToBTC } from "../utils/helper";
+import React, { useState, useEffect, useContext } from "react"
+import { Card, Button, Checkbox } from "antd"
+import { DeleteOutlined } from "@ant-design/icons"
+import Navbarlogo from "./Navbarlogo"
+import "../styles/checkout.css"
+import Payment from "./payment"
+import validator from "validator"
+import visa from "../assets/Visacartpage.png"
+import mastercard from "../assets/Mastercardcartpage.png"
+import { useNavigate, Link } from "react-router-dom"
+import { CartContext } from "./CartContext"
+import axios from "axios"
+import { usdToBTC } from "../utils/helper"
 
 const BulkCheckout = () => {
-  const [btcRate, setBTCRate] = useState(null);
-  const navigate = useNavigate();
-  const { bulkCartItems, removeBulkFromCart } = useContext(CartContext);
-  const [isChecked1, setIsChecked1] = useState(false);
-  const [isChecked2, setIsChecked2] = useState(false);
-  const [paymentStatus, setPaymentstatus] = useState(false);
-  const [email, setEmail] = useState("");
+  const [btcRate, setBTCRate] = useState(null)
+  const navigate = useNavigate()
+  const { bulkCartItems, removeBulkFromCart } = useContext(CartContext)
+  const [isChecked1, setIsChecked1] = useState(false)
+  const [isChecked2, setIsChecked2] = useState(false)
+  const [paymentStatus, setPaymentstatus] = useState(false)
+  const [email, setEmail] = useState("")
 
   const handleDelete = (cartItem) => {
-    removeBulkFromCart(cartItem?.id);
-  };
+    removeBulkFromCart(cartItem?.id)
+  }
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
+    setEmail(event.target.value)
+  }
 
   const handleCheckboxChange1 = () => {
-    setIsChecked1(!isChecked1);
-  };
+    setIsChecked1(!isChecked1)
+  }
 
   const handleCheckboxChange2 = () => {
-    setIsChecked2(!isChecked2);
-  };
+    setIsChecked2(!isChecked2)
+  }
 
   useEffect(() => {
     axios
@@ -43,17 +43,17 @@ const BulkCheckout = () => {
         "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
       )
       .then((response) => setBTCRate(response?.data?.bitcoin?.usd))
-      .catch((error) => console.error(error));
-  }, []);
+      .catch((error) => console.error(error))
+  }, [])
 
   const totalCartValue = bulkCartItems?.reduce((accumulator, object) => {
-    return accumulator + Number(object?.subTotal);
-  }, 0);
+    return accumulator + Number(object?.subTotal)
+  }, 0)
 
   const handleSubmit = () => {
-    setPaymentstatus(true);
+    setPaymentstatus(true)
     if (validator.isEmail(email)) {
-      setEmail(email);
+      setEmail(email)
       // TODO: Replace some of the dummy values with the correct values
       axios
         ?.post(`/save-bulk-order-api`, {
@@ -85,11 +85,11 @@ const BulkCheckout = () => {
           navigate(`/front-demo/payment`, {
             state: { email, orderType: "bulk-order" },
           })
-        );
+        )
     } else {
-      alert("Invalid email format. Please enter a correct email address.");
+      alert("Invalid email format. Please enter a correct email address.")
     }
-  };
+  }
 
   return (
     <>
@@ -107,24 +107,26 @@ const BulkCheckout = () => {
                 <div className="custom-upper-para">
                   {bulkCartItems?.map((bulkCartItem) => {
                     const { id, quantity, amount, subTotal, cardType } =
-                      bulkCartItem;
+                      bulkCartItem
 
                     return (
                       <div key={id} className="item-container">
                         <div className="valuess">
-                          <img
-                            className="visa-mastercard-checkout"
-                            src={cardType === "visa" ? visa : mastercard}
-                            alt="Visa"
-                          />
-                          <div className="item-details">
-                            <p className="valueheading">
-                              {cardType === "visa" ? "Visa" : "MasterCard"}
-                            </p>
-                            <p className="value">
-                              {quantity || 0} x ${amount || 0} = $
-                              {subTotal || 0}
-                            </p>
+                          <div className="valuessinner">
+                            <img
+                              className="visa-mastercard-checkout"
+                              src={cardType === "visa" ? visa : mastercard}
+                              alt="Visa"
+                            />
+                            <div className="item-details">
+                              <p className="valueheading">
+                                {cardType === "visa" ? "Visa" : "MasterCard"}
+                              </p>
+                              <p className="value">
+                                {quantity || 0} x ${amount || 0} = $
+                                {subTotal || 0}
+                              </p>
+                            </div>
                           </div>
                           <div className="item-actions">
                             <div>
@@ -139,7 +141,7 @@ const BulkCheckout = () => {
                           </div>
                         </div>
                       </div>
-                    );
+                    )
                   })}
                 </div>
 
@@ -222,7 +224,7 @@ const BulkCheckout = () => {
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default BulkCheckout;
+export default BulkCheckout
