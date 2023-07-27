@@ -1,23 +1,23 @@
-import React, { useContext, useState } from "react";
-import NavbarCart from "./NavbarCart";
-import "../styles/BulkOrder.css";
-import success from "../assets/Success Icon.png";
-import tick from "../assets/tick-circle.png";
-import cards from "../assets/Bank Cards.png";
-import ellipse from "../assets/Ellipse.png";
-import { v4 as uuidV4 } from "uuid";
+import React, { useContext, useState } from "react"
+import NavbarCart from "./NavbarCart"
+import "../styles/BulkOrder.css"
+import success from "../assets/Success Icon.png"
+import tick from "../assets/tick-circle.png"
+import cards from "../assets/Bank Cards.png"
+import ellipse from "../assets/Ellipse.png"
+import { v4 as uuidV4 } from "uuid"
 
-import { Button, Form, Input, InputNumber, Select, Card, Checkbox } from "antd";
-import Footer from "./Footer";
-import { useNavigate } from "react-router-dom";
-import { CartContext } from "./CartContext";
-const { Option } = Select;
+import { Button, Form, Input, InputNumber, Select, Card, Checkbox } from "antd"
+import Footer from "./Footer"
+import { useNavigate } from "react-router-dom"
+import { CartContext } from "./CartContext"
+const { Option } = Select
 
 const BulkOrder = () => {
-  const nav = useNavigate();
-  const [form] = Form.useForm();
-  const { addToBulkCart } = useContext(CartContext);
-  const [subTotal, setSubTotal] = useState(0);
+  const nav = useNavigate()
+  const [form] = Form.useForm()
+  const { addToBulkCart } = useContext(CartContext)
+  const [subTotal, setSubTotal] = useState(0)
 
   return (
     <>
@@ -81,37 +81,37 @@ const BulkOrder = () => {
               layout="vertical"
               autoComplete="off"
               onValuesChange={() => {
-                const quantity = form.getFieldValue("card-quantity") || 0;
-                const loadAmount = form.getFieldValue("load-amount") || 0;
+                const quantity = form.getFieldValue("card-quantity") || 0
+                const loadAmount = form.getFieldValue("load-amount") || 0
                 const additionalPurchaseQt =
-                  form.getFieldValue("additional-purchase-quantity") || 0;
+                  form.getFieldValue("additional-purchase-quantity") || 0
 
                 const isUsedForInternationalTransaction = form.getFieldValue(
                   "international-purchases"
-                );
+                )
 
                 const calculateTotal =
                   (quantity * loadAmount || 0) +
                   (loadAmount ? quantity * 2.98 : 0) +
                   additionalPurchaseQt * 2 +
-                  (isUsedForInternationalTransaction ? 7.5 : 0);
+                  (isUsedForInternationalTransaction ? 7.5 : 0)
 
-                setSubTotal(calculateTotal);
+                setSubTotal(calculateTotal)
               }}
               style={{
                 margin: "75px 20px 0px 20px",
                 // width: "90%",
               }}
               onFinish={() => {
-                const quantity = form.getFieldValue("card-quantity") || 0;
-                const loadAmount = form.getFieldValue("load-amount") || 0;
-                const cardType = form.getFieldValue("card-type") || 0;
+                const quantity = form.getFieldValue("card-quantity") || 0
+                const loadAmount = form.getFieldValue("load-amount") || 0
+                const cardType = form.getFieldValue("card-type") || 0
                 const additionalPurchaseQt =
-                  form.getFieldValue("additional-purchase-quantity") || 0;
+                  form.getFieldValue("additional-purchase-quantity") || 0
 
                 const isUsedForInternationalTransaction = form.getFieldValue(
                   "international-purchases"
-                );
+                )
 
                 addToBulkCart({
                   id: uuidV4(),
@@ -121,9 +121,9 @@ const BulkOrder = () => {
                   cardType,
                   additionalPurchaseQt,
                   isUsedForInternationalTransaction,
-                });
+                })
 
-                nav("/front-demo/bulk-checkout");
+                nav("/front-demo/bulk-checkout")
               }}
             >
               <Form.Item
@@ -150,84 +150,84 @@ const BulkOrder = () => {
               <Form.Item name="Phone" label="Phone">
                 <Input />
               </Form.Item>
-              <div style={{display:"flex", justifyContent: "space-between"}}>
-              <Form.Item
-                name="card-type"
-                label="Card Type"
-                style={{ display: "inline-block", width: "60%" }}
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Select defaultValue="Select--" onChange={() => {}}>
-                  <Option value="visa">Visa</Option>
-                  <Option value="masterCard">MasterCard </Option>
-                </Select>
-              </Form.Item>
-              <Form.Item
-                name="card-quantity"
-                label="Card Quantity"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-                style={{
-                  display: "inline-block",
-                  width: "calc(50% - 8px)",
-                  margin: "0 8px",
-                }}
-              >
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <Form.Item
+                  name="card-type"
+                  label="Card Type"
+                  style={{ display: "inline-block", width: "60%" }}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <Select defaultValue="Select--" onChange={() => {}}>
+                    <Option value="visa">Visa</Option>
+                    <Option value="masterCard">MasterCard </Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  name="card-quantity"
+                  label="Card Quantity"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                  style={{
+                    display: "inline-block",
+                    width: "calc(50% - 8px)",
+                    margin: "0 8px",
+                  }}
+                >
                   <InputNumber
                     width={50}
-                  min={5}
-                  max={100}
-                  defaultValue=""
-                  onChange={() => {}}
-                  formatter={(value) =>
-                    value < 5 ? (5).toString() : value.toString()
-                  }
-                  parser={(value) =>
-                    parseInt(value, 10) < 5 ? 5 : parseInt(value, 10)
-                  }
-                  style={{ width: "100%" }}
-                />
+                    min={5}
+                    max={100}
+                    defaultValue=""
+                    onChange={() => {}}
+                    formatter={(value) =>
+                      value < 5 ? (5).toString() : value.toString()
+                    }
+                    parser={(value) =>
+                      parseInt(value, 10) < 5 ? 5 : parseInt(value, 10)
+                    }
+                    style={{ width: "100%" }}
+                  />
                 </Form.Item>
               </div>
-              <div style={{display:"flex", alignItems:"center"}}>
-              <Form.Item
-                name="load-amount"
-                label="Load Amount"
-                style={{ width: "100%" }}
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Select defaultValue="Select--" style={{ width: "98%" }}>
-                  <Option value="25">25</Option>
-                  <Option value="50">50 </Option>
-                  <Option value="100">100 </Option>
-                  <Option value="200">200 </Option>
-                  <Option value="300">300 </Option>
-                </Select>
-              </Form.Item>
-              <Form.Item
-                name="Broker Id"
-                label="Broker Id"
-                style={{ width: "80%" }}
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Input />
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Form.Item
+                  name="load-amount"
+                  label="Load Amount"
+                  style={{ width: "100%" }}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <Select defaultValue="Select--" style={{ width: "98%" }}>
+                    <Option value="25">25</Option>
+                    <Option value="50">50 </Option>
+                    <Option value="100">100 </Option>
+                    <Option value="200">200 </Option>
+                    <Option value="300">300 </Option>
+                  </Select>
                 </Form.Item>
-                </div>
+                <Form.Item
+                  name="Broker Id"
+                  label="Broker Id"
+                  style={{ width: "80%" }}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </div>
               <Form.Item
                 name="additional-purchases"
                 valuePropName="checked"
@@ -308,6 +308,6 @@ const BulkOrder = () => {
       </div>
       <Footer />
     </>
-  );
-};
-export default BulkOrder;
+  )
+}
+export default BulkOrder
