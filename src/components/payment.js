@@ -140,7 +140,7 @@ const Payment = () => {
                   <div className="d-flex justify-content-between align-items-center">
                     <p className="subtotal">Total</p>
                     <p className="BTC-total">
-                      {bulkCartItems[0]?.subTotal + 25}
+                      {usdToBTC(bulkCartItems[0]?.subTotal + 25, btcRate)} BTC
                     </p>
                   </div>
                 </>
