@@ -29,19 +29,6 @@ const BulkCheckout = () => {
     setEmail(event.target.value);
   };
 
-  const handleSubmit = () => {
-    setPaymentstatus(true);
-    if (validator.isEmail(email)) {
-      setEmail(email);
-    } else {
-      alert("Invalid email format. Please enter a correct email address.");
-    }
-
-    navigate(`/front-demo/payment`, {
-      state: { email, orderType: "bulk-order" },
-    });
-  };
-
   const handleCheckboxChange1 = () => {
     setIsChecked1(!isChecked1);
   };
@@ -63,7 +50,46 @@ const BulkCheckout = () => {
     return accumulator + Number(object?.subTotal);
   }, 0);
 
-  console.log(bulkCartItems);
+  const handleSubmit = () => {
+    setPaymentstatus(true);
+    if (validator.isEmail(email)) {
+      setEmail(email);
+      // TODO: Replace some of the dummy values with the correct values
+      axios
+        ?.post(`/save-bulk-order-api`, {
+          first_name: "Test first name",
+          last_name: "Test last name",
+          email: email,
+          order_subtotal: totalCartValue,
+          order_total: totalCartValue,
+          payment_method: "btc",
+          transaction_fee: "0.24",
+          items: bulkCartItems?.map((cartItem) => ({
+            cardType: cartItem?.cardType,
+            quantity: cartItem?.quantity,
+            amount: cartItem?.amount,
+            maxTrans: 1,
+            additional_transactions: cartItem?.additionalPurchaseQt
+              ? true
+              : false,
+            additional_transactions_no: cartItem?.additionalPurchaseQt,
+            additional_cost: 100,
+            international_transaction:
+              cartItem?.isUsedForInternationalTransaction ? true : false,
+            international_cost: cartItem?.isUsedForInternationalTransaction,
+            cost: 2.98,
+            subtotal: totalCartValue,
+          })),
+        })
+        .then((res) =>
+          navigate(`/front-demo/payment`, {
+            state: { email, orderType: "bulk-order" },
+          })
+        );
+    } else {
+      alert("Invalid email format. Please enter a correct email address.");
+    }
+  };
 
   return (
     <>
