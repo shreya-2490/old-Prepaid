@@ -100,7 +100,7 @@ const BulkOrder = () => {
               }}
               style={{
                 margin: "75px 20px 0px 20px",
-                width: "90%",
+                // width: "90%",
               }}
               onFinish={() => {
                 const quantity = form.getFieldValue("card-quantity") || 0;
@@ -150,10 +150,11 @@ const BulkOrder = () => {
               <Form.Item name="Phone" label="Phone">
                 <Input />
               </Form.Item>
+              <div style={{display:"flex", justifyContent: "space-between"}}>
               <Form.Item
                 name="card-type"
                 label="Card Type"
-                style={{ display: "inline-block", width: "calc(50% - 8px)" }}
+                style={{ display: "inline-block", width: "60%" }}
                 rules={[
                   {
                     required: true,
@@ -179,7 +180,8 @@ const BulkOrder = () => {
                   margin: "0 8px",
                 }}
               >
-                <InputNumber
+                  <InputNumber
+                    width={50}
                   min={5}
                   max={100}
                   defaultValue=""
@@ -190,19 +192,22 @@ const BulkOrder = () => {
                   parser={(value) =>
                     parseInt(value, 10) < 5 ? 5 : parseInt(value, 10)
                   }
+                  style={{ width: "100%" }}
                 />
-              </Form.Item>
+                </Form.Item>
+              </div>
+              <div style={{display:"flex", alignItems:"center"}}>
               <Form.Item
                 name="load-amount"
                 label="Load Amount"
-                style={{ width: "50%" }}
+                style={{ width: "100%" }}
                 rules={[
                   {
                     required: true,
                   },
                 ]}
               >
-                <Select defaultValue="Select--" style={{ width: "48%" }}>
+                <Select defaultValue="Select--" style={{ width: "98%" }}>
                   <Option value="25">25</Option>
                   <Option value="50">50 </Option>
                   <Option value="100">100 </Option>
@@ -213,7 +218,7 @@ const BulkOrder = () => {
               <Form.Item
                 name="Broker Id"
                 label="Broker Id"
-                style={{ width: "50%" }}
+                style={{ width: "80%" }}
                 rules={[
                   {
                     required: true,
@@ -221,7 +226,8 @@ const BulkOrder = () => {
                 ]}
               >
                 <Input />
-              </Form.Item>
+                </Form.Item>
+                </div>
               <Form.Item
                 name="additional-purchases"
                 valuePropName="checked"
