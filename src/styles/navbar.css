@@ -97,6 +97,13 @@ ul {
    padding-left: 2rem;
   }
 
+  .user{
+    display: block;
+  }
+
+  .user2{
+    display: none;
+  }
 
 }
 
@@ -219,6 +226,14 @@ ul {
     padding-top: 1.3rem;
     padding-left: 1.5rem;
    }
+
+   .user{
+    display: none;
+  }
+
+  .user2{
+    display: block;
+  }
   
 
   
@@ -313,6 +328,16 @@ ul {
      padding-top: 1.7rem;
      padding-left: 1.8rem;
     }
+
+    .user2{
+      display: none;
+    }
+  
+    .user{
+      display: block;
+    }
+    
+    
 
 }
 

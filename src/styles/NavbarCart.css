@@ -85,6 +85,7 @@
 }
 
   /* **************************** Tablet ************************ */
+
   @media(min-width : 641px) and (max-width: 1023px) {
     .hamburger-menu {
       display: none;
@@ -105,6 +106,7 @@
       background: #FDC886;
       margin-top: 0.625rem;
     }
+
     .headerlogo {
       background-color: #F5F2EA;
       padding-top: 0.5rem;
@@ -136,7 +138,7 @@
     }
   
     .cart-modal{
-      top: 8%;
+      top: 11%;
       left: 10%;
      border-radius: 1.5rem;
     }

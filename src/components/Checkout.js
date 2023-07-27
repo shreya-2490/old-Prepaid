@@ -143,13 +143,11 @@ const Checkout = () => {
                 </div>
 
                 <div className="custom-bottom-para-total">
-                  <div className="custom-bottom-para">
-                    <div className="custom-tooltip">
+                  
                       <p className="custom-para">Total Estimate</p>
-                    </div>
-                  </div>
-                  <div className="custom-upper-cardvalue">
-                    <p className="value">${totalCardsValue}</p>
+                
+                  <div className="custom-upper-cardvalue" >
+                    <p className="value123">${totalCardsValue}</p>
                     <p className="BTC-total">
                       {usdToBTC(totalCardsValue, btcRate)} BTC
                     </p>

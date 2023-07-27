@@ -104,7 +104,6 @@
 
 .forms {
   display: flex;
-
   flex-direction: column;
 }
 
@@ -131,15 +130,18 @@
   overflow: hidden;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
 .price-amount {
   border-radius: 0.25rem;
-  padding: 0.31rem;
-  margin-left: 5.6rem;
-  margin-right: 1rem;
+  margin-left: 3rem;
+  margin-right: 0rem;
   border: solid 1px #29262624;
+  padding: 0.31rem;
   font-size: 1rem;
   color: #1b1b1b;
   background-color: #f0f0f0;
+
+
 }
 .price-amount:focus {
   outline: none;
@@ -344,7 +346,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .dropdown-amount {
   border-radius: 0.25rem;
-  /* width: 100%; */
   margin-left: 1rem;
   margin-right: 0rem;
   border: solid 1px #29262624;
@@ -352,6 +353,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 1rem;
   color: #1b1b1b;
   background-color: #f0f0f0;
+  /* border: 1px solid red; */
 }
 
 .dropdown-amount:focus {
@@ -370,6 +372,8 @@ input[type="number"]::-webkit-outer-spin-button {
 
 
 /* / ***************   Mobile screen ********************** / */
+
+
 @media (max-width: 767px) {
   .main-body {
     display: flex;

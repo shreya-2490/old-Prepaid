@@ -43,8 +43,6 @@
 
   .custom-para {
     font-size: 1rem;
-    margin-left: 1rem;
-    padding: 0.3125rem 0.625rem 0.625rem 0rem;
   }
 
   .custom-tooltip {
@@ -203,7 +201,7 @@
   }
 
   .custom-upper-cardvalue {
-    margin: -3.125rem 1.25rem 0.625rem 1.25rem;
+    margin-top: -2rem;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -489,6 +487,8 @@
     justify-content: space-between;
     margin-left: 1rem;
     width: 90%;
+    margin-top: -1rem;
+    /* border: 1px solid red; */
   }
 
   .custom-upper-cardvalue1 {
@@ -531,6 +531,7 @@
   .checkout-main {
     background-color: #f5f2ea;
     padding: 3rem 0;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -577,7 +578,7 @@
     display: flex;
     align-items: baseline;
   }
-
+  
   .custom-bottom-para {
     display: flex;
     align-items: baseline;
@@ -590,9 +591,15 @@
     font-weight: 400;
   }
 
+  .value123{
+    /* border: 1px solid red; */
+    padding: 0;
+  }
+
   .valueheading {
     font-weight: 600;
     margin-bottom: 0rem;
+    /* border: 1px solid red; */
   }
 
   .valuess {
@@ -625,10 +632,10 @@
     width: 35%;
     height: 50%;
   }
+
   .BTC {
     font-size: 0.8rem;
     padding-top: 0.5rem;
-    /* border: 1px solid red; */
   }
 
   .custom-upper-para {
@@ -758,6 +765,7 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    margin-top: -1rem;
   }
 
   .custom-upper-cardvalue1 {
@@ -775,9 +783,6 @@
     margin: 0.125rem 1.25rem;
   }
 
-  .BTC-total {
-    font-size: 1rem;
-  }
 
   .cardtype-img {
     width: 15%;

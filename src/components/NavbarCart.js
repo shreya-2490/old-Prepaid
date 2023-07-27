@@ -104,6 +104,15 @@ const NavbarCart = () => {
  
                   
                  </div>
+      
+                <div>
+                   <Link to="/front-demo/login">
+                  <span className="user2">
+                   < UserOutlined style={{ fontSize: "1.5rem" }} />
+                   </span>
+                     </Link>
+                </div>
+
 
                  
 
