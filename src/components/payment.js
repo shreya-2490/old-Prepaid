@@ -13,7 +13,8 @@ import { usdToBTC } from "../utils/helper";
 import { CartContext } from "./CartContext";
 
 const Payment = () => {
-  const { cartItems, cartCount, bulkCartItems } = useContext(CartContext);
+  const { cartItems, cartCount, bulkCartItems, preOwnedCards } =
+    useContext(CartContext);
 
   const [btcRate, setBTCRate] = useState(null);
   const location = useLocation();
@@ -116,7 +117,7 @@ const Payment = () => {
                       </div>
                     );
                   })}
-                   <div className="custom-bottom-para pay-para">
+                  <div className="custom-bottom-para pay-para">
                     <p className="subtotal">Subtotal</p>
                     <p className="BTC-total">${totalBulkCartAmount}</p>
                   </div>
@@ -137,7 +138,7 @@ const Payment = () => {
                     </p>
                     <p>BTC exchange fee: $25.00</p>
                   </div>
-                  
+
                   <p className="subtotal">Total</p>
                   <div className="d-flex justify-content-between align-items-center">
                     <p className="BTC-total">
@@ -191,6 +192,42 @@ const Payment = () => {
                         </div>
                         <div className="final-payment">
                           <p className="BTC-simplecard">{card?.btcValue} BTC</p>
+                        </div>
+                      </div>
+                    ))}
+                  {preOwnedCards &&
+                    preOwnedCards?.map((preOwnedCard) => (
+                      <div className="custom-upper-para-pay">
+                        <div className="value2">
+                          <div>
+                            <img
+                              src={
+                                preOwnedCard?.type === "visa"
+                                  ? visa
+                                  : mastercard
+                              }
+                              alt={
+                                preOwnedCard?.type === "visa"
+                                  ? "Visa"
+                                  : "Mastercard"
+                              }
+                              className="visacardtype-img1"
+                            />
+
+                            <div className="nayasa">
+                              <p className="order-detail-para">
+                                {preOwnedCard?.type === "visa"
+                                  ? "Visa"
+                                  : "Mastercard"}
+                              </p>
+                              <p>{`1 x $${preOwnedCard?.price}`}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="final-payment">
+                          <p className="BTC-simplecard">
+                            {usdToBTC(preOwnedCard?.price, btcRate)} BTC
+                          </p>
                         </div>
                       </div>
                     ))}
