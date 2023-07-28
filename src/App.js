@@ -2,14 +2,6 @@ import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-// import About from "./components/AboutUsdt"
-// import BulkCard from "./components/BulkCard"
-// import Offers from "./components/Offers"
-// import Choose from "./components/WhyChooseUs"
-// import Faq from "./components/Faq"
-// import Explore from "./components/exploreprepaid"
-// import Ticker from "./components/ticker"
-// import Footer from "./components/Footer"
 import NavbarCart from "./components/NavbarCart";
 import Checkout from "./components/Checkout";
 import Login from "./components/Login";
@@ -23,6 +15,8 @@ import Preowned from "./components/Preowned";
 import Terms from "./components/Terms&Conditions";
 import Policy from "./components/Privacypolicy";
 import BulkCheckout from "./components/BulkCheckout";
+import { Thankyou } from "./components/Thankyou";
+
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -53,30 +47,7 @@ function App() {
               }
             />
           </Routes>
-          {/* <Routes>
-          <Route path="/" element={<About />} />
-        </Routes>
-        <Routes>
-          <Route path="/" element={<BulkCard />} />
-        </Routes>
-        <Routes>
-          <Route path="/" element={<Offers />} />
-        </Routes>
-        <Routes>
-          <Route path="/" element={<Choose />} />
-        </Routes>
-        <Routes>
-          <Route path="/" element={<Faq />} />
-        </Routes>
-        <Routes>
-          <Route path="/" element={<Explore />} />
-        </Routes>
-        <Routes>
-          <Route path="/" element={<Footer />} />
-        </Routes> */}
-          {/* <Routes>
-          <Route path="/" element={<Ticker/>} />
-        </Routes> */}
+         
 
           <Routes>
             <Route
@@ -113,6 +84,9 @@ function App() {
           </Routes>
           <Routes>
             <Route path="front-demo/dashboard" element={<Dashboard />} />
+          </Routes>
+          <Routes>
+            <Route path="front-demo/thankyou" element={<Thankyou />} />
           </Routes>
           <Routes>
             <Route
