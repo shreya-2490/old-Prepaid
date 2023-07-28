@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import "../styles/payment.css";
 import { Card, Divider } from "antd";
-import Scanner from "../assets/scanner.jpg";
 import visa from "../assets/Visacartpage.png";
 import mastercard from "../assets/Mastercardcartpage.png";
 import { useLocation } from "react-router-dom";
@@ -18,7 +17,7 @@ const Payment = () => {
 
   const [btcRate, setBTCRate] = useState(null);
   const location = useLocation();
-  const { email, orderType } = location?.state || {};
+  const { email, orderType, paymentInfo } = location?.state || {};
   const queryParams = new URLSearchParams(location.search);
   const input1 = queryParams.get("usdValue");
   const [usdValue, setUSDValue] = useState(input1);
@@ -252,27 +251,30 @@ const Payment = () => {
             </Card>
           </div>
           <div className="payment-card2">
-            <Card
+            <div
+              dangerouslySetInnerHTML={{ __html: paymentInfo?.btc_qr_code }}
+            />
+            {/* <Card
               className="Contact-title"
               title="Pay with Bitcoin"
               bordered={false}
               headStyle={{ borderBottom: "none" }}
             >
-              <div className="scanner-pic">
+              <div
+                dangerouslySetInnerHTML={{ __html: paymentInfo?.btc_qr_code }}
+              />
+              {/* <QRCode value={paymentInfo?.btc_qr_code || "-"} /> */}
+            {/* <div className="scanner-pic">
                 <img src={Scanner} alt="Scanner" />
-              </div>
-              <div className="pay-h">
+              </div> */}
+            {/* <div className="pay-h">
                 <p className="pay-h1">Payment details</p>
                 <p className="pay-h2">Payment unique address</p>
-                <p className="pay-h3">
-                  bc1q9ng8y63sc55aw6wr4mwjjs9zcj2v0dqz6s0k2r
-                </p>
+                <p className="pay-h3">{paymentInfo?.bitcon_address || ""}</p>
               </div>
               <div className="pay-h">
                 <p className="pay-h4">Amount to pay</p>
-                <p className="value">
-                  {usdToBTC(subTotalUsdValue, btcRate)} BTC
-                </p>
+                <p className="value">{paymentInfo?.btc_amount || ""} BTC</p>
               </div>
               <div>
                 <p className="pay-h6">Expires in</p>
@@ -282,7 +284,7 @@ const Payment = () => {
                   Advanced options
                 </a>
               </div>
-            </Card>
+            </Card> */}
           </div>
         </div>
       </div>

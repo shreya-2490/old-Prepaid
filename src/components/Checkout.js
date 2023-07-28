@@ -39,18 +39,6 @@ const Checkout = () => {
     setEmail(event.target.value);
   };
 
-  const handleSubmit = () => {
-    if (email && validator.isEmail(email)) {
-      setEmail(email);
-      navigate(`/front-demo/payment`, { state: { email } });
-    } else {
-      api.error({
-        message: "Invalid email format",
-        description: "Please enter a correct email address.",
-      });
-    }
-  };
-
   const handleCheckboxChange1 = () => {
     setIsChecked1(!isChecked1);
   };
@@ -86,6 +74,44 @@ const Checkout = () => {
   );
 
   const totalCardsValue = totalNewCardValue + totalPreOwnedCardsValue;
+
+  const handleSubmit = () => {
+    if (email && validator.isEmail(email)) {
+      setEmail(email);
+      axios
+        ?.post(`/new-card-order-api`, {
+          first_name: "Test first name",
+          last_name: "Test last name",
+          email: email,
+          order_number: "1",
+          order_subtotal: String(totalCardsValue),
+          order_total: String(totalCardsValue),
+          payment_method: "btc",
+          guest: true,
+          transaction_fee: "0.25",
+          items: cartItems?.map((cartItem) => ({
+            type: cartItem?.card === "1" ? "visa" : "master",
+            quantity: cartItem?.quantity,
+            price: cartItem?.usdValue,
+            cardFee: 0,
+            bin: 0,
+            card: 0,
+            subtotal: String(totalCardsValue),
+            cardId: 0,
+          })),
+        })
+        .then((res) =>
+          navigate(`/front-demo/payment`, {
+            state: { email, paymentInfo: res?.data },
+          })
+        );
+    } else {
+      api.error({
+        message: "Invalid email format",
+        description: "Please enter a correct email address.",
+      });
+    }
+  };
 
   return (
     <>
