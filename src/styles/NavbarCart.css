@@ -10,6 +10,10 @@
 /* ********************* Full Screen ****************** */
 @media (min-width: 1024px) {
 
+  .menu{
+    margin-left: 13rem;
+  }
+
   .hamburger-menu {
     display: none;
     cursor: pointer;
@@ -63,7 +67,7 @@
   .cart-modal{
     top: 13%;
     left: 40%;
-   border-radius: 1.5rem;
+     border-radius: 1.5rem;
   }
   .cart-modal  .ant-modal-content {
     width: 60%;
@@ -93,7 +97,7 @@
     }
   
     .carticon {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       color: #0c0c0c;
       bottom: 0.1875rem;
     }
@@ -113,6 +117,7 @@
       height: 1.6875rem;
       display: flex;
     }
+
     .logopayment{
       width:11.25rem;
       margin-left: 1rem;
@@ -127,7 +132,6 @@
       width: 11.25rem;
       margin-left: 1.0625rem;
       margin-top: 0.125rem;
-    
     }
   
     .back-arrow {
@@ -176,27 +180,37 @@
       display: none;
       cursor: pointer;
     }
-  
+
+
     .carticon {
       font-size: 1.8rem;
       color: #0c0c0c;
       bottom: 0.1875rem;
+     
     }
   
     .anticon svg {
       color: #0c0c0c;
+      margin-left: 1rem;
     }
   
     .ant-badge .ant-badge-count {
       background: #FDC886;
       margin-top: 0.625rem;
     }
+
     .headerlogo {
       background-color: #F5F2EA;
       padding-top: 0.5rem;
       height: 1.6875rem;
       display: flex;
     }
+
+    .logo{
+      margin-left: 1rem;
+    }
+
+
     .logopayment{
       width:11.25rem;
       margin-left: 1rem;
@@ -226,7 +240,6 @@
 
     .big {
       font-size: 1rem;
-      border: 1px solid red;
     }
   
     .delete{

@@ -78,7 +78,7 @@
   height: 3.75rem;
   text-align: center;
   border: none;
-  width: 10rem;
+  width: 12rem;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -88,7 +88,7 @@
   height: 3.75rem;
   text-align: center;
   border: none;
-  width: 10rem;
+  width: 12rem;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -523,10 +523,16 @@ input[type="number"]::-webkit-outer-spin-button {
     justify-content: center;
   }
 
-  .buttons .buy,
   .buttons .sell {
     font-size: 1rem;
     text-align: center;
+    width: 13rem;
+  }
+
+  .buttons .buy{
+    font-size: 1rem;
+    text-align: center;
+    width: 13rem;
   }
 
   .sider-content {

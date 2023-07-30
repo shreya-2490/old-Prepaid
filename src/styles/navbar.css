@@ -248,12 +248,11 @@ ul {
     height: 10vh;
     display: flex;
     font-family: Outfit,sans-serif;
-    font-size: .85rem;
     justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 9999;
-    padding: 0 4rem 0 4rem;
+    padding: 0 2rem 0 2rem;
     box-shadow: 0 1px 4px hsla(210,8%,62%,.2);
   }
   
@@ -267,6 +266,7 @@ ul {
     text-decoration: none;
     font-weight: normal;
   }
+
   .navbarrrr a:hover{
     font-weight: bold;
   }
@@ -289,23 +289,25 @@ ul {
   }
   
   .menu {
-    width: 65%;
+    width: 70%;
     display: flex;
     padding-top: 1.2rem;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
   }
   
   .menu ul {
     display: flex;
     align-items: center;
-    gap: 1.4rem;
     color: black;
+  }
+  .how{
+    margin-right: 1rem;
   }
   
   .menu ul div{
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
   }
   
   .hamburger {

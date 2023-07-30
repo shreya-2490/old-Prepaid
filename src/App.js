@@ -16,6 +16,8 @@ import Terms from "./components/Terms&Conditions";
 import Policy from "./components/Privacypolicy";
 import BulkCheckout from "./components/BulkCheckout";
 import { Thankyou } from "./components/Thankyou";
+import HowItWorks from "./components/HowItWorks"
+import ScrollToTop from './components/scroll';
 
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
     <div className="App">
       <CartProvider>
         <Router>
+        <ScrollToTop>
           <Routes>
             <Route
               path="/front-demo"
@@ -89,6 +92,9 @@ function App() {
             <Route path="front-demo/thankyou" element={<Thankyou />} />
           </Routes>
           <Routes>
+            <Route path="front-demo/howitworks" element={<HowItWorks />} />
+          </Routes>
+          <Routes>
             <Route
               path="front-demo/preowned"
               element={
@@ -99,6 +105,7 @@ function App() {
               }
             />
           </Routes>
+          </ScrollToTop>
         </Router>
       </CartProvider>
     </div>

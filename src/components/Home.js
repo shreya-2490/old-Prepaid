@@ -268,7 +268,7 @@ const Home = () => {
                       <div className="Both-gray">
                         <div className="First-gray">
                           <div className="First-gray-1">
-                            <label className="Pay">Price</label>
+                            <label className="Pay"> Sort Price</label>
                           </div>
                           <select
                             className="price-amount"

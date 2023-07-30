@@ -49,11 +49,11 @@ const NavbarCart = () => {
   return (
   
       <>
-             <nav className="navbarrrr">
+             <nav className="navbarrrr" style={{ display:"flex" , alignItems:"center" , justifyContent:"center"}}>
               {/* { hamburger menu } */}
 <button className="hamburger" onClick={handleHamburgerClick}>
   {showMedia ? (
-    <RxCross2 style={{ color: 'black' , marginRight:"1.5rem" }} />
+    <RxCross2 style={{ color: 'black' }} />
   ) : (
     <RxHamburgerMenu style={{ color: 'black' }} />
   )}
@@ -81,13 +81,17 @@ const NavbarCart = () => {
               </li>
 
                 <li>
-                <Link to="/front-demo/contactus">CONTACT US</Link>
+                <Link to="/front-demo/contactus">CONTACT</Link>
+                 </li>
+
+                 <li className="how">
+                <Link to="/front-demo/howitworks">HOW IT WORKS</Link>
                  </li>
                  </div>
                  <li>
                  <Link to="/front-demo/login">
                   <span className="user">
-                   < UserOutlined style={{ fontSize: "1.5rem" }} />
+                   < UserOutlined style={{ fontSize: "1.5rem" , marginRight:"0.5rem"}} />
                    </span>
                      </Link>
                        </li>   
