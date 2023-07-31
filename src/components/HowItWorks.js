@@ -12,7 +12,7 @@ const HowItWorks = () => {
       <NavbarCart />
       <div className="outer-timeline">
         <div className="timeline">
-          <h2>Our Algorithm</h2>
+          <h3>Acquire Your Prepaid Card in 4 Simple Steps!</h3>
           <img src={timeline} alt="" />
         </div>
         <div className="questions">
