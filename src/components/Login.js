@@ -21,7 +21,7 @@ function Login() {
       })
       ?.then((res) => {
         console.log(res);
-        nav("/front-demo/dashboard");
+        nav("/front-demo");
       })
       .finally(() => setIsLoading(false));
   };

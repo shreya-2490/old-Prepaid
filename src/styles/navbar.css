@@ -34,9 +34,20 @@ ul {
   font-weight: bold;
 }
 .navbarrrr a:hover{
-  text-decoration: overline;
+  /* text-decoration: overline; */
+  /* border: 4px solid #fdc886; */
+  padding: 0.5rem;
+  border-radius: 2.2rem;
+  color: #ffffff;
+  background-color: #fdc886;
+  /* color: #fdc886; */
 }
-
+.navbarrrr a:active{
+  padding: 0.5rem;
+  border-radius: 2.2rem;
+  color: #ffffff;
+  background-color: #b8b8b8;
+}
 .navbarrrr::before {
   content: "";
   position: absolute;
