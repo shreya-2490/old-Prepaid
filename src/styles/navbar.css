@@ -10,17 +10,15 @@
 /***************************Laptop View**********************/
 @media (min-width: 1024px) {
 
-
-.navbarrrr {
+  .navbarrrr {
   left: 0;
   height: 10vh;
   display: flex;
   font-family: Outfit,sans-serif;
   font-size: .85rem;
-  justify-content: space-between;
-  position: sticky;
+  position: relative;
   top: 0;
-  z-index: 9999;
+  z-index: 1;
   padding: 0 4rem 0 4rem;
   box-shadow: 0 1px 4px hsla(210,8%,62%,.2);
 }
@@ -33,10 +31,10 @@ ul {
 .navbarrrr a {
   color: black;
   text-decoration: none;
-  font-weight: normal;
+  font-weight: bold;
 }
 .navbarrrr a:hover{
-  font-weight: bold;
+  text-decoration: overline;
 }
 
 .navbarrrr::before {

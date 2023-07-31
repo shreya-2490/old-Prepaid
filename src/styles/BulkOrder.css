@@ -53,7 +53,7 @@
     height: 3.8rem;
     background-color: white;
     position: absolute;
-    top: 45%;
+    top: 42%;
     left: 25%;
     z-index: 100;
     transform: translate(-50%, -50%);
@@ -125,7 +125,7 @@
   }
 
   .listing-div {
-    padding: 3rem 0;
+    padding: 3rem 4rem;
   }
 
   .footer-card2 {
@@ -172,6 +172,9 @@
     background-color: #fdc886;
     width: 70%;
     margin: 0 7rem;
+  }
+  .tick-class{
+    margin: 0.2rem 0.4rem;
   }
 }
 
@@ -225,7 +228,7 @@
     height: 3.5rem;
     background-color: white;
     position: absolute;
-    top: 21.5%;
+    top: 19.5%;
     left: 50%;
     z-index: 100;
     transform: translate(-50%, -50%);

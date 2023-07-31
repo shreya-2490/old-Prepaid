@@ -6,6 +6,8 @@ import mastercard from "../assets/masterhome.png"
 import "../styles/home.css"
 import axios from "axios"
 import Footer from "./Footer"
+import { Helmet } from 'react-helmet';
+import Ticker from "./ticker"
 
 const Home = () => {
   const [usdValue, setUSDValue] = useState("")
@@ -82,9 +84,9 @@ const Home = () => {
     setLoadAmount(selectedValue)
     selectedValue ? showAlert(false) : showAlert(true)
   }
-
   return (
     <>
+      {/* <Ticker/> */}
       <div className="main-body">
         <div className="home" id="homee">
           <div>

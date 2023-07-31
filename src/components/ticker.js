@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import "./ticker.css"
+import "../styles/ticker.css"
 import axios from "axios"
 
 const Ticker = () => {

@@ -28,17 +28,17 @@ const BulkOrder = () => {
             <Card className="bulkorder-content">
               <img src={success} alt=""></img>
               <h3>Bulk Prepaid Card</h3>
-              <p className="subtitle-bulk">
-                You can buy from 5 - 100 Prepaid Cards in one go{" "}
-              </p>
-              <p className="subtitle-bulk-2">Cards in one go</p>
+              {/* <p className="subtitle-bulk">
+              One-Stop Prepaid Card Purchase
+              </p> */}
+              <p className="subtitle-bulk-2">Buy 5 to 100 Cards in a Single Click.</p>
             </Card>
             <div>
               <Card className="benefits-card">
                 <div className="benefits-card-content">
                   <img src={ellipse} className="benefits-card-img" alt="" />
                   <img src={cards} className="benefits-card-badge" alt="" />
-                  <h4 className="benefits-card-title">Benefits</h4>
+                  <h5 className="benefits-card-title">Benefits</h5>
                 </div>
               </Card>
             </div>
@@ -46,19 +46,19 @@ const BulkOrder = () => {
             <div className="bulkorder-content-2">
               <div className="listing-div">
                 <span className="listing">
-                  <img src={tick} className="tick class" alt=""></img>
+                  <img src={tick} className="tick-class" alt=""></img>
                   <p>Streamlined Process</p>
                 </span>
                 <div className="listing">
-                  <img src={tick} alt=""></img>
+                  <img src={tick} className="tick-class" alt=""></img>
                   <p>Flexible Quantities</p>
                 </div>
                 <div className="listing">
-                  <img src={tick} alt=""></img>
+                  <img src={tick} className="tick-class" alt=""></img>
                   <p>Customization Options</p>
                 </div>
                 <div className="listing">
-                  <img src={tick} alt=""></img>
+                  <img src={tick} className="tick-class" alt=""></img>
                   <p>Competitive Pricing</p>
                 </div>
               </div>
