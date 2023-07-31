@@ -6,7 +6,6 @@ import mastercard from "../assets/masterhome.png"
 import "../styles/home.css"
 import axios from "axios"
 import Footer from "./Footer"
-import { Helmet } from 'react-helmet';
 import Ticker from "./ticker"
 
 const Home = () => {
