@@ -1,10 +1,31 @@
-import React from "react"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "../styles/Login.css"
-import logo from "../assets/logo.png"
-import { Link } from "react-router-dom"
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/Login.css";
+import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
+  const nav = useNavigate();
+  const [email, setEmail] = useState("");
+  const [psw, setPsw] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLogin = (e) => {
+    e?.preventDefault();
+    setIsLoading(true);
+    axios
+      ?.post("/register-user-api", {
+        email,
+        password: psw,
+      })
+      ?.then((res) => {
+        console.log(res);
+        nav("/front-demo/dashboard");
+      })
+      .finally(() => setIsLoading(false));
+  };
+
   return (
     <div className="wrapper d-flex align-items-center justify-content-center w-100">
       <img src={logo} className="login-logo"></img>
@@ -15,14 +36,24 @@ function Login() {
             <label htmlFor="email" className="form-label">
               Email Address
             </label>
-            <input type="email" className="form-control" required></input>
+            <input
+              type="email"
+              className="form-control"
+              onChange={(e) => setEmail(e?.target?.value)}
+              required
+            ></input>
             <div className="invalid-feedback">Please Enter your email</div>
           </div>
           <div className="form-group was-validated mb-2">
             <label htmlFor="password" className="form-label">
               Password
             </label>
-            <input type="password" className="form-control" required></input>
+            <input
+              type="password"
+              className="form-control"
+              onChange={(e) => setPsw(e?.target?.value)}
+              required
+            ></input>
             <div className="invalid-feedback">Please Enter your password</div>
           </div>
           <div className="form-group form-check mb-2">
@@ -32,15 +63,17 @@ function Login() {
               Remember me
             </label>
           </div>
-          <Link to="/front-demo/dashboard">
-            <button type="submit" className="btn  w-100 mt-2">
-              SIGN IN
-            </button>
-          </Link>
+          <button
+            type="submit"
+            onClick={handleLogin}
+            className="btn  w-100 mt-2"
+          >
+            SIGN IN
+          </button>
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
