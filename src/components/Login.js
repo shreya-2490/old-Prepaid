@@ -15,7 +15,7 @@ function Login() {
     e?.preventDefault();
     setIsLoading(true);
     axios
-      ?.post("/register-user-api", {
+      ?.post("/login-user-api", {
         email,
         password: psw,
       })
