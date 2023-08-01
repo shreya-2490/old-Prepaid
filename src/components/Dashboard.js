@@ -1,16 +1,20 @@
-import React, { useState } from "react"
-import { Layout, Menu, Breadcrumb, Divider, Input, Space } from "antd"
-import NavbarCart from "./NavbarCart"
-import "../styles/dashboard.css"
-import mastercard from "../assets/Mastercardcartpage.png"
+import React, { useState } from "react";
+import { Divider, Input, Space } from "antd";
+import NavbarCart from "./NavbarCart";
+import "../styles/dashboard.css";
+import mastercard from "../assets/Mastercardcartpage.png";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const onSearch = (value) => console.log(value)
-  const { Search } = Input
-  const [product, setProduct] = useState(false)
+  const nav = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies(["pfAuthToken"]);
+  const onSearch = (value) => console.log(value);
+  const { Search } = Input;
+  const [product, setProduct] = useState(false);
   const handleChangeproduct = () => {
-    setProduct(true)
-  }
+    setProduct(true);
+  };
   return (
     <>
       <NavbarCart />
@@ -27,7 +31,14 @@ const Dashboard = () => {
             <Divider />
             <li>Settings</li>
             <Divider />
-            <li>Sign Out</li>
+            <li
+              onClick={() => {
+                removeCookie("pfAuthToken", { path: "/" });
+                nav("/front-demo");
+              }}
+            >
+              Sign Out
+            </li>
             <Divider />
           </ul>
         </div>
@@ -48,24 +59,23 @@ const Dashboard = () => {
           ) : (
             ""
           )}
-          
-              </div>
-              <div style={{textAlign:"right"}}>
-            {" "}
-            <Space direction="vertical">
-              <Search
-                placeholder="Filter Products"
-                onSearch={onSearch}
-                style={{
-                  width: 200,
-                  borderRadius: "20px",
-                }}
-              />
-            </Space>
-          </div>
+        </div>
+        <div style={{ textAlign: "right" }}>
+          {" "}
+          <Space direction="vertical">
+            <Search
+              placeholder="Filter Products"
+              onSearch={onSearch}
+              style={{
+                width: 200,
+                borderRadius: "20px",
+              }}
+            />
+          </Space>
+        </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

@@ -4,9 +4,11 @@ import "../styles/Login.css";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 function Login() {
   const nav = useNavigate();
+  const [cookies, setCookie] = useCookies(["pfAuthToken"]);
   const [email, setEmail] = useState("");
   const [psw, setPsw] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +23,8 @@ function Login() {
       })
       ?.then((res) => {
         console.log(res);
-        nav("/front-demo");
+        setCookie("pfAuthToken", res?.data?.token, { path: "/" });
+        nav("/front-demo/dashboard");
       })
       .finally(() => setIsLoading(false));
   };

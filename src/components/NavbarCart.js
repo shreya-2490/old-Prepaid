@@ -1,46 +1,46 @@
-import React, { useState, useContext } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons"
-import { Badge, Modal, Button } from "antd"
-import { CartContext } from "./CartContext"
-import "../styles/navbar.css"
-import logo from "../assets/logo.png"
-import "../styles/NavbarCart.css"
-import Cart from "../shared-components/cart"
-import Ticker from './ticker';
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Badge, Modal, Button } from "antd";
+import { CartContext } from "./CartContext";
+import "../styles/navbar.css";
+import logo from "../assets/logo.png";
+import "../styles/NavbarCart.css";
+import Cart from "../shared-components/cart";
 
-import { RxHamburgerMenu } from "react-icons/rx"
-import { RxCross2 } from "react-icons/rx"
+import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
+import { useCookies } from "react-cookie";
 
 const NavbarCart = () => {
-  const [showMedia, setMedia] = useState(false)
-  const { cartCount } = useContext(CartContext)
-  const [isCartOpen, setIsCartOpen] = useState(false)
-  const [resmenu, setResMenu] = useState("none")
-  const navigate = useNavigate()
+  const [cookies] = useCookies(["pfAuthToken"]);
+  const [showMedia, setMedia] = useState(false);
+  const { cartCount } = useContext(CartContext);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleCartClick = () => {
-    setIsCartOpen(true)
-  }
+    setIsCartOpen(true);
+  };
 
   const handleCloseClick = () => {
-    setIsCartOpen(false)
-  }
+    setIsCartOpen(false);
+  };
 
   const handleKeepShopping = () => {
-    setIsCartOpen(false)
-    navigate("/front-demo")
-  }
+    setIsCartOpen(false);
+    navigate("/front-demo");
+  };
 
   const handleCheckout = () => {
-    navigate(`/front-demo/checkout`)
-  }
+    navigate(`/front-demo/checkout`);
+  };
 
   const handleHamburgerClick = (event) => {
-    event.preventDefault()
-    setMedia(!showMedia)
-    document.body.classList.toggle("menu-open", !showMedia)
-  }
+    event.preventDefault();
+    setMedia(!showMedia);
+    document.body.classList.toggle("menu-open", !showMedia);
+  };
 
   return (
     <>
@@ -88,11 +88,15 @@ const NavbarCart = () => {
               <li>
                 <Link to="/front-demo/contactus">CONTACT</Link>
               </li>
-
-             
             </div>
             <li>
-              <Link to="/front-demo/login">
+              <Link
+                to={
+                  cookies?.pfAuthToken
+                    ? "/front-demo/dashboard"
+                    : "/front-demo/login"
+                }
+              >
                 <span className="user">
                   <UserOutlined
                     style={{ fontSize: "1.5rem", marginRight: "0.5rem" }}
@@ -147,7 +151,7 @@ const NavbarCart = () => {
         </div>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default NavbarCart
+export default NavbarCart;

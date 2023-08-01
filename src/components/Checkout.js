@@ -171,7 +171,7 @@ const Checkout = () => {
                             />
                           </div>
                           <p className="BTC">
-                            {Number(btcValue)?.toFixed(5)} BTC
+                            {usdToBTC(totalValue, btcRate)} BTC
                           </p>
                         </div>
                       </div>
