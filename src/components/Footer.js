@@ -18,7 +18,6 @@ function Footer() {
         <span className="copyright">Copyright © 2023 | All Rights Reserved</span>
         <div className="social-handles">
         <span className="social-media"><FacebookOutlined /> </span>
-        <span className="social-media"><TwitterOutlined /> </span>
           <span className="social-media"><LinkedinOutlined /> </span>
           </div>
       </div>
@@ -36,7 +35,6 @@ function Footer() {
         </div>
         <div className="social-handles">
         <span className="social-media"><FacebookOutlined /> </span>
-        <span className="social-media"><TwitterOutlined /> </span>
           <span className="social-media"><LinkedinOutlined /> </span>
           </div>
         </div>
