@@ -19,6 +19,7 @@ import { Thankyou } from "./components/Thankyou"
 import HowItWorks from "./components/HowItWorks"
 import ScrollToTop from "./components/scroll"
 import Ticker from "./components/ticker"
+import ForgetPassword from "./components/ForgetPassword"
 
 function App() {
   const [cartItems, setCartItems] = useState([])
@@ -71,6 +72,9 @@ function App() {
             </Routes>
             <Routes>
               <Route path="front-demo/login" element={<Login />} />
+            </Routes>
+            <Routes>
+              <Route path="front-demo/forgotPassword" element={<ForgetPassword />} />
             </Routes>
             <Routes>
               <Route path="front-demo/bulkorder" element={<BulkOrder />} />

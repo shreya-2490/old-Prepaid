@@ -16,13 +16,14 @@
   padding: 1.25rem;
   border: none;
   height: min-content;
-  border-radius: 0.8125rem;
+  border-radius: 0.8125rem !important;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   color: black;
   background-color: white;
 }
 .form-control {
-  border: none;
+  border: 1px solid #fdc886;
+  border-radius: 0.8125rem !important;
 }
 .btn {
   background-color: #fdc886;
@@ -40,4 +41,15 @@
 .btn:active {
   background-color: #f3d8b7;
   color: #1b1b1b;
+}
+.forget-register{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.input-group-text-password-toggle{
+  font-size: 1rem;
+  margin-left: 0.2rem !important;
 }

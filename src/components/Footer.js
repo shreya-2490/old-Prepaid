@@ -17,8 +17,9 @@ function Footer() {
         
         <span className="copyright">Copyright © 2023 | All Rights Reserved</span>
         <div className="social-handles">
-        <span className="social-media"><FacebookOutlined /> </span>
-          <span className="social-media"><LinkedinOutlined /> </span>
+          <a href="https://www.facebook.com/prepaidfriendss" className="social-media" target="_blank"><FacebookOutlined /> </a>
+          <a href="" className="social-media" target="_blank"><LinkedinOutlined /></a>
+          {/* <span className="social-media"><LinkedinOutlined /> </span> */}
           </div>
       </div>
         <div className="footer-mobile">
@@ -34,8 +35,9 @@ function Footer() {
           </Link>
         </div>
         <div className="social-handles">
-        <span className="social-media"><FacebookOutlined /> </span>
-          <span className="social-media"><LinkedinOutlined /> </span>
+          <Link to="https://www.facebook.com/prepaidfriendss" className="social-media"><FacebookOutlined /> </Link>
+          <a href="" className="social-media" target="_blank"><LinkedinOutlined /></a>
+          {/* <span className="social-media"><LinkedinOutlined /> </span> */}
           </div>
         </div>
 </>

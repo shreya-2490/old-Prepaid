@@ -197,7 +197,7 @@
   .terms {
     color: black;
     margin: 0.125rem;
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }
 
   .custom-upper-cardvalue {
@@ -478,7 +478,7 @@
   .terms {
     color: black;
     margin: 0.125rem;
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }
 
   .custom-upper-cardvalue {
@@ -758,7 +758,7 @@
   .terms {
     color: black;
     margin: 0.125rem;
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }
 
   .custom-upper-cardvalue {

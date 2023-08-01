@@ -1,59 +1,62 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import NavbarCart from "./NavbarCart";
-import "../styles/preowned.css";
-import { Button } from "antd";
-import { useLocation } from "react-router";
-import wifi from "../assets/wifi1.png";
-import map from "../assets/map1.png";
-import master from "../assets/mastercard preowned.png";
-import visa from "../assets/visa preowned.png";
-import { CartContext } from "./CartContext";
+import React, { useState, useEffect, useContext } from "react"
+import axios from "axios"
+import NavbarCart from "./NavbarCart"
+import "../styles/preowned.css"
+import { Button, Select } from "antd"
+import { useLocation } from "react-router"
+import wifi from "../assets/wifi1.png"
+import map from "../assets/map1.png"
+import master from "../assets/mastercard preowned.png"
+import visa from "../assets/visa preowned.png"
+import { CartContext } from "./CartContext"
 
 function Preowned() {
-  const { addToCartPreownedCards } = useContext(CartContext);
-  const [cardData, setCardData] = useState([]);
-  const [loading, setLoading] = useState(true); // New loading state
-  const location = useLocation();
+  const { addToCartPreownedCards } = useContext(CartContext)
+  const [cardData, setCardData] = useState([])
+  const [loading, setLoading] = useState(true) // New loading state
+  const location = useLocation()
   const { selectedProvider: defaultProvider, selectedPrice: defaultPrice } =
-    location.state || {};
+    location.state || {}
   const [selectedProvider, setSelectedProvider] = useState(
     defaultProvider || "All"
-  );
-  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "");
+  )
+  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "")
+  const { Option } = Select
 
   useEffect(() => {
     axios
       .get("/get-card-with-type")
       .then((response) => {
-        let filteredData = response.data.cards;
+        let filteredData = response.data.cards
         if (selectedProvider !== "All") {
           filteredData = filteredData.filter(
             (card) => card.type === selectedProvider
-          );
+          )
         }
 
         if (selectedPrice === "low") {
-          filteredData = filteredData.sort((a, b) => a.price - b.price);
+          filteredData = filteredData.sort((a, b) => a.price - b.price)
         } else if (selectedPrice === "high") {
-          filteredData = filteredData.sort((a, b) => b.price - a.price);
+          filteredData = filteredData.sort((a, b) => b.price - a.price)
         }
-        setCardData(filteredData);
-        setLoading(false);
+        setCardData(filteredData)
+        setLoading(false)
       })
       .catch((error) => {
-        console.error("Error fetching card data:", error);
-        setLoading(false);
-      });
-  }, []);
+        console.error("Error fetching card data:", error)
+        setLoading(false)
+      })
+  }, [selectedProvider, selectedPrice])
 
   const handleProviderChange = (value) => {
-    setSelectedProvider(value);
-  };
+    setLoading(true)
+    setSelectedProvider(value)
+  }
 
   const handlePriceChange = (value) => {
-    setSelectedPrice(value);
-  };
+    setLoading(true)
+    setSelectedPrice(value)
+  }
 
   const handleAddToCart = (card) => {
     addToCartPreownedCards({
@@ -62,29 +65,34 @@ function Preowned() {
       id: card?.id,
       price: card?.price,
       type: card?.type,
-    });
-  };
+    })
+  }
 
   return (
     <>
       <NavbarCart />
       <div className="preloader-main">
-        {/* <div className="selection-container">
-        <Select
-          defaultValue="All"
-          onChange={handleProviderChange}
-          style={{ marginRight: "1rem" }}
-        >
-          <Option value="All">All Providers</Option>
-          <Option value="visa">Visa</Option>
-          <Option value="mastercard">Mastercard</Option>
-        </Select>
+        <div className="selection-container">
+          <Select
+            defaultValue={defaultProvider}
+            onChange={handleProviderChange}
+            style={{ margin: "2rem 0.6rem 0", width: "15%" }}
+          >
+            <Option value="All">All Providers</Option>
+            <Option value="visa">Visa</Option>
+            <Option value="master">Mastercard</Option>
+          </Select>
 
-        <Select placeholder="Select Price" onChange={handlePriceChange}>
-          <Option value="low">Lowest Price</Option>
-          <Option value="high">Highest Price</Option>
-        </Select>
-      </div> */}
+          <Select
+            placeholder="Select Price"
+            onChange={handlePriceChange}
+            style={{ margin: "2rem 0.6rem 0", width: "15%" }}
+            defaultValue={defaultPrice}
+          >
+            <Option value="low">Lowest Price</Option>
+            <Option value="high">Highest Price</Option>
+          </Select>
+        </div>
         {loading ? (
           <div className="preloader">
             <div class="loader">
@@ -154,6 +162,6 @@ function Preowned() {
       </div>
       {/* <Footer /> */}
     </>
-  );
+  )
 }
-export default Preowned;
+export default Preowned

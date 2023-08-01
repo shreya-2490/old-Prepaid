@@ -1,85 +1,83 @@
-
 .card-container {
   background-color: #f5f2ea;
   display: flex;
   flex-wrap: wrap;
-  margin: -6rem 2rem; /* Add negative margin to compensate for the margin on each card */
+  margin: -7rem 2rem; /* Add negative margin to compensate for the margin on each card */
   justify-content: space-between;
   max-width: 79.5rem; /* Adjust this value based on your desired width */
 }
 
 .preloader {
-	display: grid;
-	place-items: center;
-	height: 100vh;
+  display: grid;
+  place-items: center;
+  height: 100vh;
 }
-.preloader-main{
+.preloader-main {
   background-color: #f5f2ea;
 }
 .loader div {
-	height: 15px;
-	width: 15px;
-	border-radius: 50%;
-	transform: scale(0);
-	animation: animate 1.5s ease-in-out infinite;
-	display: inline-block;
-	margin: .5rem;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: animate 1.5s ease-in-out infinite;
+  display: inline-block;
+  margin: 0.5rem;
 }
 .loader div:nth-child(0) {
-	animation-delay: 0s;
+  animation-delay: 0s;
 }
 .loader div:nth-child(1) {
-	animation-delay: 0.2s;
+  animation-delay: 0.2s;
 }
 .loader div:nth-child(2) {
-	animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 .loader div:nth-child(3) {
-	animation-delay: 0.6s;
+  animation-delay: 0.6s;
 }
 .loader div:nth-child(4) {
-	animation-delay: 0.8s;
+  animation-delay: 0.8s;
 }
 .loader div:nth-child(5) {
-	animation-delay: 1s;
+  animation-delay: 1s;
 }
 .loader div:nth-child(6) {
-	animation-delay: 1.2s;
+  animation-delay: 1.2s;
 }
 .loader div:nth-child(7) {
-	animation-delay: 1.4s;
+  animation-delay: 1.4s;
 }
 @keyframes animate {
-	0%, 100% {
-		transform: scale(0.2);
-		background-color: #1b1b1b;
-	}
-	40% {
-		transform: scale(1);
-		background-color: #fdc886;
-	}
-	50% {
-		transform: scale(1);
-		background-color: #1b1b1b;
-	}
+  0%,
+  100% {
+    transform: scale(0.2);
+    background-color: #1b1b1b;
+  }
+  40% {
+    transform: scale(1);
+    background-color: #fdc886;
+  }
+  50% {
+    transform: scale(1);
+    background-color: #1b1b1b;
+  }
 }
-
 
 .wrappercard {
   width: 296px;
   height: 188px;
   margin: 0.5rem auto; /* Add margin to create space between cards */
   padding: 8rem 0; /* Add padding for the card content */
-  
 }
-.selection-container{
-  margin: 1rem;
+.selection-container {
+  text-align: center;
 }
 /* Style the "Add to Cart" button */
 .wrappercard Button {
   margin: 1rem 5.5rem;
   width: 50%;
-  background: linear-gradient(45deg, #000, #000); /* Black gradient */
+  background-color: #1b1b1b;
   color: white;
   border: none;
   border-radius: 5px;
@@ -92,14 +90,6 @@
   position: relative;
   overflow: hidden;
 }
-.wrappercard Button:hover {
-  background: linear-gradient(45deg, #000, #22201e);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  color: rgb(250, 250, 250) !important;
-  background-size: 200% 100%; /* Increase the gradient size */
-  animation: pulseAnimation 0.5s ease infinite;
-}
-
 @keyframes pulseAnimation {
   0% {
     transform: scale(1);
@@ -111,7 +101,6 @@
     transform: scale(1);
   }
 }
-
 
 .title {
   text-align: center;
@@ -158,7 +147,6 @@
 .h3heading {
   font-size: 11px;
 }
-
 
 section {
   display: flex;

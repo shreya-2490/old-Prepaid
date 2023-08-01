@@ -85,7 +85,7 @@ const Home = () => {
   }
   return (
     <>
-      <Ticker/>
+      {/* <Ticker/> */}
       <div className="main-body">
         <div className="home" id="homee">
           <div>

@@ -281,7 +281,7 @@ const Checkout = () => {
                     <Link to="/front-demo/terms&conditions">
                       Terms & Conditions
                     </Link>{" "}
-                    and{" "}
+                    and
                     <Link to="/front-demo/privacypolicy"> Privacy Policy</Link>
                   </span>
                 </p>
