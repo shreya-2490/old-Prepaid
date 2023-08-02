@@ -76,7 +76,7 @@ function Preowned() {
           <Select
             defaultValue={defaultProvider}
             onChange={handleProviderChange}
-            style={{ margin: "2rem 0.6rem 0", width: "15%" }}
+            className="selection-provider"
           >
             <Option value="All">All Providers</Option>
             <Option value="visa">Visa</Option>
@@ -86,7 +86,7 @@ function Preowned() {
           <Select
             placeholder="Select Price"
             onChange={handlePriceChange}
-            style={{ margin: "2rem 0.6rem 0", width: "15%" }}
+            className="selection-price"
             defaultValue={defaultPrice}
           >
             <Option value="low">Lowest Price</Option>

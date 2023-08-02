@@ -20,14 +20,10 @@ const Dashboard = () => {
       <NavbarCart />
       <div className="product-div">
         <div className="listing-design">
-          <ul>
-            <li>Accounts</li>
+          <ul className="ul-list">
+            <li className="user-profile">User Profile</li>
             <Divider />
             <li onClick={handleChangeproduct}>My Products</li>
-            <Divider />
-            <li>Wishlists</li>
-            <Divider />
-            <li>Limits</li>
             <Divider />
             <li>Settings</li>
             <Divider />
@@ -36,10 +32,10 @@ const Dashboard = () => {
                 removeCookie("pfAuthToken", { path: "/" });
                 nav("/front-demo");
               }}
+              className="signout-li"
             >
               Sign Out
             </li>
-            <Divider />
           </ul>
         </div>
         <div className="searchbox-div">

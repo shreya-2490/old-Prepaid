@@ -31,11 +31,13 @@ ul {
   cursor: pointer;
   color: black;
   text-decoration: none;
-  font-weight: bold;
+  transition: 0.3s;
 }
 
 .navbarrrr a:hover{
  text-decoration: overline;
+ transition: 0.3s;
+ font-weight: bold;
 }
 
 

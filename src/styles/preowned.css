@@ -190,3 +190,13 @@ section {
   flex-direction: column;
   gap: 4px;
 }
+.selection-price, .selection-provider{
+  margin: 2rem 0.6rem 0;
+   width: 15%;
+}
+@media (min-width: 10px) and (max-width: 640px) {
+  .selection-provider,  .selection-price{
+    margin: 2rem 0.6rem 0;
+    width: 30%;
+  }
+}

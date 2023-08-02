@@ -22,6 +22,7 @@ import ScrollToTop from "./components/scroll"
 import Password from "./components/Password"
 import Ticker from "./components/ticker"
 import ForgetPassword from "./components/ForgetPassword"
+import ResetPassword from "./components/ResetPassword"
 
 function App() {
   const [cartItems, setCartItems] = useState([])
@@ -79,6 +80,12 @@ function App() {
               <Route path="front-demo/forgotPassword" element={<ForgetPassword />} />
             </Routes>
             <Routes>
+              <Route path="front-demo/register" element={<Register/>} />
+            </Routes>
+            <Routes>
+              <Route path="front-demo/resetPassword" element={<ResetPassword/>} />
+            </Routes>
+            <Routes>
               <Route path="front-demo/bulkorder" element={<BulkOrder />} />
             </Routes>
             <Routes>
@@ -98,9 +105,6 @@ function App() {
             </Routes>
             <Routes>
               <Route path="front-demo/howitworks" element={<HowItWorks />} />
-            </Routes>
-            <Routes>
-              <Route path="front-demo/register" element={<Register />} />
             </Routes>
             <Routes>
               <Route path="front-demo/password" element={<Password />} />

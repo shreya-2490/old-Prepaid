@@ -4,7 +4,6 @@ import "../styles/Login.css";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import { useCookies } from "react-cookie";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Login.css";
@@ -35,7 +34,7 @@ function Login() {
         } else {
           return api.error({
             message: `Something went wrong!`,
-            description: "Something went wrong! Please try again later.",
+            description: "Incorrect Credentials. Please try again.",
           });
         }
       })
@@ -47,10 +46,9 @@ function Login() {
   };
 
   const handleRegister = () => {
-    // Add your logic here for handling "Register" functionality
-    // For example: nav("/register");
+ nav(`/front-demo/register`);
   };
-
+  
   return (
     <>
       {contextHolder}
@@ -82,13 +80,6 @@ function Login() {
                   onChange={(e) => setPsw(e?.target?.value)}
                   required
                 ></input>
-
-                <span
-                  className="input-group-text-password-toggle"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-                </span>
               </div>
               <div className="invalid-feedback">Please Enter your password</div>
             </div>

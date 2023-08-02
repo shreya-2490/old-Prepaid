@@ -50,14 +50,6 @@
   font-size: 1rem;
 }
 
-.buttons {
-  background: linear-gradient(180deg, #ffffff 50%, #ffffff 0);
-  display: flex;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  border-radius: 1rem 1rem 0 0;
-  overflow: hidden;
-}
-
 .box {
   width: 100%;
   margin: 0 auto;
@@ -78,20 +70,22 @@
   height: 3.75rem;
   text-align: center;
   border: none;
-  width: 12rem;
+  width: 10.2rem;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
 }
 
 .buttons .sell {
   height: 3.75rem;
   text-align: center;
   border: none;
-  width: 12rem;
+  width: 11rem;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .sider-content {
@@ -120,13 +114,15 @@
 }
 
 .buttons {
+  border-radius: 1rem 1rem 0 0;
+  overflow: hidden;
   align-items: stretch;
   background: linear-gradient(180deg, #ffffff 50%, #ffffff 0);
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   display: flex;
   height: 3.875rem;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   overflow: hidden;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -263,6 +259,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-bottom: 0.625rem;
   border: none;
 }
+
 
 .effect-text {
   color: #33cccc;
