@@ -70,7 +70,11 @@ const Payment = () => {
               <div className="payment-details">
                 <p className="order-detail-para">Payment Mode</p>
                 <div className="email-div">
-                  <p className="emailad">Bitcoin</p>
+                  <p className="emailad">
+                    {data?.payment_method === "wire"
+                      ? "Wire Transfer"
+                      : "Bitcoin"}
+                  </p>
                 </div>
               </div>
               <div className="invoice-details">
@@ -132,10 +136,23 @@ const Payment = () => {
                       {data?.objectDataReturn?.items[0]?.quantity}x $
                       {data?.objectDataReturn?.items[0]?.cost}
                     </p>
-                    <p>
-                      BTC exchange fee: $
-                      {data?.objectDataReturn?.transaction_fee ?? 0}
-                    </p>
+                    {data?.payment_method === "wire" ? (
+                      <>
+                        <p>
+                          Wire Transfer Fee: $
+                          {data?.objectDataReturn?.transaction_fee ?? 0}
+                        </p>
+                        <p>
+                          Invoice Identifier Fee: $
+                          {data?.objectDataReturn?.invoice_identifier_fee ?? 0}
+                        </p>
+                      </>
+                    ) : (
+                      <p>
+                        BTC exchange fee: $
+                        {data?.objectDataReturn?.transaction_fee ?? 0}
+                      </p>
+                    )}
                   </div>
 
                   <p className="subtotal">Total</p>
