@@ -17,7 +17,9 @@ import Policy from "./components/Privacypolicy"
 import BulkCheckout from "./components/BulkCheckout"
 import { Thankyou } from "./components/Thankyou"
 import HowItWorks from "./components/HowItWorks"
+import Register from "./components/Register"
 import ScrollToTop from "./components/scroll"
+import Password from "./components/Password"
 import Ticker from "./components/ticker"
 import ForgetPassword from "./components/ForgetPassword"
 
@@ -96,6 +98,12 @@ function App() {
             </Routes>
             <Routes>
               <Route path="front-demo/howitworks" element={<HowItWorks />} />
+            </Routes>
+            <Routes>
+              <Route path="front-demo/register" element={<Register />} />
+            </Routes>
+            <Routes>
+              <Route path="front-demo/password" element={<Password />} />
             </Routes>
             <Routes>
               <Route
