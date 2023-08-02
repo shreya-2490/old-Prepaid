@@ -66,7 +66,7 @@
 
     .box2 input{
         background-color: rgb(245,242,234);
-        padding: 1.5rem 7rem;
+        padding: 1.5rem 9rem 1.5rem 1.5rem;
         border-radius: 1rem;
     }
 
@@ -148,7 +148,7 @@
 
     .box2 input{
         background-color: rgb(245,242,234);
-        padding: 1.5rem 7rem;
+        padding: 1.5rem 9rem 1.5rem 1.5rem;
         border-radius: 1rem;
     }
 
@@ -230,7 +230,7 @@
 
     .box2 input{
         background-color: rgb(245,242,234);
-        padding: 1.5rem 3.5rem;
+        padding: 1.5rem 4rem 1.5rem 1rem;
         border-radius: 0.6rem;
     }
 
