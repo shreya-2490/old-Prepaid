@@ -61,33 +61,26 @@ const BulkCheckout = () => {
           first_name: "Test first name",
           last_name: "Test last name",
           email: email,
-          order_subtotal: totalCartValue,
-          order_total: totalCartValue,
           payment_method: paymentMethod,
-          transaction_fee: "0.24",
           guest: true,
           items: bulkCartItems?.map((cartItem) => ({
-            cardType: cartItem?.cardType,
+            cardType: cartItem?.cardType === "visa" ? "Visa" : "masterCard",
             quantity: cartItem?.quantity,
             amount: cartItem?.amount,
-            maxTrans: 1,
             additional_transactions: cartItem?.additionalPurchaseQt
               ? true
               : false,
             additional_transactions_no: cartItem?.additionalPurchaseQt,
-            additional_cost: 100,
             international_transaction:
               cartItem?.isUsedForInternationalTransaction ? true : false,
-            international_cost: cartItem?.isUsedForInternationalTransaction,
-            cost: 2.98,
-            subtotal: totalCartValue,
           })),
         })
         .then((res) =>
           navigate(`/front-demo/payment`, {
-            state: { email, orderType: "bulk-order" },
+            state: { email, orderType: "bulk-order", data: res?.data },
           })
-        );
+        )
+        ?.finally(() => setIsLoading(false));
     } else {
       alert("Invalid email format. Please enter a correct email address.");
     }
@@ -149,7 +142,7 @@ const BulkCheckout = () => {
               <div className="custom-bottom-para-total">
                 <p className="custom-para">Total Estimate</p>
                 <div className="custom-upper-cardvalue">
-                  {/* <p className="value123">${subtotal}</p> */}
+                  <p className="value123">${totalCartValue}</p>
                   <p className="BTC-total">
                     {usdToBTC(totalCartValue, btcRate)} BTC
                   </p>

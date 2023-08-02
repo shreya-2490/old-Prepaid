@@ -12,12 +12,11 @@ import { usdToBTC } from "../utils/helper";
 import { CartContext } from "./CartContext";
 
 const Payment = () => {
-  const { cartItems, cartCount, bulkCartItems, preOwnedCards } =
-    useContext(CartContext);
+  const { cartItems, cartCount, preOwnedCards } = useContext(CartContext);
 
   const [btcRate, setBTCRate] = useState(null);
   const location = useLocation();
-  const { email, orderType, paymentInfo } = location?.state || {};
+  const { email, orderType, data } = location?.state || {};
   const queryParams = new URLSearchParams(location.search);
   const input1 = queryParams.get("usdValue");
   const [usdValue, setUSDValue] = useState(input1);
@@ -51,10 +50,6 @@ const Payment = () => {
     cartCount * 2.98 +
     calculateTotalBTCExchangeFee(totalCardsValue);
 
-  const totalBulkCartAmount = bulkCartItems?.reduce((accumulator, object) => {
-    return accumulator + Number(object?.amount) * Number(object?.quantity);
-  }, 0);
-
   return (
     <>
       <Navbarlogo />
@@ -81,18 +76,17 @@ const Payment = () => {
               <div className="invoice-details">
                 <p className="order-detail-para">Invoice Id</p>
                 <div className="email-div">
-                  <p className="emailad">{uuidv4()}</p>
+                  <p className="emailad">{data?.order_number || uuidv4()}</p>
                 </div>
               </div>
               <Divider className="custom-divider" />
               {isBulkOrder ? (
                 <>
-                  {bulkCartItems?.map((bulkCartItem) => {
-                    const { id, quantity, amount, subTotal, cardType } =
-                      bulkCartItem;
+                  {data?.objectDataReturn?.items?.map((item) => {
+                    const { quantity, amount, subtotal, cardType } = item;
 
                     return (
-                      <div key={id} className="custom-upper-para-pay">
+                      <div className="custom-upper-para-pay">
                         <div className="value2">
                           <img
                             className="visacardtype-img1"
@@ -109,7 +103,7 @@ const Payment = () => {
                           </div>
                           <div className="item-actions">
                             <p className="BTC">
-                              {usdToBTC(subTotal, btcRate)} BTC
+                              {usdToBTC(subtotal, btcRate)} BTC
                             </p>
                           </div>
                         </div>
@@ -118,30 +112,44 @@ const Payment = () => {
                   })}
                   <div className="custom-bottom-para pay-para">
                     <p className="subtotal">Subtotal</p>
-                    <p className="BTC-total">${totalBulkCartAmount}</p>
+                    <p className="BTC-total">
+                      ${data?.objectDataReturn?.order_subtotal}
+                    </p>
                   </div>
                   <div>
                     <p>
                       Number of additional transactions per card:{" "}
-                      {bulkCartItems[0]?.additionalPurchaseQt || "$0"}
+                      {data?.objectDataReturn?.items[0]
+                        ?.additional_transactions_no ?? 0}
                     </p>
                     <p>
                       International allowance fee:{" "}
-                      {bulkCartItems[0]?.isUsedForInternationalTransaction
-                        ? "$7.5"
-                        : "$0"}
+                      {data?.objectDataReturn?.items[0]?.international_cost ??
+                        0}
                     </p>
                     <p>
-                      Prepaid card purchase price: {bulkCartItems[0]?.quantity}{" "}
-                      x 2.98
+                      Prepaid card purchase price:{" "}
+                      {data?.objectDataReturn?.items[0]?.quantity}x $
+                      {data?.objectDataReturn?.items[0]?.cost}
                     </p>
-                    <p>BTC exchange fee: $25.00</p>
+                    <p>
+                      BTC exchange fee: $
+                      {data?.objectDataReturn?.transaction_fee ?? 0}
+                    </p>
                   </div>
 
                   <p className="subtotal">Total</p>
                   <div className="d-flex justify-content-between align-items-center">
+                    <p className="mb-0">
+                      {" "}
+                      {data?.objectDataReturn?.order_total}
+                    </p>
                     <p className="BTC-total">
-                      {bulkCartItems[0]?.subTotal + 25}
+                      {usdToBTC(
+                        data?.objectDataReturn?.order_total ?? 0,
+                        btcRate
+                      )}{" "}
+                      BTC
                     </p>
                   </div>
                 </>
@@ -251,9 +259,7 @@ const Payment = () => {
             </Card>
           </div>
           <div className="payment-card2">
-            <div
-              dangerouslySetInnerHTML={{ __html: paymentInfo?.btc_qr_code }}
-            />
+            <div dangerouslySetInnerHTML={{ __html: data?.btc_qr_code }} />
             {/* <Card
               className="Contact-title"
               title="Pay with Bitcoin"
