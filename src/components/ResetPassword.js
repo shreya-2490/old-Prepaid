@@ -8,8 +8,8 @@ import axios from "axios"
 import { notification } from "antd"
 
 function ResetPassword() {
-  const [newpswrd, setNewpswrd] = useState("")
-  const [confirmpswrd, setConfirmpswrd] = useState("")
+  const [password, setNewpswrd] = useState("")
+  const [password_confirmation, setConfirmpswrd] = useState("")
   const [api, contextHolder] = notification.useNotification()
   const nav = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
@@ -37,8 +37,8 @@ function ResetPassword() {
     setIsLoading(true)
     axios
       ?.post("/reset-password-api", {
-        newpswrd,
-        confirmpswrd,
+        password,
+        password_confirmation,
         stoken,
       })
       ?.then((res) => {
