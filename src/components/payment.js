@@ -12,7 +12,7 @@ import { usdToBTC } from "../utils/helper";
 import { CartContext } from "./CartContext";
 
 const Payment = () => {
-  const { cartItems, cartCount, preOwnedCards } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
 
   const [btcRate, setBTCRate] = useState(null);
   const location = useLocation();
@@ -35,20 +35,12 @@ const Payment = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  const totalCardsValue = cartItems?.reduce((accumulator, object) => {
-    return (
-      accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
-    );
-  }, 0);
-
-  const calculateTotalBTCExchangeFee = (totalCardValue) => {
-    return (totalCardValue + cartCount * 2.98) / 100;
-  };
-
-  const subTotalUsdValue =
-    totalCardsValue +
-    cartCount * 2.98 +
-    calculateTotalBTCExchangeFee(totalCardsValue);
+  const totalCartItemsCount = data?.objectDataReturn?.items?.reduce(
+    (accumulator, object) => {
+      return accumulator + Number(object.quantity);
+    },
+    0
+  );
 
   return (
     <>
@@ -172,11 +164,11 @@ const Payment = () => {
                 </>
               ) : (
                 <>
-                  {cartItems &&
-                    cartItems?.map((card) => (
+                  {data?.objectDataReturn &&
+                    data?.objectDataReturn?.items?.map((item) => (
                       <div className="custom-upper-para-pay">
                         <div className="value2">
-                          {card?.card === "1" ? (
+                          {item?.type === "visa" ? (
                             <>
                               <div>
                                 <img
@@ -187,8 +179,8 @@ const Payment = () => {
 
                                 <div className="nayasa">
                                   <p className="order-detail-para">Visa</p>
-                                  <p>{`${card?.quantity || 1} x $${
-                                    card?.usdValue
+                                  <p>{`${item?.quantity || 1} x $${
+                                    item?.price
                                   }`}</p>
                                 </div>
                               </div>
@@ -206,8 +198,8 @@ const Payment = () => {
                                   <p className="order-detail-para">
                                     MasterCard
                                   </p>
-                                  <p>{`${card?.quantity || 1} x $${
-                                    card?.usdValue
+                                  <p>{`${item?.quantity || 1} x $${
+                                    item?.price
                                   }`}</p>
                                 </div>
                               </div>
@@ -215,60 +207,35 @@ const Payment = () => {
                           )}
                         </div>
                         <div className="final-payment">
-                          <p className="BTC-simplecard">{card?.btcValue} BTC</p>
-                        </div>
-                      </div>
-                    ))}
-                  {preOwnedCards &&
-                    preOwnedCards?.map((preOwnedCard) => (
-                      <div className="custom-upper-para-pay">
-                        <div className="value2">
-                          <div>
-                            <img
-                              src={
-                                preOwnedCard?.type === "visa"
-                                  ? visa
-                                  : mastercard
-                              }
-                              alt={
-                                preOwnedCard?.type === "visa"
-                                  ? "Visa"
-                                  : "Mastercard"
-                              }
-                              className="visacardtype-img1"
-                            />
-
-                            <div className="nayasa">
-                              <p className="order-detail-para">
-                                {preOwnedCard?.type === "visa"
-                                  ? "Visa"
-                                  : "Mastercard"}
-                              </p>
-                              <p>{`1 x $${preOwnedCard?.price}`}</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="final-payment">
                           <p className="BTC-simplecard">
-                            {usdToBTC(preOwnedCard?.price, btcRate)} BTC
+                            {usdToBTC(item?.price, btcRate)} BTC
                           </p>
                         </div>
                       </div>
                     ))}
                   <div className="final-pay">
-                    <p>Prepaid Card Purchase Price: {cartCount} x $2.98</p>
+                    <p>
+                      Prepaid Card Purchase Price: {totalCartItemsCount} x $
+                      {data?.objectDataReturn?.items[0]
+                        ? data?.objectDataReturn?.items[0]?.cost
+                        : "0"}
+                    </p>
                     <p>
                       BTC Exchange Fee: $
-                      {calculateTotalBTCExchangeFee(totalCardsValue)}
+                      {data?.objectDataReturn?.transaction_fee}
                     </p>
                   </div>
 
                   <p className="subtotal">Total</p>
                   <div className="custom-bottom-para pay-para">
-                    <p>${subTotalUsdValue}</p>
+                    <p>${data?.objectDataReturn?.order_total}</p>
                     <p className="BTC-total">
                       {" "}
-                      {usdToBTC(subTotalUsdValue, btcRate)} BTC
+                      {usdToBTC(
+                        data?.objectDataReturn?.order_total,
+                        btcRate
+                      )}{" "}
+                      BTC
                     </p>
                   </div>
                 </>
@@ -277,37 +244,6 @@ const Payment = () => {
           </div>
           <div className="payment-card2">
             <div dangerouslySetInnerHTML={{ __html: data?.btc_qr_code }} />
-            {/* <Card
-              className="Contact-title"
-              title="Pay with Bitcoin"
-              bordered={false}
-              headStyle={{ borderBottom: "none" }}
-            >
-              <div
-                dangerouslySetInnerHTML={{ __html: paymentInfo?.btc_qr_code }}
-              />
-              {/* <QRCode value={paymentInfo?.btc_qr_code || "-"} /> */}
-            {/* <div className="scanner-pic">
-                <img src={Scanner} alt="Scanner" />
-              </div> */}
-            {/* <div className="pay-h">
-                <p className="pay-h1">Payment details</p>
-                <p className="pay-h2">Payment unique address</p>
-                <p className="pay-h3">{paymentInfo?.bitcon_address || ""}</p>
-              </div>
-              <div className="pay-h">
-                <p className="pay-h4">Amount to pay</p>
-                <p className="value">{paymentInfo?.btc_amount || ""} BTC</p>
-              </div>
-              <div>
-                <p className="pay-h6">Expires in</p>
-              </div>
-              <div className="adv">
-                <a href="#" className="pay-adv">
-                  Advanced options
-                </a>
-              </div>
-            </Card> */}
           </div>
         </div>
       </div>

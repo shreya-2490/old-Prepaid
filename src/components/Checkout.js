@@ -16,23 +16,13 @@ const Checkout = () => {
 
   const [btcRate, setBTCRate] = useState(null);
   const navigate = useNavigate();
-  const {
-    cartItems,
-    removeFromCart,
-    updateQuantity,
-    preOwnedCards,
-    removePreOwnedFromCart,
-  } = useContext(CartContext);
+  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [email, setEmail] = useState("");
 
   const handleDelete = (cartItem) => {
     removeFromCart(cartItem?.id);
-  };
-
-  const handleDeletePreOwned = (card) => {
-    removePreOwnedFromCart(card?.id);
   };
 
   const handleEmailChange = (event) => {
@@ -66,43 +56,33 @@ const Checkout = () => {
     );
   }, 0);
 
-  const totalPreOwnedCardsValue = preOwnedCards?.reduce(
-    (accumulator, object) => {
-      return accumulator + Number(object.price);
-    },
-    0
-  );
-
-  const totalCardsValue = totalNewCardValue + totalPreOwnedCardsValue;
+  const totalCardsValue = totalNewCardValue;
 
   const handleSubmit = () => {
     if (email && validator.isEmail(email)) {
       setEmail(email);
       axios
-        ?.post(`/new-card-order-api`, {
+        ?.post(`/preowned-order`, {
           first_name: "Test first name",
           last_name: "Test last name",
           email: email,
-          order_number: "1",
-          order_subtotal: String(totalCardsValue),
-          order_total: String(totalCardsValue),
           payment_method: "btc",
           guest: true,
-          transaction_fee: "0.25",
           items: cartItems?.map((cartItem) => ({
-            type: cartItem?.card === "1" ? "visa" : "master",
+            type:
+              cartItem?.type === "1" || cartItem?.type === "visa"
+                ? "visa"
+                : "master",
             quantity: cartItem?.quantity,
             price: cartItem?.usdValue,
-            cardFee: 0,
-            bin: 0,
-            card: 0,
-            subtotal: String(totalCardsValue),
-            cardId: 0,
+            bin: cartItem?.bin,
+            card: cartItem?.card,
+            cardId: cartItem?.cardId,
           })),
         })
         .then((res) =>
           navigate(`/front-demo/payment`, {
-            state: { email, paymentInfo: res?.data },
+            state: { email, data: res?.data },
           })
         );
     } else {
@@ -128,7 +108,7 @@ const Checkout = () => {
             >
               <div className="custom-upper-para">
                 {cartItems?.map((cartItem) => {
-                  const { id, usdValue, quantity, btcValue, card } = cartItem;
+                  const { id, usdValue, quantity, type } = cartItem;
 
                   const totalValue = usdValue * quantity;
                   return (
@@ -137,12 +117,18 @@ const Checkout = () => {
                         <div className="valuessinner">
                           <img
                             className="visa-mastercard-checkout"
-                            src={card === "1" ? visa : mastercard}
+                            src={
+                              type === "1" || type === "visa"
+                                ? visa
+                                : mastercard
+                            }
                             alt="Visa"
                           />
                           <div className="item-details">
                             <div className="valueheading">
-                              {card === "1" ? "Visa" : "MasterCard"}
+                              {type === "1" || type === "visa"
+                                ? "Visa"
+                                : "MasterCard"}
                             </div>
                             <div className="value">
                               {quantity} x ${usdValue} = ${totalValue}
@@ -182,49 +168,6 @@ const Checkout = () => {
                           type="warning"
                         />
                       )}
-                    </div>
-                  );
-                })}
-                {preOwnedCards?.map((preOwnedCard) => {
-                  const { id, bin, card, price, type } = preOwnedCard;
-
-                  const totalValue = price * 1;
-                  return (
-                    <div key={id} className="item-container">
-                      <div className="valuess">
-                        <div className="valuessinner">
-                          <img
-                            className="visa-mastercard-checkout"
-                            src={type === "visa" ? visa : mastercard}
-                            alt="Visa"
-                          />
-                          <div className="item-details">
-                            <div className="valueheading">
-                              {card === "visa" ? "Visa" : "MasterCard"}
-                            </div>
-                            <div className="value">
-                              {1} x ${price} = ${totalValue}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="item-actions">
-                          <div>
-                            <Select
-                              className="select"
-                              defaultValue={1}
-                              options={[{ value: 1, label: "1" }]}
-                            />
-                            <DeleteOutlined
-                              className="divider"
-                              onClick={() => handleDeletePreOwned(preOwnedCard)}
-                            />
-                          </div>
-                          <p className="BTC">
-                            {usdToBTC(totalValue, btcRate)} BTC
-                          </p>
-                        </div>
-                      </div>
                     </div>
                   );
                 })}

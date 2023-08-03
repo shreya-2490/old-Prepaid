@@ -1,72 +1,86 @@
-import React, { useState, useEffect, useContext } from "react"
-import axios from "axios"
-import NavbarCart from "./NavbarCart"
-import "../styles/preowned.css"
-import { Button, Select } from "antd"
-import { useLocation } from "react-router"
-import wifi from "../assets/wifi1.png"
-import map from "../assets/map1.png"
-import master from "../assets/mastercard preowned.png"
-import visa from "../assets/visa preowned.png"
-import { CartContext } from "./CartContext"
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import NavbarCart from "./NavbarCart";
+import "../styles/preowned.css";
+import { Button, Modal, Select } from "antd";
+import { useLocation, useNavigate } from "react-router";
+import wifi from "../assets/wifi1.png";
+import map from "../assets/map1.png";
+import master from "../assets/mastercard preowned.png";
+import visa from "../assets/visa preowned.png";
+import { CartContext } from "./CartContext";
+import Cart from "../shared-components/cart";
 
 function Preowned() {
-  const { addToCartPreownedCards } = useContext(CartContext)
-  const [cardData, setCardData] = useState([])
-  const [loading, setLoading] = useState(true) // New loading state
-  const location = useLocation()
+  const location = useLocation();
+  const navigate = useNavigate();
   const { selectedProvider: defaultProvider, selectedPrice: defaultPrice } =
-    location.state || {}
+    location.state || {};
   const [selectedProvider, setSelectedProvider] = useState(
     defaultProvider || "All"
-  )
-  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "")
-  const { Option } = Select
+  );
+  const { addToCart, cartCount } = useContext(CartContext);
+  const [cardData, setCardData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "");
+  const { Option } = Select;
 
   useEffect(() => {
     axios
       .get("/get-card-with-type")
       .then((response) => {
-        let filteredData = response.data.cards
+        let filteredData = response.data.cards;
         if (selectedProvider !== "All") {
           filteredData = filteredData.filter(
             (card) => card.type === selectedProvider
-          )
+          );
         }
 
         if (selectedPrice === "low") {
-          filteredData = filteredData.sort((a, b) => a.price - b.price)
+          filteredData = filteredData.sort((a, b) => a.price - b.price);
         } else if (selectedPrice === "high") {
-          filteredData = filteredData.sort((a, b) => b.price - a.price)
+          filteredData = filteredData.sort((a, b) => b.price - a.price);
         }
-        setCardData(filteredData)
-        setLoading(false)
+        setCardData(filteredData);
+        setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching card data:", error)
-        setLoading(false)
-      })
-  }, [selectedProvider, selectedPrice])
+        console.error("Error fetching card data:", error);
+        setLoading(false);
+      });
+  }, [selectedProvider, selectedPrice]);
 
   const handleProviderChange = (value) => {
-    setLoading(true)
-    setSelectedProvider(value)
-  }
+    setLoading(true);
+    setSelectedProvider(value);
+  };
 
   const handlePriceChange = (value) => {
-    setLoading(true)
-    setSelectedPrice(value)
-  }
+    setLoading(true);
+    setSelectedPrice(value);
+  };
 
   const handleAddToCart = (card) => {
-    addToCartPreownedCards({
+    setIsCartOpen(true);
+    addToCart({
       bin: card?.bin,
       card: card?.card,
       id: card?.id,
-      price: card?.price,
+      cardId: card?.id,
+      usdValue: card?.price,
       type: card?.type,
-    })
-  }
+    });
+  };
+
+  const handleKeepShopping = () => {
+    setIsCartOpen(false);
+    navigate("/front-demo");
+  };
+
+  const handleCheckout = () => {
+    navigate(`/front-demo/checkout`);
+  };
 
   return (
     <>
@@ -157,11 +171,31 @@ function Preowned() {
             ) : (
               <div>No card data available</div>
             )}
+            <Modal
+              visible={isCartOpen}
+              onCancel={() => setIsCartOpen(false)}
+              footer={null}
+              className="cart-modal"
+              style={{
+                width: "10%",
+              }}
+            >
+              <Cart />
+
+              <div className="cart-modal-footer">
+                <Button key="keepShopping" onClick={handleKeepShopping}>
+                  Keep Shopping
+                </Button>
+                <Button key="checkout" type="primary" onClick={handleCheckout}>
+                  Checkout ({cartCount})
+                </Button>
+              </div>
+            </Modal>
           </div>
         )}
       </div>
       {/* <Footer /> */}
     </>
-  )
+  );
 }
-export default Preowned
+export default Preowned;

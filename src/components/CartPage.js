@@ -53,7 +53,7 @@ const Cart = ({ handleAddToCart }) => {
     addToCart({
       usdValue: usdValue,
       btcValue: btcValue,
-      card: selectedButton,
+      type: selectedButton,
       // Using UUID to generate random ID until we finalize any unique identifier for each card transactions.
       id: uuidv4(),
     });
