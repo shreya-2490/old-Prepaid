@@ -71,16 +71,16 @@ function ResetPassword() {
                 New Password
               </label>
               <input
-                type="newpswrd"
+                type="password"
                 className="form-control"
                 onChange={(e) => setNewpswrd(e?.target?.value)}
                 required
               ></input>
               <label htmlFor="confirmpswrd" className="form-label">
-                confirm Password
+                Confirm Password
               </label>
               <input
-                type="confirmpswrd"
+                type="password"
                 className="form-control"
                 onChange={(e) => setConfirmpswrd(e?.target?.value)}
                 required
