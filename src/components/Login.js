@@ -22,7 +22,7 @@ function Login() {
     e?.preventDefault();
     setIsLoading(true);
     axios
-      ?.post("https://dev.prepaidfriends.com/login-user-api", {
+      ?.post("/login-user-api", {
         email,
         password: psw,
       })
