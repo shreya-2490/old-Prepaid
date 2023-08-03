@@ -74,7 +74,11 @@ function ResetPassword() {
                 type="password"
                 className="form-control"
                 onChange={(e) => setNewpswrd(e?.target?.value)}
-                required
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
               ></input>
               <label htmlFor="confirmpswrd" className="form-label">
                 Confirm Password
@@ -83,7 +87,11 @@ function ResetPassword() {
                 type="password"
                 className="form-control"
                 onChange={(e) => setConfirmpswrd(e?.target?.value)}
-                required
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
               ></input>
               <div className="invalid-feedback">Please Enter your email</div>
             </div>
