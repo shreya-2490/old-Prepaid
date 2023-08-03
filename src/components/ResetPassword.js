@@ -21,7 +21,7 @@ function ResetPassword() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://prepaidfriends.com/front-demo/reset-password/${stoken}`
+          `/verify-reset-password-page-api/${stoken}`
         )
         setData(response.data)
       } catch (error) {
