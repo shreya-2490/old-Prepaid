@@ -83,7 +83,7 @@ function App() {
               <Route path="front-demo/register" element={<Register/>} />
             </Routes>
             <Routes>
-              <Route path="front-demo/reset-password/:token" element={<ResetPassword/>} />
+              <Route path="front-demo/reset-password/:stoken" element={<ResetPassword/>} />
             </Routes>
             <Routes>
               <Route path="front-demo/bulkorder" element={<BulkOrder />} />

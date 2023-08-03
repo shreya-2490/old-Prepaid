@@ -14,14 +14,14 @@ function ResetPassword() {
   const nav = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null);
-  const { token } = useParams();
-  console.log("Current URL location:", token);
+  const { stoken } = useParams();
+  console.log("Current URL location:", stoken);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://prepaidfriends.com/front-demo/reset-password/${token}`
+          `https://prepaidfriends.com/front-demo/reset-password/${stoken}`
         )
         setData(response.data)
       } catch (error) {
@@ -30,7 +30,7 @@ function ResetPassword() {
     }
 
     fetchData()
-  }, [token])
+  }, [stoken])
 
   const handleReset = (e) => {
     e?.preventDefault()
@@ -39,7 +39,7 @@ function ResetPassword() {
       ?.post("/reset-password-api", {
         newpswrd,
         confirmpswrd,
-        token,
+        stoken,
       })
       ?.then((res) => {
         console.log(res)
