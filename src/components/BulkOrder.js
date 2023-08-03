@@ -18,6 +18,11 @@ const BulkOrder = () => {
   const [form] = Form.useForm()
   const { addToBulkCart } = useContext(CartContext)
   const [subTotal, setSubTotal] = useState(0)
+  const countryCodes = [
+    { code: "+1", country: "United States" },
+    { code: "+44", country: "United Kingdom" },
+    // Add more country codes as needed
+  ]
 
   return (
     <>
@@ -31,7 +36,9 @@ const BulkOrder = () => {
               {/* <p className="subtitle-bulk">
               One-Stop Prepaid Card Purchase
               </p> */}
-              <p className="subtitle-bulk-2">Buy 5 to 100 Cards in a Single Click.</p>
+              <p className="subtitle-bulk-2">
+                Buy 5 to 100 Cards in a Single Click.
+              </p>
             </Card>
             <div>
               <Card className="benefits-card">
@@ -171,10 +178,45 @@ const BulkOrder = () => {
                 rules={[
                   {
                     required: true,
+                    message: "Please enter your phone number!",
                   },
                 ]}
               >
-                <Input />
+                <Input.Group compact>
+                  <Form.Item
+                    name="CountryCode"
+                    noStyle
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please select your country code!",
+                      },
+                    ]}
+                  >
+                    <Select style={{ width: "20%" }}>
+                      {countryCodes.map((country) => (
+                        <Option key={country.code} value={country.code}>
+                          {country.code}
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                  <Form.Item
+                    name="PhoneNumber"
+                    noStyle
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter your phone number!",
+                      },
+                    ]}
+                  >
+                    <Input
+                      style={{ width: "80%" }}
+                      placeholder="Phone Number"
+                    />
+                  </Form.Item>
+                </Input.Group>
               </Form.Item>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <Form.Item
@@ -207,6 +249,7 @@ const BulkOrder = () => {
                   }}
                 >
                   <InputNumber
+                    type="number"
                     width={50}
                     min={5}
                     max={100}
@@ -239,6 +282,8 @@ const BulkOrder = () => {
                     <Option value="100">100 </Option>
                     <Option value="200">200 </Option>
                     <Option value="300">300 </Option>
+                    <Option value="300">400 </Option>
+                    <Option value="300">500 </Option>
                   </Select>
                 </Form.Item>
                 <Form.Item
@@ -291,7 +336,7 @@ const BulkOrder = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  marginTop: "60px",
+                  marginTop: "20px",
                   marginLeft: "5px",
                   fontWeight: "bold",
                 }}

@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/Login.css"
 import logo from "../assets/logo.png"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation,useParams } from "react-router-dom"
+
 import axios from "axios"
 import { notification } from "antd"
 
@@ -11,28 +12,34 @@ function ResetPassword() {
   const [confirmpswrd, setConfirmpswrd] = useState("")
   const [api, contextHolder] = notification.useNotification()
   const nav = useNavigate()
-    const [isLoading, setIsLoading] = useState(false)
-    
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get('https://dev.prepaidfriends.com/verify-reset-password-page-api/{token}');
-//         setData(response.data);
-//       } catch (error) {
-//         console.error('Error fetching data:', error);
-//       }
-//     };
+  const [isLoading, setIsLoading] = useState(false)
+  const [data, setData] = useState(null);
+  const { token } = useParams();
+  console.log("Current URL location:", token);
 
-//     fetchData();
-//   }, []);
-    
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://prepaidfriends.com/front-demo/reset-password/${token}`
+        )
+        setData(response.data)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      }
+    }
+
+    fetchData()
+  }, [token])
+
   const handleReset = (e) => {
     e?.preventDefault()
     setIsLoading(true)
     axios
       ?.post("/reset-password-api", {
-          newpswrd,
-          confirmpswrd
+        newpswrd,
+        confirmpswrd,
+        token,
       })
       ?.then((res) => {
         console.log(res)
@@ -85,7 +92,7 @@ function ResetPassword() {
               onClick={handleReset}
               className="btn  w-100 mt-2"
             >
-             Submit
+              Submit
             </button>
           </form>
         </div>

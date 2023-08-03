@@ -242,7 +242,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .buy-usdt {
   color: #1b1b1b;
-
+  transition: 0.03s all;
   background-color: #fdc886;
   border-radius: 3.125rem;
   width: 100%;
@@ -259,8 +259,12 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-bottom: 0.625rem;
   border: none;
 }
-
-
+.buy-usdt:active {
+  transform: scale(0.989);
+}
+.buy-usdt:hover{
+  background-color: #F0BD7F;
+}
 .effect-text {
   color: #33cccc;
   margin-left: 0.4375rem;

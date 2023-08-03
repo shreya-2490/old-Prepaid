@@ -42,7 +42,7 @@ function Login() {
   };
 
   const handleForgetPassword = () => {
-    nav(`/front-demo/forgotPassword`);
+  nav(`/front-demo/forgotPassword`);
   };
 
   const handleRegister = () => {

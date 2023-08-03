@@ -12,18 +12,17 @@ const HowItWorks = () => {
       <NavbarCart />
       <div className="outer-timeline">
         <div className="timeline">
-          <h3>Acquire Your Prepaid Card in 4 Simple Steps!</h3>
+          <h3 style={{fontWeight:"600"}}>Acquire Your Prepaid Card in 4 Simple Steps!</h3>
           <img src={timeline} alt="" />
         </div>
         <div className="questions">
           <h2>
-            Frequently <br />
-            Asked <span>Questions</span>
+            Frequently Asked <span>Questions</span>
           </h2>
 
           <Accordion>
             <Accordion.Item value="first">
-              <Accordion.Control>
+              <Accordion.Control className="accordion-title">
                 How does the prepaid card work?
                 <Accordion.Icon />
               </Accordion.Control>
@@ -37,7 +36,7 @@ const HowItWorks = () => {
             </Accordion.Item>
 
             <Accordion.Item value="second">
-              <Accordion.Control>
+              <Accordion.Control className="accordion-title">
                 Which cryptocurrencies are accepted for purchasing the prepaid
                 card?
                 <Accordion.Icon />
@@ -51,7 +50,7 @@ const HowItWorks = () => {
             </Accordion.Item>
 
             <Accordion.Item value="third">
-              <Accordion.Control>
+              <Accordion.Control className="accordion-title">
                 How do I purchase a prepaid card using Bitcoin?
                 <Accordion.Icon />
               </Accordion.Control>
@@ -67,7 +66,7 @@ const HowItWorks = () => {
             </Accordion.Item>
 
             <Accordion.Item value="fourth">
-              <Accordion.Control>
+              <Accordion.Control className="accordion-title">
                 Can I reload the prepaid card multiple times?
                 <Accordion.Icon />
               </Accordion.Control>
@@ -80,7 +79,7 @@ const HowItWorks = () => {
             </Accordion.Item>
 
             <Accordion.Item value="fifth">
-              <Accordion.Control>
+              <Accordion.Control className="accordion-title">
                 Can I use the prepaid card for online and in-store purchases?
                 <Accordion.Icon />
               </Accordion.Control>
@@ -92,7 +91,7 @@ const HowItWorks = () => {
               </Accordion.Panel>
             </Accordion.Item>
             <Accordion.Item value="sixth">
-              <Accordion.Control>
+              <Accordion.Control className="accordion-title">
                 What if I have unused funds on the prepaid card? Can I convert
                 them back to Bitcoin?
                 <Accordion.Icon />
@@ -106,7 +105,7 @@ const HowItWorks = () => {
               </Accordion.Panel>
             </Accordion.Item>
             <Accordion.Item value="seventh">
-              <Accordion.Control>
+              <Accordion.Control className="accordion-title">
                 Are there any transaction fees associated with the prepaid card?
                 <Accordion.Icon />
               </Accordion.Control>

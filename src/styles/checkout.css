@@ -175,6 +175,14 @@
     align-items: center;
     justify-content: center;
     font-size: 1rem;
+    transition: 0.03s all;
+  }
+  .payment-btn:hover {
+   background-color:  #333333;
+  }
+
+  .payment-btn:active {
+    transform: scale(0.97);
   }
 
   .payment button {
@@ -457,8 +465,16 @@
     margin: 0.625rem 1.25rem;
     min-height: 2.875rem;
     font-size: 0.875rem;
+    transition: 0.03s all;
   }
 
+  .payment-btn:hover {
+   background-color:  #333333;
+  }
+
+  .payment-btn:active {
+    transform: scale(0.97);
+  }
   .payment button {
     color: #1b1b1b;
     background-color: #fdc886 !important;
@@ -737,6 +753,15 @@
     justify-content: center;
     min-height: 2.875rem;
     font-size: 1rem;
+    transition: 0.03s all;
+  }
+  
+  .payment-btn:hover {
+   background-color:  #333333;
+  }
+
+  .payment-btn:active {
+    transform: scale(0.97);
   }
 
   .payment button {

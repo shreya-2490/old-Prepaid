@@ -26,7 +26,6 @@ const Cart = ({ handleAddToCart }) => {
   const [btcValue, setBtcValue] = useState(input2);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const { addToCart, cartCount } = useContext(CartContext);
-  const exchangeRate = 0.000038; // Example exchange rate, replace with the actual rate
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -47,7 +46,6 @@ const Cart = ({ handleAddToCart }) => {
   const handleUSDChange = (event) => {
     const usdInput = parseFloat(event.target.value);
     setUSDValue(usdInput);
-    setBtcValue(usdInput * exchangeRate);
   };
   const handleAddToCartClick = () => {
     addToCart({
