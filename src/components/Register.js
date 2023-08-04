@@ -54,7 +54,7 @@ const Register = () => {
         <div className="register-box">
           <div className="box1">
             <h1>Welcome!</h1>
-            <h3>Unlock Exclusive Benefits: Sign Up Now!</h3>
+            {/* <h3>Unlock Exclusive Benefits: Sign Up Now!</h3> */}
           </div>
 
           <div className="box2">

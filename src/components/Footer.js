@@ -7,10 +7,10 @@ function Footer() {
     <>
     <div className="footer">
 
-      <Link to="/front-demo/terms&conditions" className="termscondition">
+      <Link to="/front-demo/terms-conditions" className="termscondition">
         Terms & Conditions <span className="divider-bet">|</span>
       </Link>
-      <Link to="/front-demo/privacypolicy" className="privacy">
+      <Link to="/front-demo/privacy-policy" className="privacy">
         Privacy Policy
         </Link>
 
@@ -27,10 +27,10 @@ function Footer() {
 
 
         <div className="termandprivacy">
-        <Link to="/front-demo/terms&conditions" className="termscondition">
+        <Link to="/front-demo/terms-conditions" className="termscondition">
           Terms & Conditions <span className="divider-bet">|</span>
         </Link>
-        <Link to="/front-demo/privacypolicy" className="privacy">
+        <Link to="/front-demo/privacy-policy" className="privacy">
           Privacy Policy
           </Link>
         </div>
