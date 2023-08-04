@@ -6,6 +6,7 @@ import tick from "../assets/tick-circle.png"
 import cards from "../assets/Bank Cards.png"
 import ellipse from "../assets/Ellipse.png"
 import { v4 as uuidV4 } from "uuid"
+import CountryPhoneInput from "./CountryCode"
 
 import { Button, Form, Input, InputNumber, Select, Card, Checkbox } from "antd"
 import Footer from "./Footer"
@@ -18,11 +19,6 @@ const BulkOrder = () => {
   const [form] = Form.useForm()
   const { addToBulkCart } = useContext(CartContext)
   const [subTotal, setSubTotal] = useState(0)
-  const countryCodes = [
-    { code: "+1", country: "United States" },
-    { code: "+44", country: "United Kingdom" },
-    // Add more country codes as needed
-  ]
 
   return (
     <>
@@ -173,51 +169,18 @@ const BulkOrder = () => {
                 <Input />
               </Form.Item>
               <Form.Item
-                name="Phone"
-                label="Phone"
+                name="PhoneNumber"
+                label="Phone Number"
                 rules={[
                   {
                     required: true,
-                    message: "Please enter your phone number!",
                   },
                 ]}
-              >
-                <Input.Group compact>
-                  <Form.Item
-                    name="CountryCode"
-                    noStyle
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please select your country code!",
-                      },
-                    ]}
-                  >
-                    <Select style={{ width: "20%" }}>
-                      {countryCodes.map((country) => (
-                        <Option key={country.code} value={country.code}>
-                          {country.code}
-                        </Option>
-                      ))}
-                    </Select>
-                  </Form.Item>
-                  <Form.Item
-                    name="PhoneNumber"
-                    noStyle
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter your phone number!",
-                      },
-                    ]}
-                  >
-                    <Input
-                      style={{ width: "80%" }}
-                      placeholder="Phone Number"
-                    />
-                  </Form.Item>
-                </Input.Group>
-              </Form.Item>
+              ><span style={{display:"flex"}}>
+                <CountryPhoneInput/>
+                <Input  placeholder="Phone Number" /></span>
+              </Form.Item> 
+            
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <Form.Item
                   name="card-type"

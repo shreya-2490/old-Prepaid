@@ -82,7 +82,6 @@
   .ant-form-item-has-error .ant-input,
   .ant-form-item-has-error .ant-input-affix-wrapper {
     border-color: #fdc886 !important;
-
     box-shadow: 0 0 0 2px rgba(253, 200, 134, 0.2) !important;
   }
 
@@ -95,6 +94,7 @@
   .ant-input,
   .ant-input-affix-wrapper {
     border-color: #fdc886 !important;
+    font-weight: 500;
   }
   .ant-form-item .ant-form-item-control-input-content {
     width: 120% !important;

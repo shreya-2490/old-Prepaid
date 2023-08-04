@@ -77,7 +77,7 @@ function App() {
               <Route path="front-demo/login" element={<Login />} />
             </Routes>
             <Routes>
-              <Route path="front-demo/forgotPassword" element={<ForgetPassword />} />
+              <Route path="front-demo/forgot-password" element={<ForgetPassword />} />
             </Routes>
             <Routes>
               <Route path="front-demo/register" element={<Register/>} />
@@ -86,16 +86,16 @@ function App() {
               <Route path="front-demo/reset-password/:stoken" element={<ResetPassword/>} />
             </Routes>
             <Routes>
-              <Route path="front-demo/bulkorder" element={<BulkOrder />} />
+              <Route path="front-demo/bulk-order" element={<BulkOrder />} />
             </Routes>
             <Routes>
-              <Route path="front-demo/contactus" element={<ContactUs />} />
+              <Route path="front-demo/contact-us" element={<ContactUs />} />
             </Routes>
             <Routes>
-              <Route path="front-demo/terms&conditions" element={<Terms />} />
+              <Route path="front-demo/terms-conditions" element={<Terms />} />
             </Routes>
             <Routes>
-              <Route path="front-demo/privacypolicy" element={<Policy />} />
+              <Route path="front-demo/privacy-policy" element={<Policy />} />
             </Routes>
             <Routes>
               <Route path="front-demo/dashboard" element={<Dashboard />} />
@@ -104,7 +104,7 @@ function App() {
               <Route path="front-demo/thankyou" element={<Thankyou />} />
             </Routes>
             <Routes>
-              <Route path="front-demo/howitworks" element={<HowItWorks />} />
+              <Route path="front-demo/how-it-works" element={<HowItWorks />} />
             </Routes>
             <Routes>
               <Route path="front-demo/password" element={<Password />} />

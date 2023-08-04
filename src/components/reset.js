@@ -7,7 +7,7 @@ import { useNavigate, useLocation,useParams } from "react-router-dom"
 import axios from "axios"
 import { notification } from "antd"
 
-function ResetPassword() {
+function Reset() {
   const [password, setNewpswrd] = useState("")
   const [password_confirmation, setConfirmpswrd] = useState("")
   const [api, contextHolder] = notification.useNotification()
@@ -17,20 +17,6 @@ function ResetPassword() {
   const { stoken } = useParams();
   console.log("Current URL location:", stoken);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `/verify-reset-password-page-api/${stoken}`
-        )
-        setData(response.data)
-      } catch (error) {
-        console.error("Error fetching data:", error)
-      }
-    }
-
-    fetchData()
-  }, [stoken])
 
   const handleReset = (e) => {
     e?.preventDefault()
@@ -65,14 +51,12 @@ function ResetPassword() {
   return (
     <>
       {contextHolder}
-      <div className="wrapper d-flex align-items-center justify-content-center w-100">
-        <img src={logo} className="login-logo" alt="Logo" onClick={handlelogoClick}></img>
-        <div className="login">
-          <h2 className="mb-4 login-heading">Forgot Password</h2>
+      <div className="d-flex align-items-center justify-content-center w-100">
+    
           <form className="needs-validation">
             <div className="form-group was-validated mb-2">
               <label htmlFor="newpswrd" className="form-label">
-                New Password
+                Current Password
               </label>
               <input
                 type="password"
@@ -85,7 +69,7 @@ function ResetPassword() {
                 ]}
               ></input>
               <label htmlFor="confirmpswrd" className="form-label">
-                Confirm Password
+                New Password
               </label>
               <input
                 type="password"
@@ -108,9 +92,9 @@ function ResetPassword() {
             </button>
           </form>
         </div>
-      </div>
+      
     </>
   )
 }
 
-export default ResetPassword
+export default Reset

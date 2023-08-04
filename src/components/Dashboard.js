@@ -1,20 +1,27 @@
-import React, { useState } from "react";
-import { Divider, Input, Space } from "antd";
-import NavbarCart from "./NavbarCart";
-import "../styles/dashboard.css";
-import mastercard from "../assets/Mastercardcartpage.png";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react"
+import { Divider, Input, Space } from "antd"
+import NavbarCart from "./NavbarCart"
+import "../styles/dashboard.css"
+import mastercard from "../assets/Mastercardcartpage.png"
+import { useCookies } from "react-cookie"
+import { useNavigate } from "react-router-dom"
+import Reset from "./reset"
+import { common } from "@mui/material/colors"
 
 const Dashboard = () => {
-  const nav = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies(["pfAuthToken"]);
-  const onSearch = (value) => console.log(value);
-  const { Search } = Input;
-  const [product, setProduct] = useState(false);
+  const nav = useNavigate()
+  const [cookies, setCookie, removeCookie] = useCookies(["pfAuthToken"])
+  const onSearch = (value) => console.log(value)
+  const { Search } = Input
+  const [product, setProduct] = useState(false)
+  const [reset, setReset] = useState(false)
+
   const handleChangeproduct = () => {
-    setProduct(true);
-  };
+    setProduct(true)
+  }
+  const handleChangePassword = () => {
+    setReset(true)
+  }
   return (
     <>
       <NavbarCart />
@@ -25,12 +32,12 @@ const Dashboard = () => {
             <Divider />
             <li onClick={handleChangeproduct}>My Products</li>
             <Divider />
-            <li>Settings</li>
+            <li onClick={handleChangePassword}>Change Password</li>
             <Divider />
             <li
               onClick={() => {
-                removeCookie("pfAuthToken", { path: "/" });
-                nav("/front-demo");
+                removeCookie("pfAuthToken", { path: "/" })
+                nav("/front-demo")
               }}
               className="signout-li"
             >
@@ -55,6 +62,7 @@ const Dashboard = () => {
           ) : (
             ""
           )}
+          {reset && <Reset />}
         </div>
         <div style={{ textAlign: "right" }}>
           {" "}
@@ -71,7 +79,7 @@ const Dashboard = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

@@ -1,13 +1,19 @@
-
 .wrapper {
   height: 100vh;
   background-color: #f5f2ea;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
+}
+.input-group .btn {
+  font-size: 0.8rem;
+  margin: 0 0.3rem;
 }
 .login-heading {
   font-size: 1.4rem;
   text-align: center;
   margin-bottom: 1.5rem;
+}
+.form .form-control:valid {
+  border-color: #fdc886;
 }
 .login-logo {
   position: absolute;
@@ -26,6 +32,7 @@
 .form-control {
   border: 1px solid #fdc886;
   border-radius: 0.8125rem !important;
+  position: relative;
 }
 .btn {
   background-color: #fdc886;
@@ -44,14 +51,35 @@
   background-color: #f3d8b7;
   color: #1b1b1b;
 }
-.forget-register{
+.forget-register {
+  font-size: 0.86rem;
   cursor: pointer;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-
 }
-.input-group-text-password-toggle{
+.input-group-text-password-toggle {
   font-size: 1rem;
   margin-left: 0.2rem !important;
+}
+.register-now{
+  margin-top: 0.8rem;
+  font-size: 0.86rem;
+  text-align: center;
+}
+.register-link{
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 0.1rem;
+}
+.toggle-pswrd{
+  position: absolute;
+  right: 1rem;
+  z-index: 9999;
+  top:0.1rem;
+}
+.form-check-input:checked{
+  background-color: #fdc886;
+  border-color:#fdc886;
+  color: #1b1b1b;
 }

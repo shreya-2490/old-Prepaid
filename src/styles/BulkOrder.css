@@ -44,16 +44,15 @@
     color: white;
     width: 100%;
     background-color: #fdc886;
-    border-radius: 0.5rem 0.5rem 0rem 0rem;
-    padding-top: 2rem;
+    border-radius: 1rem 1rem 0rem 0rem;
+    padding-top: 0.7rem;
   }
-
   .benefits-card {
     width: 18rem;
     height: 3.8rem;
     background-color: white;
     position: absolute;
-    top: 42%;
+    top: 34%;
     left: 25%;
     z-index: 100;
     transform: translate(-50%, -50%);
@@ -93,7 +92,7 @@
   .bulkorder-content-2 {
     color: white;
     width: 100%;
-    border-radius: 0rem 0rem 0.5rem 0.5rem;
+    border-radius: 0rem 0rem 1rem 1rem;
     background-color: #f5f2ea;
   }
 
@@ -125,15 +124,14 @@
   }
 
   .listing-div {
-    padding: 3rem 4rem;
+    padding: 5rem 4rem 0rem 4rem;
   }
 
   .footer-card2 {
     color: #a1a19f;
-    font-size: 0.625rem;
-    text-align: left;
-    padding: 0.625rem;
-    margin: -0.6875rem 1.25rem;
+    font-size: 0.8rem;
+    text-align: justify;
+    padding: 1.625rem;
   }
 
   .ant-form-item-control-input input:focus,
@@ -181,6 +179,9 @@
   }
   .tick-class {
     margin: 0.2rem 0.4rem;
+  }
+  .PhoneInput{
+    width: 7%;
   }
 }
 
@@ -426,5 +427,8 @@
     margin: auto;
     background-color: #fdc886;
     width: 100%;
+  }
+  .PhoneInput{
+    width: 15%;
   }
 }

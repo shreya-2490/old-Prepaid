@@ -8,7 +8,19 @@
 .terms-header{
     margin: 0rem auto 2rem auto;
     font-weight: bold;
+    font-size: 1.1rem;
 }
 .policy-header{
     margin: 0rem auto 2rem auto; 
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+.terms-content h5{
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.terms-content p{
+    font-size: 0.9rem;
+    padding-bottom: 0rem;
 }

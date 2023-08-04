@@ -28,7 +28,7 @@ const Register = () => {
       })
       ?.then((res) => {
         console.log(res)
-        if (res.data.status=== "success") {
+        if (res.data.status === "success") {
           notification.success({
             message: "Success",
             description:
@@ -54,34 +54,35 @@ const Register = () => {
         <div className="register-box">
           <div className="box1">
             <h1>Welcome!</h1>
-            {/* <h3>
-              To keep connected with us please signUp <br />
-              with your personal info
-            </h3> */}
+            <h3>Unlock Exclusive Benefits: Sign Up Now!</h3>
           </div>
 
           <div className="box2">
             <h1>Create Account</h1>
 
             <input
+              className="register-input"
               type="name"
               placeholder="First Name"
               required
               onChange={(e) => setName(e?.target?.value)}
             />
             <input
+              className="register-input"
               type="lastname"
               placeholder="Last Name"
               required
               onChange={(e) => setLastName(e?.target?.value)}
             />
             <input
+              className="register-input"
               type="email"
               placeholder="Email"
               required
               onChange={(e) => setEmail(e?.target?.value)}
             />
             <input
+              className="register-input"
               type="businessname"
               placeholder="Buisness Name"
               onChange={(e) => setBusinessName(e?.target?.value)}

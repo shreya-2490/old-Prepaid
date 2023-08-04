@@ -36,12 +36,15 @@ function ForgetPassword() {
       })
       .finally(() => setIsLoading(false))
   }
+  const handlelogoClick = () => {
+     nav("/front-demo/login")
+   }
 
   return (
     <>
       {contextHolder}
     <div className="wrapper d-flex align-items-center justify-content-center w-100">
-      <img src={logo} className="login-logo" alt="Logo"></img>
+      <img src={logo} className="login-logo" alt="Logo" onClick={handlelogoClick}></img>
       <div className="login">
         <h2 className="mb-4 login-heading">Forgot Password</h2>
         <form className="needs-validation">

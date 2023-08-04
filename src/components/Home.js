@@ -87,6 +87,18 @@ const Home = () => {
     <>
       {/* <Ticker/> */}
       <div className="main-body">
+      <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
         <div className="home" id="homee">
           <div>
             {" "}

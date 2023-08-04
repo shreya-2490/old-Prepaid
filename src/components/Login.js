@@ -1,54 +1,69 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Login.css";
-import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useCookies } from "react-cookie";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Login.css";
-import { notification } from "antd";
+import React, { useState } from "react"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../styles/Login.css"
+import logo from "../assets/logo.png"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { useCookies } from "react-cookie"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../styles/Login.css"
+import { notification } from "antd"
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons"
 
 function Login() {
-  const [api, contextHolder] = notification.useNotification();
-  const [showPassword, setShowPassword] = useState(false);
-  const nav = useNavigate();
-  const [cookies, setCookie] = useCookies(["pfAuthToken"]);
-  const [email, setEmail] = useState("");
-  const [psw, setPsw] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [api, contextHolder] = notification.useNotification()
+  const [showPassword, setShowPassword] = useState(false)
+  const nav = useNavigate()
+  const [cookies, setCookie] = useCookies(["pfAuthToken"])
+  const [email, setEmail] = useState("")
+  const [psw, setPsw] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [loginError, setLoginError] = useState(false)
+
+  const toggleShowPassword = (e) => {
+    setShowPassword(!showPassword)
+    e?.preventDefault()
+  }
 
   const handleLogin = (e) => {
-    e?.preventDefault();
-    setIsLoading(true);
+    e?.preventDefault()
+
+    if (!email || !psw) {
+      setLoginError(true)
+      return
+    }
+
+    setIsLoading(true)
+    setLoginError(false)
+
     axios
-      ?.post("/login-user-api", {
+      .post("/login-user-api", {
         email,
         password: psw,
       })
-      ?.then((res) => {
-        console.log(res);
+      .then((res) => {
+        console.log(res)
         if (res?.data?.token) {
-          setCookie("pfAuthToken", res?.data?.token, { path: "/" });
-          nav("/front-demo/dashboard");
+          setCookie("pfAuthToken", res?.data?.token, { path: "/" })
+          nav("/front-demo/dashboard")
         } else {
           return api.error({
             message: `Something went wrong!`,
             description: "Incorrect Credentials. Please try again.",
-          });
+          })
         }
       })
-      .finally(() => setIsLoading(false));
-  };
+      .finally(() => setIsLoading(false))
+  }
 
   const handleForgetPassword = () => {
-  nav(`/front-demo/forgotPassword`);
-  };
+    nav(`/front-demo/forgot-password`)
+  }
 
   const handleRegister = () => {
- nav(`/front-demo/register`);
-  };
-  
+    nav(`/front-demo/register`)
+  }
+
   return (
     <>
       {contextHolder}
@@ -57,60 +72,80 @@ function Login() {
         <div className="login">
           <h2 className="mb-4 login-heading">Login to your Account</h2>
           <form className="needs-validation">
-            <div className="form-group was-validated mb-2">
+            <div className="form-group validate mb-2">
               <label htmlFor="email" className="form-label">
                 Email Address
               </label>
               <input
                 type="email"
-                className="form-control"
+                className={`form-control ${
+                  loginError && !email ? "is-invalid" : ""
+                }`}
                 onChange={(e) => setEmail(e?.target?.value)}
                 required
               ></input>
-              <div className="invalid-feedback">Please Enter your email</div>
+              {loginError && !email && (
+                <div className="invalid-feedback">Please Enter your email</div>
+              )}
             </div>
-            <div className="form-group was-validated mb-2 position-relative">
+            <div className="form-group  mb-2 position-relative">
               <label htmlFor="password" className="form-label">
                 Password
               </label>
               <div className="input-group">
                 <input
                   type={showPassword ? "text" : "password"}
-                  className="form-control"
+                  className={`form-control ${
+                    loginError && !psw ? "" : ""
+                  }`}
                   onChange={(e) => setPsw(e?.target?.value)}
                   required
-                ></input>
+                />
+                <div className="input-group-append">
+                  <button
+                    className="toggle-pswrd"
+                    onClick={toggleShowPassword} // Toggle show/hide password
+                  >
+                    {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                  </button>
+                </div>
               </div>
-              <div className="invalid-feedback">Please Enter your password</div>
+              {loginError && !email && (
+                <div className="invalid-feedback">Please Enter your password</div>
+              )}
             </div>
-            <div className="form-group form-check mb-2">
-              <input type="checkbox" className="form-check-input"></input>
-              <label htmlFor="checkbox" className="">
-                {" "}
-                Remember me
-              </label>
-            </div>
+
             <div className="forget-register">
+              <div className="form-group form-check mb-2">
+                <input type="checkbox" className="form-check-input"></input>
+                <label htmlFor="checkbox" className="remember">
+                  {" "}
+                  Remember me
+                </label>
+              </div>
               <span className="forget-password" onClick={handleForgetPassword}>
                 Forgot Password?
-              </span>
-              <span className="register-link" onClick={handleRegister}>
-                Register
               </span>
             </div>
             <button
               type="submit"
               onClick={handleLogin}
-              className="btn  w-100 mt-2"
+              className="btn w-100 mt-1"
               disabled={isLoading}
             >
               SIGN IN
             </button>
+            <div className="register-now">
+              <span className="not-a-member">Not a Member? </span>{" "}
+              <span className="register-link" onClick={handleRegister}>
+                Register here!
+              </span>
+            </div>
           </form>
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Login;
+export default Login

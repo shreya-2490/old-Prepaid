@@ -26,7 +26,7 @@ const HowItWorks = () => {
                 How does the prepaid card work?
                 <Accordion.Icon />
               </Accordion.Control>
-              <Accordion.Panel>
+              <Accordion.Panel className="accordian-para">
                 {" "}
                 Our prepaid card allows you to purchase it using
                 cryptocurrencies such as Bitcoin (BTC) and then load it with
@@ -41,7 +41,7 @@ const HowItWorks = () => {
                 card?
                 <Accordion.Icon />
               </Accordion.Control>
-              <Accordion.Panel>
+              <Accordion.Panel  className="accordian-para">
                 Currently, we accept Bitcoin (BTC) as the primary cryptocurrency
                 for purchasing our prepaid cards. However, we are actively
                 exploring the integration of additional cryptocurrencies in the
@@ -54,7 +54,7 @@ const HowItWorks = () => {
                 How do I purchase a prepaid card using Bitcoin?
                 <Accordion.Icon />
               </Accordion.Control>
-              <Accordion.Panel>
+              <Accordion.Panel  className="accordian-para">
                 To purchase a prepaid card using Bitcoin, follow these simple
                 steps: • Visit our website and select the desired prepaid card.
                 • Choose the BTC payment option during checkout. • You will be
@@ -69,8 +69,8 @@ const HowItWorks = () => {
               <Accordion.Control className="accordion-title">
                 Can I reload the prepaid card multiple times?
                 <Accordion.Icon />
-              </Accordion.Control>
-              <Accordion.Panel>
+              </Accordion.Control >
+              <Accordion.Panel  className="accordian-para">
                 Absolutely! Our prepaid card is designed for multiple reloads,
                 allowing you to add funds as needed. You can load the card with
                 dollars using various payment methods, ensuring uninterrupted
@@ -83,7 +83,7 @@ const HowItWorks = () => {
                 Can I use the prepaid card for online and in-store purchases?
                 <Accordion.Icon />
               </Accordion.Control>
-              <Accordion.Panel>
+              <Accordion.Panel  className="accordian-para">
                 Yes, you can use the prepaid card for both online and in-store
                 purchases, wherever Visa or Mastercard is accepted. It offers
                 the same convenience and flexibility as a traditional payment
@@ -96,7 +96,7 @@ const HowItWorks = () => {
                 them back to Bitcoin?
                 <Accordion.Icon />
               </Accordion.Control>
-              <Accordion.Panel>
+              <Accordion.Panel  className="accordian-para">
                 At this time, we do not support direct conversion of unused
                 dollar funds back into Bitcoin. However, you can continue to use
                 the prepaid card for future purchases or withdraw the remaining
@@ -109,7 +109,7 @@ const HowItWorks = () => {
                 Are there any transaction fees associated with the prepaid card?
                 <Accordion.Icon />
               </Accordion.Control>
-              <Accordion.Panel>
+              <Accordion.Panel  className="accordian-para">
                 While specific fees may vary, our prepaid card may include
                 standard transaction fees for certain types of transactions,
                 such as ATM withdrawals or foreign currency conversions. We

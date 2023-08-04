@@ -24,7 +24,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 12rem 0;
+        padding: 10.75rem 0;
         background-color: rgb(253,200,134);
         border-top-left-radius: 1.5rem;
         border-bottom-left-radius: 1.5rem;
@@ -78,6 +78,10 @@
         border-radius: 1.8rem;
         color: white;
         background-color: rgb(253,200,134);
+    }
+    .register-input{
+        font-size: 0.8rem;
+        font-weight: normal;
     }
 
 }
@@ -160,6 +164,10 @@
         border-radius: 1.8rem;
         background-color: rgb(253,200,134);
     }
+    .register-input{
+        font-size: 0.8rem;
+        font-weight: normal;
+    }
 
 }
 
@@ -241,6 +249,10 @@
         padding: 0.7rem 4rem;
         border-radius: 1.8rem;
         background-color: rgb(253,200,134);
+    }
+    .register-input{
+        font-size: 0.8rem;
+        font-weight: normal;
     }
 
 }

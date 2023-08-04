@@ -78,15 +78,15 @@ const NavbarCart = () => {
               </li>
 
               <li>
-                <Link to="/front-demo/bulkorder">BULK ORDERS</Link>
+                <Link to="/front-demo/bulk-order">BULK ORDERS</Link>
               </li>
 
               <li className="how">
-                <Link to="/front-demo/howitworks">HOW IT WORKS</Link>
+                <Link to="/front-demo/how-it-works">HOW IT WORKS</Link>
               </li>
 
               <li>
-                <Link to="/front-demo/contactus">CONTACT</Link>
+                <Link to="/front-demo/contact-us">CONTACT</Link>
               </li>
             </div>
             <li>
