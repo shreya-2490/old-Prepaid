@@ -65,10 +65,10 @@
 }
 
 .wrappercard {
-  width: 296px;
-  height: 188px;
-  margin: 0.5rem auto; /* Add margin to create space between cards */
-  padding: 8rem 0; /* Add padding for the card content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .selection-container {
   text-align: center;
@@ -82,11 +82,7 @@
   border: none;
   border-radius: 5px;
   font-size: 16px;
-  cursor: pointer;
   transition: background 0.3s ease; /* Add a smooth transition for the background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   overflow: hidden;
 }
@@ -190,12 +186,14 @@ section {
   flex-direction: column;
   gap: 4px;
 }
-.selection-price, .selection-provider{
+.selection-price,
+.selection-provider {
   margin: 2rem 0.6rem 0;
-   width: 15%;
+  width: 15%;
 }
 @media (min-width: 10px) and (max-width: 640px) {
-  .selection-provider,  .selection-price{
+  .selection-provider,
+  .selection-price {
     margin: 2rem 0.6rem 0;
     width: 30%;
   }

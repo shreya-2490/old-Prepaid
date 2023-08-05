@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import NavbarCart from "./NavbarCart";
 import "../styles/preowned.css";
-import { Button, Modal, Select } from "antd";
+import { Button, Col, Modal, Pagination, Row, Select } from "antd";
 import { useLocation, useNavigate } from "react-router";
 import wifi from "../assets/wifi1.png";
 import map from "../assets/map1.png";
@@ -24,7 +24,10 @@ function Preowned() {
   const [loading, setLoading] = useState(true);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "");
+  const [currentPage, setCurrentPage] = useState(1);
   const { Option } = Select;
+
+  const cardsPerPage = 12;
 
   useEffect(() => {
     axios
@@ -82,6 +85,16 @@ function Preowned() {
     navigate(`/front-demo/checkout`);
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const getCurrentPageData = () => {
+    const startIndex = (currentPage - 1) * cardsPerPage;
+    const endIndex = startIndex + cardsPerPage;
+    return cardData.slice(startIndex, endIndex);
+  };
+
   return (
     <>
       <NavbarCart />
@@ -120,54 +133,58 @@ function Preowned() {
             </div>
           </div>
         ) : (
-          <div className="card-container">
-            {cardData.length > 0 ? (
-              cardData.map((card) => (
-                <div class="wrappercard">
-                  <div class="container" key={card.id}>
-                    <div class="card">
-                      <img src={map} class="map-img" />
-                      <div class="top">
-                        <h2 className="h2heading">CARDHOLDER</h2>
-                        <h2 className="h2heading">
-                          <b>${`${card.price}`}</b>
-                        </h2>
-                        <img src={wifi} />
-                      </div>
+          <>
+            {getCurrentPageData()?.length > 0 ? (
+              <Row className="mt-5" gutter={[24, 24]}>
+                {getCurrentPageData()?.map((card) => (
+                  <Col xs={24} md={6}>
+                    <div class="wrappercard">
+                      <div key={card.id}>
+                        <div class="card">
+                          <img src={map} class="map-img" />
+                          <div class="top">
+                            <h2 className="h2heading">CARDHOLDER</h2>
+                            <h2 className="h2heading">
+                              <b>${`${card.price}`}</b>
+                            </h2>
+                            <img src={wifi} />
+                          </div>
 
-                      <div class="infos">
-                        <section class="card-number">
-                          <h1 className="h1heading">{`**** **** **** ${card.card}`}</h1>
-                        </section>
-                        <div class="bottom">
-                          <aside class="infos--bottom">
-                            <section>
-                              <h2 className="h2heading">Expiry date</h2>
-                              <h3 className="h3heading">00/00</h3>
+                          <div class="infos">
+                            <section class="card-number">
+                              <h1 className="h1heading">{`**** **** **** ${card.card}`}</h1>
                             </section>
-                            <section>
-                              <h2 className="h2heading">CVV</h2>
-                              <h3 className="h3heading">***</h3>
-                            </section>
-                          </aside>
-                          <aside>
-                            <section>
-                              {`${card.type}` === "visa" ? (
-                                <img src={visa} class="brand" />
-                              ) : (
-                                <img src={master} class="brand1" />
-                              )}
-                            </section>
-                          </aside>
+                            <div class="bottom">
+                              <aside class="infos--bottom">
+                                <section>
+                                  <h2 className="h2heading">Expiry date</h2>
+                                  <h3 className="h3heading">00/00</h3>
+                                </section>
+                                <section>
+                                  <h2 className="h2heading">CVV</h2>
+                                  <h3 className="h3heading">***</h3>
+                                </section>
+                              </aside>
+                              <aside>
+                                <section>
+                                  {`${card.type}` === "visa" ? (
+                                    <img src={visa} class="brand" />
+                                  ) : (
+                                    <img src={master} class="brand1" />
+                                  )}
+                                </section>
+                              </aside>
+                            </div>
+                          </div>
                         </div>
                       </div>
+                      <Button onClick={() => handleAddToCart(card)}>
+                        Add To Cart
+                      </Button>
                     </div>
-                  </div>
-                  <Button onClick={() => handleAddToCart(card)}>
-                    Add To Cart
-                  </Button>
-                </div>
-              ))
+                  </Col>
+                ))}
+              </Row>
             ) : (
               <div>No card data available</div>
             )}
@@ -191,10 +208,16 @@ function Preowned() {
                 </Button>
               </div>
             </Modal>
-          </div>
+          </>
         )}
       </div>
-      {/* <Footer /> */}
+      <Pagination
+        current={currentPage}
+        total={cardData.length}
+        pageSize={cardsPerPage}
+        onChange={handlePageChange}
+        showSizeChanger={false}
+      />
     </>
   );
 }
