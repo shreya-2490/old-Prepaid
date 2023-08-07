@@ -77,13 +77,19 @@ function App() {
               <Route path="front-demo/login" element={<Login />} />
             </Routes>
             <Routes>
-              <Route path="front-demo/forgot-password" element={<ForgetPassword />} />
+              <Route
+                path="front-demo/forgot-password"
+                element={<ForgetPassword />}
+              />
             </Routes>
             <Routes>
-              <Route path="front-demo/register" element={<Register/>} />
+              <Route path="front-demo/register" element={<Register />} />
             </Routes>
             <Routes>
-              <Route path="front-demo/reset-password/:stoken" element={<ResetPassword/>} />
+              <Route
+                path="front-demo/reset-password/:stoken"
+                element={<ResetPassword />}
+              />
             </Routes>
             <Routes>
               <Route path="front-demo/bulk-order" element={<BulkOrder />} />
@@ -101,7 +107,7 @@ function App() {
               <Route path="front-demo/dashboard" element={<Dashboard />} />
             </Routes>
             <Routes>
-              <Route path="front-demo/thankyou" element={<Thankyou />} />
+              <Route path="front-demo/thank-you" element={<Thankyou />} />
             </Routes>
             <Routes>
               <Route path="front-demo/how-it-works" element={<HowItWorks />} />

@@ -3,10 +3,12 @@ import { Form, Input, Button } from "antd"
 import { UserOutlined, MailOutlined } from "@ant-design/icons"
 import "../styles/ContactUs.css"
 import NavbarCart from "./NavbarCart"
-import  phone from "../assets/Phone-img.png"
+import phone from "../assets/Phone-img.png"
 import email from "../assets/Mail.png"
 import Footer from "./Footer"
 import globe from "../assets/globe 1.png"
+import { Helmet } from "react-helmet"
+
 const ContactUs = () => {
   const layout = {
     labelCol: {
@@ -28,12 +30,20 @@ const ContactUs = () => {
     console.log(values)
   }
 
+  const pageTitle = "Contact-Us"
+  const pageDescription =
+    "Contact Prepaid Friends for seamless prepaid card solutions, offering easy BTC to prepaid card exchanges. Reach out to our expert team today to explore secure and convenient options for managing your crypto with prepaid cards."
+
   return (
     <>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+      </Helmet>
       <NavbarCart />
       <div className="contactus">
         <div className="contactus-container">
-        <img src={globe} className="globe-img"></img>
+          <img src={globe} className="globe-img"></img>
         </div>
         <div className="bottom-contact-container">
           <div className="form-container">
@@ -86,13 +96,19 @@ const ContactUs = () => {
               </Form.Item>
             </Form>
           </div>
-          <div  className="images-sideform">
-            <div className="phone-image"><img src={phone}></img><p className="bold">+1-000-111-0000</p></div>
-            <div className="email-image"><img src={email}></img><p className="bold">support@prepaidfriends.com</p></div>
+          <div className="images-sideform">
+            <div className="phone-image">
+              <img src={phone}></img>
+              <p className="bold">+1-000-111-0000</p>
+            </div>
+            <div className="email-image">
+              <img src={email}></img>
+              <p className="bold">support@prepaidfriends.com</p>
+            </div>
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }
