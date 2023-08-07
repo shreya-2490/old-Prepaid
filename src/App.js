@@ -1,37 +1,38 @@
-import React, { useState } from "react"
-import "./App.css"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Home from "./components/Home"
-import NavbarCart from "./components/NavbarCart"
-import Checkout from "./components/Checkout"
-import Login from "./components/Login"
-import Cart from "./components/CartPage"
-import BulkOrder from "./components/BulkOrder"
-import ContactUs from "./components/ContactUs"
-import Payment from "./components/payment"
-import { CartProvider } from "./components/CartContext"
-import Dashboard from "./components/Dashboard"
-import Preowned from "./components/Preowned"
-import Terms from "./components/Terms&Conditions"
-import Policy from "./components/Privacypolicy"
-import BulkCheckout from "./components/BulkCheckout"
-import { Thankyou } from "./components/Thankyou"
-import HowItWorks from "./components/HowItWorks"
-import Register from "./components/Register"
-import ScrollToTop from "./components/scroll"
-import Password from "./components/Password"
-import Ticker from "./components/ticker"
-import ForgetPassword from "./components/ForgetPassword"
-import ResetPassword from "./components/ResetPassword"
+import React, { useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import NavbarCart from "./components/NavbarCart";
+import Checkout from "./components/Checkout";
+import Login from "./components/Login";
+import Cart from "./components/CartPage";
+import BulkOrder from "./components/BulkOrder";
+import ContactUs from "./components/ContactUs";
+import Payment from "./components/payment";
+import { CartProvider } from "./components/CartContext";
+import Dashboard from "./components/Dashboard";
+import Preowned from "./components/Preowned";
+import Terms from "./components/Terms&Conditions";
+import Policy from "./components/Privacypolicy";
+import BulkCheckout from "./components/BulkCheckout";
+import { Thankyou } from "./components/Thankyou";
+import HowItWorks from "./components/HowItWorks";
+import Register from "./components/Register";
+import ScrollToTop from "./components/scroll";
+import Password from "./components/Password";
+import Ticker from "./components/ticker";
+import ForgetPassword from "./components/ForgetPassword";
+import ResetPassword from "./components/ResetPassword";
+import ProtectedRoute from "./shared-components/protected-route";
 
 function App() {
-  const [cartItems, setCartItems] = useState([])
-  const [selectedProvider, setSelectedProvider] = useState("All")
-  const [selectedPrice, setSelectedPrice] = useState("low")
+  const [cartItems, setCartItems] = useState([]);
+  const [selectedProvider, setSelectedProvider] = useState("All");
+  const [selectedPrice, setSelectedPrice] = useState("low");
 
   const handleAddToCart = (item) => {
-    setCartItems([...cartItems, item])
-  }
+    setCartItems([...cartItems, item]);
+  };
   return (
     <div className="App">
       <CartProvider>
@@ -104,7 +105,14 @@ function App() {
               <Route path="front-demo/privacy-policy" element={<Policy />} />
             </Routes>
             <Routes>
-              <Route path="front-demo/dashboard" element={<Dashboard />} />
+              <Route
+                path="front-demo/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
             <Routes>
               <Route path="front-demo/thank-you" element={<Thankyou />} />
@@ -130,7 +138,7 @@ function App() {
         </Router>
       </CartProvider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
