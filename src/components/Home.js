@@ -89,25 +89,25 @@ const Home = () => {
       <div className="main-body">
         <div className="home" id="homee">
           <div>
-            {" "}
             <h1 className="home-heading">
-              Effortless Payments with{" "}
-              <span style={{ color: "#FDC886", fontWeight: "400", fontFamily:"Typold Extended Black" }}>BTC</span>
+              Your Bitcoin Bridge to Global Spending
+              {/* <span style={{ color: "#FDC886", fontWeight: "400", fontFamily:"Typold Extended Black" }}>BTC</span> */}
             </h1>
-          </div>
-          <div>
             <h1 className="home-heading-1">
-              Experience the Convenience of Prepaid Cards
+              Seamlessly Connect to a World of Possibilities with Dollar-Loaded
+              Prepaid Cards!
             </h1>
           </div>
 
           <p className="subtitle">
-            Unlock the power of digital currencies with our cryptocurrency
+            {/* Unlock the power of digital currencies with our cryptocurrency
             prepaid cards. Simplify your online purchases and enjoy a seamless
             payment experience. Our user-friendly platform allows you to
             effortlessly calculate the BTC equivalent of your desired prepaid
             card amount. Discover the many advantages of using cryptocurrency
-            for your everyday transactions.
+            for your everyday transactions. */}
+            {/* Embark on a digital currency journey with our cryptocurrency prepaid
+            cards, transforming mundane transactions into seamless adventures. */}
           </p>
         </div>
         <div className="sider">

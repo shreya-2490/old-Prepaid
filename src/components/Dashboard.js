@@ -21,7 +21,8 @@ const Dashboard = () => {
     setReset(false)
   }
   const handleChangePassword = () => {
- nav('/front-demo/change-password')
+    setReset(true)
+    setProduct(false)
   }
   return (
     <>
@@ -63,6 +64,7 @@ const Dashboard = () => {
           ) : (
             ""
           )}
+          {reset ? <Reset />: <></>}
         </div>
         <div style={{ textAlign: "right" }}>
           {" "}

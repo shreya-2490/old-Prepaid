@@ -1,4 +1,6 @@
 /* / ******************* Full Screen **************************** / */
+  @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+
 .main-body {
   /* background-color: #f5f2ea; */
   background-image: url("/src/assets/BG.jpg");
@@ -25,16 +27,28 @@
 }
 
 .home-heading {
-  font-family: "Typold Extended Black";
-  font-size: 2rem;
-  font-weight: 500;
-  color: #1b1b1b;
+  font-family: 'Belanosima', sans-serif;
+  font-size: 2.2rem;
+  color: #fdc886;
+  text-align: center;
+  background-color: #1b1b1b;
+  width: 45rem;
+  position: absolute;
+  left: 10rem;
+  padding: 0.5rem;
+  top: 16.5rem;
 }
-
 .home-heading-1 {
-  font-family: "Typold Extended Black";
-  font-size: 1.3rem;
+  font-family: 'Belanosima', sans-serif;
+  font-size: 1.1rem;
   color: #1b1b1b;
+  border: 3px solid #fdc886;
+  padding: 0.7rem;
+  width: 45rem;
+  position: absolute;
+  top: 20.1rem;
+  left: 10rem;
+  text-align: center;
 }
 
 .subtitle {
@@ -374,16 +388,27 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   .home-heading {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-family: 'Belanosima', sans-serif;
+    font-size: 1.2rem;
+    color: #fdc886;
     text-align: center;
-    width: 90%;
-    margin: 0 auto;
+    background-color: #1b1b1b;
+    width: 21rem;
+    position: absolute;
+    left: 1.6rem;
+    padding: 0.5rem;
+    top: 11.5rem;
   }
-
   .home-heading-1 {
-    font-size: 0.8rem;
-    margin: 0 auto;
+    font-family: 'Belanosima', sans-serif;
+    font-size: 1.1rem;
+    color: #1b1b1b;
+    border: 3px solid #fdc886;
+    padding: 0.7rem;
+    width: 21rem;
+    position: absolute;
+    top: 14.1rem;
+    left: 1.6rem;
     text-align: center;
   }
 
@@ -463,7 +488,7 @@ input[type="number"]::-webkit-outer-spin-button {
   .main-body {
     display: flex;
     flex-direction: column;
-    height: 110vh;
+    height: 90vh;
   }
 
   .home {
@@ -473,15 +498,27 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   .home-heading {
-    width: 100%;
-    font-size: 2.5rem;
-    font-weight: 600;
+    font-family: 'Belanosima', sans-serif;
+    font-size: 2.2rem;
+    color: #fdc886;
     text-align: center;
+    background-color: #1b1b1b;
+    width: 37rem;
+    position: absolute;
+    left: 6rem;
+    padding: 0.5rem;
+    top: 16.5rem;
   }
-
   .home-heading-1 {
-    font-size: 1.5rem;
-    width: 100%;
+    font-family: 'Belanosima', sans-serif;
+    font-size: 1.1rem;
+    color: #1b1b1b;
+    border: 3px solid #fdc886;
+    padding: 0.7rem;
+    width: 37rem;
+    position: absolute;
+    top: 20.1rem;
+    left: 6rem;
     text-align: center;
   }
 

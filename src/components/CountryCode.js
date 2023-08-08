@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput, { formatPhoneNumberIntl } from "react-phone-number-input";
 import { countries } from "country-data";
-import "../styles/BulkOrder.css"
+import "../styles/BulkOrder.css";
 
 const CountryPhoneInput = () => {
   const [phoneNumber, setPhoneNumber] = useState(""); // State to hold the phone number
@@ -11,7 +11,6 @@ const CountryPhoneInput = () => {
     setPhoneNumber(value); // Update the phone number state on input change
   };
 
-  // Create an array of all countries with their country code and name
   const countryList = countries.all
     .map((country) => ({
       code: country.countryCallingCodes[0],
@@ -32,6 +31,7 @@ const CountryPhoneInput = () => {
 
   return (
     <PhoneInput
+      defaultCountry="US" // Set the default country to United States
       value={phoneNumber} // Set the phone number value
       onChange={handlePhoneChange} // Handle the input change event
       countries={countryList}

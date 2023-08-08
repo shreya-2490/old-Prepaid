@@ -1,24 +1,49 @@
-import React, { useContext, useState } from "react";
-import NavbarCart from "./NavbarCart";
-import "../styles/BulkOrder.css";
-import success from "../assets/Success Icon.png";
-import tick from "../assets/tick-circle.png";
-import cards from "../assets/Bank Cards.png";
-import ellipse from "../assets/Ellipse.png";
-import { v4 as uuidV4 } from "uuid";
-import CountryPhoneInput from "./CountryCode";
+import React, { useContext, useState } from "react"
+import {
+  getCountries,
+  getCountryCallingCode,
+} from "react-phone-number-input/input"
 
-import { Button, Form, Input, InputNumber, Select, Card, Checkbox } from "antd";
-import Footer from "./Footer";
-import { useNavigate } from "react-router-dom";
-import { CartContext } from "./CartContext";
-const { Option } = Select;
+import en from "react-phone-number-input/locale/en.json"
+import "react-phone-number-input/style.css"
+import NavbarCart from "./NavbarCart"
+import "../styles/BulkOrder.css"
+import success from "../assets/Success Icon.png"
+import tick from "../assets/tick-circle.png"
+import cards from "../assets/Bank Cards.png"
+import ellipse from "../assets/Ellipse.png"
+import { v4 as uuidV4 } from "uuid"
+import { Button, Form, Input, InputNumber, Select, Card, Checkbox } from "antd"
+import Footer from "./Footer"
+import { useNavigate } from "react-router-dom"
+import { CartContext } from "./CartContext"
+const { Option } = Select
 
 const BulkOrder = () => {
-  const nav = useNavigate();
-  const [form] = Form.useForm();
-  const { addToBulkCart } = useContext(CartContext);
-  const [subTotal, setSubTotal] = useState(0);
+  const nav = useNavigate()
+  const [form] = Form.useForm()
+  const { addToBulkCart } = useContext(CartContext)
+  const [subTotal, setSubTotal] = useState(0)
+  const [onFocuseInput, setOnFocuseInput] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState()
+  const [country, setCountry] = useState("us")
+
+  const CountrySelect = ({ value, onChange, labels, ...rest }) => (
+    <select
+      {...rest}
+      value={value}
+      onChange={(event) => {
+        onChange(event.target.value || undefined)
+      }}
+    >
+      <option value="">United States +1</option>
+      {getCountries().map((country) => (
+        <option key={country} value={country}>
+          {labels[country]} +{getCountryCallingCode(country)}
+        </option>
+      ))}
+    </select>
+  )
 
   return (
     <>
@@ -188,8 +213,30 @@ const BulkOrder = () => {
                 ]}
               >
                 <span style={{ display: "flex" }}>
-                  <CountryPhoneInput />
-                  <Input placeholder="Phone Number" />
+                  <CountrySelect
+                    className={`border-b-2 bg-none outline-none w-1/4 text-xs ${
+                      onFocuseInput === "country"
+                        ? "border-blue-700 "
+                        : "border-gray-300"
+                    }`}
+                    labels={en}
+                    style={{ width: "30%" }}
+                    value={country}
+                    onChange={setCountry}
+                    name="countrySelect"
+                    onFocus={() => setOnFocuseInput("country")}
+                  />
+                  <Input
+                   
+                    type="tel"
+                id="phone"
+                placeholder="Enter your phone number"
+              
+                value={phoneNumber}
+                onChange={(event) => setPhoneNumber(event.target.value)}
+                name="phoneNumber"
+                onFocus={() => setOnFocuseInput("phoneNumber")}
+                  />
                 </span>
               </Form.Item>
 
