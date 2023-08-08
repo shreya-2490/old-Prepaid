@@ -192,6 +192,13 @@ const Checkout = () => {
               bordered={false}
               headStyle={{ borderBottom: "none" }}
             >
+                 <div>
+                <p className="email">Name</p>
+                <input
+                  type="name"
+                  className="email-box"
+                ></input>
+              </div>
               <div>
                 <p className="email">Email address for order status updates</p>
                 <input
