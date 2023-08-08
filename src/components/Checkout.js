@@ -20,6 +20,7 @@ const Checkout = () => {
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [email, setEmail] = useState("");
+  const [customerName, setCustomerName] = useState("");
 
   const handleDelete = (cartItem) => {
     removeFromCart(cartItem?.id);
@@ -63,8 +64,7 @@ const Checkout = () => {
       setEmail(email);
       axios
         ?.post(`/preowned-order`, {
-          first_name: "Test first name",
-          last_name: "Test last name",
+          customer_name: customerName,
           email: email,
           payment_method: "btc",
           guest: true,
@@ -192,10 +192,12 @@ const Checkout = () => {
               bordered={false}
               headStyle={{ borderBottom: "none" }}
             >
-                 <div>
+              <div>
                 <p className="email">Name</p>
                 <input
                   type="name"
+                  value={customerName}
+                  onChange={(e) => setCustomerName(e?.target?.value)}
                   className="email-box"
                 ></input>
               </div>

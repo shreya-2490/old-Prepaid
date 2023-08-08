@@ -1,9 +1,7 @@
 import React, { createContext, useState } from "react";
 
-// Create the CartContext
 export const CartContext = createContext();
 
-// Create the CartProvider component
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [bulkCartItems, setBulkCartItems] = useState([]);
@@ -14,7 +12,6 @@ export const CartProvider = ({ children }) => {
 
   const cartCount = newCardsCount;
 
-  // Add item to the cart
   const addToCart = (item) => {
     const existingCartItemIndex = cartItems.findIndex(
       (cartItem) =>
@@ -34,7 +31,6 @@ export const CartProvider = ({ children }) => {
     setBulkCartItems([...bulkCartItems, { ...item }]);
   };
 
-  // Remove item from the cart
   const removeFromCart = (itemId) => {
     const updatedCartItems = cartItems?.filter(
       (cartItem) => cartItem?.id !== itemId
@@ -60,13 +56,11 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Clear the cart
   const clearCart = () => {
     setCartItems([]);
     setBulkCartItems([]);
   };
 
-  // Provide the cart state and actions to the children components
   return (
     <CartContext.Provider
       value={{
