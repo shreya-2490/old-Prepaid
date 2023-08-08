@@ -1,24 +1,24 @@
-import React, { useContext, useState } from "react"
-import NavbarCart from "./NavbarCart"
-import "../styles/BulkOrder.css"
-import success from "../assets/Success Icon.png"
-import tick from "../assets/tick-circle.png"
-import cards from "../assets/Bank Cards.png"
-import ellipse from "../assets/Ellipse.png"
-import { v4 as uuidV4 } from "uuid"
-import CountryPhoneInput from "./CountryCode"
+import React, { useContext, useState } from "react";
+import NavbarCart from "./NavbarCart";
+import "../styles/BulkOrder.css";
+import success from "../assets/Success Icon.png";
+import tick from "../assets/tick-circle.png";
+import cards from "../assets/Bank Cards.png";
+import ellipse from "../assets/Ellipse.png";
+import { v4 as uuidV4 } from "uuid";
+import CountryPhoneInput from "./CountryCode";
 
-import { Button, Form, Input, InputNumber, Select, Card, Checkbox } from "antd"
-import Footer from "./Footer"
-import { useNavigate } from "react-router-dom"
-import { CartContext } from "./CartContext"
-const { Option } = Select
+import { Button, Form, Input, InputNumber, Select, Card, Checkbox } from "antd";
+import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
+import { CartContext } from "./CartContext";
+const { Option } = Select;
 
 const BulkOrder = () => {
-  const nav = useNavigate()
-  const [form] = Form.useForm()
-  const { addToBulkCart } = useContext(CartContext)
-  const [subTotal, setSubTotal] = useState(0)
+  const nav = useNavigate();
+  const [form] = Form.useForm();
+  const { addToBulkCart } = useContext(CartContext);
+  const [subTotal, setSubTotal] = useState(0);
 
   return (
     <>
@@ -29,9 +29,6 @@ const BulkOrder = () => {
             <Card className="bulkorder-content">
               <img src={success} alt=""></img>
               <h3>Bulk Prepaid Card</h3>
-              {/* <p className="subtitle-bulk">
-              One-Stop Prepaid Card Purchase
-              </p> */}
               <p className="subtitle-bulk-2">
                 Buy 5 to 100 Cards in a Single Click.
               </p>
@@ -84,37 +81,36 @@ const BulkOrder = () => {
               layout="vertical"
               autoComplete="off"
               onValuesChange={() => {
-                const quantity = form.getFieldValue("card-quantity") || 0
-                const loadAmount = form.getFieldValue("load-amount") || 0
+                const quantity = form.getFieldValue("card-quantity") || 0;
+                const loadAmount = form.getFieldValue("load-amount") || 0;
                 const additionalPurchaseQt =
-                  form.getFieldValue("additional-purchase-quantity") || 0
+                  form.getFieldValue("additional-purchase-quantity") || 0;
 
                 const isUsedForInternationalTransaction = form.getFieldValue(
                   "international-purchases"
-                )
+                );
 
                 const calculateTotal =
                   (quantity * loadAmount || 0) +
                   (loadAmount ? quantity * 2.98 : 0) +
                   additionalPurchaseQt * 2 +
-                  (isUsedForInternationalTransaction ? 7.5 : 0)
+                  (isUsedForInternationalTransaction ? 7.5 : 0);
 
-                setSubTotal(calculateTotal)
+                setSubTotal(calculateTotal);
               }}
               style={{
                 margin: "75px 20px 0px 20px",
-                // width: "90%",
               }}
-              onFinish={() => {
-                const quantity = form.getFieldValue("card-quantity") || 0
-                const loadAmount = form.getFieldValue("load-amount") || 0
-                const cardType = form.getFieldValue("card-type") || 0
+              onFinish={(value) => {
+                const quantity = form.getFieldValue("card-quantity") || 0;
+                const loadAmount = form.getFieldValue("load-amount") || 0;
+                const cardType = form.getFieldValue("card-type") || 0;
                 const additionalPurchaseQt =
-                  form.getFieldValue("additional-purchase-quantity") || 0
+                  form.getFieldValue("additional-purchase-quantity") || 0;
 
                 const isUsedForInternationalTransaction = form.getFieldValue(
                   "international-purchases"
-                )
+                );
 
                 addToBulkCart({
                   id: uuidV4(),
@@ -124,25 +120,36 @@ const BulkOrder = () => {
                   cardType,
                   additionalPurchaseQt,
                   isUsedForInternationalTransaction,
-                })
+                });
 
-                nav("/front-demo/bulk-checkout")
+                console.log(value);
+
+                nav("/front-demo/bulk-checkout", {
+                  state: {
+                    customerName: value["customer-name"] || "",
+                    businessName: value["business-name"] || "",
+                    address: value["address"] || "",
+                    phoneNumber: value["phone-number"] || "",
+                    brokerId: value["broker-id"] || "",
+                  },
+                });
               }}
             >
               <Form.Item
-                name="Customer's Name"
+                name="customer-name"
                 label="Customer's Name"
                 style={{ display: "inline-block", width: "calc(50% - 8px)" }}
                 rules={[
                   {
                     required: true,
+                    message: "Customer Name is required!",
                   },
                 ]}
               >
                 <Input />
               </Form.Item>
               <Form.Item
-                name="Business Name"
+                name="business-name"
                 label="Business Name"
                 style={{
                   display: "inline-block",
@@ -152,35 +159,40 @@ const BulkOrder = () => {
                 rules={[
                   {
                     required: true,
+                    message: "Business Name is required!",
                   },
                 ]}
               >
                 <Input />
               </Form.Item>
               <Form.Item
-                name="Address"
+                name="address"
                 label="Address"
                 rules={[
                   {
                     required: true,
+                    message: "Address is required!",
                   },
                 ]}
               >
                 <Input />
               </Form.Item>
               <Form.Item
-                name="PhoneNumber"
+                name="phone-number"
                 label="Phone Number"
                 rules={[
                   {
                     required: true,
+                    message: "Phone number is required!",
                   },
                 ]}
-              ><span style={{display:"flex"}}>
-                <CountryPhoneInput/>
-                <Input  placeholder="Phone Number" /></span>
-              </Form.Item> 
-            
+              >
+                <span style={{ display: "flex" }}>
+                  <CountryPhoneInput />
+                  <Input placeholder="Phone Number" />
+                </span>
+              </Form.Item>
+
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <Form.Item
                   name="card-type"
@@ -189,6 +201,7 @@ const BulkOrder = () => {
                   rules={[
                     {
                       required: true,
+                      message: "Card type is required!",
                     },
                   ]}
                 >
@@ -203,6 +216,7 @@ const BulkOrder = () => {
                   rules={[
                     {
                       required: true,
+                      message: "Card quantity is required!",
                     },
                   ]}
                   style={{
@@ -236,6 +250,7 @@ const BulkOrder = () => {
                   rules={[
                     {
                       required: true,
+                      message: "Load amount is required!",
                     },
                   ]}
                 >
@@ -250,7 +265,7 @@ const BulkOrder = () => {
                   </Select>
                 </Form.Item>
                 <Form.Item
-                  name="Broker Id"
+                  name="broker-id"
                   label="Broker Id"
                   style={{ width: "80%" }}
                 >
@@ -337,6 +352,6 @@ const BulkOrder = () => {
       </div>
       <Footer />
     </>
-  )
-}
-export default BulkOrder
+  );
+};
+export default BulkOrder;

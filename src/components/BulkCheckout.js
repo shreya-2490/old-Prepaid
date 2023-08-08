@@ -6,7 +6,7 @@ import "../styles/checkout.css";
 import validator from "validator";
 import visa from "../assets/Visacartpage.png";
 import mastercard from "../assets/Mastercardcartpage.png";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import axios from "axios";
 import { usdToBTC } from "../utils/helper";
@@ -14,6 +14,8 @@ import { usdToBTC } from "../utils/helper";
 const BulkCheckout = () => {
   const [btcRate, setBTCRate] = useState(null);
   const navigate = useNavigate();
+  const { state } = useLocation();
+
   const { bulkCartItems, removeBulkFromCart } = useContext(CartContext);
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
@@ -55,11 +57,13 @@ const BulkCheckout = () => {
     if (validator.isEmail(email)) {
       setEmail(email);
       setIsLoading(true);
-      // TODO: Replace some of the dummy values with the correct values
       axios
         ?.post(`/save-bulk-order-api`, {
-          first_name: "Test first name",
-          last_name: "Test last name",
+          customer_name: state?.customerName,
+          address: state?.address,
+          phone_no: state?.phoneNumber,
+          broker_id: state?.brokerId,
+          business_name: state?.businessName,
           email: email,
           payment_method: paymentMethod,
           guest: true,
