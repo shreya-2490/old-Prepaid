@@ -2,7 +2,9 @@ import { useState, useEffect } from "react"
 import { Alert } from "antd"
 import { Link, useNavigate } from "react-router-dom"
 import visa from "../assets/visahome.png"
+import visawhite from "../assets/visahomewhite.png"
 import mastercard from "../assets/masterhome.png"
+import masterwhite from "../assets/masterhomewhite.png"
 import "../styles/home.css"
 import axios from "axios"
 import Footer from "./Footer"
@@ -20,9 +22,16 @@ const Home = () => {
   const [selectedPrice, setSelectedPrice] = useState("low")
   const [alert, showAlert] = useState(false)
   const navigate = useNavigate()
+  const [selectedImage, setSelectedImage] = useState(null)
+
   const handleButtonClick = (event, buttonId) => {
     event.preventDefault()
     setSelectedButton(buttonId)
+    if (buttonId === 1) {
+      setSelectedImage(visawhite)
+    } else if (buttonId === 2) {
+      setSelectedImage(masterwhite)
+    }
   }
 
   const handleMainButtonClick = (event, buttonId) => {
@@ -152,15 +161,25 @@ const Home = () => {
                             }`}
                             onClick={(event) => handleButtonClick(event, 1)}
                           >
-                            <img src={visa} className="visa-card"></img>
+                            <img
+                              src={selectedButton === 1 ? visawhite : visa}
+                              alt="Visa Card"
+                              className="visa-card"
+                            />
                           </button>
                           <button
                             className={`mastercard-button ${
-                              selectedButton === 2 ? "selected" : ""
+                              selectedButton === 2 ? "selected1" : ""
                             }`}
                             onClick={(event) => handleButtonClick(event, 2)}
                           >
-                            <img src={mastercard} className="master-card"></img>
+                            <img
+                              src={
+                                selectedButton === 2 ? masterwhite : mastercard
+                              }
+                              alt="Master Card"
+                              className="master-card"
+                            ></img>
                           </button>
                         </div>
                       </div>

@@ -318,7 +318,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .selection-cards-visamastercard button {
   background-color: #f5f2ea;
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   width: 50%;
   cursor: pointer;
 }
@@ -328,10 +328,12 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .selection-cards-visamastercard button.selected {
-  background-color: #1ed760;
+  background: linear-gradient(90deg, #FAA921 5%, #1434CB 50%);
   color: #fff;
 }
-
+.selection-cards-visamastercard button.selected1 {
+ background: linear-gradient(90deg, #EB001B 20%, #F79E1B 90%);
+}
 .visa-card {
   width: 30%;
 }
@@ -376,7 +378,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* / ***************   Mobile screen ********************** / */
 
-@media (max-width: 767px) {
+@media (min-width: 10px) and (max-width: 640px) {
   .main-body {
     display: flex;
     flex-direction: column;
