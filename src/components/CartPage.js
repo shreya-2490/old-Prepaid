@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, Fragment } from "react";
-import { Card } from "antd";
+import { Alert, Card } from "antd";
 import { useLocation } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import { AiOutlineSafety } from "react-icons/ai";
@@ -25,8 +25,9 @@ const Cart = ({ handleAddToCart }) => {
   const [usdValue, setUSDValue] = useState(input1);
   const [btcValue, setBtcValue] = useState(input2);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-  const { addToCart, cartCount } = useContext(CartContext);
+  const { addToCart, cartCount, cartItems } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [maxLimitErr, setMaxLimitErr] = useState(false);
 
   const navigate = useNavigate();
 
@@ -48,6 +49,14 @@ const Cart = ({ handleAddToCart }) => {
     setUSDValue(usdInput);
   };
   const handleAddToCartClick = () => {
+    const selectedCard = cartItems.findIndex(
+      (cartItem) =>
+        cartItem.usdValue === usdValue && cartItem.type === selectedButton
+    );
+    if (cartItems[selectedCard]?.quantity === 4) {
+      setMaxLimitErr(true);
+      return;
+    }
     addToCart({
       usdValue: usdValue,
       btcValue: btcValue,
@@ -57,6 +66,7 @@ const Cart = ({ handleAddToCart }) => {
     });
     setIsSuccessModalVisible(true);
     setIsCartOpen(true);
+    setMaxLimitErr(false);
   };
 
   useEffect(() => {
@@ -177,9 +187,15 @@ const Cart = ({ handleAddToCart }) => {
                   </div>
                 </div>
               </div>{" "}
-              <div className="cart-btn">
+              <div className="cart-btn mb-4">
                 <button onClick={handleAddToCartClick}>Add to Cart</button>
               </div>
+              {maxLimitErr && (
+                <Alert
+                  message="You have hit the maximum quantity limit, if you want to buy more items please make a bulk order."
+                  type="warning"
+                />
+              )}
               <div className="icons">
                 <AiOutlineSafety
                   style={{
