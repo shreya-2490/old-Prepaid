@@ -1,40 +1,32 @@
-import React, { useState } from "react"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "../styles/Login.css"
-import logo from "../assets/logo.png"
-import { useNavigate } from "react-router-dom"
-import axios from "axios"
-import { notification } from "antd"
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/Login.css";
+import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { notification } from "antd";
 import { useCookies } from "react-cookie";
 
 function Reset() {
-  const [password, setNewpswrd] = useState("")
-  const [password_confirmation, setConfirmpswrd] = useState("")
-  const [api, contextHolder] = notification.useNotification()
-  const nav = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
-  const [data, setData] = useState(null)
-  const [cookies, setCookie] = useCookies(["pfAuthToken"])
-  const [formSubmitted, setFormSubmitted] = useState(false) // New state for form submission
+  const [password, setNewpswrd] = useState("");
+  const [password_confirmation, setConfirmpswrd] = useState("");
+  const [api, contextHolder] = notification.useNotification();
+  const nav = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [cookies, setCookie] = useCookies(["pfAuthToken"]);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleChangePassword = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (password === "") {
-      setFormSubmitted(true) // Set formSubmitted to true on submission
+      setFormSubmitted(true);
       return api.error({
         message: "Password Error",
         description: "Password should not be empty.",
-      })
-    }
-    if (password === password_confirmation) {
-      return api.error({
-        message: "Password Error",
-        description:
-          "New password should be different from the current password.",
-      })
+      });
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     axios
       .post(
         "/change-password-api",
@@ -49,37 +41,36 @@ function Reset() {
         }
       )
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res.data.status === "success") {
           notification.success({
             message: "Success",
             description: "Password changed successfully",
-          })
+          });
         } else {
           return api.error({
             message: "Something went wrong!",
             description: "Token Expired. Please try again.",
-          })
+          });
         }
       })
-      .finally(() => setIsLoading(false))
-  }
+      .finally(() => setIsLoading(false));
+  };
 
   const handlelogoClick = () => {
-    nav("/front-demo/dashboard")
-  }
+    nav("/front-demo/dashboard");
+  };
 
   return (
     <>
       {contextHolder}
       <div className="d-flex align-items-center justify-content-center w-100">
-     
         <div className="login">
           <h2 className="mb-4 login-heading">Change Password</h2>
           <form className="needs-validation">
             <div className="form-group mb-2">
               <label htmlFor="newpswrd" className="form-label">
-                Current Password
+                New Password
               </label>
               <input
                 type="password"
@@ -96,7 +87,7 @@ function Reset() {
             </div>
             <div className="form-group mb-2">
               <label htmlFor="confirmpswrd" className="form-label">
-                New Password
+                Confirm Password
               </label>
               <input
                 type="password"
@@ -117,7 +108,7 @@ function Reset() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Reset
+export default Reset;
