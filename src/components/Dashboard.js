@@ -7,6 +7,7 @@ import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 import Reset from "./reset"
 import { common } from "@mui/material/colors"
+import Ordertable from "./Ordertable"
 
 const Dashboard = () => {
   const nav = useNavigate()
@@ -50,7 +51,8 @@ const Dashboard = () => {
         <div className="searchbox-div">
           {product ? (
             <>
-              <div>
+              <div className="ordertable"><Ordertable/></div>
+              {/* <div>
                 <h2>My Products</h2>
                 <img src={mastercard} className="product-image"></img>
                 <div style={{ marginTop: "30px" }}>
@@ -59,7 +61,7 @@ const Dashboard = () => {
                   <p>$0.00</p>
                 </div>
                 <h6 style={{ fontWeight: "bold" }}>Used Product</h6>
-              </div>
+              </div> */}
             </>
           ) : (
             ""
@@ -69,14 +71,7 @@ const Dashboard = () => {
         <div style={{ textAlign: "right" }}>
           {" "}
           <Space direction="vertical">
-            <Search
-              placeholder="Filter Products"
-              onSearch={onSearch}
-              style={{
-                width: 200,
-                borderRadius: "20px",
-              }}
-            />
+           
           </Space>
         </div>
       </div>

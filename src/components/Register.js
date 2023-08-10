@@ -17,16 +17,27 @@ const Register = () => {
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
+  const updateButtonDisabled = () => {
+    if (first_name && last_name && email) {
+      return false;
+    }
+    return true;
+  };
+
   const handleRegister = (e) => {
     e?.preventDefault()
-    setIsLoading(true)
+    if (updateButtonDisabled()) {
+      return;
+    }
+
+    setIsLoading(true);
     axios
-      ?.post("/register-user-api", {
+      .post("/register-user-api", {
         first_name,
         last_name,
         email,
       })
-      ?.then((res) => {
+      .then((res) => {
         console.log(res)
         if (res.data.status === "success") {
           notification.success({
@@ -34,15 +45,24 @@ const Register = () => {
             description:
               "Success!! Your Password has been sent to your Email Address",
           })
-          nav("/front-demo")
+          nav('/front-demo/login')
         } else {
-          return api.error({
-            message: `Something went wrong!`,
+          api.error({
+            message: "Something went wrong!",
             description: "Incorrect Credentials or Email Already in Use",
           })
         }
       })
-      .finally(() => setIsLoading(false))
+      .catch((error) => {
+        console.error("API Error:", error)
+        api.error({
+          message: "API Error",
+          description: "An error occurred while processing your request",
+        })
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   return (
@@ -54,7 +74,6 @@ const Register = () => {
         <div className="register-box">
           <div className="box1">
             <h1>Welcome!</h1>
-            {/* <h3>Unlock Exclusive Benefits: Sign Up Now!</h3> */}
           </div>
 
           <div className="box2">
@@ -87,8 +106,8 @@ const Register = () => {
               placeholder="Buisness Name"
               onChange={(e) => setBusinessName(e?.target?.value)}
             />
-            <button type="submit" onClick={handleRegister} disabled={isLoading}>
-              Sign Up
+            <button type="submit" onClick={handleRegister} disabled={isLoading || updateButtonDisabled()}>
+              {isLoading ? "Loading..." : "Sign Up"}
             </button>
           </div>
         </div>

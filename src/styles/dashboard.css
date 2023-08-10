@@ -1,10 +1,9 @@
 .listing-design {
   background-color: #fdc886;
-  height: 41vh;
   width: 18%;
   border-radius: 0.9375rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin: 10rem 5rem 2rem 5rem;
+  margin: 10rem 1rem 2rem 1rem;
 }
 .user-profile {
   background-color: #fdc886;
@@ -51,7 +50,7 @@
   display: flex;
   margin: 0rem 2.5rem;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .product-image {

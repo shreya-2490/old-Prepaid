@@ -125,7 +125,9 @@
      color: #41D195;
     margin-right: 1rem;
   }
-  
+  .ant-btn-primary {
+    background-color: #fdc886;
+  }
   }
   
   /* / / / =====================Tablet Veiw=========================== / / / */
@@ -246,7 +248,9 @@
       margin: 3rem 0;
     }
   
-  
+    .ant-btn-primary {
+      background-color: #fdc886;
+    }
   }
   
   /* / / / =====================Mobile Veiw=========================== / / / */
@@ -362,6 +366,9 @@
     .icons{
       display: flex;
       margin: 2rem 0;
+    }
+    .ant-btn-primary {
+      background-color: #fdc886;
     }
   }
 
