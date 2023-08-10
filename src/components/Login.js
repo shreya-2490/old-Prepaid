@@ -1,40 +1,42 @@
-import React, { useState } from "react"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "../styles/Login.css"
-import logo from "../assets/logo.png"
-import { useNavigate } from "react-router-dom"
-import axios from "axios"
-import { useCookies } from "react-cookie"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "../styles/Login.css"
-import { notification } from "antd"
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons"
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/Login.css";
+import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useCookies } from "react-cookie";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/Login.css";
+import { notification } from "antd";
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import { useAuth } from "../hooks/useAuth";
 
 function Login() {
-  const [api, contextHolder] = notification.useNotification()
-  const [showPassword, setShowPassword] = useState(false)
-  const nav = useNavigate()
-  const [cookies, setCookie] = useCookies(["pfAuthToken"])
-  const [email, setEmail] = useState("")
-  const [psw, setPsw] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [loginError, setLoginError] = useState(false)
+  const [api, contextHolder] = notification.useNotification();
+  const { login } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const nav = useNavigate();
+  const [_, setCookie] = useCookies(["pfAuthToken"]);
+  const [email, setEmail] = useState("");
+  const [psw, setPsw] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [loginError, setLoginError] = useState(false);
 
   const toggleShowPassword = (e) => {
-    setShowPassword(!showPassword)
-    e?.preventDefault()
-  }
+    setShowPassword(!showPassword);
+    e?.preventDefault();
+  };
 
   const handleLogin = (e) => {
-    e?.preventDefault()
+    e?.preventDefault();
 
     if (!email || !psw) {
-      setLoginError(true)
-      return
+      setLoginError(true);
+      return;
     }
 
-    setIsLoading(true)
-    setLoginError(false)
+    setIsLoading(true);
+    setLoginError(false);
 
     axios
       .post("/login-user-api", {
@@ -42,27 +44,43 @@ function Login() {
         password: psw,
       })
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res?.data?.token) {
-          setCookie("pfAuthToken", res?.data?.token, { path: "/" })
-          nav("/front-demo/dashboard")
+          setCookie("pfAuthToken", res?.data?.token, { path: "/" });
+          axios({
+            url: "/user-detail-api",
+            method: "get",
+            headers: {
+              Authorization: `Bearer ${res?.data?.token}`,
+            },
+          })
+            .then((response) => {
+              login({
+                customerName: `${response?.data?.user?.first_name} ${response?.data?.user?.last_name}`,
+                email: response?.data?.user?.email,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          nav("/front-demo/dashboard");
         } else {
           return api.error({
             message: `Something went wrong!`,
             description: "Incorrect Credentials. Please try again.",
-          })
+          });
         }
       })
-      .finally(() => setIsLoading(false))
-  }
+      .finally(() => setIsLoading(false));
+  };
 
   const handleForgetPassword = () => {
-    nav(`/front-demo/forgot-password`)
-  }
+    nav(`/front-demo/forgot-password`);
+  };
 
   const handleRegister = () => {
-    nav(`/front-demo/register`)
-  }
+    nav(`/front-demo/register`);
+  };
 
   return (
     <>
@@ -95,9 +113,7 @@ function Login() {
               <div className="input-group">
                 <input
                   type={showPassword ? "text" : "password"}
-                  className={`form-control ${
-                    loginError && !psw ? "" : ""
-                  }`}
+                  className={`form-control ${loginError && !psw ? "" : ""}`}
                   onChange={(e) => setPsw(e?.target?.value)}
                   required
                 />
@@ -111,7 +127,9 @@ function Login() {
                 </div>
               </div>
               {loginError && !email && (
-                <div className="invalid-feedback">Please Enter your password</div>
+                <div className="invalid-feedback">
+                  Please Enter your password
+                </div>
               )}
             </div>
 
@@ -145,7 +163,7 @@ function Login() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;

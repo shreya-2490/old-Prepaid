@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-import { Badge, Modal, Button } from "antd";
+import { Badge, Modal, Button, Avatar } from "antd";
 import { CartContext } from "./CartContext";
 import "../styles/navbar.css";
 import logo from "../assets/logo.png";
@@ -11,11 +11,13 @@ import Cart from "../shared-components/cart";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { useCookies } from "react-cookie";
+import { AuthContext } from "../context/auth-context";
 
 const NavbarCart = () => {
   const [cookies] = useCookies(["pfAuthToken"]);
   const [showMedia, setMedia] = useState(false);
   const { cartCount } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -98,9 +100,13 @@ const NavbarCart = () => {
                 }
               >
                 <span className="user">
-                  <UserOutlined
-                    style={{ fontSize: "1.5rem", marginRight: "0.5rem" }}
-                  />
+                  {user ? (
+                    <Avatar size="large">{user?.customerName[0]}</Avatar>
+                  ) : (
+                    <UserOutlined
+                      style={{ fontSize: "1.5rem", marginRight: "0.5rem" }}
+                    />
+                  )}
                 </span>
               </Link>
             </li>

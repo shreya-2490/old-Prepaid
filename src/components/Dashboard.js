@@ -1,30 +1,31 @@
-import React, { useState } from "react"
-import { Divider, Input, Space } from "antd"
-import NavbarCart from "./NavbarCart"
-import "../styles/dashboard.css"
-import mastercard from "../assets/Mastercardcartpage.png"
-import { useCookies } from "react-cookie"
-import { useNavigate } from "react-router-dom"
-import Reset from "./reset"
-import { common } from "@mui/material/colors"
-import Ordertable from "./Ordertable"
+import React, { useState } from "react";
+import { Divider, Input, Space } from "antd";
+import NavbarCart from "./NavbarCart";
+import "../styles/dashboard.css";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import Reset from "./reset";
+import { common } from "@mui/material/colors";
+import Ordertable from "./Ordertable";
+import { useAuth } from "../hooks/useAuth";
 
 const Dashboard = () => {
-  const nav = useNavigate()
-  const [cookies, setCookie, removeCookie] = useCookies(["pfAuthToken"])
-  const onSearch = (value) => console.log(value)
-  const { Search } = Input
-  const [product, setProduct] = useState(false)
-  const [reset, setReset] = useState(false)
+  const nav = useNavigate();
+  const { logout } = useAuth();
+  const [cookies, setCookie, removeCookie] = useCookies(["pfAuthToken"]);
+  const onSearch = (value) => console.log(value);
+  const { Search } = Input;
+  const [product, setProduct] = useState(false);
+  const [reset, setReset] = useState(false);
 
   const handleChangeproduct = () => {
-    setProduct(true)
-    setReset(false)
-  }
+    setProduct(true);
+    setReset(false);
+  };
   const handleChangePassword = () => {
-    setReset(true)
-    setProduct(false)
-  }
+    setReset(true);
+    setProduct(false);
+  };
   return (
     <>
       <NavbarCart />
@@ -39,8 +40,9 @@ const Dashboard = () => {
             <Divider />
             <li
               onClick={() => {
-                removeCookie("pfAuthToken", { path: "/" })
-                nav("/front-demo")
+                removeCookie("pfAuthToken", { path: "/" });
+                nav("/front-demo");
+                logout();
               }}
               className="signout-li"
             >
@@ -51,7 +53,9 @@ const Dashboard = () => {
         <div className="searchbox-div">
           {product ? (
             <>
-              <div className="ordertable"><Ordertable/></div>
+              <div className="ordertable">
+                <Ordertable />
+              </div>
               {/* <div>
                 <h2>My Products</h2>
                 <img src={mastercard} className="product-image"></img>
@@ -66,17 +70,15 @@ const Dashboard = () => {
           ) : (
             ""
           )}
-          {reset ? <Reset />: <></>}
+          {reset ? <Reset /> : <></>}
         </div>
         <div style={{ textAlign: "right" }}>
           {" "}
-          <Space direction="vertical">
-           
-          </Space>
+          <Space direction="vertical"></Space>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
