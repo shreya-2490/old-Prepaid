@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Divider, Input, Space } from "antd";
+import { Divider, Space } from "antd";
 import NavbarCart from "./NavbarCart";
 import "../styles/dashboard.css";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import Reset from "./reset";
-import { common } from "@mui/material/colors";
 import Ordertable from "./Ordertable";
 import { useAuth } from "../hooks/useAuth";
 
@@ -13,8 +12,6 @@ const Dashboard = () => {
   const nav = useNavigate();
   const { logout } = useAuth();
   const [cookies, setCookie, removeCookie] = useCookies(["pfAuthToken"]);
-  const onSearch = (value) => console.log(value);
-  const { Search } = Input;
   const [product, setProduct] = useState(false);
   const [reset, setReset] = useState(false);
 

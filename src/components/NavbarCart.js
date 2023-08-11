@@ -12,13 +12,15 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { useCookies } from "react-cookie";
 import { AuthContext } from "../context/auth-context";
+import axios from "axios";
 
 const NavbarCart = () => {
   const [cookies] = useCookies(["pfAuthToken"]);
   const [showMedia, setMedia] = useState(false);
-  const { cartCount } = useContext(CartContext);
+  const { cartCount, cartItems } = useContext(CartContext);
   const { user } = useContext(AuthContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleCartClick = () => {
@@ -35,7 +37,41 @@ const NavbarCart = () => {
   };
 
   const handleCheckout = () => {
-    navigate(`/front-demo/checkout`);
+    if (user) {
+      setIsLoading(true);
+      axios
+        ?.post(
+          `/preowned-order`,
+          {
+            customer_name: user?.customerName,
+            email: user?.email,
+            payment_method: "btc",
+            guest: false,
+            items: cartItems?.map((cartItem) => ({
+              type:
+                cartItem?.type === "1" || cartItem?.type === "visa"
+                  ? "visa"
+                  : "master",
+              quantity: cartItem?.quantity,
+              price: cartItem?.usdValue,
+              bin: cartItem?.bin,
+              card: cartItem?.card,
+              cardId: cartItem?.cardId,
+            })),
+          },
+          {
+            headers: { Authorization: `Bearer ${cookies?.pfAuthToken}` },
+          }
+        )
+        .then((res) =>
+          navigate(`/front-demo/payment`, {
+            state: { email: user?.email, data: res?.data },
+          })
+        )
+        ?.finally(() => setIsLoading(false));
+    } else {
+      navigate(`/front-demo/checkout`);
+    }
   };
 
   const handleHamburgerClick = (event) => {
@@ -151,7 +187,13 @@ const NavbarCart = () => {
           <Button key="keepShopping" onClick={handleKeepShopping}>
             Keep Shopping
           </Button>
-          <Button key="checkout" type="primary" onClick={handleCheckout}>
+          <Button
+            key="checkout"
+            type="primary"
+            onClick={handleCheckout}
+            loading={isLoading}
+            disabled={isLoading}
+          >
             Checkout ({cartCount})
           </Button>
         </div>

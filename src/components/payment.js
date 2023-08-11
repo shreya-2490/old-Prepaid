@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/payment.css";
-import { Card, Divider } from "antd";
+import { Card, Divider, QRCode } from "antd";
 import visa from "../assets/Visacartpage.png";
 import mastercard from "../assets/Mastercardcartpage.png";
 import { useLocation } from "react-router-dom";
@@ -9,11 +9,8 @@ import Navbarlogo from "./Navbarlogo";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { usdToBTC } from "../utils/helper";
-import { CartContext } from "./CartContext";
 
 const Payment = () => {
-  const { cartItems } = useContext(CartContext);
-
   const [btcRate, setBTCRate] = useState(null);
   const location = useLocation();
   const { email, orderType, data } = location?.state || {};
@@ -97,11 +94,13 @@ const Payment = () => {
                               {quantity || 0} x ${amount || 0}
                             </p>
                           </div>
-                          <div className="item-actions">
-                            <p className="BTC">
-                              {usdToBTC(subtotal, btcRate)} BTC
-                            </p>
-                          </div>
+                          {data?.payment_method !== "wire" && (
+                            <div className="item-actions">
+                              <p className="BTC">
+                                {usdToBTC(subtotal, btcRate)} BTC
+                              </p>
+                            </div>
+                          )}
                         </div>
                       </div>
                     );
@@ -148,18 +147,16 @@ const Payment = () => {
                   </div>
 
                   <p className="subtotal">Total</p>
-                  <div className="d-flex justify-content-between align-items-center">
+                  <div className="d-flex justify-content-between align-items-center mt-3">
                     <p className="mb-0">
-                      {" "}
-                      {data?.objectDataReturn?.order_total}
+                      ${data?.objectDataReturn?.order_total}
                     </p>
-                    <p className="BTC-total">
-                      {usdToBTC(
-                        data?.objectDataReturn?.order_total ?? 0,
-                        btcRate
-                      )}{" "}
-                      BTC
-                    </p>
+                    {data?.payment_method !== "wire" && (
+                      <p className="BTC-total">
+                        {data?.btc_amount}
+                        BTC
+                      </p>
+                    )}
                   </div>
                 </>
               ) : (
@@ -243,7 +240,36 @@ const Payment = () => {
             </Card>
           </div>
           <div className="payment-card2">
-            <div dangerouslySetInnerHTML={{ __html: data?.btc_qr_code }} />
+            <Card
+              className="Contact-title"
+              title={
+                data?.payment_method === "wire"
+                  ? "Pay with Wire Transfer"
+                  : "Pay with Bitcoin"
+              }
+              bordered={false}
+              headStyle={{ borderBottom: "none" }}
+            >
+              {data?.payment_method === "wire" ? (
+                <p>
+                  Thank you for your order! Your invoice has been sent to your
+                  email address.
+                </p>
+              ) : (
+                <>
+                  <QRCode value={data?.bitcon_address} size={230} />
+                  <div className="pay-h">
+                    <p className="pay-h1">Payment details</p>
+                    <p className="pay-h2">Payment unique address</p>
+                    <p className="pay-h3">{data?.bitcon_address}</p>
+                  </div>
+                  <div className="pay-h">
+                    <p className="pay-h4">Amount to pay</p>
+                    <p className="value">{data?.btc_amount} BTC</p>
+                  </div>
+                </>
+              )}
+            </Card>
           </div>
         </div>
       </div>
