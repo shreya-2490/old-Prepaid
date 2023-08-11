@@ -1,6 +1,6 @@
 /* / ******************* Full Screen **************************** / */
 @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
-@media (min-width: 1024px) {
+
 .main-body {
   /* background-color: #f5f2ea; */
   background-image: url("/src/assets/BG.jpg");
@@ -375,7 +375,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .second-gray {
   margin-right: 2.5rem;
-}
 }
 /* / ***************   Mobile screen ********************** / */
 
