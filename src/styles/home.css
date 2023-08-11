@@ -1,6 +1,6 @@
 /* / ******************* Full Screen **************************** / */
-  @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+@media (min-width: 1024px) {
 .main-body {
   /* background-color: #f5f2ea; */
   background-image: url("/src/assets/BG.jpg");
@@ -34,7 +34,7 @@
   background-color: #1b1b1b;
   width: 45rem;
   position: absolute;
-  left: 10rem;
+  left: 5rem;
   padding: 0.5rem;
   top: 16.5rem;
 }
@@ -47,7 +47,7 @@
   width: 45rem;
   position: absolute;
   top: 20.1rem;
-  left: 10rem;
+  left: 5rem;
   text-align: center;
 }
 
@@ -140,7 +140,7 @@
   margin-right: 0rem;
   border: solid 1px #29262624;
   padding: 0.31rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #1b1b1b;
   background-color: #f0f0f0;
 }
@@ -150,7 +150,7 @@
 }
 .price-amount option {
   background-color: #f0f0f0;
-  padding: 3rem;
+  padding: 5rem;
 }
 
 .pay,
@@ -358,7 +358,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-right: 0rem;
   border: solid 1px #29262624;
   padding: 0.31rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #1b1b1b;
   background-color: #f0f0f0;
   /* border: 1px solid red; */
@@ -371,11 +371,12 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .dropdown-amount option {
   background-color: #f0f0f0;
+  font-size: 0.75rem;
 }
 .second-gray {
   margin-right: 2.5rem;
 }
-
+}
 /* / ***************   Mobile screen ********************** / */
 
 @media (min-width: 10px) and (max-width: 640px) {
@@ -448,6 +449,9 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-top: 0.5rem;
   }
   .dropdown-amount option {
+    font-size: 0.6rem;
+  }
+  .price-amount{
     font-size: 0.6rem;
   }
 
@@ -577,5 +581,11 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .first-four-navigation {
     width: 85% !important;
+  }
+  .price-amount{
+    font-size: 0.6rem;
+  }
+  .dropdown-amount{
+    font-size: 0.8rem;
   }
 }
