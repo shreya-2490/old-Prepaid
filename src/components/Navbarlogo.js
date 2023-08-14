@@ -1,26 +1,26 @@
-import React from "react"
-import { LeftOutlined } from "@ant-design/icons"
+import React from "react";
+import { LeftOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png"
-import "../styles/navbar.css"
+import logo from "../assets/logo.png";
+import "../styles/navbar.css";
 
-function NavbarLogo() {
-  const navigate = useNavigate()
+function NavbarLogo({ customGoBack }) {
+  const navigate = useNavigate();
 
   const goBack = () => {
-    navigate(-1)
-  }
+    navigate(-1);
+  };
 
   return (
     <div className="headerlogo">
-      <div className="logocheckout" onClick={goBack}>
+      <div className="logocheckout" onClick={customGoBack || goBack}>
         <LeftOutlined className="back-arrow" />
       </div>
       <Link to="/front-demo">
         <img src={logo} alt="Logo" className="logopayment" />
       </Link>
     </div>
-  )
+  );
 }
 
-export default NavbarLogo
+export default NavbarLogo;

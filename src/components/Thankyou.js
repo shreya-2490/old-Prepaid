@@ -1,18 +1,20 @@
-import React from "react"
-import "../styles/Thankyou.css"
-import Navbarlogo from "./Navbarlogo"
-import checkmark from "../assets/Checkmark.png"
-import { useNavigate } from "react-router-dom"
+import React from "react";
+import "../styles/Thankyou.css";
+import Navbarlogo from "./Navbarlogo";
+import checkmark from "../assets/Checkmark.png";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Thankyou = () => {
-  const nav = useNavigate()
+  const nav = useNavigate();
+  const location = useLocation();
+  const { orderNumber, email } = location?.state || {};
 
   const handleClickHome = () => {
-    nav("/front-demo/")
-  }
+    nav("/front-demo/");
+  };
   return (
     <>
-      <Navbarlogo />
+      <Navbarlogo customGoBack={() => nav("/front-demo")} />
       <section className="full-page">
         <div className="thankyou">
           <div className="thankyou-inner">
@@ -23,11 +25,11 @@ export const Thankyou = () => {
             <div className="order">
               <div>
                 <h3> Order No :</h3>
-                <p> OD49937JKKD4690</p>
+                <p>{orderNumber}</p>
               </div>
               <div>
                 <h3> Email Address :</h3>
-                <p>arpan@digitallydrunk.com</p>
+                <p>{email}</p>
               </div>
               <div>
                 <h3>Payment Method :</h3>
@@ -48,5 +50,5 @@ export const Thankyou = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};

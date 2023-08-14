@@ -4,14 +4,16 @@ import "../styles/payment.css";
 import { Card, Divider, QRCode } from "antd";
 import visa from "../assets/Visacartpage.png";
 import mastercard from "../assets/Mastercardcartpage.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbarlogo from "./Navbarlogo";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { usdToBTC } from "../utils/helper";
 import { WireTransfer } from "./WireTransfer-thanyoupage";
+import useInterval from "../hooks/useInterval";
 
 const Payment = () => {
+  const nav = useNavigate();
   const [btcRate, setBTCRate] = useState(null);
   const location = useLocation();
   const { email, orderType, data } = location?.state || {};
@@ -39,6 +41,18 @@ const Payment = () => {
     },
     0
   );
+
+  useInterval(() => {
+    if (data?.payment_method !== "wire") {
+      axios?.get(`/btc-check-status/${data?.order_number}`)?.then((res) => {
+        if (res?.data?.status === "Payment Confirmed") {
+          nav("/front-demo/thank-you", {
+            state: { orderNumber: data?.order_number, email },
+          });
+        }
+      });
+    }
+  }, 3000);
 
   return (
     <>
@@ -252,7 +266,7 @@ const Payment = () => {
               headStyle={{ borderBottom: "none" }}
             >
               {data?.payment_method === "wire" ? (
-                <WireTransfer email={email}/>
+                <WireTransfer email={email} />
               ) : (
                 <>
                   <QRCode value={data?.bitcon_address} size={230} />

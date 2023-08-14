@@ -10,12 +10,15 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import axios from "axios";
 import { usdToBTC } from "../utils/helper";
+import { AuthContext } from "../context/auth-context";
+import { useCookies } from "react-cookie";
 
 const BulkCheckout = () => {
   const [btcRate, setBTCRate] = useState(null);
   const navigate = useNavigate();
   const { state } = useLocation();
-
+  const [cookies] = useCookies(["pfAuthToken"]);
+  const { user } = useContext(AuthContext);
   const { bulkCartItems, removeBulkFromCart } = useContext(CartContext);
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
@@ -49,44 +52,92 @@ const BulkCheckout = () => {
       .catch((error) => console.error(error));
   }, []);
 
+  useEffect(() => {
+    if (user?.email) {
+      setPaymentTypeSelectionOpen(true);
+    }
+  }, []);
+
   const totalCartValue = bulkCartItems?.reduce((accumulator, object) => {
     return accumulator + Number(object?.subTotal);
   }, 0);
 
   const handleSubmit = () => {
-    if (validator.isEmail(email)) {
-      setEmail(email);
+    if (user?.email) {
       setIsLoading(true);
       axios
-        ?.post(`/save-bulk-order-api`, {
-          customer_name: state?.customerName,
-          address: state?.address,
-          phone_no: state?.phoneNumber,
-          broker_id: state?.brokerId,
-          business_name: state?.businessName,
-          email: email,
-          payment_method: paymentMethod,
-          guest: true,
-          items: bulkCartItems?.map((cartItem) => ({
-            cardType: cartItem?.cardType === "visa" ? "Visa" : "masterCard",
-            quantity: cartItem?.quantity,
-            amount: cartItem?.amount,
-            additional_transactions: cartItem?.additionalPurchaseQt
-              ? true
-              : false,
-            additional_transactions_no: cartItem?.additionalPurchaseQt,
-            international_transaction:
-              cartItem?.isUsedForInternationalTransaction ? true : false,
-          })),
-        })
+        ?.post(
+          `/save-bulk-order-api`,
+          {
+            customer_name: state?.customerName,
+            address: state?.address,
+            phone_no: state?.phoneNumber,
+            broker_id: state?.brokerId,
+            business_name: state?.businessName,
+            email: user?.email,
+            payment_method: paymentMethod,
+            guest: false,
+            items: bulkCartItems?.map((cartItem) => ({
+              cardType: cartItem?.cardType === "visa" ? "Visa" : "masterCard",
+              quantity: cartItem?.quantity,
+              amount: cartItem?.amount,
+              additional_transactions: cartItem?.additionalPurchaseQt
+                ? true
+                : false,
+              additional_transactions_no: cartItem?.additionalPurchaseQt,
+              international_transaction:
+                cartItem?.isUsedForInternationalTransaction ? true : false,
+            })),
+          },
+          {
+            headers: { Authorization: `Bearer ${cookies?.pfAuthToken}` },
+          }
+        )
         .then((res) =>
           navigate(`/front-demo/payment`, {
-            state: { email, orderType: "bulk-order", data: res?.data },
+            state: {
+              email: user?.email,
+              orderType: "bulk-order",
+              data: res?.data,
+            },
           })
         )
         ?.finally(() => setIsLoading(false));
     } else {
-      alert("Invalid email format. Please enter a correct email address.");
+      if (validator.isEmail(email)) {
+        setEmail(email);
+        setIsLoading(true);
+        axios
+          ?.post(`/save-bulk-order-api`, {
+            customer_name: state?.customerName,
+            address: state?.address,
+            phone_no: state?.phoneNumber,
+            broker_id: state?.brokerId,
+            business_name: state?.businessName,
+            email: email,
+            payment_method: paymentMethod,
+            guest: true,
+            items: bulkCartItems?.map((cartItem) => ({
+              cardType: cartItem?.cardType === "visa" ? "Visa" : "masterCard",
+              quantity: cartItem?.quantity,
+              amount: cartItem?.amount,
+              additional_transactions: cartItem?.additionalPurchaseQt
+                ? true
+                : false,
+              additional_transactions_no: cartItem?.additionalPurchaseQt,
+              international_transaction:
+                cartItem?.isUsedForInternationalTransaction ? true : false,
+            })),
+          })
+          .then((res) =>
+            navigate(`/front-demo/payment`, {
+              state: { email, orderType: "bulk-order", data: res?.data },
+            })
+          )
+          ?.finally(() => setIsLoading(false));
+      } else {
+        alert("Invalid email format. Please enter a correct email address.");
+      }
     }
   };
 

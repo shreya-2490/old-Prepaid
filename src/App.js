@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
@@ -34,6 +34,11 @@ function App() {
   const handleAddToCart = (item) => {
     setCartItems([...cartItems, item]);
   };
+
+  useEffect(() => {
+    setUser(JSON?.parse(localStorage?.getItem("user")));
+  }, []);
+
   return (
     <div className="App">
       <AuthContext.Provider value={{ user, setUser }}>
