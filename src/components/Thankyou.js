@@ -19,7 +19,7 @@ export const Thankyou = () => {
         <div className="thankyou">
           <div className="thankyou-inner">
             <div className="circle">
-              <img src={checkmark} alt="checkmark" />
+              <img src={checkmark} alt="checkmark"  className="animated-checkmark" />
               <h1>Thank You for your purchase!</h1>
             </div>
             <div className="order">

@@ -156,7 +156,7 @@
 
   .thankyou-inner {
     display: flex;
-    width: 80%;
+    width: 75%;
     margin: 0 auto;
     background-color: rgb(255, 255, 255);
     justify-content: center;
@@ -207,7 +207,8 @@
 
   .details {
     width: 100%;
-    padding: 1rem 0;
+    text-align: justify;
+    padding: 1rem 0.2rem;
     color: #949494;
     border-bottom: 1.5px solid #dddddd;
     font-size: 0.8rem;
@@ -293,7 +294,7 @@
 
   .thankyou-inner {
     display: flex;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     background-color: rgb(255, 255, 255);
     justify-content: center;
@@ -344,8 +345,9 @@
   }
 
   .details {
+    text-align: justify;
     width: 100%;
-    padding: 1rem 0;
+    padding: 1rem 0.2rem;
     color: #949494;
     border-bottom: 1.5px solid #dddddd;
     font-size: 0.8rem;

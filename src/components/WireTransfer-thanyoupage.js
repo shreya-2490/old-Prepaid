@@ -16,7 +16,7 @@ export const WireTransfer = (props) => {
         <div className="wiretransfer">
           <div className="wiretransfer-inner">
             <div className="wiretransfer-circle">
-              <img src={checkmark} alt="wiretransfer-checkmark"   className="animated-checkmark" />
+              <img src={checkmark} alt="wiretransfer-checkmark" className="animated-checkmark" />
               <h1>Thank You for your purchase!</h1>
             </div>
 
