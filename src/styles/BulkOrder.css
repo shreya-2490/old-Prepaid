@@ -156,11 +156,15 @@
 
   .ant-btn:hover,
   .ant-btn:focus {
-    /* border-color: #000000 !important; */
-    color: #fdc886 !important;
-    background-color: #000000;
+    border-color: #fdc886 !important;
+    color: #1b1b1b !important;
+    background-color: #fdc886 !important;
   }
-
+ /* .ant-btn >span:hover,.ant-btn >span:focus  {
+  border-color: #fdc886 !important;
+  color: #1b1b1b !important;
+  background-color: #fdc886 !important;
+ } */
   .ant-select-item-option[aria-selected="true"] {
     border-color: #fdc886 !important;
   }

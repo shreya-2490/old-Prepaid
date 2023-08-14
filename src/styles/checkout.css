@@ -105,7 +105,7 @@
     width: 70%;
   }
 
-  .item-actions>div {
+  .item-actions > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -141,7 +141,7 @@
   .custom-card1 .ant-card-head-title {
     font-size: 1.25rem;
     font-weight: 600;
-    padding: 1rem 0rem 0rem 1.2rem;
+    padding: 1rem 0rem 0rem 0rem;
   }
 
   .checkbox {
@@ -157,17 +157,43 @@
     width: 70%;
     font-size: 1rem;
     color: black;
+    font-weight: 500;
   }
-
   .email {
     font-size: 1rem;
     color: #6a716e;
+    margin-bottom: 0.5rem;
   }
 
   .Contact-title1 {
-    padding: 1rem 0rem 2rem 0;
+    padding: 0.5rem 0rem;
+  }
+  .fullname {
+    font-size: 1rem;
+    color: #6a716e;
+    margin-bottom: 0.5rem;
+  }
+  .fullname-box {
+    border: 0.0625rem solid rgb(159, 159, 159);
+    border-radius: 0.3125rem;
+    width: 70%;
+    font-size: 1rem;
+    color: black;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
   }
 
+  .ant-checkbox-checked .ant-checkbox-inner::before {
+    background-color: #fdc886 !important;
+    border-color: #fdc886 !important;
+  }
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #fdc886 !important;
+    border-color: #fdc886 !important;
+  }
+  .Contact-title1.ant-card .ant-card-body {
+    padding: 1rem 0rem 2.9rem 2rem;
+  }
   .payment-btn {
     padding: 1.4rem 5.25rem;
     border-radius: 6rem;
@@ -178,7 +204,8 @@
     transition: 0.03s all;
   }
   .payment-btn:hover {
-   background-color:  #333333;
+    background-color: #f0bd7f !important;
+    border-color: #fdc886 !important;
   }
 
   .payment-btn:active {
@@ -207,7 +234,9 @@
     margin: 0.125rem;
     /* text-decoration: underline; */
   }
-
+  .terms a {
+    color: #f8b869;
+  }
   .custom-upper-cardvalue {
     margin-top: -2rem;
     display: flex;
@@ -303,7 +332,6 @@
   .custom-para {
     font-size: 1rem;
     margin-left: 1rem;
-   
   }
 
   .custom-tooltip {
@@ -342,7 +370,7 @@
     text-align: left;
   }
 
-  .item-actions>div {
+  .item-actions > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -433,6 +461,9 @@
     font-weight: 600;
     padding: 2rem 1.875rem 2rem 0rem;
   }
+  .Contact-title1.ant-card .ant-card-body {
+    padding: 0.3rem 2rem 1rem 2rem;
+  }
 
   .checkbox {
     display: flex;
@@ -449,13 +480,28 @@
     margin: 0.1875rem 0rem 0.1875rem 1.25rem;
     color: black;
   }
-
   .email {
     font-size: 0.9375rem;
     margin: 0.625rem 0rem 0.1875rem 1.25rem;
     color: #6a716e;
   }
-
+  .fullname {
+    font-size: 1rem;
+    margin: 0.625rem 0rem 0.1875rem 1.25rem;
+  }
+  .fullname-box {
+    border: 0.0625rem solid rgb(159, 159, 159);
+    border-radius: 0.3125rem;
+    width: 70%;
+    font-size: 1rem;
+    color: black;
+    font-weight: 500;
+    margin: 0.1875rem 0rem 0.1875rem 1.25rem;
+  }
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #fdc886;
+    border-color: #fdc886;
+  }
   .payment-btn {
     padding: 0 5.25rem;
     border-radius: 624.9375rem;
@@ -469,7 +515,7 @@
   }
 
   .payment-btn:hover {
-   background-color:  #333333;
+    background-color: #333333;
   }
 
   .payment-btn:active {
@@ -543,7 +589,6 @@
 /* / / ********************** Mobile Screen ******************* / / */
 
 @media (min-width: 10px) and (max-width: 640px) {
-
   .checkout-main {
     background-color: #f5f2ea;
     padding: 3rem 0;
@@ -594,7 +639,7 @@
     display: flex;
     align-items: baseline;
   }
-  
+
   .custom-bottom-para {
     display: flex;
     align-items: baseline;
@@ -607,7 +652,7 @@
     font-weight: 400;
   }
 
-  .value123{
+  .value123 {
     /* border: 1px solid red; */
     padding: 0;
   }
@@ -632,7 +677,7 @@
     text-align: left;
   }
 
-  .item-actions>div {
+  .item-actions > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -722,6 +767,10 @@
     font-weight: 500;
   }
 
+  .Contact-title1.ant-card .ant-card-body {
+    padding: 0.3rem 2rem 1rem 2rem;
+  }
+
   .checkbox {
     display: flex;
     align-items: baseline;
@@ -743,7 +792,23 @@
     margin: 0rem 0rem 0.2rem 1.25rem;
     color: #6a716e;
   }
-
+  .fullname {
+    font-size: 1rem;
+    margin: 0rem 0rem 0.2rem 1.25rem;
+  }
+  .fullname-box {
+    border: 0.0625rem solid rgb(159, 159, 159);
+    border-radius: 0.3125rem;
+    width: 80%;
+    font-size: 1rem;
+    color: black;
+    font-weight: 500;
+    margin: 0.1875rem 0rem 0.1875rem 1.25rem;
+  }
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #fdc886;
+    border-color: #fdc886;
+  }
   .payment-btn {
     padding: 1.5rem;
     width: 100%;
@@ -755,9 +820,9 @@
     font-size: 1rem;
     transition: 0.03s all;
   }
-  
+
   .payment-btn:hover {
-   background-color:  #333333;
+    background-color: #333333;
   }
 
   .payment-btn:active {
@@ -807,7 +872,6 @@
   .bottom-para-total {
     margin: 0.125rem 1.25rem;
   }
-
 
   .cardtype-img {
     width: 15%;

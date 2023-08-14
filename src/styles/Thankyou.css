@@ -9,7 +9,7 @@
 }
 
 .thankyou{
-    width: 80%;
+    width: 90%;
     padding: 1.5rem 0;
     background-color: white;
     border-radius: 1.4rem;
@@ -19,7 +19,7 @@
 
 .thankyou-inner{
     display: flex;
-    width: 54%;
+    width: 100%;
     margin: 0 auto;
     background-color: rgb(255,255,255);
     justify-content: center;

@@ -9,6 +9,7 @@ import Navbarlogo from "./Navbarlogo";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { usdToBTC } from "../utils/helper";
+import { WireTransfer } from "./WireTransfer-thanyoupage";
 
 const Payment = () => {
   const [btcRate, setBTCRate] = useState(null);
@@ -251,10 +252,7 @@ const Payment = () => {
               headStyle={{ borderBottom: "none" }}
             >
               {data?.payment_method === "wire" ? (
-                <p>
-                  Thank you for your order! Your invoice has been sent to your
-                  email address.
-                </p>
+                <WireTransfer email={email}/>
               ) : (
                 <>
                   <QRCode value={data?.bitcon_address} size={230} />
