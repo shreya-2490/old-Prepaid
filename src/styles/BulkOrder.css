@@ -1,6 +1,108 @@
 /* / =====================Desktop Veiw=========================== / */
 
 @media (min-width: 1024px) {
+  body {
+    margin: 0;
+    line-height: normal;
+  }
+
+  :root {
+    /* fonts */
+    --font-outfit: Outfit;
+
+    /* font sizes */
+    --font-size-3xl: 1.38rem;
+
+    /* Colors */
+    --color-white: #fff;
+    --color-gray: rgba(27, 27, 27, 0.75);
+    --color-linen: #f5f2ea;
+
+    /* border radiuses */
+    --br-xl: 20px;
+  }
+
+  .frame-inner,
+  .frame-item {
+    position: absolute;
+    border-radius: var(--br-xl);
+    background-color: var(--color-linen);
+    backdrop-filter: blur(33px);
+    width: 13.56rem;
+    height: 6.56rem;
+    cursor: pointer;
+  }
+  .frame-inner {
+    left: 15.19rem;
+    cursor: pointer;
+  }
+  .wire-transfer,
+  .wire-transfer-wrapper {
+    position: absolute;
+    left: 0;
+    width: 10.19rem;
+    height: 2.31rem;
+  }
+  .wire-transfer {
+    top: 0;
+    font-weight: 600;
+    display: inline-block;
+  }
+  .wire-transfer-wrapper {
+    top: 3rem;
+  }
+  .bank-building-icon {
+    position: absolute;
+    top: 0;
+    left: 0.63rem;
+    width: 2.75rem;
+    height: 2.81rem;
+    object-fit: cover;
+  }
+  .group-container {
+    position: absolute;
+    top: 1rem;
+    left: 17.19rem;
+    cursor: pointer;
+  }
+  .group-container1 {
+    position: absolute;
+    top: 0.84rem;
+    left: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .bitcoin {
+    position: absolute;
+    top: 3.33rem;
+    left: 0;
+    font-weight: 600;
+    display: inline-block;
+    width: 10.25rem;
+    height: 2.31rem;
+  }
+  .bitcoin-icon {
+    position: absolute;
+    top: 0;
+    left: 0.02rem;
+    width: 3.39rem;
+    height: 3.39rem;
+    object-fit: cover;
+  }
+  .group-parent {
+    position: absolute;
+    top: 0.84rem;
+    left: 2rem;
+    width: 25.38rem;
+    height: 5.64rem;
+    font-size: 1rem;
+  }
+  .rectangle-parent {
+    position: relative;
+    height: 8.13rem;
+    text-align: left;
+  }
+
   .bulk-main {
     background-color: #f5f2ea;
     width: 100%;
@@ -160,7 +262,7 @@
     color: #1b1b1b !important;
     background-color: #fdc886 !important;
   }
- /* .ant-btn >span:hover,.ant-btn >span:focus  {
+  /* .ant-btn >span:hover,.ant-btn >span:focus  {
   border-color: #fdc886 !important;
   color: #1b1b1b !important;
   background-color: #fdc886 !important;
@@ -184,13 +286,114 @@
   .tick-class {
     margin: 0.2rem 0.4rem;
   }
-  .PhoneInput{
+  .PhoneInput {
     width: 7%;
   }
 }
 
 /* / =====================Tablet Veiw=========================== / */
 @media (min-width: 641px) and (max-width: 1023px) {
+  body {
+    margin: 0;
+    line-height: normal;
+  }
+
+  :root {
+    /* fonts */
+    --font-outfit: Outfit;
+
+    /* font sizes */
+    --font-size-3xl: 1.38rem;
+
+    /* Colors */
+    --color-white: #fff;
+    --color-gray: rgba(27, 27, 27, 0.75);
+    --color-linen: #f5f2ea;
+
+    /* border radiuses */
+    --br-xl: 20px;
+  }
+
+  .frame-inner,
+  .frame-item {
+    position: absolute;
+    border-radius: var(--br-xl);
+    background-color: var(--color-linen);
+    backdrop-filter: blur(33px);
+    width: 13.56rem;
+    height: 6.56rem;
+    cursor: pointer;
+  }
+  .frame-inner {
+    left: 15.19rem;
+    cursor: pointer;
+  }
+  .wire-transfer,
+  .wire-transfer-wrapper {
+    position: absolute;
+    left: 0;
+    width: 10.19rem;
+    height: 2.31rem;
+  }
+  .wire-transfer {
+    top: 0;
+    font-weight: 600;
+    display: inline-block;
+  }
+  .wire-transfer-wrapper {
+    top: 3rem;
+  }
+  .bank-building-icon {
+    position: absolute;
+    top: 0;
+    left: 0.63rem;
+    width: 2.75rem;
+    height: 2.81rem;
+    object-fit: cover;
+  }
+  .group-container {
+    position: absolute;
+    top: 1rem;
+    left: 17.19rem;
+    cursor: pointer;
+  }
+  .group-container1 {
+    position: absolute;
+    top: 0.84rem;
+    left: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .bitcoin {
+    position: absolute;
+    top: 3.33rem;
+    left: 0;
+    font-weight: 600;
+    display: inline-block;
+    width: 10.25rem;
+    height: 2.31rem;
+  }
+  .bitcoin-icon {
+    position: absolute;
+    top: 0;
+    left: 0.02rem;
+    width: 3.39rem;
+    height: 3.39rem;
+    object-fit: cover;
+  }
+  .group-parent {
+    position: absolute;
+    top: 0.84rem;
+    left: 2rem;
+    width: 25.38rem;
+    height: 5.64rem;
+    font-size: 1rem;
+  }
+  .rectangle-parent {
+    position: relative;
+    height: 8.13rem;
+    text-align: left;
+  }
   .bulk-main {
     background-color: #f5f2ea;
     width: 100%;
@@ -344,6 +547,141 @@
 
 /* / =====================Mobile Veiw=========================== / */
 @media (min-width: 10px) and (max-width: 640px) {
+  body {
+    margin: 0;
+    line-height: normal;
+  }
+
+  :root {
+    --font-outfit: Outfit;
+    --font-size-3xl: 1.38rem;
+    --color-white: #fff;
+    --color-gray: rgba(27, 27, 27, 0.75);
+    --color-linen: #f5f2ea;
+    --br-xl: 20px;
+  }
+
+  .frame-inner,
+  .frame-item {
+    position: absolute;
+    border-radius: var(--br-xl);
+    background-color: var(--color-linen);
+    backdrop-filter: blur(33px);
+    width: 13.56rem;
+    height: 6.56rem;
+    cursor: pointer;
+  }
+
+  .frame-inner {
+    left: 0.19rem;
+    cursor: pointer;
+  }
+
+  .wire-transfer,
+  .wire-transfer-wrapper {
+    position: absolute;
+    left: 0;
+    width: 10.19rem;
+    height: 2.31rem;
+  }
+
+  .wire-transfer {
+    top: 0;
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  .wire-transfer-wrapper {
+    bottom: 3.7rem;
+    left: 6.2rem;
+  }
+
+  .bank-building-icon {
+    position: absolute;
+    bottom: 4rem;
+    left: 5.53rem;
+    width: 2.75rem;
+    height: 2.81rem;
+    object-fit: cover;
+  }
+
+  .group-container,
+  .group-container1 {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .group-container {
+    top: 1rem;
+  }
+
+  .group-container1 {
+    top: 8rem;
+    font-size: 1rem;
+  }
+
+  .bitcoin {
+    position: absolute;
+    bottom: 18rem;
+    left: 5rem;
+    font-weight: 600;
+    display: inline-block;
+    width: 10.25rem;
+    height: 2.31rem;
+  }
+
+  .bitcoin-icon {
+    position: absolute;
+    bottom: 18rem;
+    left: 5.02rem;
+    width: 3.39rem;
+    height: 3.39rem;
+    object-fit: cover;
+  }
+
+  .group-parent {
+    position: absolute;
+    top: 0.84rem;
+    left: 2rem;
+    width: 25.38rem;
+    height: 5.64rem;
+    font-size: 1rem;
+  }
+
+  .rectangle-parent {
+    position: relative;
+    height: 22rem;
+    text-align: left;
+  }
+
+  .payment-btn {
+    width: 100%;
+  }
+
+
+    .rectangle-parent {
+      height: auto;
+    }
+
+    .frame-item,
+    .frame-inner {
+      position: relative;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .group-container,
+    .group-container1 {
+      position: relative;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+    }
+    
   .bulk-main {
     background-color: #f5f2ea;
     width: 100%;
@@ -432,7 +770,7 @@
     background-color: #fdc886;
     width: 100%;
   }
-  .PhoneInput{
+  .PhoneInput {
     width: 15%;
   }
 }

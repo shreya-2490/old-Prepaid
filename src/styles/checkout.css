@@ -166,7 +166,7 @@
   }
 
   .Contact-title1 {
-    padding: 0.5rem 0rem;
+    padding: 1rem 0rem;
   }
   .fullname {
     font-size: 1rem;
@@ -306,7 +306,7 @@
   }
 
   .card1 {
-    width: 60%;
+    width: 90%;
     margin: 0 auto;
   }
 
@@ -314,6 +314,8 @@
     font-size: 1.0625rem;
     font-weight: 600;
     line-height: 1.25;
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
   }
 
   .custom-link {

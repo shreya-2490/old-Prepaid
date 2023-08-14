@@ -109,7 +109,7 @@
     
     @media (min-width: 641px) and (max-width: 1023px) {        
         .wiretransfer{
-            width: 90%;
+            width: 100%;
             padding: 1.5rem 0;
             background-color: white;
             border-radius: 1.4rem;

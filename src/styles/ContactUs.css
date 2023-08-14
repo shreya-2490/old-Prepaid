@@ -94,7 +94,8 @@
   .ant-input,
   .ant-input-affix-wrapper {
     border-color: #fdc886 !important;
-    font-weight: 500;
+    font-weight: 400;
+    font-family: 'Outfit';
   }
   .ant-form-item .ant-form-item-control-input-content {
     width: 120% !important;
@@ -105,7 +106,7 @@
     box-shadow: none !important;
   }
 
-  .ant-btn-primary:hover {
+  .ant-btn-primary:hover,  .ant-btn-primary:focus{
     background-color: #e9d5b7 !important;
     color: #1b1b1b !important;
     border-color: #fdc886 !important;
@@ -210,6 +211,8 @@
   .ant-input,
   .ant-input-affix-wrapper {
     border-color: #fdc886 !important;
+    font-weight: 400;
+    font-family: 'Outfit';
   }
 
   .ant-input:focus,
@@ -218,7 +221,7 @@
     box-shadow: none !important;
   }
 
-  .ant-btn-primary:hover {
+  .ant-btn-primary:hover, .ant-btn-primary:focus {
     background-color: #e9d5b7 !important;
     color: #1b1b1b !important;
     border-color: #fdc886 !important;
@@ -323,6 +326,8 @@
   .ant-input,
   .ant-input-affix-wrapper {
     border-color: #fdc886 !important;
+    font-weight: 400;
+    font-family: 'Outfit';
   }
 
   .ant-input:focus,
@@ -331,7 +336,7 @@
     box-shadow: none !important;
   }
 
-  .ant-btn-primary:hover {
+  .ant-btn-primary:hover, .ant-btn-primary:focus {
     background-color: #e9d5b7 !important;
     color: #1b1b1b !important;
     border-color: #fdc886 !important;

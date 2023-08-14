@@ -10,6 +10,8 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import axios from "axios";
 import { usdToBTC } from "../utils/helper";
+import btc from "../assets/btc.png"
+import wiretransfer from "../assets/wiretransfer.png"
 import { AuthContext } from "../context/auth-context";
 import { useCookies } from "react-cookie";
 
@@ -28,20 +30,20 @@ const BulkCheckout = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDelete = (cartItem) => {
-    removeBulkFromCart(cartItem?.id);
-  };
+    removeBulkFromCart(cartItem?.id)
+  }
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
+    setEmail(event.target.value)
+  }
 
   const handleCheckboxChange1 = () => {
-    setIsChecked1(!isChecked1);
-  };
+    setIsChecked1(!isChecked1)
+  }
 
   const handleCheckboxChange2 = () => {
-    setIsChecked2(!isChecked2);
-  };
+    setIsChecked2(!isChecked2)
+  }
 
   useEffect(() => {
     axios
@@ -59,8 +61,8 @@ const BulkCheckout = () => {
   }, []);
 
   const totalCartValue = bulkCartItems?.reduce((accumulator, object) => {
-    return accumulator + Number(object?.subTotal);
-  }, 0);
+    return accumulator + Number(object?.subTotal)
+  }, 0)
 
   const handleSubmit = () => {
     if (user?.email) {
@@ -156,7 +158,7 @@ const BulkCheckout = () => {
               <div className="custom-upper-para">
                 {bulkCartItems?.map((bulkCartItem) => {
                   const { id, quantity, amount, subTotal, cardType } =
-                    bulkCartItem;
+                    bulkCartItem
 
                   return (
                     <div key={id} className="item-container">
@@ -190,7 +192,7 @@ const BulkCheckout = () => {
                         </div>
                       </div>
                     </div>
-                  );
+                  )
                 })}
               </div>
 
@@ -214,19 +216,60 @@ const BulkCheckout = () => {
                   : "Contact Information"
               }
               bordered={false}
-              headStyle={{ borderBottom: "none" }}
+              headStyle={{ borderBottom: "none"}}
             >
               {paymentTypeSelectionOpen ? (
                 <>
-                  <Radio.Group
-                    onChange={(e) => setPaymentMethod(e?.target?.value)}
-                    value={paymentMethod}
-                  >
-                    <Space direction="vertical">
-                      <Radio value="btc">BTC</Radio>
-                      <Radio value="wire">Wire Transfer</Radio>
-                    </Space>
-                  </Radio.Group>
+                  <div class="rectangle-parent">
+                    <div
+                      style={{
+                        backgroundColor:
+                          paymentMethod === "btc" ? "#FDC886" : "",
+                      }}
+                      className={`frame-item ${
+                        paymentMethod === "btc" ? "selected" : ""
+                      }`}
+                      onClick={() => {
+                        setPaymentMethod("btc")
+                      }}
+                    ></div>
+                    <div
+                      className={`frame-inner ${
+                        paymentMethod === "wire" ? "selected" : ""
+                      }`}
+                      style={{
+                        backgroundColor:
+                          paymentMethod === "wire" ? "#FDC886" : "",
+                      }}
+                      onClick={() => {
+                        setPaymentMethod("wire")
+                      }}
+                    ></div>
+                    <div
+                      className="group-container"
+                      onClick={() => {
+                        setPaymentMethod("wire")
+                      }}
+                    >
+                      <div class="wire-transfer-wrapper">
+                        <div class="wire-transfer">Wire Transfer</div>
+                      </div>
+                      <img
+                        class="bank-building-icon"
+                        alt=""
+                        src={wiretransfer}
+                      />
+                    </div>
+                    <div
+                      className="group-container1"
+                      onClick={() => {
+                        setPaymentMethod("btc")
+                      }}
+                    >
+                      <div class="bitcoin">Bitcoin</div>
+                      <img class="bitcoin-icon" alt="" src={btc} />
+                    </div>
+                  </div>
                   <div className="payment">
                     <Button
                       style={{
@@ -308,7 +351,7 @@ const BulkCheckout = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default BulkCheckout;
+export default BulkCheckout

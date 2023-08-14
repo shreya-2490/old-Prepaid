@@ -1,5 +1,5 @@
-import React from "react"
-import { Form, Input, Button } from "antd"
+import React, { useState } from "react"
+import { Form, Input, Button, notification } from "antd"
 import { UserOutlined, MailOutlined } from "@ant-design/icons"
 import "../styles/ContactUs.css"
 import NavbarCart from "./NavbarCart"
@@ -8,8 +8,10 @@ import email from "../assets/Mail.png"
 import Footer from "./Footer"
 import globe from "../assets/globe 1.png"
 import { Helmet } from "react-helmet"
+import axios from "axios"
 
 const ContactUs = () => {
+  const [loading, setLoading] = useState(false)
   const layout = {
     labelCol: {
       span: 6,
@@ -26,8 +28,37 @@ const ContactUs = () => {
     },
   }
 
-  const onFinish = (values) => {
-    console.log(values)
+  const onFinish = async (values) => {
+    setLoading(true)
+
+    try {
+      const response = await axios.post("/contact-us-api", {
+        name: values.user.name,
+        email: values.user.email,
+        subject: values.user.subject,
+        comment: values.user.comment,
+      })
+
+      if (response.data.status === "success") {
+        notification.success({
+          message: "Success",
+          description: "Email sent successfully!",
+        })
+      } else {
+        notification.error({
+          message: "Error",
+          description: "Email not sent",
+        })
+      }
+    } catch (error) {
+      notification.error({
+        message: "Error",
+        description: "An error occurred. Please try again later.",
+      })
+      console.error("An error occurred:", error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const pageTitle = "Contact-Us"
@@ -90,8 +121,9 @@ const ContactUs = () => {
                   type="primary"
                   htmlType="submit"
                   className="contact-submit-btn"
+                  loading={loading}
                 >
-                  Submit
+                  {loading ? "Submitting..." : "Submit"}
                 </Button>
               </Form.Item>
             </Form>
