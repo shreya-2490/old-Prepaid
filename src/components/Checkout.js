@@ -81,7 +81,7 @@ const Checkout = () => {
             })),
           })
           .then((res) =>
-            navigate(`/front-demo/payment`, {
+            navigate(`/payment`, {
               state: { email, data: res?.data },
             })
           )
@@ -251,11 +251,11 @@ const Checkout = () => {
                 <p>
                   I have read and agree with the Prepaid Friends
                   <span className="terms">
-                    <Link to="/front-demo/terms&conditions">
+                    <Link to="/terms&conditions">
                       Terms & Conditions
                     </Link>{" "}
                     and
-                    <Link to="/front-demo/privacypolicy"> Privacy Policy</Link>
+                    <Link to="/privacypolicy"> Privacy Policy</Link>
                   </span>
                 </p>
               </div>

@@ -16,7 +16,7 @@ function NavbarLogo({ customGoBack }) {
       <div className="logocheckout" onClick={customGoBack || goBack}>
         <LeftOutlined className="back-arrow" />
       </div>
-      <Link to="/front-demo">
+      <Link to="/">
         <img src={logo} alt="Logo" className="logopayment" />
       </Link>
     </div>

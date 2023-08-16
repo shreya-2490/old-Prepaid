@@ -5,7 +5,7 @@
   "engines": {
     "node": "18.16.1"
   },
-  "homepage": "https://prepaidfriends.com/front-demo",
+  "homepage": "https://prepaidfriends.com",
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
     "@emotion/react": "^11.9.0",

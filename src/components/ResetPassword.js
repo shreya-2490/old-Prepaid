@@ -58,7 +58,7 @@ function ResetPassword() {
       .finally(() => setIsLoading(false))
   }
   const handlelogoClick = () => {
-    nav("/front-demo/login")
+    nav("/login")
   }
 
 

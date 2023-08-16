@@ -78,11 +78,11 @@ function Preowned() {
 
   const handleKeepShopping = () => {
     setIsCartOpen(false)
-    navigate("/front-demo")
+    navigate("/")
   }
 
   const handleCheckout = () => {
-    navigate(`/front-demo/checkout`)
+    navigate(`/checkout`)
   }
 
   const handlePageChange = (page) => {

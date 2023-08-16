@@ -10,11 +10,11 @@ export const Thankyou = () => {
   const { orderNumber, email } = location?.state || {};
 
   const handleClickHome = () => {
-    nav("/front-demo/");
+    nav("/");
   };
   return (
     <>
-      <Navbarlogo customGoBack={() => nav("/front-demo")} />
+      <Navbarlogo customGoBack={() => nav("/")} />
       <section className="full-page">
         <div className="thankyou">
           <div className="thankyou-inner">

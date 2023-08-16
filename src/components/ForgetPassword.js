@@ -45,7 +45,7 @@ function ForgetPassword() {
   };
   
   const handlelogoClick = () => {
-    nav("/front-demo/login")
+    nav("/login")
   }
 
   return (

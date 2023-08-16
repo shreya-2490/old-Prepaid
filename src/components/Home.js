@@ -40,7 +40,7 @@ const Home = () => {
   }
 
   const handleBuyButtonClick = () => {
-    navigate("/front-demo/preowned", {
+    navigate("/preowned", {
       state: { selectedProvider, selectedPrice },
     })
   }
@@ -53,7 +53,7 @@ const Home = () => {
     }
     usdValue
       ? navigate(
-          `/front-demo/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`
+          `/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`
         )
       : showAlert(true)
   }

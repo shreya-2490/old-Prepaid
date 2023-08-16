@@ -267,6 +267,7 @@
     font-size: 0.9rem;
     line-height: 1.5;
     margin-top: 1.25rem;
+    font-weight: 600;
   }
 
   .cardtype-img {
@@ -280,6 +281,10 @@
     width: 23%;
     height: 1% !important;
     margin-right: 0.625rem;
+  }
+  .value123 {
+    padding: 0;
+    font-weight: 600;
   }
 }
 
@@ -481,6 +486,7 @@
     font-size: 0.9375rem;
     margin: 0.1875rem 0rem 0.1875rem 1.25rem;
     color: black;
+    font-weight: 500;
   }
   .email {
     font-size: 0.9375rem;
@@ -657,6 +663,7 @@
   .value123 {
     /* border: 1px solid red; */
     padding: 0;
+    font-weight: 600;
   }
 
   .valueheading {
@@ -787,6 +794,7 @@
     font-size: 0.9375rem;
     margin: 0.1875rem 0rem 0.1875rem 1.25rem;
     color: black;
+    font-weight: 500;
   }
 
   .email {
@@ -886,5 +894,9 @@
     width: 15%;
     height: 1% !important;
     margin-right: 0.625rem;
+  }
+  .value123 {
+    padding: 0;
+    font-weight: 600;
   }
 }

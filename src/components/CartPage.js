@@ -43,7 +43,7 @@ const Cart = ({ handleAddToCart }) => {
 
   const handleKeepShopping = () => {
     setIsCartOpen(false);
-    navigate("/front-demo");
+    navigate("/");
   };
 
   const handleCheckout = () => {
@@ -74,13 +74,13 @@ const Cart = ({ handleAddToCart }) => {
           }
         )
         .then((res) =>
-          navigate(`/front-demo/payment`, {
+          navigate(`/payment`, {
             state: { email: user?.email, data: res?.data },
           })
         )
         ?.finally(() => setIsLoading(false));
     } else {
-      navigate(`/front-demo/checkout`);
+      navigate(`/checkout`);
     }
   };
 

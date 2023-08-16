@@ -38,7 +38,7 @@ const Dashboard = () => {
             <li
               onClick={() => {
                 removeCookie("pfAuthToken", { path: "/" });
-                nav("/front-demo");
+                nav("/");
                 logout();
               }}
               className="signout-li"

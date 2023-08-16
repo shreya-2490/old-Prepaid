@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children }) => {
   const checkUserToken = () => {
     if (!cookies?.pfAuthToken || cookies?.pfAuthToken === undefined) {
       setIsLoggedIn(false);
-      return navigate("/front-demo/login");
+      return navigate("/login");
     }
     setIsLoggedIn(true);
   };

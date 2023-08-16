@@ -58,7 +58,7 @@ function Reset() {
   };
 
   const handlelogoClick = () => {
-    nav("/front-demo/dashboard");
+    nav("/dashboard");
   };
 
   return (

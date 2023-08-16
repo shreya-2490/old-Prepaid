@@ -100,7 +100,7 @@ const BulkCheckout = () => {
           }
         )
         .then((res) =>
-          navigate(`/front-demo/payment`, {
+          navigate(`/payment`, {
             state: {
               email: user?.email,
               orderType: "bulk-order",
@@ -136,7 +136,7 @@ const BulkCheckout = () => {
             })),
           })
           .then((res) =>
-            navigate(`/front-demo/payment`, {
+            navigate(`/payment`, {
               state: { email, orderType: "bulk-order", data: res?.data },
             })
           )
@@ -323,11 +323,11 @@ const BulkCheckout = () => {
                     <p>
                       I have read and agree with the Prepaid Friends
                       <span className="terms">
-                        <Link to="/front-demo/terms&conditions">
+                        <Link to="/terms&conditions">
                           Terms & Conditions
                         </Link>{" "}
                         and{" "}
-                        <Link to="/front-demo/privacypolicy">
+                        <Link to="/privacypolicy">
                           {" "}
                           Privacy Policy
                         </Link>

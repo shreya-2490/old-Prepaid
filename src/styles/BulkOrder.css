@@ -243,6 +243,8 @@
   .ant-select-selector:focus
     .ant-form-item-control-input
     .ant-input-number:focus,
+    .ant-input-number:active,
+    .ant-input-number::selection,
   .ant-form-item-control-input .ant-input-number:hover,
   .ant-form-item-control-input input[type="number"]:focus,
   .ant-form-item-control-input input[type="number"]:hover,
@@ -255,7 +257,9 @@
     .ant-checkbox-inner {
     border-color: #fdc886 !important;
   }
-
+  .ant-input-number-input {
+    font-weight: 500;
+  }
   .ant-btn:hover,
   .ant-btn:focus {
     border-color: #fdc886 !important;

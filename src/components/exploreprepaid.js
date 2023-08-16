@@ -18,12 +18,12 @@ function Explore() {
           </p>
         </div>
         <div className="explore-second-div">
-          <Link to="/front-demo">
+          <Link to="/">
             <button className="prepaid-btn" onClick={scrollToTop}>
               Buy Prepaid Card
             </button>
           </Link>
-          <Link to="/front-demo">
+          <Link to="/">
             <button className="prepaid-btn" onClick={scrollToTop}>
               Buy In Bulk
             </button>

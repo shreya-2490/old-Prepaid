@@ -63,7 +63,7 @@ function Login() {
             .catch((err) => {
               console.log(err);
             });
-          nav("/front-demo/dashboard")
+          nav("/dashboard")
         } else {
           if (res?.data?.message === "Invalid email format") {
             api.error({
@@ -104,11 +104,11 @@ function Login() {
   }
 
   const handleForgetPassword = () => {
-    nav(`/front-demo/forgot-password`)
+    nav(`/forgot-password`)
   }
 
   const handleRegister = () => {
-    nav(`/front-demo/register`)
+    nav(`/register`)
   }
 
   return (

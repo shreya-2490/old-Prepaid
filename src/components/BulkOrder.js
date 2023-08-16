@@ -149,7 +149,7 @@ const BulkOrder = () => {
 
                 console.log(value);
 
-                nav("/front-demo/bulk-checkout", {
+                nav("/bulk-checkout", {
                   state: {
                     customerName: value["customer-name"] || "",
                     businessName: value["business-name"] || "",

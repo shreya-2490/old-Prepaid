@@ -7,10 +7,10 @@ function Footer() {
     <>
     <div className="footer">
 
-      <Link to="/front-demo/terms-conditions" className="termscondition">
+      <Link to="/terms-conditions" className="termscondition">
         Terms & Conditions <span className="divider-bet">|</span>
       </Link>
-      <Link to="/front-demo/privacy-policy" className="privacy">
+      <Link to="/privacy-policy" className="privacy">
         Privacy Policy
         </Link>
 
@@ -18,7 +18,7 @@ function Footer() {
         <span className="copyright">Copyright © 2023 | All Rights Reserved</span>
         <div className="social-handles">
           <a href="https://www.facebook.com/prepaidfriendss" className="social-media" target="_blank"><FacebookOutlined /> </a>
-          <a href="" className="social-media" target="_blank"><LinkedinOutlined /></a>
+          <a href="https://www.linkedin.com/company/p-friends/" className="social-media" target="_blank"><LinkedinOutlined /></a>
           {/* <span className="social-media"><LinkedinOutlined /> </span> */}
           </div>
       </div>
@@ -27,16 +27,16 @@ function Footer() {
 
 
         <div className="termandprivacy">
-        <Link to="/front-demo/terms-conditions" className="termscondition">
+        <Link to="/terms-conditions" className="termscondition">
           Terms & Conditions <span className="divider-bet">|</span>
         </Link>
-        <Link to="/front-demo/privacy-policy" className="privacy">
+        <Link to="/privacy-policy" className="privacy">
           Privacy Policy
           </Link>
         </div>
         <div className="social-handles">
           <Link to="https://www.facebook.com/prepaidfriendss" className="social-media"><FacebookOutlined /> </Link>
-          <a href="" className="social-media" target="_blank"><LinkedinOutlined /></a>
+          <a href="https://www.linkedin.com/company/p-friends/" className="social-media" target="_blank"><LinkedinOutlined /></a>
           {/* <span className="social-media"><LinkedinOutlined /> </span> */}
           </div>
         </div>

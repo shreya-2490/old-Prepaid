@@ -6,6 +6,7 @@ import axios from "axios"
 import { useCookies } from "react-cookie"
 import NavbarCart from "./NavbarCart"
 import { message, notification } from "antd"
+import signup from "../assets/Sign Up.png"
 
 const Register = () => {
   const [api, contextHolder] = notification.useNotification()
@@ -45,7 +46,7 @@ const Register = () => {
             description:
               "Success!! Your Password has been sent to your Email Address",
           })
-          nav('/front-demo/login')
+          nav('/login')
         } else {
           api.error({
             message: "Something went wrong!",
@@ -74,6 +75,7 @@ const Register = () => {
         <div className="register-box">
           <div className="box1">
             <h1>Welcome!</h1>
+            <img src={signup} alt="signup" className="register-img"></img>
           </div>
 
           <div className="box2">

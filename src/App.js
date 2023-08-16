@@ -47,13 +47,13 @@ function App() {
             <ScrollToTop>
               <Routes>
                 <Route
-                  path="/front-demo"
+                  path="/"
                   element={<NavbarCart handleAddToCart={handleAddToCart} />}
                 />
               </Routes>
               <Routes>
                 <Route
-                  path="/front-demo"
+                  path="/"
                   element={
                     <Home
                       selectedProvider={selectedProvider}
@@ -65,55 +65,55 @@ function App() {
 
               <Routes>
                 <Route
-                  path="front-demo/cart"
+                  path="/cart"
                   element={<Cart handleAddToCart={handleAddToCart} />}
                 />
               </Routes>
               <Routes>
-                <Route path="front-demo/checkout" element={<Checkout />} />
+                <Route path="/checkout" element={<Checkout />} />
               </Routes>
               <Routes>
                 <Route
-                  path="/front-demo/bulk-checkout"
+                  path="/bulk-checkout"
                   element={<BulkCheckout />}
                 />
               </Routes>
               <Routes>
-                <Route path="front-demo/payment" element={<Payment />} />
+                <Route path="/payment" element={<Payment />} />
               </Routes>
               <Routes>
-                <Route path="front-demo/login" element={<Login />} />
+                <Route path="/login" element={<Login />} />
               </Routes>
               <Routes>
                 <Route
-                  path="front-demo/forgot-password"
+                  path="/forgot-password"
                   element={<ForgetPassword />}
                 />
               </Routes>
               <Routes>
-                <Route path="front-demo/register" element={<Register />} />
+                <Route path="/register" element={<Register />} />
               </Routes>
               <Routes>
                 <Route
-                  path="front-demo/reset-password/:stoken"
+                  path="/reset-password/:stoken"
                   element={<ResetPassword />}
                 />
               </Routes>
               <Routes>
-                <Route path="front-demo/bulk-order" element={<BulkOrder />} />
+                <Route path="/bulk-order" element={<BulkOrder />} />
               </Routes>
               <Routes>
-                <Route path="front-demo/contact-us" element={<ContactUs />} />
+                <Route path="/contact-us" element={<ContactUs />} />
               </Routes>
               <Routes>
-                <Route path="front-demo/terms-conditions" element={<Terms />} />
+                <Route path="/terms-conditions" element={<Terms />} />
               </Routes>
               <Routes>
-                <Route path="front-demo/privacy-policy" element={<Policy />} />
+                <Route path="/privacy-policy" element={<Policy />} />
               </Routes>
               <Routes>
                 <Route
-                  path="front-demo/dashboard"
+                  path="/dashboard"
                   element={
                     <ProtectedRoute>
                       <Dashboard />
@@ -122,11 +122,11 @@ function App() {
                 />
               </Routes>
               <Routes>
-                <Route path="front-demo/thank-you" element={<Thankyou />} />
+                <Route path="/thank-you" element={<Thankyou />} />
               </Routes>
               <Routes>
                 <Route
-                  path="front-demo/change-password"
+                  path="/change-password"
                   element={
                     <ProtectedRoute>
                       <Reset />
@@ -136,16 +136,13 @@ function App() {
               </Routes>
               <Routes>
                 <Route
-                  path="front-demo/how-it-works"
+                  path="/how-it-works"
                   element={<HowItWorks />}
                 />
               </Routes>
-              {/* <Routes>
-              <Route path="front-demo/password" element={<Password />} />
-            </Routes> */}
               <Routes>
                 <Route
-                  path="front-demo/preowned"
+                  path="/preowned"
                   element={
                     <Preowned
                       selectedProvider={selectedProvider}

@@ -8,7 +8,7 @@ export const WireTransfer = (props) => {
   const nav = useNavigate()
 
   const handleClickHome = () => {
-    nav("/front-demo/")
+    nav("/")
   }
   return (
     <>

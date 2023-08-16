@@ -33,7 +33,7 @@ const NavbarCart = () => {
 
   const handleKeepShopping = () => {
     setIsCartOpen(false);
-    navigate("/front-demo");
+    navigate("/");
   };
 
   const handleCheckout = () => {
@@ -64,13 +64,13 @@ const NavbarCart = () => {
           }
         )
         .then((res) =>
-          navigate(`/front-demo/payment`, {
+          navigate(`/payment`, {
             state: { email: user?.email, data: res?.data },
           })
         )
         ?.finally(() => setIsLoading(false));
     } else {
-      navigate(`/front-demo/checkout`);
+      navigate(`/checkout`);
     }
   };
 
@@ -102,7 +102,7 @@ const NavbarCart = () => {
 
         {/* { logo } */}
         <div className="logo">
-          <Link to="/front-demo">
+          <Link to="/">
             <img src={logo} alt="Logo" />
           </Link>
         </div>
@@ -112,27 +112,27 @@ const NavbarCart = () => {
           <ul>
             <div>
               <li>
-                <Link to="/front-demo">HOME</Link>
+                <Link to="/">HOME</Link>
               </li>
 
               <li>
-                <Link to="/front-demo/bulk-order">BULK ORDERS</Link>
+                <Link to="/bulk-order">BULK ORDERS</Link>
               </li>
 
               <li className="how">
-                <Link to="/front-demo/how-it-works">HOW IT WORKS</Link>
+                <Link to="/how-it-works">HOW IT WORKS</Link>
               </li>
 
               <li>
-                <Link to="/front-demo/contact-us">CONTACT</Link>
+                <Link to="/contact-us">CONTACT</Link>
               </li>
             </div>
             <li>
               <Link
                 to={
                   cookies?.pfAuthToken
-                    ? "/front-demo/dashboard"
-                    : "/front-demo/login"
+                    ? "/dashboard"
+                    : "/login"
                 }
               >
                 <span className="user">
@@ -158,7 +158,7 @@ const NavbarCart = () => {
         </div>
 
         <div>
-          <Link to="/front-demo/login">
+          <Link to="/login">
             <span className="user2">
               <UserOutlined style={{ fontSize: "1.5rem" }} />
             </span>
