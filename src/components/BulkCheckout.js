@@ -282,7 +282,7 @@ const BulkCheckout = () => {
                         marginBottom: "10px",
                       }}
                       className="payment-btn"
-                      disabled={isLoading}
+                      disabled={!(paymentMethod === "wire" || paymentMethod === "btc")}
                       loading={isLoading}
                       onClick={handleSubmit}
                     >
