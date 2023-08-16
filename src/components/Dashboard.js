@@ -70,7 +70,6 @@ const Dashboard = () => {
           {reset ? <Reset /> : <></>}
         </div>
         <div style={{ textAlign: "right" }}>
-          {" "}
           <Space direction="vertical"></Space>
         </div>
       </div>

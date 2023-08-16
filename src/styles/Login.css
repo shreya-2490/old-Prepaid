@@ -40,15 +40,15 @@
   border: none;
 }
 .btn:hover {
-  background-color: #f3d8b7;
+  background-color: #fdc786c9;
   color: #1b1b1b;
 }
-/* .btn::selection{
+.btn::selection{
     background-color: #fdc886;
     color: #1b1b1b; 
-} */
+}
 .btn:active {
-  background-color: #f3d8b7;
+  background-color: #fdc786c9;
   color: #1b1b1b;
 }
 .forget-register {
@@ -76,7 +76,7 @@
   position: absolute;
   right: 1rem;
   z-index: 9999;
-  top:0.1rem;
+  top:0.5rem;
 }
 .form-check-input:checked{
   background-color: #fdc886;

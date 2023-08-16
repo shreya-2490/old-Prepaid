@@ -1,42 +1,42 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Login.css";
-import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useCookies } from "react-cookie";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Login.css";
-import { notification } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
-import { useAuth } from "../hooks/useAuth";
+import React, { useState } from "react"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../styles/Login.css"
+import logo from "../assets/logo.png"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { useCookies } from "react-cookie"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../styles/Login.css"
+import { notification } from "antd"
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons"
+import { useAuth } from "../hooks/useAuth"
 
 function Login() {
-  const [api, contextHolder] = notification.useNotification();
-  const { login } = useAuth();
-  const [showPassword, setShowPassword] = useState(false);
-  const nav = useNavigate();
-  const [_, setCookie] = useCookies(["pfAuthToken"]);
-  const [email, setEmail] = useState("");
-  const [psw, setPsw] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [loginError, setLoginError] = useState(false);
+  const [api, contextHolder] = notification.useNotification()
+  const { login } = useAuth()
+  const [showPassword, setShowPassword] = useState(false)
+  const nav = useNavigate()
+  const [_, setCookie] = useCookies(["pfAuthToken"])
+  const [email, setEmail] = useState("")
+  const [psw, setPsw] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [loginError, setLoginError] = useState(false)
 
   const toggleShowPassword = (e) => {
-    setShowPassword(!showPassword);
-    e?.preventDefault();
-  };
+    setShowPassword(!showPassword)
+    e?.preventDefault()
+  }
 
   const handleLogin = (e) => {
-    e?.preventDefault();
+    e?.preventDefault()
 
     if (!email || !psw) {
-      setLoginError(true);
-      return;
+      setLoginError(true)
+      return
     }
 
-    setIsLoading(true);
-    setLoginError(false);
+    setIsLoading(true)
+    setLoginError(false)
 
     axios
       .post("/login-user-api", {
@@ -44,7 +44,7 @@ function Login() {
         password: psw,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res)
         if (res?.data?.token) {
           setCookie("pfAuthToken", res?.data?.token, { path: "/" });
           axios({
@@ -63,24 +63,53 @@ function Login() {
             .catch((err) => {
               console.log(err);
             });
-          nav("/front-demo/dashboard");
+          nav("/front-demo/dashboard")
         } else {
-          return api.error({
-            message: `Something went wrong!`,
-            description: "Incorrect Credentials. Please try again.",
-          });
+          if (res?.data?.message === "Invalid email format") {
+            api.error({
+              message: "Invalid Email",
+              description: "Please enter a valid email address.",
+            })
+          } else if (res?.data?.message === "Email not found") {
+            api.error({
+              message: "Email Not Found",
+              description: "The provided email address was not found.",
+            })
+          } else if (res?.data?.message === "Invalid password format") {
+            api.error({
+              message: "Invalid Password",
+              description: "Please enter a valid password.",
+            })
+          } else if (res?.data?.message === "Incorrect password") {
+            api.error({
+              message: "Incorrect Password",
+              description: "The provided password is incorrect.",
+            })
+          } else {
+            api.error({
+              message: "Login Failed",
+              description: "Incorrect credentials. Please try again.",
+            })
+          }
         }
       })
-      .finally(() => setIsLoading(false));
-  };
+      .catch((error) => {
+        console.error(error)
+        api.error({
+          message: "An error occurred",
+          description: "An error occurred while processing your request.",
+        })
+      })
+      .finally(() => setIsLoading(false))
+  }
 
   const handleForgetPassword = () => {
-    nav(`/front-demo/forgot-password`);
-  };
+    nav(`/front-demo/forgot-password`)
+  }
 
   const handleRegister = () => {
-    nav(`/front-demo/register`);
-  };
+    nav(`/front-demo/register`)
+  }
 
   return (
     <>
@@ -163,7 +192,7 @@ function Login() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Login;
+export default Login

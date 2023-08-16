@@ -28,15 +28,12 @@ const BulkCheckout = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [paymentTypeSelectionOpen, setPaymentTypeSelectionOpen] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
   const handleDelete = (cartItem) => {
     removeBulkFromCart(cartItem?.id)
   }
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value)
-  }
-
+  
   const handleCheckboxChange1 = () => {
     setIsChecked1(!isChecked1)
   }
@@ -44,6 +41,13 @@ const BulkCheckout = () => {
   const handleCheckboxChange2 = () => {
     setIsChecked2(!isChecked2)
   }
+
+  const handleEmailChange = (event) => {
+    const enteredEmail = event.target.value;
+    setEmail(enteredEmail);
+    setIsEmailValid(validator.isEmail(enteredEmail));
+  };
+  
 
   useEffect(() => {
     axios
@@ -338,7 +342,7 @@ const BulkCheckout = () => {
                         marginBottom: "10px",
                       }}
                       className="payment-btn"
-                      disabled={!isChecked2}
+                      disabled={!isChecked2 || !isEmailValid}
                       onClick={() => setPaymentTypeSelectionOpen(true)}
                     >
                       Choose Payment Type

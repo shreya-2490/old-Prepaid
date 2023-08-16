@@ -154,7 +154,7 @@
     height: 3.8rem;
     background-color: white;
     position: absolute;
-    top: 34%;
+    top: 36%;
     left: 25%;
     z-index: 100;
     transform: translate(-50%, -50%);
@@ -288,6 +288,9 @@
   }
   .PhoneInput {
     width: 7%;
+  }
+  .countrycode{
+    width:30%;
   }
 }
 
@@ -543,6 +546,9 @@
     width: 70%;
     margin: 0 15%;
   }
+  .countrycode{
+    width:38%;
+  }
 }
 
 /* / =====================Mobile Veiw=========================== / */
@@ -772,5 +778,8 @@
   }
   .PhoneInput {
     width: 15%;
+  }
+  .countrycode{
+    width: 83%;
   }
 }

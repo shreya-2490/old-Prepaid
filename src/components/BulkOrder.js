@@ -214,13 +214,12 @@ const BulkOrder = () => {
               >
                 <span style={{ display: "flex" }}>
                   <CountrySelect
-                    className={`border-b-2 bg-none outline-none w-1/4 text-xs ${
+                    className={`border-b-2 bg-none outline-none w-1/4 text-xs countrycode ${
                       onFocuseInput === "country"
                         ? "border-blue-700 "
                         : "border-gray-300"
                     }`}
                     labels={en}
-                    style={{ width: "30%" }}
                     value={country}
                     onChange={setCountry}
                     name="countrySelect"
@@ -285,7 +284,7 @@ const BulkOrder = () => {
                     parser={(value) =>
                       parseInt(value, 10) < 5 ? 5 : parseInt(value, 10)
                     }
-                    style={{ width: "100%" }}
+                    style={{ width: "100%", fontWeight:"400" }}
                   />
                 </Form.Item>
               </div>
