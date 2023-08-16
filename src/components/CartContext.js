@@ -28,7 +28,7 @@ export const CartProvider = ({ children }) => {
     }
   };
   const addToBulkCart = (item) => {
-    setBulkCartItems([...bulkCartItems, { ...item }]);
+    setBulkCartItems([{ ...item }]);
   };
 
   const removeFromCart = (itemId) => {
