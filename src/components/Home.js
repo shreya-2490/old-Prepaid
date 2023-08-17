@@ -104,7 +104,7 @@ const Home = () => {
             </h1>
             <h1 className="home-heading-1">
               Seamlessly Connect to a World of Possibilities with Dollar-Loaded
-              Prepaid Cards!
+              Prepaid Cards!!
             </h1>
           </div>
 
