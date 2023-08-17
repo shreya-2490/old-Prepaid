@@ -1,22 +1,26 @@
-import React from "react"
-import "../styles/Wiretransfer.css"
-import checkmark from "../assets/Checkmark.png"
-import { useNavigate } from "react-router-dom"
+import React from "react";
+import "../styles/Wiretransfer.css";
+import checkmark from "../assets/Checkmark.png";
+import { useNavigate } from "react-router-dom";
 
 export const WireTransfer = (props) => {
-  const { email } = props;
-  const nav = useNavigate()
+  const { email, customThankYouMessage } = props;
+  const nav = useNavigate();
 
   const handleClickHome = () => {
-    nav("/")
-  }
+    nav("/");
+  };
   return (
     <>
       <section>
         <div className="wiretransfer">
           <div className="wiretransfer-inner">
             <div className="wiretransfer-circle">
-              <img src={checkmark} alt="wiretransfer-checkmark" className="animated-checkmark" />
+              <img
+                src={checkmark}
+                alt="wiretransfer-checkmark"
+                className="animated-checkmark"
+              />
               <h1>Thank You for your purchase!</h1>
             </div>
 
@@ -35,10 +39,7 @@ export const WireTransfer = (props) => {
               </div>
             </div>
 
-            <div className="wiretransfer-details">
-              Your order has been placed succcessfully. Please check your email
-              for receipt confirmation and instructions. Thank You!
-            </div>
+            <div className="wiretransfer-details">{customThankYouMessage}</div>
             <br />
             <button className="wiretransfer-account" onClick={handleClickHome}>
               Back to HomePage
@@ -47,5 +48,5 @@ export const WireTransfer = (props) => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};

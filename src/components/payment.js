@@ -11,16 +11,24 @@ import axios from "axios";
 import { usdToBTC } from "../utils/helper";
 import { WireTransfer } from "./WireTransfer-thanyoupage";
 import useInterval from "../hooks/useInterval";
+import { useCookies } from "react-cookie";
+
+const defaultWireOrderSuccessMessage = `Your order has been placed successfully. Please check your email
+for receipt confirmation and instructions. Thank You!`;
 
 const Payment = () => {
   const nav = useNavigate();
   const [btcRate, setBTCRate] = useState(null);
+  const [wireOrderSuccessMessage, setWireOrderSuccessMessage] = useState(
+    defaultWireOrderSuccessMessage
+  );
   const location = useLocation();
   const { email, orderType, data } = location?.state || {};
   const queryParams = new URLSearchParams(location.search);
   const input1 = queryParams.get("usdValue");
   const [usdValue, setUSDValue] = useState(input1);
   const isBulkOrder = orderType === "bulk-order";
+  const [cookies] = useCookies(["pfAuthToken"]);
 
   useEffect(() => {
     setUSDValue(usdValue);
@@ -33,6 +41,74 @@ const Payment = () => {
       )
       .then((response) => setBTCRate(response?.data?.bitcoin?.usd))
       .catch((error) => console.error(error));
+  }, []);
+
+  useEffect(() => {
+    const currentDate = new Date();
+
+    // Convert UTC time to PST (UTC - 8 hours)
+    const currentPSTHour = currentDate.getUTCHours() - 8;
+
+    const getNextBusinessDayPST = (date) => {
+      const pstOffsetHours = -8;
+      const pstOffsetMilliseconds = pstOffsetHours * 60 * 60 * 1000;
+
+      const utcDate = date.getTime();
+      const utcDayOfWeek = new Date(utcDate).getUTCDay();
+
+      let daysToAdd = 1;
+
+      if (utcDayOfWeek === 5) {
+        daysToAdd = 3;
+      } else if (utcDayOfWeek === 6) {
+        daysToAdd = 2;
+      }
+
+      const pstNextBusinessDay = new Date(
+        utcDate + pstOffsetMilliseconds + daysToAdd * 24 * 60 * 60 * 1000
+      );
+
+      return pstNextBusinessDay;
+    };
+
+    const nextBusinessDayPST = getNextBusinessDayPST(currentDate);
+
+    const nextBusinessDay = nextBusinessDayPST.toLocaleString("en-US", {
+      weekday: "long",
+    });
+
+    const isWorkingDayPST = (date) => {
+      const pstOffsetHours = -8;
+      const pstOffsetMilliseconds = pstOffsetHours * 60 * 60 * 1000;
+
+      const pstDate = new Date(date.getTime() + pstOffsetMilliseconds);
+      const pstDayOfWeek = pstDate.getUTCDay();
+
+      return pstDayOfWeek >= 1 && pstDayOfWeek <= 5;
+    };
+
+    const isWorkingDay = isWorkingDayPST(currentDate);
+
+    if (
+      data?.payment_method === "wire" &&
+      data?.objectDataReturn?.order_total > 500 &&
+      cookies?.pfAuthToken &&
+      currentPSTHour < 10 &&
+      currentPSTHour >= 17
+    ) {
+      setWireOrderSuccessMessage(
+        `Our team will contact you before 10:00am PST on ${nextBusinessDay}.`
+      );
+    } else if (
+      data?.payment_method === "wire" &&
+      data?.objectDataReturn?.order_total > 500 &&
+      cookies?.pfAuthToken &&
+      isWorkingDay
+    ) {
+      setWireOrderSuccessMessage(
+        `Our team will contact you within the hour to confirm your order and send payment instructions. Thank you!!`
+      );
+    }
   }, []);
 
   const totalCartItemsCount = data?.objectDataReturn?.items?.reduce(
@@ -266,7 +342,10 @@ const Payment = () => {
               headStyle={{ borderBottom: "none" }}
             >
               {data?.payment_method === "wire" ? (
-                <WireTransfer email={email} />
+                <WireTransfer
+                  email={email}
+                  customThankYouMessage={wireOrderSuccessMessage}
+                />
               ) : (
                 <>
                   <QRCode value={data?.bitcon_address} size={230} />
