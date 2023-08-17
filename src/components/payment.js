@@ -92,7 +92,7 @@ const Payment = () => {
     if (
       data?.payment_method === "wire" &&
       data?.objectDataReturn?.order_total > 500 &&
-      cookies?.pfAuthToken &&
+      !cookies?.pfAuthToken &&
       currentPSTHour < 10 &&
       currentPSTHour >= 17
     ) {
@@ -102,7 +102,7 @@ const Payment = () => {
     } else if (
       data?.payment_method === "wire" &&
       data?.objectDataReturn?.order_total > 500 &&
-      cookies?.pfAuthToken &&
+      !cookies?.pfAuthToken &&
       isWorkingDay
     ) {
       setWireOrderSuccessMessage(
