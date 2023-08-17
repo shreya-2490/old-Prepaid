@@ -102,7 +102,12 @@
     height: 8.13rem;
     text-align: left;
   }
-
+  .with-bitcoin .group-container{
+   left:1rem;
+  }
+  .with-bitcoin .frame-inner{
+    left: 0.1rem;
+  }
   .bulk-main {
     background-color: #f5f2ea;
     width: 100%;
@@ -401,6 +406,12 @@
     height: 8.13rem;
     text-align: left;
   }
+  .with-bitcoin .group-container{
+    left:1rem;
+   }
+   .with-bitcoin .frame-inner{
+     left: 0.1rem;
+   }
   .bulk-main {
     background-color: #f5f2ea;
     width: 100%;
