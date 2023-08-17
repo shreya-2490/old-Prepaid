@@ -178,7 +178,7 @@ function Login() {
               type="submit"
               onClick={handleLogin}
               className="btn w-100 mt-1"
-              disabled={isLoading}
+                disabled={!email || !psw || isLoading}
             >
               SIGN IN
             </button>

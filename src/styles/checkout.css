@@ -550,6 +550,9 @@
     margin: 0.125rem;
     /* text-decoration: underline; */
   }
+  .terms a {
+    color: #f8b869;
+  }
 
   .custom-upper-cardvalue {
     display: flex;
@@ -860,7 +863,9 @@
     margin: 0.125rem;
     /* text-decoration: underline; */
   }
-
+  .terms a {
+    color: #f8b869;
+  }
   .custom-upper-cardvalue {
     display: flex;
     align-items: baseline;

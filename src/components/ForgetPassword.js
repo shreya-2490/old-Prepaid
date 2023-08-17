@@ -26,6 +26,7 @@ function ForgetPassword() {
             message: "Success",
             description: "Password reset link sent to your email",
           });
+          nav('/login')
         } else {
           const errorMessage = res.data.message || "Something went wrong!";
           notification.error({
@@ -78,6 +79,7 @@ function ForgetPassword() {
             <button
               type="submit"
               onClick={handleForget}
+              disabled={!email || isLoading}
               className="btn  w-100 mt-2"
             >
               Reset Password

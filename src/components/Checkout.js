@@ -20,6 +20,7 @@ const Checkout = () => {
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [customerName, setCustomerName] = useState("");
 
   const handleDelete = (cartItem) => {
@@ -253,8 +254,8 @@ const Checkout = () => {
                 <p>
                   I have read and agree with the Prepaid Friends
                   <span className="terms">
-                    <Link to="/terms&conditions">Terms & Conditions</Link> and
-                    <Link to="/privacypolicy"> Privacy Policy</Link>
+                    <Link to="/terms-conditions">Terms & Conditions</Link> and
+                    <Link to="/privacy-policy"> Privacy Policy</Link>
                   </span>
                 </p>
               </div>
@@ -268,8 +269,9 @@ const Checkout = () => {
                   className="payment-btn"
                   disabled={!isChecked2}
                   onClick={handleSubmit}
+                  loading={isLoading}
                 >
-                  Continue to payment
+                  {isLoading ? "Loading..." : "Continue to Payment"}
                 </Button>
               </div>
             </Card>

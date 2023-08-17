@@ -51,6 +51,10 @@
   background-color: #fdc786c9;
   color: #1b1b1b;
 }
+.btn:disabled{
+  background-color: #fdc886;
+  color: #1b1b1b;
+}
 .forget-register {
   font-size: 0.86rem;
   cursor: pointer;

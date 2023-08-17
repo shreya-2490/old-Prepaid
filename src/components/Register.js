@@ -110,6 +110,7 @@ const Register = () => {
             />
             <button
               type="submit"
+              className="btn"
               onClick={handleRegister}
               disabled={isLoading || updateButtonDisabled()}
             >

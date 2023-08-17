@@ -1,32 +1,32 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Login.css";
-import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { notification } from "antd";
-import { useCookies } from "react-cookie";
+import React, { useState } from "react"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../styles/Login.css"
+import logo from "../assets/logo.png"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { notification } from "antd"
+import { useCookies } from "react-cookie"
 
 function Reset() {
-  const [password, setNewpswrd] = useState("");
-  const [password_confirmation, setConfirmpswrd] = useState("");
-  const [api, contextHolder] = notification.useNotification();
-  const nav = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
-  const [cookies, setCookie] = useCookies(["pfAuthToken"]);
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [password, setNewpswrd] = useState("")
+  const [password_confirmation, setConfirmpswrd] = useState("")
+  const [api, contextHolder] = notification.useNotification()
+  const nav = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
+  const [cookies, setCookie] = useCookies(["pfAuthToken"])
+  const [formSubmitted, setFormSubmitted] = useState(false)
 
   const handleChangePassword = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (password === "") {
-      setFormSubmitted(true);
+      setFormSubmitted(true)
       return api.error({
         message: "Password Error",
         description: "Password should not be empty.",
-      });
+      })
     }
 
-    setIsLoading(true);
+    setIsLoading(true)
     axios
       .post(
         "/api/change-password-api",
@@ -41,25 +41,25 @@ function Reset() {
         }
       )
       .then((res) => {
-        console.log(res);
+        console.log(res)
         if (res.data.status === "success") {
           notification.success({
             message: "Success",
             description: "Password changed successfully",
-          });
+          })
         } else {
           return api.error({
             message: "Something went wrong!",
             description: "Token Expired. Please try again.",
-          });
+          })
         }
       })
-      .finally(() => setIsLoading(false));
-  };
+      .finally(() => setIsLoading(false))
+  }
 
   const handlelogoClick = () => {
-    nav("/dashboard");
-  };
+    nav("/dashboard")
+  }
 
   return (
     <>
@@ -101,14 +101,15 @@ function Reset() {
               type="button"
               onClick={handleChangePassword}
               className="btn w-100 mt-2"
+              disabled={!password || !password_confirmation || isLoading}
             >
-              Submit
+              {isLoading ? "Loading..." : "Submit"}
             </button>
           </form>
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Reset;
+export default Reset
