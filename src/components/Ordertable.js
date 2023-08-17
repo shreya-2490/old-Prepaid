@@ -58,7 +58,7 @@ const OrderTable = () => {
   useEffect(() => {
     setIsLoading(true);
     axios
-      ?.get("/my-order-individual-api", {
+      ?.get("/api/my-order-individual-api", {
         headers: {
           Authorization: `Bearer ${cookies?.pfAuthToken}`,
         },
@@ -67,7 +67,7 @@ const OrderTable = () => {
       ?.catch((err) => console?.error(err));
 
     axios
-      ?.get("/get-order-bulk-api", {
+      ?.get("/api/get-order-bulk-api", {
         headers: {
           Authorization: `Bearer ${cookies?.pfAuthToken}`,
         },

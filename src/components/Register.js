@@ -1,22 +1,22 @@
-import React, { useState } from "react"
-import "../styles/Register.css"
-import Footer from "./Footer"
-import { useNavigate } from "react-router-dom"
-import axios from "axios"
-import { useCookies } from "react-cookie"
-import NavbarCart from "./NavbarCart"
-import { message, notification } from "antd"
-import signup from "../assets/Sign Up.png"
+import React, { useState } from "react";
+import "../styles/Register.css";
+import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useCookies } from "react-cookie";
+import NavbarCart from "./NavbarCart";
+import { message, notification } from "antd";
+import signup from "../assets/Sign Up.png";
 
 const Register = () => {
-  const [api, contextHolder] = notification.useNotification()
-  const nav = useNavigate()
-  const [cookies, setCookie] = useCookies(["pfAuthToken"])
-  const [first_name, setName] = useState("")
-  const [last_name, setLastName] = useState("")
-  const [businessname, setBusinessName] = useState("")
-  const [email, setEmail] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [api, contextHolder] = notification.useNotification();
+  const nav = useNavigate();
+  const [cookies, setCookie] = useCookies(["pfAuthToken"]);
+  const [first_name, setName] = useState("");
+  const [last_name, setLastName] = useState("");
+  const [businessname, setBusinessName] = useState("");
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const updateButtonDisabled = () => {
     if (first_name && last_name && email) {
@@ -26,45 +26,45 @@ const Register = () => {
   };
 
   const handleRegister = (e) => {
-    e?.preventDefault()
+    e?.preventDefault();
     if (updateButtonDisabled()) {
       return;
     }
 
     setIsLoading(true);
     axios
-      .post("/register-user-api", {
+      .post("/api/register-user-api", {
         first_name,
         last_name,
         email,
       })
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res.data.status === "success") {
           notification.success({
             message: "Success",
             description:
               "Success!! Your Password has been sent to your Email Address",
-          })
-          nav('/login')
+          });
+          nav("/login");
         } else {
           api.error({
             message: "Something went wrong!",
             description: "Incorrect Credentials or Email Already in Use",
-          })
+          });
         }
       })
       .catch((error) => {
-        console.error("API Error:", error)
+        console.error("API Error:", error);
         api.error({
           message: "API Error",
           description: "An error occurred while processing your request",
-        })
+        });
       })
       .finally(() => {
-        setIsLoading(false)
-      })
-  }
+        setIsLoading(false);
+      });
+  };
 
   return (
     <>
@@ -108,7 +108,11 @@ const Register = () => {
               placeholder="Buisness Name"
               onChange={(e) => setBusinessName(e?.target?.value)}
             />
-            <button type="submit" onClick={handleRegister} disabled={isLoading || updateButtonDisabled()}>
+            <button
+              type="submit"
+              onClick={handleRegister}
+              disabled={isLoading || updateButtonDisabled()}
+            >
               {isLoading ? "Loading..." : "Sign Up"}
             </button>
           </div>
@@ -116,7 +120,7 @@ const Register = () => {
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

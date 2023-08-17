@@ -41,7 +41,7 @@ const NavbarCart = () => {
       setIsLoading(true);
       axios
         ?.post(
-          `/preowned-order`,
+          `/api/preowned-order`,
           {
             customer_name: user?.customerName,
             email: user?.email,
@@ -128,13 +128,7 @@ const NavbarCart = () => {
               </li>
             </div>
             <li>
-              <Link
-                to={
-                  cookies?.pfAuthToken
-                    ? "/dashboard"
-                    : "/login"
-                }
-              >
+              <Link to={cookies?.pfAuthToken ? "/dashboard" : "/login"}>
                 <span className="user">
                   {user ? (
                     <Avatar size="large">{user?.customerName[0]}</Avatar>

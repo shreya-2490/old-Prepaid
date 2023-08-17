@@ -29,7 +29,7 @@ function Reset() {
     setIsLoading(true);
     axios
       .post(
-        "/change-password-api",
+        "/api/change-password-api",
         {
           password,
           password_confirmation,

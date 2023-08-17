@@ -51,7 +51,7 @@ const Cart = ({ handleAddToCart }) => {
       setIsLoading(true);
       axios
         ?.post(
-          `/preowned-order`,
+          `/api/preowned-order`,
           {
             customer_name: user?.customerName,
             email: user?.email,

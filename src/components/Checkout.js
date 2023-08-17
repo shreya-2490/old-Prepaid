@@ -1,46 +1,46 @@
-import React, { useState, useEffect, useContext } from "react"
-import { Card, Button, Select, Checkbox, Alert, notification } from "antd"
-import { DeleteOutlined } from "@ant-design/icons"
-import Navbarlogo from "./Navbarlogo"
-import "../styles/checkout.css"
-import validator from "validator"
-import visa from "../assets/Visacartpage.png"
-import mastercard from "../assets/Mastercardcartpage.png"
-import { useNavigate, Link } from "react-router-dom"
-import { CartContext } from "./CartContext"
-import axios from "axios"
-import { usdToBTC } from "../utils/helper"
+import React, { useState, useEffect, useContext } from "react";
+import { Card, Button, Select, Checkbox, Alert, notification } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import Navbarlogo from "./Navbarlogo";
+import "../styles/checkout.css";
+import validator from "validator";
+import visa from "../assets/Visacartpage.png";
+import mastercard from "../assets/Mastercardcartpage.png";
+import { useNavigate, Link } from "react-router-dom";
+import { CartContext } from "./CartContext";
+import axios from "axios";
+import { usdToBTC } from "../utils/helper";
 
 const Checkout = () => {
-  const [api, contextHolder] = notification.useNotification()
+  const [api, contextHolder] = notification.useNotification();
 
-  const [btcRate, setBTCRate] = useState(null)
-  const navigate = useNavigate()
-  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext)
-  const [isChecked1, setIsChecked1] = useState(false)
-  const [isChecked2, setIsChecked2] = useState(false)
-  const [email, setEmail] = useState("")
-  const [customerName, setCustomerName] = useState("")
+  const [btcRate, setBTCRate] = useState(null);
+  const navigate = useNavigate();
+  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
+  const [isChecked1, setIsChecked1] = useState(false);
+  const [isChecked2, setIsChecked2] = useState(false);
+  const [email, setEmail] = useState("");
+  const [customerName, setCustomerName] = useState("");
 
   const handleDelete = (cartItem) => {
-    removeFromCart(cartItem?.id)
-  }
+    removeFromCart(cartItem?.id);
+  };
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value)
-  }
+    setEmail(event.target.value);
+  };
 
   const handleCheckboxChange1 = () => {
-    setIsChecked1(!isChecked1)
-  }
+    setIsChecked1(!isChecked1);
+  };
 
   const handleCheckboxChange2 = () => {
-    setIsChecked2(!isChecked2)
-  }
+    setIsChecked2(!isChecked2);
+  };
 
   const handleChange = (item, quantity) => {
-    updateQuantity(item?.id, quantity)
-  }
+    updateQuantity(item?.id, quantity);
+  };
 
   useEffect(() => {
     axios
@@ -48,22 +48,24 @@ const Checkout = () => {
         "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
       )
       .then((response) => setBTCRate(response?.data?.bitcoin?.usd))
-      .catch((error) => console.error(error))
-  }, [])
+      .catch((error) => console.error(error));
+  }, []);
 
   const totalNewCardValue = cartItems?.reduce((accumulator, object) => {
-    return accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
-  }, 0)
+    return (
+      accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
+    );
+  }, 0);
 
-  const totalCardsValue = totalNewCardValue
+  const totalCardsValue = totalNewCardValue;
 
   const handleSubmit = () => {
     if (email && validator.isEmail(email) && customerName) {
-      const nameParts = customerName.split(" ")
+      const nameParts = customerName.split(" ");
       if (nameParts.length >= 2) {
-        setEmail(email)
+        setEmail(email);
         axios
-          ?.post(`/preowned-order`, {
+          ?.post(`/api/preowned-order`, {
             customer_name: customerName,
             email: email,
             payment_method: "btc",
@@ -84,29 +86,29 @@ const Checkout = () => {
             navigate(`/payment`, {
               state: { email, data: res?.data },
             })
-          )
+          );
       } else {
         api.error({
           message: "Invalid full name format",
           description:
             "Please enter your full name including both first and last names.",
-        })
+        });
       }
     } else {
       if (!email) {
         api.error({
           message: "Invalid email format",
           description: "Please enter a correct email address.",
-        })
+        });
       }
       if (!customerName) {
         api.error({
           message: "Invalid customer name",
           description: "Please enter your full name.",
-        })
+        });
       }
     }
-  }
+  };
 
   return (
     <>
@@ -123,9 +125,9 @@ const Checkout = () => {
             >
               <div className="custom-upper-para">
                 {cartItems?.map((cartItem) => {
-                  const { id, usdValue, quantity, type } = cartItem
+                  const { id, usdValue, quantity, type } = cartItem;
 
-                  const totalValue = usdValue * quantity
+                  const totalValue = usdValue * quantity;
                   return (
                     <div key={id} className="item-container">
                       <div className="valuess">
@@ -184,7 +186,7 @@ const Checkout = () => {
                         />
                       )}
                     </div>
-                  )
+                  );
                 })}
               </div>
 
@@ -251,10 +253,7 @@ const Checkout = () => {
                 <p>
                   I have read and agree with the Prepaid Friends
                   <span className="terms">
-                    <Link to="/terms&conditions">
-                      Terms & Conditions
-                    </Link>{" "}
-                    and
+                    <Link to="/terms&conditions">Terms & Conditions</Link> and
                     <Link to="/privacypolicy"> Privacy Policy</Link>
                   </span>
                 </p>
@@ -278,7 +277,7 @@ const Checkout = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;

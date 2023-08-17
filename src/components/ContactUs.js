@@ -1,17 +1,17 @@
-import React, { useState } from "react"
-import { Form, Input, Button, notification } from "antd"
-import { UserOutlined, MailOutlined } from "@ant-design/icons"
-import "../styles/ContactUs.css"
-import NavbarCart from "./NavbarCart"
-import phone from "../assets/Phone-img.png"
-import email from "../assets/Mail.png"
-import Footer from "./Footer"
-import globe from "../assets/globe 1.png"
-import { Helmet } from "react-helmet"
-import axios from "axios"
+import React, { useState } from "react";
+import { Form, Input, Button, notification } from "antd";
+import { UserOutlined, MailOutlined } from "@ant-design/icons";
+import "../styles/ContactUs.css";
+import NavbarCart from "./NavbarCart";
+import phone from "../assets/Phone-img.png";
+import email from "../assets/Mail.png";
+import Footer from "./Footer";
+import globe from "../assets/globe 1.png";
+import { Helmet } from "react-helmet";
+import axios from "axios";
 
 const ContactUs = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const layout = {
     labelCol: {
       span: 6,
@@ -19,51 +19,51 @@ const ContactUs = () => {
     wrapperCol: {
       span: 15,
     },
-  }
+  };
 
   const validateMessages = {
     required: "${label} is required!",
     types: {
       email: "${label} is not a valid email!",
     },
-  }
+  };
 
   const onFinish = async (values) => {
-    setLoading(true)
+    setLoading(true);
 
     try {
-      const response = await axios.post("/contact-us-api", {
+      const response = await axios.post("/api/contact-us-api", {
         name: values.user.name,
         email: values.user.email,
         subject: values.user.subject,
         comment: values.user.comment,
-      })
+      });
 
       if (response.data.status === "success") {
         notification.success({
           message: "Success",
           description: "Email sent successfully!",
-        })
+        });
       } else {
         notification.error({
           message: "Error",
           description: "Email not sent",
-        })
+        });
       }
     } catch (error) {
       notification.error({
         message: "Error",
         description: "An error occurred. Please try again later.",
-      })
-      console.error("An error occurred:", error)
+      });
+      console.error("An error occurred:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const pageTitle = "Contact-Us"
+  const pageTitle = "Contact-Us";
   const pageDescription =
-    "Contact Prepaid Friends for seamless prepaid card solutions, offering easy BTC to prepaid card exchanges. Reach out to our expert team today to explore secure and convenient options for managing your crypto with prepaid cards."
+    "Contact Prepaid Friends for seamless prepaid card solutions, offering easy BTC to prepaid card exchanges. Reach out to our expert team today to explore secure and convenient options for managing your crypto with prepaid cards.";
 
   return (
     <>
@@ -142,6 +142,6 @@ const ContactUs = () => {
       </div>
       <Footer />
     </>
-  )
-}
-export default ContactUs
+  );
+};
+export default ContactUs;

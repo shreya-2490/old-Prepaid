@@ -1,22 +1,22 @@
-import React, { useState } from "react"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "../styles/Login.css"
-import logo from "../assets/logo.png"
-import { useNavigate } from "react-router-dom"
-import axios from "axios"
-import { notification } from "antd"
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/Login.css";
+import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { notification } from "antd";
 
 function ForgetPassword() {
-  const [email, setEmail] = useState("")
-  const [api, contextHolder] = notification.useNotification()
-  const nav = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
+  const [email, setEmail] = useState("");
+  const [api, contextHolder] = notification.useNotification();
+  const nav = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleForget = (e) => {
     e?.preventDefault();
     setIsLoading(true);
     axios
-      .post("/forgot-password-api", {
+      .post("/api/forgot-password-api", {
         email,
       })
       .then((res) => {
@@ -43,10 +43,10 @@ function ForgetPassword() {
       })
       .finally(() => setIsLoading(false));
   };
-  
+
   const handlelogoClick = () => {
-    nav("/login")
-  }
+    nav("/login");
+  };
 
   return (
     <>
@@ -86,7 +86,7 @@ function ForgetPassword() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default ForgetPassword
+export default ForgetPassword;

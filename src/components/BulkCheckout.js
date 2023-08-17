@@ -10,8 +10,8 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import axios from "axios";
 import { usdToBTC } from "../utils/helper";
-import btc from "../assets/btc.png"
-import wiretransfer from "../assets/wiretransfer.png"
+import btc from "../assets/btc.png";
+import wiretransfer from "../assets/wiretransfer.png";
 import { AuthContext } from "../context/auth-context";
 import { useCookies } from "react-cookie";
 
@@ -31,23 +31,22 @@ const BulkCheckout = () => {
   const [isEmailValid, setIsEmailValid] = useState(false);
 
   const handleDelete = (cartItem) => {
-    removeBulkFromCart(cartItem?.id)
-  }
-  
+    removeBulkFromCart(cartItem?.id);
+  };
+
   const handleCheckboxChange1 = () => {
-    setIsChecked1(!isChecked1)
-  }
+    setIsChecked1(!isChecked1);
+  };
 
   const handleCheckboxChange2 = () => {
-    setIsChecked2(!isChecked2)
-  }
+    setIsChecked2(!isChecked2);
+  };
 
   const handleEmailChange = (event) => {
     const enteredEmail = event.target.value;
     setEmail(enteredEmail);
     setIsEmailValid(validator.isEmail(enteredEmail));
   };
-  
 
   useEffect(() => {
     axios
@@ -65,15 +64,15 @@ const BulkCheckout = () => {
   }, []);
 
   const totalCartValue = bulkCartItems?.reduce((accumulator, object) => {
-    return accumulator + Number(object?.subTotal)
-  }, 0)
+    return accumulator + Number(object?.subTotal);
+  }, 0);
 
   const handleSubmit = () => {
     if (user?.email) {
       setIsLoading(true);
       axios
         ?.post(
-          `/save-bulk-order-api`,
+          `/api/save-bulk-order-api`,
           {
             customer_name: state?.customerName,
             address: state?.address,
@@ -114,7 +113,7 @@ const BulkCheckout = () => {
         setEmail(email);
         setIsLoading(true);
         axios
-          ?.post(`/save-bulk-order-api`, {
+          ?.post(`/api/save-bulk-order-api`, {
             customer_name: state?.customerName,
             address: state?.address,
             phone_no: state?.phoneNumber,
@@ -162,7 +161,7 @@ const BulkCheckout = () => {
               <div className="custom-upper-para">
                 {bulkCartItems?.map((bulkCartItem) => {
                   const { id, quantity, amount, subTotal, cardType } =
-                    bulkCartItem
+                    bulkCartItem;
 
                   return (
                     <div key={id} className="item-container">
@@ -196,7 +195,7 @@ const BulkCheckout = () => {
                         </div>
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
 
@@ -220,7 +219,7 @@ const BulkCheckout = () => {
                   : "Contact Information"
               }
               bordered={false}
-              headStyle={{ borderBottom: "none"}}
+              headStyle={{ borderBottom: "none" }}
             >
               {paymentTypeSelectionOpen ? (
                 <>
@@ -234,7 +233,7 @@ const BulkCheckout = () => {
                         paymentMethod === "btc" ? "selected" : ""
                       }`}
                       onClick={() => {
-                        setPaymentMethod("btc")
+                        setPaymentMethod("btc");
                       }}
                     ></div>
                     <div
@@ -246,13 +245,13 @@ const BulkCheckout = () => {
                           paymentMethod === "wire" ? "#FDC886" : "",
                       }}
                       onClick={() => {
-                        setPaymentMethod("wire")
+                        setPaymentMethod("wire");
                       }}
                     ></div>
                     <div
                       className="group-container"
                       onClick={() => {
-                        setPaymentMethod("wire")
+                        setPaymentMethod("wire");
                       }}
                     >
                       <div class="wire-transfer-wrapper">
@@ -267,7 +266,7 @@ const BulkCheckout = () => {
                     <div
                       className="group-container1"
                       onClick={() => {
-                        setPaymentMethod("btc")
+                        setPaymentMethod("btc");
                       }}
                     >
                       <div class="bitcoin">Bitcoin</div>
@@ -282,7 +281,9 @@ const BulkCheckout = () => {
                         marginBottom: "10px",
                       }}
                       className="payment-btn"
-                      disabled={!(paymentMethod === "wire" || paymentMethod === "btc")}
+                      disabled={
+                        !(paymentMethod === "wire" || paymentMethod === "btc")
+                      }
                       loading={isLoading}
                       onClick={handleSubmit}
                     >
@@ -323,14 +324,8 @@ const BulkCheckout = () => {
                     <p>
                       I have read and agree with the Prepaid Friends
                       <span className="terms">
-                        <Link to="/terms&conditions">
-                          Terms & Conditions
-                        </Link>{" "}
-                        and{" "}
-                        <Link to="/privacypolicy">
-                          {" "}
-                          Privacy Policy
-                        </Link>
+                        <Link to="/terms&conditions">Terms & Conditions</Link>{" "}
+                        and <Link to="/privacypolicy"> Privacy Policy</Link>
                       </span>
                     </p>
                   </div>
@@ -355,7 +350,7 @@ const BulkCheckout = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default BulkCheckout
+export default BulkCheckout;
