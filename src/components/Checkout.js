@@ -132,7 +132,7 @@ const Checkout = () => {
             >
               <div className="custom-upper-para">
                 {cartItems?.map((cartItem) => {
-                  const { id, usdValue, quantity, type } = cartItem;
+                  const { id, usdValue, quantity, type, bin } = cartItem;
 
                   const totalValue = usdValue * quantity;
                   return (
@@ -162,19 +162,21 @@ const Checkout = () => {
 
                         <div className="item-actions">
                           <div>
-                            <Select
-                              className="select"
-                              defaultValue={quantity}
-                              onChange={(value) =>
-                                handleChange(cartItem, value)
-                              }
-                              options={[
-                                { value: 1, label: "1" },
-                                { value: 2, label: "2" },
-                                { value: 3, label: "3" },
-                                { value: 4, label: "4" },
-                              ]}
-                            />
+                            {!bin && (
+                              <Select
+                                className="select"
+                                defaultValue={quantity}
+                                onChange={(value) =>
+                                  handleChange(cartItem, value)
+                                }
+                                options={[
+                                  { value: 1, label: "1" },
+                                  { value: 2, label: "2" },
+                                  { value: 3, label: "3" },
+                                  { value: 4, label: "4" },
+                                ]}
+                              />
+                            )}
                             <DeleteOutlined
                               className="divider"
                               onClick={() => handleDelete(cartItem)}
