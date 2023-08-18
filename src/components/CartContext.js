@@ -15,7 +15,9 @@ export const CartProvider = ({ children }) => {
   const addToCart = (item) => {
     const existingCartItemIndex = cartItems.findIndex(
       (cartItem) =>
-        cartItem.usdValue === item.usdValue && cartItem.type === item.type
+        cartItem.usdValue === item.usdValue &&
+        cartItem.type === item.type &&
+        item?.card === cartItem?.card
     );
     if (existingCartItemIndex !== -1) {
       const updatedItems = [...cartItems];

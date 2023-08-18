@@ -87,6 +87,12 @@ const Checkout = () => {
             navigate(`/payment`, {
               state: { email, data: res?.data },
             })
+          )
+          .catch((err) =>
+            api.error({
+              message:
+                err?.response?.data?.error || err?.response?.data?.message,
+            })
           );
       } else {
         api.error({

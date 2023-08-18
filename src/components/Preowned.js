@@ -19,7 +19,7 @@ function Preowned() {
   const [selectedProvider, setSelectedProvider] = useState(
     defaultProvider || "All"
   );
-  const { addToCart, cartCount } = useContext(CartContext);
+  const { addToCart, cartCount, cartItems } = useContext(CartContext);
   const [cardData, setCardData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -78,7 +78,6 @@ function Preowned() {
 
   const handleKeepShopping = () => {
     setIsCartOpen(false);
-    navigate("/");
   };
 
   const handleCheckout = () => {
@@ -92,7 +91,12 @@ function Preowned() {
   const getCurrentPageData = () => {
     const startIndex = (currentPage - 1) * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
-    return cardData.slice(startIndex, endIndex);
+    return cardData
+      ?.filter(
+        (currentPageCard) =>
+          !cartItems?.some((cartItem) => cartItem.card === currentPageCard.card)
+      )
+      .slice(startIndex, endIndex);
   };
 
   return (
