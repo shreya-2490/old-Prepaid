@@ -13,7 +13,7 @@ const Cart = () => {
   };
 
   return (
-    <>
+    <div className={cartItems.length > 5 ? "scrollable-cart" : ""} id={cartItems.length > 5 ? "style-1":""}>
       {cartItems.length === 0 ? (
         <p>Cart is empty</p>
       ) : (
@@ -53,7 +53,7 @@ const Cart = () => {
           })}
         </>
       )}
-    </>
+    </div>
   );
 };
 

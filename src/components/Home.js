@@ -9,6 +9,7 @@ import "../styles/home.css"
 import axios from "axios"
 import Footer from "./Footer"
 import Ticker from "./ticker"
+import { Helmet } from "react-helmet"
 
 const Home = () => {
   const [usdValue, setUSDValue] = useState("")
@@ -92,9 +93,16 @@ const Home = () => {
     setLoadAmount(selectedValue)
     selectedValue ? showAlert(false) : showAlert(true)
   }
+  const pageTitle = "Prepaid Friends | Your Bitcoin Bridge to Global Spending";
+  const pageDescription =
+    "Prepaid Friends: Your Bitcoin bridge to global spending. Exchange BTC for prepaid cards and enjoy seamless transactions worldwide. Join now!";
+
   return (
     <>
-      {/* <Ticker/> */}
+     <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+      </Helmet>
       <div className="main-body">
         <div className="home" id="homee">
           <div>

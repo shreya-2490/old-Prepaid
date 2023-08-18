@@ -1,28 +1,31 @@
-import React, { useState } from "react";
-import { Divider, Space } from "antd";
-import NavbarCart from "./NavbarCart";
-import "../styles/dashboard.css";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
-import Reset from "./reset";
-import Ordertable from "./Ordertable";
-import { useAuth } from "../hooks/useAuth";
+import React, { useState } from "react"
+import { Divider, Space } from "antd"
+import NavbarCart from "./NavbarCart"
+import "../styles/dashboard.css"
+import { useCookies } from "react-cookie"
+import { useNavigate } from "react-router-dom"
+import Reset from "./reset"
+import Ordertable from "./Ordertable"
+import { useAuth } from "../hooks/useAuth"
 
 const Dashboard = () => {
-  const nav = useNavigate();
-  const { logout } = useAuth();
-  const [cookies, setCookie, removeCookie] = useCookies(["pfAuthToken"]);
-  const [product, setProduct] = useState(false);
-  const [reset, setReset] = useState(false);
+  const nav = useNavigate()
+  const { logout } = useAuth()
+  const [cookies, setCookie, removeCookie] = useCookies(["pfAuthToken"])
+  const [product, setProduct] = useState(true)
+  const [reset, setReset] = useState(false)
+  const [activeMenuItem, setActiveMenuItem] = useState("products")
 
   const handleChangeproduct = () => {
-    setProduct(true);
-    setReset(false);
-  };
+    setProduct(true)
+    setReset(false)
+    setActiveMenuItem("products")
+  }
   const handleChangePassword = () => {
-    setReset(true);
-    setProduct(false);
-  };
+    setActiveMenuItem("password")
+    setReset(true)
+    setProduct(false)
+  }
   return (
     <>
       <NavbarCart />
@@ -31,15 +34,25 @@ const Dashboard = () => {
           <ul className="ul-list">
             <li className="user-profile">User Profile</li>
             <Divider />
-            <li onClick={handleChangeproduct}>My Products</li>
+            <li
+              onClick={handleChangeproduct}
+              className={activeMenuItem === "products" ? "active" : ""}
+            >
+              My Products
+            </li>
             <Divider />
-            <li onClick={handleChangePassword}>Change Password</li>
+            <li
+              onClick={handleChangePassword}
+              className={activeMenuItem === "password" ? "active" : ""}
+            >
+              Change Password
+            </li>
             <Divider />
             <li
               onClick={() => {
-                removeCookie("pfAuthToken", { path: "/" });
-                nav("/");
-                logout();
+                removeCookie("pfAuthToken", { path: "/" })
+                nav("/")
+                logout()
               }}
               className="signout-li"
             >
@@ -53,16 +66,6 @@ const Dashboard = () => {
               <div className="ordertable">
                 <Ordertable />
               </div>
-              {/* <div>
-                <h2>My Products</h2>
-                <img src={mastercard} className="product-image"></img>
-                <div style={{ marginTop: "30px" }}>
-                  {" "}
-                  <h6 style={{ fontWeight: "bold" }}>Prepaid MasterCard</h6>
-                  <p>$0.00</p>
-                </div>
-                <h6 style={{ fontWeight: "bold" }}>Used Product</h6>
-              </div> */}
             </>
           ) : (
             ""
@@ -74,7 +77,7 @@ const Dashboard = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

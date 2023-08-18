@@ -17,6 +17,7 @@ import { Button, Form, Input, InputNumber, Select, Card, Checkbox } from "antd"
 import Footer from "./Footer"
 import { useNavigate } from "react-router-dom"
 import { CartContext } from "./CartContext"
+import { Helmet } from "react-helmet"
 const { Option } = Select
 
 const BulkOrder = () => {
@@ -44,9 +45,16 @@ const BulkOrder = () => {
       ))}
     </select>
   )
+  const pageTitle = "Bulk Order | Prepaid Friends"
+  const pageDescription =
+    "Purchase prepaid cards with BTC exchange at Prepaid Friends. Simplify your transactions by buying prepaid cards in bulk. Experience convenience and secure access to our prepaid card service"
 
   return (
     <>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+      </Helmet>
       <NavbarCart />
       <div className="bulk-main">
         <div className="bulk-division">
@@ -106,36 +114,36 @@ const BulkOrder = () => {
               layout="vertical"
               autoComplete="off"
               onValuesChange={() => {
-                const quantity = form.getFieldValue("card-quantity") || 0;
-                const loadAmount = form.getFieldValue("load-amount") || 0;
+                const quantity = form.getFieldValue("card-quantity") || 0
+                const loadAmount = form.getFieldValue("load-amount") || 0
                 const additionalPurchaseQt =
-                  form.getFieldValue("additional-purchase-quantity") || 0;
+                  form.getFieldValue("additional-purchase-quantity") || 0
 
                 const isUsedForInternationalTransaction = form.getFieldValue(
                   "international-purchases"
-                );
+                )
 
                 const calculateTotal =
                   (quantity * loadAmount || 0) +
                   (loadAmount ? quantity * 2.98 : 0) +
                   additionalPurchaseQt * 2 +
-                  (isUsedForInternationalTransaction ? 7.5 : 0);
+                  (isUsedForInternationalTransaction ? 7.5 : 0)
 
-                setSubTotal(calculateTotal);
+                setSubTotal(calculateTotal)
               }}
               style={{
                 margin: "75px 20px 0px 20px",
               }}
               onFinish={(value) => {
-                const quantity = form.getFieldValue("card-quantity") || 0;
-                const loadAmount = form.getFieldValue("load-amount") || 0;
-                const cardType = form.getFieldValue("card-type") || 0;
+                const quantity = form.getFieldValue("card-quantity") || 0
+                const loadAmount = form.getFieldValue("load-amount") || 0
+                const cardType = form.getFieldValue("card-type") || 0
                 const additionalPurchaseQt =
-                  form.getFieldValue("additional-purchase-quantity") || 0;
+                  form.getFieldValue("additional-purchase-quantity") || 0
 
                 const isUsedForInternationalTransaction = form.getFieldValue(
                   "international-purchases"
-                );
+                )
 
                 addToBulkCart({
                   id: uuidV4(),
@@ -145,9 +153,9 @@ const BulkOrder = () => {
                   cardType,
                   additionalPurchaseQt,
                   isUsedForInternationalTransaction,
-                });
+                })
 
-                console.log(value);
+                console.log(value)
 
                 nav("/bulk-checkout", {
                   state: {
@@ -157,7 +165,7 @@ const BulkOrder = () => {
                     phoneNumber: value["phone-number"] || "",
                     brokerId: value["broker-id"] || "",
                   },
-                });
+                })
               }}
             >
               <Form.Item
@@ -226,15 +234,13 @@ const BulkOrder = () => {
                     onFocus={() => setOnFocuseInput("country")}
                   />
                   <Input
-                   
                     type="tel"
-                id="phone"
-                placeholder="Enter your phone number"
-              
-                value={phoneNumber}
-                onChange={(event) => setPhoneNumber(event.target.value)}
-                name="phoneNumber"
-                onFocus={() => setOnFocuseInput("phoneNumber")}
+                    id="phone"
+                    placeholder="Enter your phone number"
+                    value={phoneNumber}
+                    onChange={(event) => setPhoneNumber(event.target.value)}
+                    name="phoneNumber"
+                    onFocus={() => setOnFocuseInput("phoneNumber")}
                   />
                 </span>
               </Form.Item>
@@ -284,7 +290,7 @@ const BulkOrder = () => {
                     parser={(value) =>
                       parseInt(value, 10) < 5 ? 5 : parseInt(value, 10)
                     }
-                    style={{ width: "100%", fontWeight:"400" }}
+                    style={{ width: "100%", fontWeight: "400" }}
                   />
                 </Form.Item>
               </div>
@@ -369,7 +375,7 @@ const BulkOrder = () => {
                   <p>Cost Per Card</p>
                 </div>
                 <div>
-                  <p>$2.98</p>
+                  <p>$0.95</p>
                 </div>
               </div>
               <div
@@ -398,6 +404,6 @@ const BulkOrder = () => {
       </div>
       <Footer />
     </>
-  );
-};
-export default BulkOrder;
+  )
+}
+export default BulkOrder

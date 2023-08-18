@@ -219,7 +219,7 @@ const Checkout = () => {
               headStyle={{ borderBottom: "none" }}
             >
               <div>
-                <p className="fullname">Customer Full Name</p>
+                <p className="fullname">Customer Name</p>
                 <input
                   type="fullname"
                   value={customerName}

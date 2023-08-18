@@ -78,7 +78,7 @@ const OrderTable = () => {
   }, []);
 
   return (
-    <div>
+    <div className="orderTable">
       <h6>Individual Orders</h6>
       <Table
         columns={columns}
@@ -87,6 +87,7 @@ const OrderTable = () => {
         scroll={{ x: "100%" }}
         className="mb-5"
         loading={isLoading}
+        responsive
       />
 
       <h6>Bulk Orders</h6>
@@ -96,6 +97,7 @@ const OrderTable = () => {
         pagination={false}
         scroll={{ x: "100%" }}
         loading={isLoading}
+        responsive
       />
     </div>
   );
