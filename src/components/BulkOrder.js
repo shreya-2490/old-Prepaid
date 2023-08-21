@@ -3,7 +3,6 @@ import {
   getCountries,
   getCountryCallingCode,
 } from "react-phone-number-input/input"
-
 import en from "react-phone-number-input/locale/en.json"
 import "react-phone-number-input/style.css"
 import NavbarCart from "./NavbarCart"
@@ -18,6 +17,7 @@ import Footer from "./Footer"
 import { useNavigate } from "react-router-dom"
 import { CartContext } from "./CartContext"
 import { Helmet } from "react-helmet"
+
 const { Option } = Select
 
 const BulkOrder = () => {
@@ -37,14 +37,15 @@ const BulkOrder = () => {
         onChange(event.target.value || undefined)
       }}
     >
-      <option value="">United States +1</option>
+      <option value="US">US +1</option>
       {getCountries().map((country) => (
         <option key={country} value={country}>
-          {labels[country]} +{getCountryCallingCode(country)}
+          {country} +{getCountryCallingCode(country)}
         </option>
       ))}
     </select>
   )
+
   const pageTitle = "Bulk Order | Prepaid Friends"
   const pageDescription =
     "Purchase prepaid cards with BTC exchange at Prepaid Friends. Simplify your transactions by buying prepaid cards in bulk. Experience convenience and secure access to our prepaid card service"
