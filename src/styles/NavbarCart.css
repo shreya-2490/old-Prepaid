@@ -65,7 +65,7 @@
     padding: 30px 24px;
   }
   .scrollable-cart {
-    max-height: 20rem; /* Adjust the value to your preference */
+    max-height: 20rem;
     overflow-y: scroll;
     margin-bottom: 25px;
   }

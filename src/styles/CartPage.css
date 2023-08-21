@@ -128,6 +128,9 @@
   .ant-btn-primary {
     background-color: #fdc886;
   }
+  .ant-modal-root .ant-modal-wrap {
+    overflow: hidden !important;
+  }
   }
   
   /* / / / =====================Tablet Veiw=========================== / / / */
