@@ -1,71 +1,78 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import NavbarCart from "./NavbarCart";
-import "../styles/preowned.css";
-import { Button, Col, Modal, Pagination, Row, Select } from "antd";
-import { useLocation, useNavigate } from "react-router";
-import wifi from "../assets/wifi1.png";
-import map from "../assets/map1.png";
-import master from "../assets/mastercard preowned.png";
-import visa from "../assets/visa preowned.png";
-import { CartContext } from "./CartContext";
-import Cart from "../shared-components/cart";
+import React, { useState, useEffect, useContext } from "react"
+import axios from "axios"
+import NavbarCart from "./NavbarCart"
+import "../styles/preowned.css"
+import { Button, Col, Modal, Pagination, Row, Select } from "antd"
+import { useLocation, useNavigate } from "react-router"
+import wifi from "../assets/wifi1.png"
+import map from "../assets/map1.png"
+import master from "../assets/mastercard preowned.png"
+import visa from "../assets/visa preowned.png"
+import { CartContext } from "./CartContext"
+import Cart from "../shared-components/cart"
 
 function Preowned() {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location = useLocation()
+  const navigate = useNavigate()
   const { selectedProvider: defaultProvider, selectedPrice: defaultPrice } =
-    location.state || {};
+    location.state || {}
   const [selectedProvider, setSelectedProvider] = useState(
     defaultProvider || "All"
-  );
-  const { addToCart, cartCount, cartItems } = useContext(CartContext);
-  const [cardData, setCardData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "");
-  const [currentPage, setCurrentPage] = useState(1);
-  const { Option } = Select;
+  )
+  const { addToCart, cartCount, cartItems } = useContext(CartContext)
+  const [cardData, setCardData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "")
+  const [currentPage, setCurrentPage] = useState(1)
+  const { Option } = Select
 
-  const cardsPerPage = 12;
+  const cardsPerPage = 12
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [cardData])
 
   useEffect(() => {
     axios
       .get("/api/get-card-with-type")
       .then((response) => {
-        let filteredData = response.data.cards;
+        let filteredData = response.data.cards
         if (selectedProvider !== "All") {
           filteredData = filteredData.filter(
             (card) => card.type === selectedProvider
-          );
+          )
         }
 
         if (selectedPrice === "low") {
-          filteredData = filteredData.sort((a, b) => a.price - b.price);
+          filteredData = filteredData.sort((a, b) => a.price - b.price)
         } else if (selectedPrice === "high") {
-          filteredData = filteredData.sort((a, b) => b.price - a.price);
+          filteredData = filteredData.sort((a, b) => b.price - a.price)
         }
-        setCardData(filteredData);
-        setLoading(false);
+        setCardData(filteredData)
+        setLoading(false)
+        const maxPage = Math.ceil(filteredData.length / cardsPerPage)
+        if (currentPage > maxPage) {
+          setCurrentPage(maxPage)
+        }
       })
       .catch((error) => {
-        console.error("Error fetching card data:", error);
-        setLoading(false);
-      });
-  }, [selectedProvider, selectedPrice]);
+        console.error("Error fetching card data:", error)
+        setLoading(false)
+      })
+  }, [selectedProvider, selectedPrice, currentPage])
 
   const handleProviderChange = (value) => {
-    setLoading(true);
-    setSelectedProvider(value);
-  };
+    setLoading(true)
+    setSelectedProvider(value)
+  }
 
   const handlePriceChange = (value) => {
-    setLoading(true);
-    setSelectedPrice(value);
-  };
+    setLoading(true)
+    setSelectedPrice(value)
+  }
 
   const handleAddToCart = (card) => {
-    setIsCartOpen(true);
+    setIsCartOpen(true)
     addToCart({
       bin: card?.bin,
       card: card?.card,
@@ -73,31 +80,31 @@ function Preowned() {
       cardId: card?.id,
       usdValue: card?.price,
       type: card?.type,
-    });
-  };
+    })
+  }
 
   const handleKeepShopping = () => {
-    setIsCartOpen(false);
-  };
+    setIsCartOpen(false)
+  }
 
   const handleCheckout = () => {
-    navigate(`/checkout`);
-  };
+    navigate(`/checkout`)
+  }
 
   const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+    setCurrentPage(page)
+  }
 
   const getCurrentPageData = () => {
-    const startIndex = (currentPage - 1) * cardsPerPage;
-    const endIndex = startIndex + cardsPerPage;
+    const startIndex = (currentPage - 1) * cardsPerPage
+    const endIndex = startIndex + cardsPerPage
     return cardData
       ?.filter(
         (currentPageCard) =>
           !cartItems?.some((cartItem) => cartItem.card === currentPageCard.card)
       )
-      .slice(startIndex, endIndex);
-  };
+      .slice(startIndex, endIndex)
+  }
 
   return (
     <>
@@ -223,6 +230,6 @@ function Preowned() {
         showSizeChanger={false}
       />
     </>
-  );
+  )
 }
-export default Preowned;
+export default Preowned
