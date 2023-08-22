@@ -24,19 +24,23 @@ import ResetPassword from "./components/ResetPassword";
 import ProtectedRoute from "./shared-components/protected-route";
 import Reset from "./components/reset";
 import { AuthContext } from "./context/auth-context";
+import { useCookies } from "react-cookie";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [selectedProvider, setSelectedProvider] = useState("All");
   const [selectedPrice, setSelectedPrice] = useState("low");
   const [user, setUser] = useState(null);
+  const [cookies] = useCookies(["pfAuthToken"]);
 
   const handleAddToCart = (item) => {
     setCartItems([...cartItems, item]);
   };
 
   useEffect(() => {
-    setUser(JSON?.parse(localStorage?.getItem("user")));
+    if (cookies?.pfAuthToken) {
+      setUser(JSON?.parse(localStorage?.getItem("user")));
+    }
   }, []);
 
   return (
@@ -73,10 +77,7 @@ function App() {
                 <Route path="/checkout" element={<Checkout />} />
               </Routes>
               <Routes>
-                <Route
-                  path="/bulk-checkout"
-                  element={<BulkCheckout />}
-                />
+                <Route path="/bulk-checkout" element={<BulkCheckout />} />
               </Routes>
               <Routes>
                 <Route path="/payment" element={<Payment />} />
@@ -85,10 +86,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
               </Routes>
               <Routes>
-                <Route
-                  path="/forgot-password"
-                  element={<ForgetPassword />}
-                />
+                <Route path="/forgot-password" element={<ForgetPassword />} />
               </Routes>
               <Routes>
                 <Route path="/register" element={<Register />} />
@@ -135,10 +133,7 @@ function App() {
                 />
               </Routes>
               <Routes>
-                <Route
-                  path="/how-it-works"
-                  element={<HowItWorks />}
-                />
+                <Route path="/how-it-works" element={<HowItWorks />} />
               </Routes>
               <Routes>
                 <Route
