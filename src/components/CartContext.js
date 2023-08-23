@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext();
 
@@ -12,6 +12,12 @@ export const CartProvider = ({ children }) => {
 
   const cartCount = newCardsCount;
 
+  const cartItemLocal = JSON.parse(localStorage?.getItem("cart")) || [];
+
+  useEffect(() => {
+    if (cartItemLocal) setCartItems(cartItemLocal);
+  }, []);
+
   const addToCart = (item) => {
     const existingCartItemIndex = cartItems.findIndex(
       (cartItem) =>
@@ -23,9 +29,14 @@ export const CartProvider = ({ children }) => {
       const updatedItems = [...cartItems];
       if (updatedItems[existingCartItemIndex].quantity < 4) {
         updatedItems[existingCartItemIndex].quantity += 1;
+        localStorage.setItem("cart", JSON.stringify(updatedItems));
         setCartItems(updatedItems);
       }
     } else {
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([...cartItemLocal, { ...item, quantity: 1 }])
+      );
       setCartItems((prevItems) => [...prevItems, { ...item, quantity: 1 }]);
     }
   };
@@ -37,6 +48,7 @@ export const CartProvider = ({ children }) => {
     const updatedCartItems = cartItems?.filter(
       (cartItem) => cartItem?.id !== itemId
     );
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
     setCartItems(updatedCartItems);
   };
   const removeBulkFromCart = (itemId) => {
@@ -55,12 +67,14 @@ export const CartProvider = ({ children }) => {
       const updatedItems = [...cartItems];
       updatedItems[cartItemIndex].quantity = quantity;
       setCartItems(updatedItems);
+      localStorage.setItem("cart", JSON.stringify(updatedItems));
     }
   };
 
   const clearCart = () => {
     setCartItems([]);
     setBulkCartItems([]);
+    localStorage.clear("cart");
   };
 
   return (
