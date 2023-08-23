@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Login.css";
-import logo from "../assets/logo.png";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../styles/Login.css"
+import logo from "../assets/logo.png"
+import { useNavigate, useLocation, useParams } from "react-router-dom"
 
-import axios from "axios";
-import { notification } from "antd";
+import axios from "axios"
+import { notification, message } from "antd"
 
 function ResetPassword() {
-  const [password, setNewpswrd] = useState("");
-  const [password_confirmation, setConfirmpswrd] = useState("");
-  const [api, contextHolder] = notification.useNotification();
-  const nav = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState(null);
-  const { stoken } = useParams();
-  console.log("Current URL location:", stoken);
+  const [password, setNewpswrd] = useState("")
+  const [password_confirmation, setConfirmpswrd] = useState("")
+  const [api, contextHolder] = notification.useNotification()
+  const nav = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
+  const [data, setData] = useState(null)
+  const { stoken } = useParams()
+  console.log("Current URL location:", stoken)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           `/api/verify-reset-password-page-api/${stoken}`
-        );
-        setData(response.data);
+        )
+        setData(response.data)
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching data:", error)
       }
-    };
+    }
 
-    fetchData();
-  }, [stoken]);
+    fetchData()
+  }, [stoken])
 
   const handleReset = (e) => {
-    e?.preventDefault();
-    setIsLoading(true);
+    e?.preventDefault()
+    setIsLoading(true)
     axios
       ?.post("/api/reset-password-api", {
         password,
@@ -42,24 +42,30 @@ function ResetPassword() {
         stoken,
       })
       ?.then((res) => {
-        console.log(res);
+        console.log(res)
         if (res.data.status === "success") {
           notification.success({
             message: "Success",
             description: "Password reset successfully",
-          });
+          })
+          nav("/login")
         } else {
-          return api.error({
-            message: `Something went wrong!`,
-            description: "Token Expired. Please try again.",
-          });
+          message.error(
+            "Something went wrong! Token Expired. Please try again."
+          )
         }
       })
-      .finally(() => setIsLoading(false));
-  };
+      .catch((error) => {
+        console.error("API Error:", error)
+        message.error(
+          "API Error: An error occurred while processing your request."
+        )
+      })
+      .finally(() => setIsLoading(false))
+  }
   const handlelogoClick = () => {
-    nav("/login");
-  };
+    nav("/login")
+  }
 
   return (
     <>
@@ -114,7 +120,7 @@ function ResetPassword() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default ResetPassword;
+export default ResetPassword

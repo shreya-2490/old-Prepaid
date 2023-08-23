@@ -1,42 +1,42 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Login.css";
-import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useCookies } from "react-cookie";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Login.css";
-import { notification } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
-import { useAuth } from "../hooks/useAuth";
+import React, { useState } from "react"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../styles/Login.css"
+import logo from "../assets/logo.png"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { useCookies } from "react-cookie"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../styles/Login.css"
+import { notification,message } from "antd"
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons"
+import { useAuth } from "../hooks/useAuth"
 
 function Login() {
-  const [api, contextHolder] = notification.useNotification();
-  const { login } = useAuth();
-  const [showPassword, setShowPassword] = useState(false);
-  const nav = useNavigate();
-  const [_, setCookie] = useCookies(["pfAuthToken"]);
-  const [email, setEmail] = useState("");
-  const [psw, setPsw] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [loginError, setLoginError] = useState(false);
+  const [api, contextHolder] = notification.useNotification()
+  const { login } = useAuth()
+  const [showPassword, setShowPassword] = useState(false)
+  const nav = useNavigate()
+  const [_, setCookie] = useCookies(["pfAuthToken"])
+  const [email, setEmail] = useState("")
+  const [psw, setPsw] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [loginError, setLoginError] = useState(false)
 
   const toggleShowPassword = (e) => {
-    setShowPassword(!showPassword);
-    e?.preventDefault();
-  };
+    setShowPassword(!showPassword)
+    e?.preventDefault()
+  }
 
   const handleLogin = (e) => {
-    e?.preventDefault();
+    e?.preventDefault()
 
     if (!email || !psw) {
-      setLoginError(true);
-      return;
+      setLoginError(true)
+      return
     }
 
-    setIsLoading(true);
-    setLoginError(false);
+    setIsLoading(true)
+    setLoginError(false)
 
     axios
       .post("/api/login-user-api", {
@@ -44,9 +44,9 @@ function Login() {
         password: psw,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res)
         if (res?.data?.token) {
-          setCookie("pfAuthToken", res?.data?.token, { path: "/" });
+          setCookie("pfAuthToken", res?.data?.token, { path: "/" })
           axios({
             url: "/api/user-detail-api",
             method: "get",
@@ -58,58 +58,48 @@ function Login() {
               login({
                 customerName: `${response?.data?.user?.first_name} ${response?.data?.user?.last_name}`,
                 email: response?.data?.user?.email,
-              });
+              })
             })
             .catch((err) => {
-              console.log(err);
-            });
-          nav("/dashboard");
+              console.log(err)
+            })
+          nav("/dashboard")
         } else {
           if (res?.data?.message === "Invalid email format") {
-            api.error({
-              message: "Invalid Email",
-              description: "Please enter a valid email address.",
-            });
+            message.error("Invalid Email. Please enter a valid email address.")
           } else if (res?.data?.message === "Email not found") {
-            api.error({
-              message: "Email Not Found",
-              description: "The provided email address was not found.",
-            });
+            message.error(
+              "Email Not Found. The provided email address was not found."
+            )
           } else if (res?.data?.message === "Invalid password format") {
-            api.error({
-              message: "Invalid Password",
-              description: "Please enter a valid password.",
-            });
+            message.error("Invalid Password. Please enter a valid password.")
           } else if (res?.data?.message === "Incorrect password") {
-            api.error({
-              message: "Incorrect Password",
-              description: "The provided password is incorrect.",
-            });
+            message.error(
+              "Incorrect Password. The provided password is incorrect."
+            )
           } else {
-            api.error({
-              message: "Login Failed",
-              description: "Incorrect credentials. Please try again.",
-            });
+            message.error(
+              "Login Failed. Incorrect credentials. Please try again."
+            )
           }
         }
       })
       .catch((error) => {
-        console.error(error);
-        api.error({
-          message: "An error occurred",
-          description: "An error occurred while processing your request.",
-        });
+        console.error(error)
+        message.error(
+          "An error occurred. An error occurred while processing your request."
+        )
       })
-      .finally(() => setIsLoading(false));
-  };
+      .finally(() => setIsLoading(false))
+  }
 
   const handleForgetPassword = () => {
-    nav(`/forgot-password`);
-  };
+    nav(`/forgot-password`)
+  }
 
   const handleRegister = () => {
-    nav(`/register`);
-  };
+    nav(`/register`)
+  }
 
   return (
     <>
@@ -147,10 +137,7 @@ function Login() {
                   required
                 />
                 <div className="input-group-append">
-                  <button
-                    className="toggle-pswrd"
-                    onClick={toggleShowPassword} // Toggle show/hide password
-                  >
+                  <button className="toggle-pswrd" onClick={toggleShowPassword}>
                     {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
                   </button>
                 </div>
@@ -178,7 +165,7 @@ function Login() {
               type="submit"
               onClick={handleLogin}
               className="btn w-100 mt-1"
-                disabled={!email || !psw || isLoading}
+              disabled={!email || !psw || isLoading}
             >
               SIGN IN
             </button>
@@ -192,7 +179,7 @@ function Login() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Login;
+export default Login

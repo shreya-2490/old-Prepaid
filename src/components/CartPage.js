@@ -1,54 +1,54 @@
-import React, { useEffect, useState, useContext, Fragment } from "react";
-import { Alert, Card } from "antd";
-import { useLocation } from "react-router-dom";
-import { CartContext } from "./CartContext";
-import { AiOutlineSafety } from "react-icons/ai";
-import NavbarCart from "./NavbarCart";
-import wifi from "../assets/wifi1.png";
-import map from "../assets/map1.png";
-import master from "../assets/mastercard preowned.png";
-import visa from "../assets/visa preowned.png";
-import "../styles/CartPage.css";
-import { v4 as uuidv4 } from "uuid";
-import { Modal, Button } from "antd";
-import { useNavigate } from "react-router-dom";
-import CartModal from "../shared-components/cart";
-import { AuthContext } from "../context/auth-context";
-import axios from "axios";
-import { useCookies } from "react-cookie";
+import React, { useEffect, useState, useContext, Fragment } from "react"
+import { Alert, Card,message } from "antd"
+import { useLocation } from "react-router-dom"
+import { CartContext } from "./CartContext"
+import { AiOutlineSafety } from "react-icons/ai"
+import NavbarCart from "./NavbarCart"
+import wifi from "../assets/wifi1.png"
+import map from "../assets/map1.png"
+import master from "../assets/mastercard preowned.png"
+import visa from "../assets/visa preowned.png"
+import "../styles/CartPage.css"
+import { v4 as uuidv4 } from "uuid"
+import { Modal, Button } from "antd"
+import { useNavigate } from "react-router-dom"
+import CartModal from "../shared-components/cart"
+import { AuthContext } from "../context/auth-context"
+import axios from "axios"
+import { useCookies } from "react-cookie"
 
 const Cart = ({ handleAddToCart }) => {
-  const location = useLocation();
-  const [cookies] = useCookies(["pfAuthToken"]);
-  const queryParams = new URLSearchParams(location.search);
-  const input1 = queryParams.get("usdValue");
-  const input2 = queryParams.get("btcValue");
-  const input3 = queryParams.get("selectedButton");
-  const [selectedButton, setSelectedButton] = useState(input3);
-  const [title, setTitle] = useState("MASTER PREPAID CARD");
-  const [usdValue, setUSDValue] = useState(input1);
-  const [btcValue, setBtcValue] = useState(input2);
-  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-  const { addToCart, cartCount, cartItems } = useContext(CartContext);
-  const { user } = useContext(AuthContext);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [maxLimitErr, setMaxLimitErr] = useState(false);
+  const location = useLocation()
+  const [cookies] = useCookies(["pfAuthToken"])
+  const queryParams = new URLSearchParams(location.search)
+  const input1 = queryParams.get("usdValue")
+  const input2 = queryParams.get("btcValue")
+  const input3 = queryParams.get("selectedButton")
+  const [selectedButton, setSelectedButton] = useState(input3)
+  const [title, setTitle] = useState("MASTER PREPAID CARD")
+  const [usdValue, setUSDValue] = useState(input1)
+  const [btcValue, setBtcValue] = useState(input2)
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
+  const { addToCart, cartCount, cartItems } = useContext(CartContext)
+  const { user } = useContext(AuthContext)
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [maxLimitErr, setMaxLimitErr] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleCloseClick = () => {
-    setIsCartOpen(false);
-  };
+    setIsCartOpen(false)
+  }
 
   const handleKeepShopping = () => {
-    setIsCartOpen(false);
-    navigate("/");
-  };
+    setIsCartOpen(false)
+    navigate("/")
+  }
 
   const handleCheckout = () => {
     if (user) {
-      setIsLoading(true);
+      setIsLoading(true)
       axios
         ?.post(
           `/api/preowned-order`,
@@ -73,29 +73,43 @@ const Cart = ({ handleAddToCart }) => {
             headers: { Authorization: `Bearer ${cookies?.pfAuthToken}` },
           }
         )
-        .then((res) =>
+        .then((res) => {
           navigate(`/payment`, {
             state: { email: user?.email, data: res?.data },
           })
-        )
-        ?.finally(() => setIsLoading(false));
+        })
+        .catch((error) => {
+          setIsLoading(false)
+          if (error.response) {
+            console.error(error.response.data)
+            console.error(error.response.status)
+            console.error(error.response.headers)
+            message.error("An error occurred while processing your request.")
+          } else if (error.request) {
+            console.error(error.request)
+            message.error("No response received from the server.")
+          } else {
+            console.error("Error", error.message)
+            message.error("An unexpected error occurred.")
+          }
+        })
     } else {
-      navigate(`/checkout`);
+      navigate(`/checkout`)
     }
-  };
+  }
 
   const handleUSDChange = (event) => {
-    const usdInput = parseFloat(event.target.value);
-    setUSDValue(usdInput);
-  };
+    const usdInput = parseFloat(event.target.value)
+    setUSDValue(usdInput)
+  }
   const handleAddToCartClick = () => {
     const selectedCard = cartItems.findIndex(
       (cartItem) =>
         cartItem.usdValue === usdValue && cartItem.type === selectedButton
-    );
+    )
     if (cartItems[selectedCard]?.quantity === 4) {
-      setMaxLimitErr(true);
-      return;
+      setMaxLimitErr(true)
+      return
     }
     addToCart({
       usdValue: usdValue,
@@ -103,17 +117,17 @@ const Cart = ({ handleAddToCart }) => {
       type: selectedButton,
       // Using UUID to generate random ID until we finalize any unique identifier for each card transactions.
       id: uuidv4(),
-    });
-    setIsSuccessModalVisible(true);
-    setIsCartOpen(true);
-    setMaxLimitErr(false);
-  };
+    })
+    setIsSuccessModalVisible(true)
+    setIsCartOpen(true)
+    setMaxLimitErr(false)
+  }
 
   useEffect(() => {
-    setUSDValue(usdValue);
-    setBtcValue(btcValue);
-    setSelectedButton(selectedButton);
-  }, []);
+    setUSDValue(usdValue)
+    setBtcValue(btcValue)
+    setSelectedButton(selectedButton)
+  }, [])
 
   return (
     <>
@@ -294,7 +308,7 @@ const Cart = ({ handleAddToCart }) => {
         </div>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

@@ -4,7 +4,7 @@ import "../styles/Login.css"
 import logo from "../assets/logo.png"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { notification } from "antd"
+import { notification, message } from "antd"
 import { useCookies } from "react-cookie"
 
 function Reset() {
@@ -20,10 +20,8 @@ function Reset() {
     e.preventDefault()
     if (password === "") {
       setFormSubmitted(true)
-      return api.error({
-        message: "Password Error",
-        description: "Password should not be empty.",
-      })
+      message.error("Password Error: Password should not be empty.")
+      return
     }
 
     setIsLoading(true)
@@ -48,11 +46,16 @@ function Reset() {
             description: "Password changed successfully",
           })
         } else {
-          return api.error({
-            message: "Something went wrong!",
-            description: "Token Expired. Please try again.",
-          })
+          message.error(
+            "Something went wrong! Token Expired. Please try again."
+          )
         }
+      })
+      .catch((error) => {
+        console.error("API Error:", error)
+        message.error(
+          "API Error: An error occurred while processing your request."
+        )
       })
       .finally(() => setIsLoading(false))
   }

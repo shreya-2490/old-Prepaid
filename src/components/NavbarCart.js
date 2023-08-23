@@ -1,44 +1,44 @@
-import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-import { Badge, Modal, Button, Avatar } from "antd";
-import { CartContext } from "./CartContext";
-import "../styles/navbar.css";
-import logo from "../assets/logo.png";
-import "../styles/NavbarCart.css";
-import Cart from "../shared-components/cart";
+import React, { useState, useContext } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons"
+import { Badge, Modal, Button, Avatar,message } from "antd"
+import { CartContext } from "./CartContext"
+import "../styles/navbar.css"
+import logo from "../assets/logo.png"
+import "../styles/NavbarCart.css"
+import Cart from "../shared-components/cart"
 
-import { RxHamburgerMenu } from "react-icons/rx";
-import { RxCross2 } from "react-icons/rx";
-import { useCookies } from "react-cookie";
-import { AuthContext } from "../context/auth-context";
-import axios from "axios";
+import { RxHamburgerMenu } from "react-icons/rx"
+import { RxCross2 } from "react-icons/rx"
+import { useCookies } from "react-cookie"
+import { AuthContext } from "../context/auth-context"
+import axios from "axios"
 
 const NavbarCart = () => {
-  const [cookies] = useCookies(["pfAuthToken"]);
-  const [showMedia, setMedia] = useState(false);
-  const { cartCount, cartItems } = useContext(CartContext);
-  const { user } = useContext(AuthContext);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  const [cookies] = useCookies(["pfAuthToken"])
+  const [showMedia, setMedia] = useState(false)
+  const { cartCount, cartItems } = useContext(CartContext)
+  const { user } = useContext(AuthContext)
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
 
   const handleCartClick = () => {
-    setIsCartOpen(true);
-  };
+    setIsCartOpen(true)
+  }
 
   const handleCloseClick = () => {
-    setIsCartOpen(false);
-  };
+    setIsCartOpen(false)
+  }
 
   const handleKeepShopping = () => {
-    setIsCartOpen(false);
-    navigate("/");
-  };
+    setIsCartOpen(false)
+    navigate("/")
+  }
 
   const handleCheckout = () => {
     if (user) {
-      setIsLoading(true);
+      setIsLoading(true)
       axios
         ?.post(
           `/api/preowned-order`,
@@ -63,22 +63,37 @@ const NavbarCart = () => {
             headers: { Authorization: `Bearer ${cookies?.pfAuthToken}` },
           }
         )
-        .then((res) =>
+        .then((res) => {
           navigate(`/payment`, {
             state: { email: user?.email, data: res?.data },
           })
-        )
-        ?.finally(() => setIsLoading(false));
+        })
+        .catch((error) => {
+          setIsLoading(false)
+          if (error.response) {
+            console.error(error.response.data)
+            console.error(error.response.status)
+            console.error(error.response.headers)
+            message.error("An error occurred while processing your request.")
+          } else if (error.request) {
+            console.error(error.request)
+            message.error("No response received from the server.")
+          } else {
+            console.error("Error", error.message)
+            message.error("An unexpected error occurred.")
+          }
+        })
+        .finally(() => setIsLoading(false))
     } else {
-      navigate(`/checkout`);
+      navigate(`/checkout`)
     }
-  };
+  }
 
   const handleHamburgerClick = (event) => {
-    event.preventDefault();
-    setMedia(!showMedia);
-    document.body.classList.toggle("menu-open", !showMedia);
-  };
+    event.preventDefault()
+    setMedia(!showMedia)
+    document.body.classList.toggle("menu-open", !showMedia)
+  }
 
   return (
     <>
@@ -193,7 +208,7 @@ const NavbarCart = () => {
         </div>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default NavbarCart;
+export default NavbarCart
