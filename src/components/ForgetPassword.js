@@ -1,53 +1,58 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Login.css";
-import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { notification } from "antd";
+import React, { useState } from "react"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../styles/Login.css"
+import logo from "../assets/logo.png"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { message, notification } from "antd"
+import validator from "validator"
 
 function ForgetPassword() {
-  const [email, setEmail] = useState("");
-  const [api, contextHolder] = notification.useNotification();
-  const nav = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("")
+  const [api, contextHolder] = notification.useNotification()
+  const nav = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleForget = (e) => {
-    e?.preventDefault();
-    setIsLoading(true);
+    e?.preventDefault()
+    setIsLoading(true)
+    if (!email || !validator.isEmail(email)) {
+      notification.error({
+        message: "Error",
+        description: "Please enter a valid email address",
+      })
+      setIsLoading(false)
+      return
+    }
     axios
       .post("/api/forgot-password-api", {
         email,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res)
         if (res.data.status === "success") {
           notification.success({
             message: "Success",
             description: "Password reset link sent to your email",
-          });
-          nav('/login')
+          })
+          nav("/login")
         } else {
-          const errorMessage = res.data.message || "Something went wrong!";
+          const errorMessage = res.data.message || "Something went wrong!"
           notification.error({
             message: "Error",
             description: errorMessage,
-          });
+          })
         }
       })
       .catch((error) => {
-        console.error(error);
-        notification.error({
-          message: "Error",
-          description: "An error occurred while processing your request.",
-        });
+        message.error(error.response.data.error)
       })
-      .finally(() => setIsLoading(false));
-  };
+      .finally(() => setIsLoading(false))
+  }
 
   const handlelogoClick = () => {
-    nav("/login");
-  };
+    nav("/login")
+  }
 
   return (
     <>
@@ -71,8 +76,6 @@ function ForgetPassword() {
                 className="form-control"
                 onChange={(e) => setEmail(e?.target?.value)}
                 required
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                title="Please enter a valid email address"
               />
               <div className="invalid-feedback">Please Enter your email</div>
             </div>
@@ -88,7 +91,7 @@ function ForgetPassword() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default ForgetPassword;
+export default ForgetPassword

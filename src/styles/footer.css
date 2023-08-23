@@ -124,7 +124,7 @@
 
 /* **************** Tablet SCreen **************** */
 
-@media screen and (min-device-width: 767px) and (max-device-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
 
   .footer-mobile {
     color: #1b1b1b;

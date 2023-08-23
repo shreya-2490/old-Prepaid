@@ -7,7 +7,7 @@ import axios from "axios"
 import { useCookies } from "react-cookie"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/Login.css"
-import { notification,message } from "antd"
+import { notification, message } from "antd"
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons"
 import { useAuth } from "../hooks/useAuth"
 
@@ -86,9 +86,7 @@ function Login() {
       })
       .catch((error) => {
         console.error(error)
-        message.error(
-          "An error occurred. An error occurred while processing your request."
-        )
+        message.error(error.response.data)
       })
       .finally(() => setIsLoading(false))
   }

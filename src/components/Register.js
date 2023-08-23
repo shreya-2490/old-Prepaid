@@ -55,15 +55,9 @@ const Register = () => {
         }
       })
       .catch((error) => {
-        console.error("API Error:", error);
-        api.error({
-          message: "API Error",
-          description: "An error occurred while processing your request",
-        });
+        message.error(error.response.data.error)
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => setIsLoading(false))
   };
 
   return (

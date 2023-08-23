@@ -110,20 +110,9 @@ const BulkCheckout = () => {
           })
         })
         .catch((error) => {
-          setIsLoading(false)
-          if (error.response) {
-            console.error(error.response.data)
-            console.error(error.response.status)
-            console.error(error.response.headers)
-            message.error("An error occurred while processing your request.")
-          } else if (error.request) {
-            console.error(error.request)
-            message.error("No response received from the server.")
-          } else {
-            console.error("Error", error.message)
-            message.error("An unexpected error occurred.")
-          }
+          message.error(error.response.data.error)
         })
+        ?.finally(() => setIsLoading(false))
     } else {
       if (validator.isEmail(email)) {
         setEmail(email)
@@ -155,6 +144,9 @@ const BulkCheckout = () => {
               state: { email, orderType: "bulk-order", data: res?.data },
             })
           )
+          .catch((error) => {
+            message.error(error.response.data.error)
+          })
           ?.finally(() => setIsLoading(false))
       } else {
         alert("Invalid email format. Please enter a correct email address.")

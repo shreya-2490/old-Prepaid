@@ -159,7 +159,7 @@
     height: 3.8rem;
     background-color: white;
     position: absolute;
-    top: 36%;
+    top: 38%;
     left: 25%;
     z-index: 100;
     transform: translate(-50%, -50%);
@@ -231,7 +231,7 @@
   }
 
   .listing-div {
-    padding: 5rem 4rem 0rem 4rem;
+    padding: 4rem 4rem 0rem 4rem;
   }
 
   .footer-card2 {
