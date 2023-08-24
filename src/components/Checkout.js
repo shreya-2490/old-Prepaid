@@ -253,8 +253,8 @@ const Checkout = () => {
                 <p>
                   I have read and agree with the Prepaid Friends
                   <span className="terms">
-                    <Link to="/terms-conditions">Terms & Conditions</Link> and
-                    <Link to="/privacy-policy"> Privacy Policy</Link>
+                    <Link to="/terms-conditions" target="_blank">Terms & Conditions</Link> and
+                    <Link to="/privacy-policy"  target="_blank"> Privacy Policy</Link>
                   </span>
                 </p>
               </div>
