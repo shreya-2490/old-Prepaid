@@ -1,40 +1,51 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState } from "react";
 import {
   getCountries,
   getCountryCallingCode,
-} from "react-phone-number-input/input"
-import en from "react-phone-number-input/locale/en.json"
-import "react-phone-number-input/style.css"
-import NavbarCart from "./NavbarCart"
-import "../styles/BulkOrder.css"
-import success from "../assets/Success Icon.png"
-import tick from "../assets/tick-circle.png"
-import cards from "../assets/Bank Cards.png"
-import ellipse from "../assets/Ellipse.png"
-import { v4 as uuidV4 } from "uuid"
-import { Button, Form, Input, InputNumber, Select, Card, Checkbox } from "antd"
-import Footer from "./Footer"
-import { useNavigate } from "react-router-dom"
-import { CartContext } from "./CartContext"
-import { Helmet } from "react-helmet"
+} from "react-phone-number-input/input";
+import en from "react-phone-number-input/locale/en.json";
+import "react-phone-number-input/style.css";
+import NavbarCart from "./NavbarCart";
+import "../styles/BulkOrder.css";
+import success from "../assets/Success Icon.png";
+import tick from "../assets/tick-circle.png";
+import cards from "../assets/Bank Cards.png";
+import ellipse from "../assets/Ellipse.png";
+import { v4 as uuidV4 } from "uuid";
+import {
+  Button,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+  Card,
+  Checkbox,
+  Skeleton,
+} from "antd";
+import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
+import { CartContext } from "./CartContext";
+import { Helmet } from "react-helmet";
+import axios from "axios";
 
-const { Option } = Select
+const { Option } = Select;
 
 const BulkOrder = () => {
-  const nav = useNavigate()
-  const [form] = Form.useForm()
-  const { addToBulkCart } = useContext(CartContext)
-  const [subTotal, setSubTotal] = useState(0)
-  const [onFocuseInput, setOnFocuseInput] = useState("")
-  const [phoneNumber, setPhoneNumber] = useState()
-  const [country, setCountry] = useState("us")
+  const nav = useNavigate();
+  const [form] = Form.useForm();
+  const { addToBulkCart } = useContext(CartContext);
+  const [onFocuseInput, setOnFocuseInput] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [country, setCountry] = useState("us");
+  const [calculatedCharges, setCalculatedCharges] = useState(null);
+  const [reCalculatingCharges, setReCalculatingCharges] = useState(null);
 
   const CountrySelect = ({ value, onChange, labels, ...rest }) => (
     <select
       {...rest}
       value={value}
       onChange={(event) => {
-        onChange(event.target.value || undefined)
+        onChange(event.target.value || undefined);
       }}
     >
       <option value="US">US +1</option>
@@ -44,11 +55,11 @@ const BulkOrder = () => {
         </option>
       ))}
     </select>
-  )
+  );
 
-  const pageTitle = "Bulk Order | Prepaid Friends"
+  const pageTitle = "Bulk Order | Prepaid Friends";
   const pageDescription =
-    "Purchase prepaid cards with BTC exchange at Prepaid Friends. Simplify your transactions by buying prepaid cards in bulk. Experience convenience and secure access to our prepaid card service"
+    "Purchase prepaid cards with BTC exchange at Prepaid Friends. Simplify your transactions by buying prepaid cards in bulk. Experience convenience and secure access to our prepaid card service";
 
   return (
     <>
@@ -114,49 +125,68 @@ const BulkOrder = () => {
               form={form}
               layout="vertical"
               autoComplete="off"
-              onValuesChange={() => {
-                const quantity = form.getFieldValue("card-quantity") || 0
-                const loadAmount = form.getFieldValue("load-amount") || 0
+              onValuesChange={(changedValues) => {
+                console.log(changedValues);
+                const quantity = form.getFieldValue("card-quantity") || 0;
+                const loadAmount = form.getFieldValue("load-amount") || 0;
                 const additionalPurchaseQt =
-                  form.getFieldValue("additional-purchase-quantity") || 0
-
+                  form.getFieldValue("additional-purchase-quantity") || 0;
                 const isUsedForInternationalTransaction = form.getFieldValue(
                   "international-purchases"
-                )
+                );
+                const cardType = form.getFieldValue("card-type");
 
-                const calculateTotal =
-                  (quantity * loadAmount || 0) +
-                  (loadAmount ? quantity * 2.98 : 0) +
-                  additionalPurchaseQt * 2 +
-                  (isUsedForInternationalTransaction ? 7.5 : 0)
-
-                setSubTotal(calculateTotal)
+                if (
+                  changedValues["card-quantity"] ||
+                  changedValues["load-amount"] ||
+                  changedValues["additional-purchase-quantity"] ||
+                  changedValues["international-purchases"] ||
+                  changedValues["card-type"]
+                ) {
+                  setReCalculatingCharges(true);
+                  axios
+                    .post("/api/order-calculation-api", {
+                      order_type: "bulk",
+                      items: [
+                        {
+                          cardType,
+                          quantity,
+                          amount: loadAmount,
+                          additional_transactions: additionalPurchaseQt > 0,
+                          additional_transactions_no: additionalPurchaseQt,
+                          international_transaction:
+                            isUsedForInternationalTransaction,
+                        },
+                      ],
+                    })
+                    ?.then((res) => setCalculatedCharges(res?.data))
+                    ?.catch((err) => console.error(err))
+                    ?.finally(() => setReCalculatingCharges(false));
+                }
               }}
               style={{
                 margin: "75px 20px 0px 20px",
               }}
               onFinish={(value) => {
-                const quantity = form.getFieldValue("card-quantity") || 0
-                const loadAmount = form.getFieldValue("load-amount") || 0
-                const cardType = form.getFieldValue("card-type") || 0
+                const quantity = form.getFieldValue("card-quantity") || 0;
+                const loadAmount = form.getFieldValue("load-amount") || 0;
+                const cardType = form.getFieldValue("card-type") || 0;
                 const additionalPurchaseQt =
-                  form.getFieldValue("additional-purchase-quantity") || 0
+                  form.getFieldValue("additional-purchase-quantity") || 0;
 
                 const isUsedForInternationalTransaction = form.getFieldValue(
                   "international-purchases"
-                )
+                );
 
                 addToBulkCart({
                   id: uuidV4(),
                   quantity,
                   amount: loadAmount,
-                  subTotal,
+                  subTotal: calculatedCharges?.order_total || 0,
                   cardType,
                   additionalPurchaseQt,
                   isUsedForInternationalTransaction,
-                })
-
-                console.log(value)
+                });
 
                 nav("/bulk-checkout", {
                   state: {
@@ -166,7 +196,7 @@ const BulkOrder = () => {
                     phoneNumber: value["phone-number"] || "",
                     brokerId: value["broker-id"] || "",
                   },
-                })
+                });
               }}
             >
               <Form.Item
@@ -369,15 +399,59 @@ const BulkOrder = () => {
                   alignItems: "center",
                   marginTop: "20px",
                   marginLeft: "5px",
-                  fontWeight: "bold",
+                  fontWeight: "600",
                 }}
               >
-                <div>
-                  <p>Cost Per Card</p>
-                </div>
-                <div>
-                  <p>$0.95</p>
-                </div>
+                <p>Cost Per Card</p>
+                {reCalculatingCharges ? (
+                  <Skeleton.Button size="small" shape="square" active />
+                ) : (
+                  <p>
+                    {(calculatedCharges?.items &&
+                      calculatedCharges?.items[0]?.cost) ||
+                      0}
+                  </p>
+                )}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginLeft: "5px",
+                  fontWeight: "600",
+                }}
+              >
+                <p>Additional Transaction Cost</p>
+                {reCalculatingCharges ? (
+                  <Skeleton.Button size="small" shape="square" active />
+                ) : (
+                  <p>
+                    {(calculatedCharges?.items &&
+                      calculatedCharges?.items[0]?.additional_cost) ||
+                      0}
+                  </p>
+                )}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginLeft: "5px",
+                  fontWeight: "600",
+                }}
+              >
+                <p>International Transaction Cost</p>
+                {reCalculatingCharges ? (
+                  <Skeleton.Button size="small" shape="square" active />
+                ) : (
+                  <p>
+                    {(calculatedCharges?.items &&
+                      calculatedCharges?.items[0]?.international_cost) ||
+                      0}
+                  </p>
+                )}
               </div>
               <div
                 style={{
@@ -386,15 +460,15 @@ const BulkOrder = () => {
                   alignItems: "center",
                   marginTop: "2px",
                   marginLeft: "5px",
-                  fontWeight: "bold",
+                  fontWeight: "700",
                 }}
               >
-                <div>
-                  <p>Subtotal</p>
-                </div>
-                <div>
-                  <p>{subTotal}</p>
-                </div>
+                <p>Subtotal</p>
+                {reCalculatingCharges ? (
+                  <Skeleton.Button size="small" shape="square" active />
+                ) : (
+                  <p>{calculatedCharges?.order_total || 0}</p>
+                )}
               </div>
               <Button className="buyNowBtn" htmlType="submit">
                 Buy Now
@@ -405,6 +479,6 @@ const BulkOrder = () => {
       </div>
       <Footer />
     </>
-  )
-}
-export default BulkOrder
+  );
+};
+export default BulkOrder;
