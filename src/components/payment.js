@@ -140,7 +140,11 @@ const Payment = () => {
 
   return (
     <>
-      <Navbarlogo />
+      <Navbarlogo
+        customGoBack={() =>
+          data?.payment_method === "wire" ? nav("/") : nav(-1)
+        }
+      />
       <div className="checkout-main1">
         <div className="twocards1">
           <div className="payment-card1">
