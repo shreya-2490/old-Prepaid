@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Alert } from "antd"
+import { Alert, Skeleton } from "antd"
 import { Link, useNavigate } from "react-router-dom"
 import visa from "../assets/visahome.png"
 import visawhite from "../assets/visahomewhite.png"
@@ -23,6 +23,7 @@ const Home = () => {
   const [selectedPrice, setSelectedPrice] = useState("low")
   const [alert, showAlert] = useState(false)
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
 
   const handleButtonClick = (event, buttonId) => {
@@ -63,28 +64,25 @@ const Home = () => {
     setSelectedProvider(event.target.value)
   }
 
-  // Handler for the price filter
   const handlePriceChange = (event) => {
     setSelectedPrice(event.target.value)
   }
-
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
-        const response = await axios.get(
-          "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-        )
-        const btcPrice = response.data.bitcoin.usd
-        setBTCValue((usdValue / btcPrice).toFixed(5))
+        const response = await axios.post("/api/rate-api", { amount: usdValue });
+        const btcPrice = response.data.value;
+        setBTCValue(btcPrice);
       } catch (error) {
-        console.log("Error fetching data:", error)
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
       }
-    }
-
-    fetchData()
-
-    setIsValueValid(false)
-  }, [usdValue, loadAmount])
+    };
+  
+    fetchData();
+  }, [usdValue, loadAmount]);
 
   const handleUSDSelect = (selectedValue) => {
     const value = parseFloat(selectedValue)
@@ -93,13 +91,13 @@ const Home = () => {
     setLoadAmount(selectedValue)
     selectedValue ? showAlert(false) : showAlert(true)
   }
-  const pageTitle = "Prepaid Friends | Your Bitcoin Bridge to Global Spending";
+  const pageTitle = "Prepaid Friends | Your Bitcoin Bridge to Global Spending"
   const pageDescription =
-    "Prepaid Friends: Your Bitcoin bridge to global spending. Exchange BTC for prepaid cards and enjoy seamless transactions worldwide. Join now!";
+    "Prepaid Friends: Your Bitcoin bridge to global spending. Exchange BTC for prepaid cards and enjoy seamless transactions worldwide. Join now!"
 
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
       </Helmet>
@@ -235,14 +233,18 @@ const Home = () => {
                         display: "inline",
                       }}
                     >
-                      <span
-                        style={{
-                          margin: "0px",
-                          fontFamily: "Outfit, sans-serif",
-                        }}
-                      >
-                        ≈ {btcValue} BTC
-                      </span>
+                      {isLoading ? (
+                        <Skeleton.Button size="small" shape="square" active />
+                      ) : (
+                        <span
+                          style={{
+                            margin: "0px",
+                            fontFamily: "Outfit, sans-serif",
+                          }}
+                        >
+                          ≈ {btcValue} BTC
+                        </span>
+                      )}
                     </p>
 
                     <div>

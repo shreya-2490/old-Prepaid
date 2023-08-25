@@ -1,5 +1,14 @@
 import React, { useState, useEffect, useContext } from "react"
-import { Card, Button, Select, Checkbox, Alert, notification, message } from "antd"
+import {
+  Card,
+  Button,
+  Select,
+  Checkbox,
+  Alert,
+  notification,
+  message,
+  Skeleton,
+} from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import Navbarlogo from "./Navbarlogo"
 import "../styles/checkout.css"
@@ -13,7 +22,6 @@ import { usdToBTC } from "../utils/helper"
 
 const Checkout = () => {
   const [api, contextHolder] = notification.useNotification()
-
   const [btcRate, setBTCRate] = useState(null)
   const navigate = useNavigate()
   const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext)
@@ -22,6 +30,7 @@ const Checkout = () => {
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [customerName, setCustomerName] = useState("")
+  const [btcRateLoading, setBTCRateLoading] = useState(true) // Initialize as true to show loading initially
 
   const handleDelete = (cartItem) => {
     removeFromCart(cartItem?.id)
@@ -43,20 +52,28 @@ const Checkout = () => {
     updateQuantity(item?.id, quantity)
   }
 
-  useEffect(() => {
-    axios
-      ?.get(
-        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-      )
-      .then((response) => setBTCRate(response?.data?.bitcoin?.usd))
-      .catch((error) => console.error(error))
-  }, [])
-
   const totalNewCardValue = cartItems?.reduce((accumulator, object) => {
     return accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
   }, 0)
 
   const totalCardsValue = totalNewCardValue
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setBTCRateLoading(true)
+      try {
+        const response = await axios.post("/api/rate-api", {
+          amount: totalCardsValue,
+        })
+        const btcRatePrice = response.data.value
+        setBTCRate(btcRatePrice)
+      } catch (error) {
+        setBTCRateLoading(false)
+        console.error("Error fetching data:", error)
+      }
+    }
+    fetchData()
+  },[totalCardsValue])
 
   const handleSubmit = () => {
     if (email && validator.isEmail(email) && customerName) {
@@ -173,9 +190,17 @@ const Checkout = () => {
                               onClick={() => handleDelete(cartItem)}
                             />
                           </div>
-                          <p className="BTC">
-                            {usdToBTC(totalValue, btcRate)} BTC
-                          </p>
+                          {btcRateLoading ? (
+                            <Skeleton.Button
+                              size="small"
+                              shape="square"
+                              active
+                            />
+                          ) : (
+                            <p className="BTC">
+                              {usdToBTC(totalValue, btcRate)} BTC
+                            </p>
+                          )}
                         </div>
                       </div>
 
@@ -196,7 +221,7 @@ const Checkout = () => {
                 <div className="custom-upper-cardvalue">
                   <p className="value123">${totalCardsValue}</p>
                   <p className="BTC-total">
-                    {usdToBTC(totalCardsValue, btcRate)} BTC
+                    {btcRate} BTC
                   </p>
                 </div>
               </div>
@@ -253,8 +278,14 @@ const Checkout = () => {
                 <p>
                   I have read and agree with the Prepaid Friends
                   <span className="terms">
-                    <Link to="/terms-conditions" target="_blank">Terms & Conditions</Link> and
-                    <Link to="/privacy-policy"  target="_blank"> Privacy Policy</Link>
+                    <Link to="/terms-conditions" target="_blank">
+                      Terms & Conditions
+                    </Link>{" "}
+                    and
+                    <Link to="/privacy-policy" target="_blank">
+                      {" "}
+                      Privacy Policy
+                    </Link>
                   </span>
                 </p>
               </div>

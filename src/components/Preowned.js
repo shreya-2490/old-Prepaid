@@ -25,41 +25,47 @@ function Preowned() {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "")
   const [currentPage, setCurrentPage] = useState(1)
+  const [filtersChanged, setFiltersChanged] = useState(false)
   const { Option } = Select
 
   const cardsPerPage = 12
+  const totalCards = cardData.length
+  const totalPages = Math.ceil(totalCards / cardsPerPage)
+  if (currentPage > totalPages) {
+    setCurrentPage(totalPages)
+  }
   useEffect(() => {
     setCurrentPage(1)
   }, [cardData])
 
   useEffect(() => {
-    axios
-      .get("/api/get-card-with-type")
-      .then((response) => {
-        let filteredData = response.data.cards
-        if (selectedProvider !== "All") {
-          filteredData = filteredData.filter(
-            (card) => card.type === selectedProvider
-          )
-        }
+    if (filtersChanged) {
+      setCurrentPage(1)
+    } else {
+      axios
+        .get("/api/get-card-with-type")
+        .then((response) => {
+          let filteredData = response.data.cards
+          if (selectedProvider !== "All") {
+            filteredData = filteredData.filter(
+              (card) => card.type === selectedProvider
+            )
+          }
 
-        if (selectedPrice === "low") {
-          filteredData = filteredData.sort((a, b) => a.price - b.price)
-        } else if (selectedPrice === "high") {
-          filteredData = filteredData.sort((a, b) => b.price - a.price)
-        }
-        setCardData(filteredData)
-        setLoading(false)
-        const maxPage = Math.ceil(filteredData.length / cardsPerPage)
-        if (currentPage > maxPage) {
-          setCurrentPage(maxPage)
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching card data:", error)
-        setLoading(false)
-      })
-  }, [selectedProvider, selectedPrice, currentPage])
+          if (selectedPrice === "low") {
+            filteredData = filteredData.sort((a, b) => a.price - b.price)
+          } else if (selectedPrice === "high") {
+            filteredData = filteredData.sort((a, b) => b.price - a.price)
+          }
+          setCardData(filteredData)
+          setLoading(false)
+        })
+        .catch((error) => {
+          console.error("Error fetching card data:", error)
+          setLoading(false)
+        })
+    }
+  }, [selectedProvider, selectedPrice, filtersChanged])
 
   const handleProviderChange = (value) => {
     setLoading(true)
@@ -152,13 +158,13 @@ function Preowned() {
                     <div class="wrappercard">
                       <div key={card.id}>
                         <div class="card">
-                          <img src={map} class="map-img" />
+                          <img src={map} class="map-img" alt="map" />
                           <div class="top">
                             <h2 className="h2heading">CARDHOLDER</h2>
                             <h2 className="h2heading">
                               <b>${`${card.price}`}</b>
                             </h2>
-                            <img src={wifi} />
+                            <img src={wifi} alt="wifi" />
                           </div>
 
                           <div class="infos">
@@ -179,9 +185,13 @@ function Preowned() {
                               <aside>
                                 <section>
                                   {`${card.type}` === "visa" ? (
-                                    <img src={visa} class="brand" />
+                                    <img src={visa} class="brand" alt="visa" />
                                   ) : (
-                                    <img src={master} class="brand1" />
+                                    <img
+                                      src={master}
+                                      class="brand1"
+                                      alt="master"
+                                    />
                                   )}
                                 </section>
                               </aside>

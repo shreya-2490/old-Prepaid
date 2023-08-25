@@ -301,6 +301,25 @@
   .countrycode{
     width:17%;
   }
+  .change_email{
+  white-space:nowrap;
+  color:#1b1b1b;
+  margin-left:0.6rem;
+ margin-top:2rem;
+ font-size:0.85rem;
+ font-weight:600;
+ text-decoration:none;
+  }
+  .email-div{
+    margin-top: 0.7rem;
+  }
+  .change_email .hover-text {
+    display: none; 
+  }
+  
+  .change_email:hover .hover-text {
+    display: inline; 
+  }
 }
 
 /* / =====================Tablet Veiw=========================== / */

@@ -52,10 +52,7 @@ function Reset() {
         }
       })
       .catch((error) => {
-        console.error("API Error:", error)
-        message.error(
-          "API Error: An error occurred while processing your request."
-        )
+        message.error(error.response.data.error)
       })
       .finally(() => setIsLoading(false))
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/payment.css";
-import { Card, Divider, QRCode } from "antd";
+import { Card, Divider, QRCode,Skeleton} from "antd";
 import visa from "../assets/Visacartpage.png";
 import mastercard from "../assets/Mastercardcartpage.png";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -29,18 +29,10 @@ const Payment = () => {
   const [usdValue, setUSDValue] = useState(input1);
   const isBulkOrder = orderType === "bulk-order";
   const [cookies] = useCookies(["pfAuthToken"]);
+  const [btcRateLoading, setBTCRateLoading] = useState(true) 
 
   useEffect(() => {
     setUSDValue(usdValue);
-  }, []);
-
-  useEffect(() => {
-    axios
-      ?.get(
-        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-      )
-      .then((response) => setBTCRate(response?.data?.bitcoin?.usd))
-      .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
@@ -109,6 +101,22 @@ const Payment = () => {
         `Our team will contact you within the hour to confirm your order and send payment instructions. Thank you!!`
       );
     }
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setBTCRateLoading(true)
+      try {
+        const response = await axios.post("/api/rate-api", { amount: "" });
+        const btcPrice = response.data.value;
+        setBTCRate(btcPrice);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setBTCRateLoading(false)
+      }
+    };
+    fetchData();
   }, []);
 
   const totalCartItemsCount = data?.objectDataReturn?.items?.reduce(
@@ -316,15 +324,23 @@ const Payment = () => {
 
                   <p className="subtotal">Total</p>
                   <div className="custom-bottom-para pay-para">
-                    <p>${data?.objectDataReturn?.order_total}</p>
-                    <p className="BTC-total">
-                      {" "}
-                      {usdToBTC(
-                        data?.objectDataReturn?.order_total,
-                        btcRate
-                      )}{" "}
-                      BTC
-                    </p>
+                      <p>${data?.objectDataReturn?.order_total}</p>
+                      {btcRateLoading ? (
+                        <Skeleton.Button
+                          size="small"
+                          shape="square"
+                          active
+                        />
+                      ) : (
+                        <p className="BTC-total">
+                          {" "}
+                          {usdToBTC(
+                            data?.objectDataReturn?.order_total,
+                            btcRate
+                          )}{" "}
+                          BTC
+                        </p>
+                      )}
                   </div>
                 </>
               )}
