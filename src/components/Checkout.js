@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext } from "react";
 import {
   Card,
   Button,
@@ -8,78 +8,81 @@ import {
   notification,
   message,
   Skeleton,
-} from "antd"
-import { DeleteOutlined } from "@ant-design/icons"
-import Navbarlogo from "./Navbarlogo"
-import "../styles/checkout.css"
-import validator from "validator"
-import visa from "../assets/Visacartpage.png"
-import mastercard from "../assets/Mastercardcartpage.png"
-import { useNavigate, Link } from "react-router-dom"
-import { CartContext } from "./CartContext"
-import axios from "axios"
-import { usdToBTC } from "../utils/helper"
+} from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import Navbarlogo from "./Navbarlogo";
+import "../styles/checkout.css";
+import validator from "validator";
+import visa from "../assets/Visacartpage.png";
+import mastercard from "../assets/Mastercardcartpage.png";
+import { useNavigate, Link } from "react-router-dom";
+import { CartContext } from "./CartContext";
+import axios from "axios";
+import { usdToBTC } from "../utils/helper";
 
 const Checkout = () => {
-  const [api, contextHolder] = notification.useNotification()
-  const [btcRate, setBTCRate] = useState(null)
-  const navigate = useNavigate()
-  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext)
-  const [isChecked1, setIsChecked1] = useState(false)
-  const [isChecked2, setIsChecked2] = useState(false)
-  const [email, setEmail] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [customerName, setCustomerName] = useState("")
-  const [btcRateLoading, setBTCRateLoading] = useState(true) // Initialize as true to show loading initially
+  const [api, contextHolder] = notification.useNotification();
+  const [btcRate, setBTCRate] = useState(null);
+  const navigate = useNavigate();
+  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
+  const [isChecked1, setIsChecked1] = useState(false);
+  const [isChecked2, setIsChecked2] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [customerName, setCustomerName] = useState("");
+  const [btcRateLoading, setBTCRateLoading] = useState(true); // Initialize as true to show loading initially
 
   const handleDelete = (cartItem) => {
-    removeFromCart(cartItem?.id)
-  }
+    removeFromCart(cartItem?.id);
+  };
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value)
-  }
+    setEmail(event.target.value);
+  };
 
   const handleCheckboxChange1 = () => {
-    setIsChecked1(!isChecked1)
-  }
+    setIsChecked1(!isChecked1);
+  };
 
   const handleCheckboxChange2 = () => {
-    setIsChecked2(!isChecked2)
-  }
+    setIsChecked2(!isChecked2);
+  };
 
   const handleChange = (item, quantity) => {
-    updateQuantity(item?.id, quantity)
-  }
+    updateQuantity(item?.id, quantity);
+  };
 
   const totalNewCardValue = cartItems?.reduce((accumulator, object) => {
-    return accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
-  }, 0)
+    return (
+      accumulator + Number(object.usdValue) * Number(object?.quantity || 1)
+    );
+  }, 0);
 
-  const totalCardsValue = totalNewCardValue
+  const totalCardsValue = totalNewCardValue;
 
   useEffect(() => {
     const fetchData = async () => {
-      setBTCRateLoading(true)
+      setBTCRateLoading(true);
       try {
         const response = await axios.post("/api/rate-api", {
           amount: totalCardsValue,
-        })
-        const btcRatePrice = response.data.value
-        setBTCRate(btcRatePrice)
+        });
+        const btcRatePrice = response.data.value;
+        setBTCRate(btcRatePrice);
       } catch (error) {
-        setBTCRateLoading(false)
-        console.error("Error fetching data:", error)
+        setBTCRateLoading(false);
+        console.error("Error fetching data:", error);
       }
-    }
-    fetchData()
-  }, [totalCardsValue])
+    };
+    fetchData();
+  }, [totalCardsValue]);
 
   const handleSubmit = () => {
     if (email && validator.isEmail(email) && customerName) {
-      const nameParts = customerName.split(" ")
+      const nameParts = customerName.split(" ");
       if (nameParts.length >= 2) {
-        setEmail(email)
+        setEmail(email);
+        setIsLoading(true);
         axios
           ?.post(`/api/preowned-order`, {
             customer_name: customerName,
@@ -108,22 +111,23 @@ const Checkout = () => {
               err?.response?.data?.error || err?.response?.data?.message
             )
           )
+          ?.finally(() => setIsLoading(false));
       } else {
         message.error(
           "Invalid full name format. Please enter your full name including both first and last names."
-        )
+        );
       }
     } else {
       if (!email) {
         message.error(
           "Invalid email format. Please enter a correct email address."
-        )
+        );
       }
       if (!customerName) {
-        message.error("Invalid customer name. Please enter your full name.")
+        message.error("Invalid customer name. Please enter your full name.");
       }
     }
-  }
+  };
 
   return (
     <>
@@ -140,9 +144,9 @@ const Checkout = () => {
             >
               <div className="custom-upper-para">
                 {cartItems?.map((cartItem) => {
-                  const { id, usdValue, quantity, type, bin } = cartItem
+                  const { id, usdValue, quantity, type, bin } = cartItem;
 
-                  const totalValue = usdValue * quantity
+                  const totalValue = usdValue * quantity;
                   return (
                     <div key={id} className="item-container">
                       <div className="valuess">
@@ -211,7 +215,7 @@ const Checkout = () => {
                         />
                       )}
                     </div>
-                  )
+                  );
                 })}
               </div>
 
@@ -310,7 +314,7 @@ const Checkout = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;
