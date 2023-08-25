@@ -129,7 +129,7 @@ const Payment = () => {
   useInterval(() => {
     if (data?.payment_method !== "wire") {
       axios?.get(`/api/btc-check-status/${data?.order_number}`)?.then((res) => {
-        if (res?.data?.status === "Payment Confirmed") {
+        if (res?.data?.status === "Payment Confirmed. Required Manual review") {
           nav("/thank-you", {
             state: { orderNumber: data?.order_number, email },
           });
