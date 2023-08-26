@@ -93,9 +93,10 @@ ul {
   padding-top: 1rem;
  }
 
- .back-arrow {
+ .back1-arrow {
    padding-top: 1.3rem;
    padding-left: 2rem;
+   cursor: pointer;
   }
 
   .user{
@@ -221,9 +222,10 @@ ul {
    padding-top: 1rem;
   }
 
-  .back-arrow {
+  .back1-arrow {
     padding-top: 1.3rem;
     padding-left: 1.5rem;
+    cursor: pointer;
    }
 
    .user{
@@ -323,9 +325,10 @@ ul {
     padding-top: 1.5rem;
    }
  
-   .back-arrow {
+   .back1-arrow {
      padding-top: 1.7rem;
      padding-left: 1.8rem;
+     cursor: pointer;
     }
 
     .user2{
