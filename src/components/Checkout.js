@@ -73,7 +73,7 @@ const Checkout = () => {
       }
     }
     fetchData()
-  },[totalCardsValue])
+  }, [totalCardsValue])
 
   const handleSubmit = () => {
     if (email && validator.isEmail(email) && customerName) {
@@ -217,12 +217,13 @@ const Checkout = () => {
 
               <div className="custom-bottom-para-total">
                 <p className="custom-para">Total Estimate</p>
-
                 <div className="custom-upper-cardvalue">
                   <p className="value123">${totalCardsValue}</p>
-                  <p className="BTC-total">
-                    {btcRate} BTC
-                  </p>
+                  {btcRateLoading ? (
+                    <Skeleton.Button size="small" shape="square" active />
+                  ) : (
+                    <p className="BTC-total">{btcRate} BTC</p>
+                  )}
                 </div>
               </div>
             </Card>

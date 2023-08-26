@@ -102,10 +102,10 @@
     height: 8.13rem;
     text-align: left;
   }
-  .with-bitcoin .group-container{
-   left:1rem;
+  .with-bitcoin .group-container {
+    left: 1rem;
   }
-  .with-bitcoin .frame-inner{
+  .with-bitcoin .frame-inner {
     left: 0.1rem;
   }
   .bulk-main {
@@ -117,7 +117,13 @@
     align-items: center;
     justify-content: center;
   }
-
+.paymentbulk{
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: left;
+  margin-top: 1rem;
+}
   .bulk-division {
     width: 90%;
     background-color: #fff;
@@ -248,8 +254,8 @@
   .ant-select-selector:focus
     .ant-form-item-control-input
     .ant-input-number:focus,
-    .ant-input-number:active,
-    .ant-input-number::selection,
+  .ant-input-number:active,
+  .ant-input-number::selection,
   .ant-form-item-control-input .ant-input-number:hover,
   .ant-form-item-control-input input[type="number"]:focus,
   .ant-form-item-control-input input[type="number"]:hover,
@@ -298,27 +304,46 @@
   .PhoneInput {
     width: 7%;
   }
-  .countrycode{
-    width:17%;
+  .countrycode {
+    width: 17%;
   }
-  .change_email{
-  white-space:nowrap;
-  color:#1b1b1b;
-  margin-left:0.6rem;
- margin-top:2rem;
- font-size:0.85rem;
- font-weight:600;
- text-decoration:none;
+  .change_email {
+    white-space: nowrap;
+    color: #1b1b1b;
+    margin-top: 1.4rem;
+    margin-left: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .email-div{
-    margin-top: 0.7rem;
+.back-arrow{
+  font-size: xx-large;
+}
+.email-arrow{
+  font-size: x-large;
+  margin-right: 0.2rem;
+}
+.hover-text-content{
+  display: flex;
+  align-items: center;
+}
+  .change_email .hover-text .back-arrow {
+    display: none;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
   }
-  .change_email .hover-text {
-    display: none; 
+
+  .change_email:hover .hover-text .back-arrow {
+    display: inline-flex;
+    position: relative;
+    right: 3rem;
   }
-  
-  .change_email:hover .hover-text {
-    display: inline; 
+  .change_email:hover .hover-text .hover-text-content {
+    display: none;
   }
 }
 
@@ -425,12 +450,12 @@
     height: 8.13rem;
     text-align: left;
   }
-  .with-bitcoin .group-container{
-    left:1rem;
-   }
-   .with-bitcoin .frame-inner{
-     left: 0.1rem;
-   }
+  .with-bitcoin .group-container {
+    left: 1rem;
+  }
+  .with-bitcoin .frame-inner {
+    left: 0.1rem;
+  }
   .bulk-main {
     background-color: #f5f2ea;
     width: 100%;
@@ -580,8 +605,53 @@
     width: 70%;
     margin: 0 15%;
   }
-  .countrycode{
-    width:25%;
+  .countrycode {
+    width: 25%;
+  }
+  .change_email {
+    white-space: nowrap;
+    color: #1b1b1b;
+    margin-top: 1.4rem;
+    margin-left: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.back-arrow{
+  font-size: xx-large;
+}
+.email-arrow{
+  font-size: x-large;
+  margin-right: 0.2rem;
+}
+.hover-text-content{
+  display: flex;
+  align-items: center;
+}
+  .change_email .hover-text .back-arrow {
+    display: none;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .change_email:hover .hover-text .back-arrow {
+    display: inline-flex;
+    position: relative;
+    right: 4rem;
+    bottom: 0.5rem;
+  }
+  .change_email:hover .hover-text .hover-text-content {
+    display: none;
+  }
+  .paymentbulk {
+    display: block;
+    width: 1.5rem;
+    height: 3rem;
+    margin-left: -1.8rem;
   }
 }
 
@@ -701,27 +771,26 @@
     width: 100%;
   }
 
+  .rectangle-parent {
+    height: auto;
+  }
 
-    .rectangle-parent {
-      height: auto;
-    }
+  .frame-item,
+  .frame-inner {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 
-    .frame-item,
-    .frame-inner {
-      position: relative;
-      width: 100%;
-      margin-bottom: 1rem;
-    }
+  .group-container,
+  .group-container1 {
+    position: relative;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
 
-    .group-container,
-    .group-container1 {
-      position: relative;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      cursor: pointer;
-    }
-    
   .bulk-main {
     background-color: #f5f2ea;
     width: 100%;
@@ -813,7 +882,51 @@
   .PhoneInput {
     width: 15%;
   }
-  .countrycode{
+  .countrycode {
     width: 40%;
+  }
+  
+  .paymentbulk {
+    display: block;
+    width: 80%;
+    height: 3rem;
+    margin-left: -1rem;
+  }
+  .change_email {
+    white-space: nowrap;
+    color: #1b1b1b;
+    margin-top:0.3rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+.back-arrow{
+  font-size: xx-large;
+}
+.email-arrow{
+  font-size: x-large;
+  margin-right: 0.3rem;
+}
+.hover-text-content{
+  display: flex;
+  align-items: center;
+}
+  .change_email .hover-text .back-arrow {
+    display: none;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .change_email:hover .hover-text .back-arrow {
+    display: inline-flex;
+    position: relative;
+    right: 1rem;
+    bottom: 0.3rem;
+  }
+  .change_email:hover .hover-text .hover-text-content {
+    display: none;
   }
 }

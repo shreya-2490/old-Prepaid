@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
-import { Card, Button, Checkbox, message } from "antd"
-import { DeleteOutlined } from "@ant-design/icons"
+import { Card, Button, Checkbox, message, Skeleton } from "antd"
+import { DeleteOutlined, LeftCircleFilled ,LeftOutlined} from "@ant-design/icons"
 import Navbarlogo from "./Navbarlogo"
 import "../styles/checkout.css"
 import validator from "validator"
@@ -29,6 +29,7 @@ const BulkCheckout = () => {
   const [paymentTypeSelectionOpen, setPaymentTypeSelectionOpen] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isEmailValid, setIsEmailValid] = useState(false)
+  const [btcRateLoading, setBTCRateLoading] = useState(true)
 
   const handleDelete = (cartItem) => {
     removeBulkFromCart(cartItem?.id)
@@ -47,27 +48,36 @@ const BulkCheckout = () => {
     setEmail(enteredEmail)
     setIsEmailValid(validator.isEmail(enteredEmail))
   }
+  const totalCartValue = bulkCartItems?.reduce((accumulator, object) => {
+    return accumulator + Number(object?.subTotal)
+  }, 0)
+
+  const showBitcoinPayment = totalCartValue >= 500
 
   useEffect(() => {
-    axios
-      ?.get(
-        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-      )
-      .then((response) => setBTCRate(response?.data?.bitcoin?.usd))
-      .catch((error) => console.error(error))
-  }, [])
+    const fetchData = async () => {
+      setBTCRateLoading(true)
+      try {
+        const response = await axios.post("/api/rate-api", {
+          amount: totalCartValue,
+        })
+        const btcPrice = response.data.value
+        setBTCRate(btcPrice)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      } finally {
+        setBTCRateLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [totalCartValue])
 
   useEffect(() => {
     if (user?.email) {
       setPaymentTypeSelectionOpen(true)
     }
   }, [])
-
-  const totalCartValue = bulkCartItems?.reduce((accumulator, object) => {
-    return accumulator + Number(object?.subTotal)
-  }, 0)
-
-  const showBitcoinPayment = totalCartValue >= 500
 
   const handleSubmit = () => {
     if (user?.email) {
@@ -197,9 +207,17 @@ const BulkCheckout = () => {
                               onClick={() => handleDelete(bulkCartItem)}
                             />
                           </div>
-                          <p className="BTC">
-                            {usdToBTC(subTotal, btcRate)} BTC
-                          </p>
+                          {btcRateLoading ? (
+                            <Skeleton.Button
+                              size="small"
+                              shape="square"
+                              active
+                            />
+                          ) : (
+                            <p className="BTC">
+                              {usdToBTC(subTotal, btcRate)} BTC
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -211,9 +229,11 @@ const BulkCheckout = () => {
                 <p className="custom-para">Total Estimate</p>
                 <div className="custom-upper-cardvalue">
                   <p className="value123">${totalCartValue}</p>
-                  <p className="BTC-total">
-                    {usdToBTC(totalCartValue, btcRate)} BTC
-                  </p>
+                  {btcRateLoading ? (
+                    <Skeleton.Button size="small" shape="square" active />
+                  ) : (
+                    <p className="BTC-total">{btcRate} BTC</p>
+                  )}
                 </div>
               </div>
             </Card>
@@ -289,7 +309,7 @@ const BulkCheckout = () => {
                       </div>
                     )}
                   </div>
-                  <div className="payment">
+                  <div className="paymentbulk" style={{ display: "flex" }}>
                     <Button
                       style={{
                         backgroundColor: isChecked2 ? "#FDC886" : "#FDC886",
@@ -305,6 +325,20 @@ const BulkCheckout = () => {
                     >
                       Continue to payment
                     </Button>
+                    <div className="email-div">
+                      <a
+                        href="#"
+                        onClick={() => setPaymentTypeSelectionOpen(false)}
+                        className="change_email"
+                      >
+                        <span className="hover-text">
+                          <LeftCircleFilled  className="back-arrow" />
+                          <span className="hover-text-content">
+                            <LeftCircleFilled className="email-arrow"/> Change Email 
+                          </span>
+                        </span>
+                      </a>
+                    </div>
                   </div>
                 </>
               ) : (
@@ -340,8 +374,13 @@ const BulkCheckout = () => {
                     <p>
                       I have read and agree with the Prepaid Friends
                       <span className="terms">
-                        <Link to="/terms-conditions"  target="_blank">Terms & Conditions</Link>{" "}
-                        and <Link to="/privacy-policy"  target="_blank"> Privacy Policy</Link>
+                        <Link to="/terms-conditions" target="_blank">
+                          Terms & Conditions
+                        </Link>
+                        and
+                        <Link to="/privacy-policy" target="_blank">
+                          Privacy Policy
+                        </Link>
                       </span>
                     </p>
                   </div>
