@@ -30,7 +30,7 @@ const Checkout = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [customerName, setCustomerName] = useState("");
-  const [btcRateLoading, setBTCRateLoading] = useState(true); // Initialize as true to show loading initially
+  const [btcRateLoading, setBTCRateLoading] = useState(false);
 
   const handleDelete = (cartItem) => {
     removeFromCart(cartItem?.id);
@@ -70,8 +70,9 @@ const Checkout = () => {
         const btcRatePrice = response.data.value;
         setBTCRate(btcRatePrice);
       } catch (error) {
-        setBTCRateLoading(false);
         console.error("Error fetching data:", error);
+      } finally {
+        setBTCRateLoading(false);
       }
     };
     fetchData();
