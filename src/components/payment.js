@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/payment.css";
-import { Card, Divider, QRCode,Skeleton} from "antd";
+import { Card, Divider, QRCode, Skeleton } from "antd";
 import visa from "../assets/Visacartpage.png";
 import mastercard from "../assets/Mastercardcartpage.png";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -29,7 +29,7 @@ const Payment = () => {
   const [usdValue, setUSDValue] = useState(input1);
   const isBulkOrder = orderType === "bulk-order";
   const [cookies] = useCookies(["pfAuthToken"]);
-  const [btcRateLoading, setBTCRateLoading] = useState(true) 
+  const [btcRateLoading, setBTCRateLoading] = useState(true);
 
   useEffect(() => {
     setUSDValue(usdValue);
@@ -105,7 +105,7 @@ const Payment = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setBTCRateLoading(true)
+      setBTCRateLoading(true);
       try {
         const response = await axios.post("/api/rate-api", { amount: "" });
         const btcPrice = response.data.value;
@@ -113,7 +113,7 @@ const Payment = () => {
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setBTCRateLoading(false)
+        setBTCRateLoading(false);
       }
     };
     fetchData();
@@ -129,7 +129,7 @@ const Payment = () => {
   useInterval(() => {
     if (data?.payment_method !== "wire") {
       axios?.get(`/api/btc-check-status/${data?.order_number}`)?.then((res) => {
-        if (res?.data?.status === "Payment Confirmed. Required Manual review") {
+        if (res?.data?.status === "Payment not Confirmed Yet.") {
           nav("/thank-you", {
             state: { orderNumber: data?.order_number, email },
           });
@@ -328,23 +328,19 @@ const Payment = () => {
 
                   <p className="subtotal">Total</p>
                   <div className="custom-bottom-para pay-para">
-                      <p>${data?.objectDataReturn?.order_total}</p>
-                      {btcRateLoading ? (
-                        <Skeleton.Button
-                          size="small"
-                          shape="square"
-                          active
-                        />
-                      ) : (
-                        <p className="BTC-total">
-                          {" "}
-                          {usdToBTC(
-                            data?.objectDataReturn?.order_total,
-                            btcRate
-                          )}{" "}
-                          BTC
-                        </p>
-                      )}
+                    <p>${data?.objectDataReturn?.order_total}</p>
+                    {btcRateLoading ? (
+                      <Skeleton.Button size="small" shape="square" active />
+                    ) : (
+                      <p className="BTC-total">
+                        {" "}
+                        {usdToBTC(
+                          data?.objectDataReturn?.order_total,
+                          btcRate
+                        )}{" "}
+                        BTC
+                      </p>
+                    )}
                   </div>
                 </>
               )}
