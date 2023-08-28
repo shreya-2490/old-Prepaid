@@ -25,7 +25,7 @@ import ProtectedRoute from "./shared-components/protected-route";
 import Reset from "./components/reset";
 import { AuthContext } from "./context/auth-context";
 import { useCookies } from "react-cookie";
-import ShowItem from "./components/Showitem";
+// import ShowItem from "./components/Showitem";
 import Email from "./components/Emailtemplateimages";
 
 function App() {
@@ -111,9 +111,9 @@ function App() {
               <Routes>
                 <Route path="/privacy-policy" element={<Policy />} />
               </Routes>
-              <Routes>
+              {/* <Routes>
                 <Route path="/view-card" element={<ShowItem />} />
-              </Routes>
+              </Routes> */}
               <Routes>
                 <Route path="/images" element={<Email />} />
               </Routes>
