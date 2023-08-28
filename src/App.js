@@ -115,7 +115,7 @@ function App() {
                 <Route path="/view-card" element={<ShowItem />} />
               </Routes> */}
               <Routes>
-                <Route path="/images" element={<Email />} />
+                <Route path="/images" element={<ProtectedRoute><Email /></ProtectedRoute>} />
               </Routes>
               <Routes>
                 <Route
