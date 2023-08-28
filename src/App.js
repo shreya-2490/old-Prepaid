@@ -25,6 +25,8 @@ import ProtectedRoute from "./shared-components/protected-route";
 import Reset from "./components/reset";
 import { AuthContext } from "./context/auth-context";
 import { useCookies } from "react-cookie";
+import ShowItem from "./components/Showitem";
+import Email from "./components/Emailtemplateimages";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -108,6 +110,12 @@ function App() {
               </Routes>
               <Routes>
                 <Route path="/privacy-policy" element={<Policy />} />
+              </Routes>
+              <Routes>
+                <Route path="/view-card" element={<ShowItem />} />
+              </Routes>
+              <Routes>
+                <Route path="/images" element={<Email />} />
               </Routes>
               <Routes>
                 <Route
