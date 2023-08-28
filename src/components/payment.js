@@ -107,7 +107,7 @@ const Payment = () => {
     const fetchData = async () => {
       setBTCRateLoading(true);
       try {
-        const response = await axios.post("/api/rate-api", { amount: "" });
+        const response = await axios.post("/api/rate-api");
         const btcPrice = response.data.value;
         setBTCRate(btcPrice);
       } catch (error) {
@@ -200,7 +200,7 @@ const Payment = () => {
                           {data?.payment_method !== "wire" && (
                             <div className="item-actions">
                               <p className="BTC">
-                                {usdToBTC(subtotal, btcRate)} BTC
+                                {usdToBTC(subtotal, btcRate) ?? 0} BTC
                               </p>
                             </div>
                           )}
@@ -308,7 +308,7 @@ const Payment = () => {
                         </div>
                         <div className="final-payment">
                           <p className="BTC-simplecard">
-                            {usdToBTC(item?.price, btcRate)} BTC
+                            {usdToBTC(item?.price, btcRate) ?? 0} BTC
                           </p>
                         </div>
                       </div>
@@ -333,11 +333,7 @@ const Payment = () => {
                       <Skeleton.Button size="small" shape="square" active />
                     ) : (
                       <p className="BTC-total">
-                        {" "}
-                        {usdToBTC(
-                          data?.objectDataReturn?.order_total,
-                          btcRate
-                        )}{" "}
+                        {data?.btc_amount}
                         BTC
                       </p>
                     )}

@@ -1,87 +1,89 @@
-import React, { useState, useEffect, useContext } from "react"
-import { Card, Button, Checkbox, message, Skeleton } from "antd"
-import { DeleteOutlined, LeftCircleFilled ,LeftOutlined} from "@ant-design/icons"
-import Navbarlogo from "./Navbarlogo"
-import "../styles/checkout.css"
-import validator from "validator"
-import visa from "../assets/Visacartpage.png"
-import mastercard from "../assets/Mastercardcartpage.png"
-import { useNavigate, Link, useLocation } from "react-router-dom"
-import { CartContext } from "./CartContext"
-import axios from "axios"
-import { usdToBTC } from "../utils/helper"
-import btc from "../assets/btc.png"
-import wiretransfer from "../assets/wiretransfer.png"
-import { AuthContext } from "../context/auth-context"
-import { useCookies } from "react-cookie"
+import React, { useState, useEffect, useContext } from "react";
+import { Card, Button, Checkbox, message, Skeleton } from "antd";
+import {
+  DeleteOutlined,
+  LeftCircleFilled,
+  LeftOutlined,
+} from "@ant-design/icons";
+import Navbarlogo from "./Navbarlogo";
+import "../styles/checkout.css";
+import validator from "validator";
+import visa from "../assets/Visacartpage.png";
+import mastercard from "../assets/Mastercardcartpage.png";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { CartContext } from "./CartContext";
+import axios from "axios";
+import { usdToBTC } from "../utils/helper";
+import btc from "../assets/btc.png";
+import wiretransfer from "../assets/wiretransfer.png";
+import { AuthContext } from "../context/auth-context";
+import { useCookies } from "react-cookie";
 
 const BulkCheckout = () => {
-  const [btcRate, setBTCRate] = useState(null)
-  const navigate = useNavigate()
-  const { state } = useLocation()
-  const [cookies] = useCookies(["pfAuthToken"])
-  const { user } = useContext(AuthContext)
-  const { bulkCartItems, removeBulkFromCart } = useContext(CartContext)
-  const [isChecked1, setIsChecked1] = useState(false)
-  const [isChecked2, setIsChecked2] = useState(false)
-  const [email, setEmail] = useState("")
-  const [paymentMethod, setPaymentMethod] = useState("")
-  const [paymentTypeSelectionOpen, setPaymentTypeSelectionOpen] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [isEmailValid, setIsEmailValid] = useState(false)
-  const [btcRateLoading, setBTCRateLoading] = useState(true)
+  const [btcRate, setBTCRate] = useState(null);
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const [cookies] = useCookies(["pfAuthToken"]);
+  const { user } = useContext(AuthContext);
+  const { bulkCartItems, removeBulkFromCart } = useContext(CartContext);
+  const [isChecked1, setIsChecked1] = useState(false);
+  const [isChecked2, setIsChecked2] = useState(false);
+  const [email, setEmail] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentTypeSelectionOpen, setPaymentTypeSelectionOpen] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [btcRateLoading, setBTCRateLoading] = useState(true);
 
   const handleDelete = (cartItem) => {
-    removeBulkFromCart(cartItem?.id)
-  }
+    removeBulkFromCart(cartItem?.id);
+  };
 
   const handleCheckboxChange1 = () => {
-    setIsChecked1(!isChecked1)
-  }
+    setIsChecked1(!isChecked1);
+  };
 
   const handleCheckboxChange2 = () => {
-    setIsChecked2(!isChecked2)
-  }
+    setIsChecked2(!isChecked2);
+  };
 
   const handleEmailChange = (event) => {
-    const enteredEmail = event.target.value
-    setEmail(enteredEmail)
-    setIsEmailValid(validator.isEmail(enteredEmail))
-  }
+    const enteredEmail = event.target.value;
+    setEmail(enteredEmail);
+    setIsEmailValid(validator.isEmail(enteredEmail));
+  };
   const totalCartValue = bulkCartItems?.reduce((accumulator, object) => {
-    return accumulator + Number(object?.subTotal)
-  }, 0)
+    return accumulator + Number(object?.subTotal);
+  }, 0);
 
-  const showBitcoinPayment = totalCartValue >= 500
+  const showBitcoinPayment = totalCartValue >= 500;
 
   useEffect(() => {
     const fetchData = async () => {
-      setBTCRateLoading(true)
+      setBTCRateLoading(true);
       try {
-        const response = await axios.post("/api/rate-api", {
-          amount: totalCartValue,
-        })
-        const btcPrice = response.data.value
-        setBTCRate(btcPrice)
+        const response = await axios.post("/api/rate-api");
+        const btcPrice = response.data.value;
+        setBTCRate(btcPrice);
       } catch (error) {
-        console.error("Error fetching data:", error)
+        console.error("Error fetching data:", error);
       } finally {
-        setBTCRateLoading(false)
+        setBTCRateLoading(false);
       }
-    }
+    };
 
-    fetchData()
-  }, [totalCartValue])
+    fetchData();
+  }, [totalCartValue]);
 
   useEffect(() => {
     if (user?.email) {
-      setPaymentTypeSelectionOpen(true)
+      setPaymentTypeSelectionOpen(true);
     }
-  }, [])
+  }, []);
 
   const handleSubmit = () => {
     if (user?.email) {
-      setIsLoading(true)
+      setIsLoading(true);
       axios
         ?.post(
           `/api/save-bulk-order-api`,
@@ -117,16 +119,16 @@ const BulkCheckout = () => {
               orderType: "bulk-order",
               data: res?.data,
             },
-          })
+          });
         })
         .catch((error) => {
-          message.error(error.response.data.error)
+          message.error(error.response.data.error);
         })
-        ?.finally(() => setIsLoading(false))
+        ?.finally(() => setIsLoading(false));
     } else {
       if (validator.isEmail(email)) {
-        setEmail(email)
-        setIsLoading(true)
+        setEmail(email);
+        setIsLoading(true);
         axios
           ?.post(`/api/save-bulk-order-api`, {
             customer_name: state?.customerName,
@@ -155,14 +157,14 @@ const BulkCheckout = () => {
             })
           )
           .catch((error) => {
-            message.error(error.response.data.error)
+            message.error(error.response.data.error);
           })
-          ?.finally(() => setIsLoading(false))
+          ?.finally(() => setIsLoading(false));
       } else {
-        alert("Invalid email format. Please enter a correct email address.")
+        alert("Invalid email format. Please enter a correct email address.");
       }
     }
-  }
+  };
 
   return (
     <>
@@ -179,7 +181,7 @@ const BulkCheckout = () => {
               <div className="custom-upper-para">
                 {bulkCartItems?.map((bulkCartItem) => {
                   const { id, quantity, amount, subTotal, cardType } =
-                    bulkCartItem
+                    bulkCartItem;
 
                   return (
                     <div key={id} className="item-container">
@@ -221,7 +223,7 @@ const BulkCheckout = () => {
                         </div>
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
 
@@ -232,7 +234,9 @@ const BulkCheckout = () => {
                   {btcRateLoading ? (
                     <Skeleton.Button size="small" shape="square" active />
                   ) : (
-                    <p className="BTC-total">{btcRate} BTC</p>
+                    <p className="BTC-total">
+                      {usdToBTC(totalCartValue, btcRate)} BTC
+                    </p>
                   )}
                 </div>
               </div>
@@ -266,7 +270,7 @@ const BulkCheckout = () => {
                           paymentMethod === "btc" ? "selected" : ""
                         }`}
                         onClick={() => {
-                          setPaymentMethod("btc")
+                          setPaymentMethod("btc");
                         }}
                       ></div>
                     )}
@@ -279,13 +283,13 @@ const BulkCheckout = () => {
                           paymentMethod === "wire" ? "#FDC886" : "",
                       }}
                       onClick={() => {
-                        setPaymentMethod("wire")
+                        setPaymentMethod("wire");
                       }}
                     ></div>
                     <div
                       className="group-container"
                       onClick={() => {
-                        setPaymentMethod("wire")
+                        setPaymentMethod("wire");
                       }}
                     >
                       <div class="wire-transfer-wrapper">
@@ -301,7 +305,7 @@ const BulkCheckout = () => {
                       <div
                         className="group-container1"
                         onClick={() => {
-                          setPaymentMethod("btc")
+                          setPaymentMethod("btc");
                         }}
                       >
                         <div class="bitcoin">Bitcoin</div>
@@ -332,9 +336,10 @@ const BulkCheckout = () => {
                         className="change_email"
                       >
                         <span className="hover-text">
-                          <LeftCircleFilled  className="back-arrow" />
+                          <LeftCircleFilled className="back-arrow" />
                           <span className="hover-text-content">
-                            <LeftCircleFilled className="email-arrow"/> Change Email 
+                            <LeftCircleFilled className="email-arrow" /> Change
+                            Email
                           </span>
                         </span>
                       </a>
@@ -405,7 +410,7 @@ const BulkCheckout = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default BulkCheckout
+export default BulkCheckout;

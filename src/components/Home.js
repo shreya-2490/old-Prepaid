@@ -1,99 +1,98 @@
-import { useState, useEffect } from "react"
-import { Alert, Skeleton } from "antd"
-import { Link, useNavigate } from "react-router-dom"
-import visa from "../assets/visahome.png"
-import visawhite from "../assets/visahomewhite.png"
-import mastercard from "../assets/masterhome.png"
-import masterwhite from "../assets/masterhomewhite.png"
-import "../styles/home.css"
-import axios from "axios"
-import Footer from "./Footer"
-import Ticker from "./ticker"
-import { Helmet } from "react-helmet"
+import { useState, useEffect } from "react";
+import { Alert, Skeleton } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import visa from "../assets/visahome.png";
+import visawhite from "../assets/visahomewhite.png";
+import mastercard from "../assets/masterhome.png";
+import masterwhite from "../assets/masterhomewhite.png";
+import "../styles/home.css";
+import axios from "axios";
+import Footer from "./Footer";
+import { Helmet } from "react-helmet";
+import { usdToBTC } from "../utils/helper";
 
 const Home = () => {
-  const [usdValue, setUSDValue] = useState("")
-  const [btcValue, setBTCValue] = useState("0")
-  const [selectedCard, setSelectedCard] = useState(null)
-  const [isValueValid, setIsValueValid] = useState(false)
-  const [selectedButton, setSelectedButton] = useState(1)
-  const [button, setButton] = useState(1)
-  const [loadAmount, setLoadAmount] = useState("")
-  const [selectedProvider, setSelectedProvider] = useState("All")
-  const [selectedPrice, setSelectedPrice] = useState("low")
-  const [alert, showAlert] = useState(false)
-  const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
-  const [selectedImage, setSelectedImage] = useState(null)
+  const [usdValue, setUSDValue] = useState("");
+  const [btcValue, setBTCValue] = useState("0");
+  const [isValueValid, setIsValueValid] = useState(false);
+  const [selectedButton, setSelectedButton] = useState(1);
+  const [button, setButton] = useState(1);
+  const [loadAmount, setLoadAmount] = useState("");
+  const [selectedProvider, setSelectedProvider] = useState("All");
+  const [selectedPrice, setSelectedPrice] = useState("low");
+  const [alert, showAlert] = useState(false);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleButtonClick = (event, buttonId) => {
-    event.preventDefault()
-    setSelectedButton(buttonId)
+    event.preventDefault();
+    setSelectedButton(buttonId);
     if (buttonId === 1) {
-      setSelectedImage(visawhite)
+      setSelectedImage(visawhite);
     } else if (buttonId === 2) {
-      setSelectedImage(masterwhite)
+      setSelectedImage(masterwhite);
     }
-  }
+  };
 
   const handleMainButtonClick = (event, buttonId) => {
-    event.preventDefault()
-    setButton(buttonId)
-  }
+    event.preventDefault();
+    setButton(buttonId);
+  };
 
   const handleBuyButtonClick = () => {
     navigate("/preowned", {
       state: { selectedProvider, selectedPrice },
-    })
-  }
+    });
+  };
 
   const handleBuyButtonClickMain = () => {
     if (btcValue === "0.00000") {
-      setIsValueValid(true)
+      setIsValueValid(true);
     } else {
-      setIsValueValid(false)
+      setIsValueValid(false);
     }
     usdValue
       ? navigate(
           `/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`
         )
-      : showAlert(true)
-  }
+      : showAlert(true);
+  };
 
   const handleProviderChange = (event) => {
-    setSelectedProvider(event.target.value)
-  }
+    setSelectedProvider(event.target.value);
+  };
 
   const handlePriceChange = (event) => {
-    setSelectedPrice(event.target.value)
-  }
+    setSelectedPrice(event.target.value);
+  };
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.post("/api/rate-api", { amount: usdValue });
+        const response = await axios.post("/api/rate-api");
         const btcPrice = response.data.value;
-        setBTCValue(btcPrice);
+        setBTCValue(usdToBTC(usdValue, btcPrice));
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setIsLoading(false);
       }
     };
-  
+
     fetchData();
   }, [usdValue, loadAmount]);
 
   const handleUSDSelect = (selectedValue) => {
-    const value = parseFloat(selectedValue)
-    setUSDValue(value)
-    setIsValueValid(false)
-    setLoadAmount(selectedValue)
-    selectedValue ? showAlert(false) : showAlert(true)
-  }
-  const pageTitle = "Prepaid Friends | Your Bitcoin Bridge to Global Spending"
+    const value = parseFloat(selectedValue);
+    setUSDValue(value);
+    setIsValueValid(false);
+    setLoadAmount(selectedValue);
+    selectedValue ? showAlert(false) : showAlert(true);
+  };
+  const pageTitle = "Prepaid Friends | Your Bitcoin Bridge to Global Spending";
   const pageDescription =
-    "Prepaid Friends: Your Bitcoin bridge to global spending. Exchange BTC for prepaid cards and enjoy seamless transactions worldwide. Join now!"
+    "Prepaid Friends: Your Bitcoin bridge to global spending. Exchange BTC for prepaid cards and enjoy seamless transactions worldwide. Join now!";
 
   return (
     <>
@@ -330,6 +329,6 @@ const Home = () => {
       </div>
       <Footer />
     </>
-  )
-}
-export default Home
+  );
+};
+export default Home;

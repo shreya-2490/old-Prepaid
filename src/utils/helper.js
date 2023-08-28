@@ -1,5 +1,7 @@
-const usdToBTC = (usdValue, btcRate) => {
-  return (usdValue / btcRate)?.toFixed(5);
+const usdToBTC = (amount, btcRate) => {
+  let bitcoin = amount / btcRate;
+  let bitcoinCalculation = Math.round(bitcoin * 1.0e8) / 1.0e8;
+  return bitcoinCalculation;
 };
 
 export { usdToBTC };

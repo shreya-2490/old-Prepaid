@@ -64,9 +64,7 @@ const Checkout = () => {
     const fetchData = async () => {
       setBTCRateLoading(true);
       try {
-        const response = await axios.post("/api/rate-api", {
-          amount: totalCardsValue,
-        });
+        const response = await axios.post("/api/rate-api");
         const btcRatePrice = response.data.value;
         setBTCRate(btcRatePrice);
       } catch (error) {
@@ -227,7 +225,9 @@ const Checkout = () => {
                   {btcRateLoading ? (
                     <Skeleton.Button size="small" shape="square" active />
                   ) : (
-                    <p className="BTC-total">{btcRate} BTC</p>
+                    <p className="BTC-total">
+                      {usdToBTC(totalCardsValue, btcRate)} BTC
+                    </p>
                   )}
                 </div>
               </div>
