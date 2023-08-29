@@ -329,7 +329,7 @@ const BulkCheckout = () => {
                     >
                       Continue to payment
                     </Button>
-                    <div className="email-div">
+                    {/* <div className="email-div">
                       <a
                         href="#"
                         onClick={() => setPaymentTypeSelectionOpen(false)}
@@ -343,7 +343,7 @@ const BulkCheckout = () => {
                           </span>
                         </span>
                       </a>
-                    </div>
+                    </div> */}
                   </div>
                 </>
               ) : (
