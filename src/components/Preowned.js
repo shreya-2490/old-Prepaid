@@ -1,84 +1,89 @@
-import React, { useState, useEffect, useContext } from "react"
-import axios from "axios"
-import NavbarCart from "./NavbarCart"
-import "../styles/preowned.css"
-import { Button, Col, Modal, Pagination, Row, Select } from "antd"
-import { useLocation, useNavigate } from "react-router"
-import wifi from "../assets/wifi1.png"
-import map from "../assets/map1.png"
-import master from "../assets/mastercard preowned.png"
-import visa from "../assets/visa preowned.png"
-import { CartContext } from "./CartContext"
-import Cart from "../shared-components/cart"
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import NavbarCart from "./NavbarCart";
+import "../styles/preowned.css";
+import { Button, Col, Modal, Pagination, Row, Select, message } from "antd";
+import { useLocation, useNavigate } from "react-router";
+import wifi from "../assets/wifi1.png";
+import map from "../assets/map1.png";
+import master from "../assets/mastercard preowned.png";
+import visa from "../assets/visa preowned.png";
+import { CartContext } from "./CartContext";
+import Cart from "../shared-components/cart";
+import { AuthContext } from "../context/auth-context";
+import { useCookies } from "react-cookie";
 
 function Preowned() {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const [cookies] = useCookies(["pfAuthToken"]);
+  const location = useLocation();
+  const navigate = useNavigate();
   const { selectedProvider: defaultProvider, selectedPrice: defaultPrice } =
-    location.state || {}
+    location.state || {};
   const [selectedProvider, setSelectedProvider] = useState(
     defaultProvider || "All"
-  )
-  const { addToCart, cartCount, cartItems } = useContext(CartContext)
-  const [cardData, setCardData] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [isCartOpen, setIsCartOpen] = useState(false)
-  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "")
-  const [currentPage, setCurrentPage] = useState(1)
-  const [filtersChanged, setFiltersChanged] = useState(false)
-  const { Option } = Select
+  );
+  const { addToCart, cartCount, cartItems } = useContext(CartContext);
+  const [cardData, setCardData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || "");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filtersChanged, setFiltersChanged] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { user } = useContext(AuthContext);
+  const { Option } = Select;
 
-  const cardsPerPage = 12
-  const totalCards = cardData.length
-  const totalPages = Math.ceil(totalCards / cardsPerPage)
+  const cardsPerPage = 12;
+  const totalCards = cardData.length;
+  const totalPages = Math.ceil(totalCards / cardsPerPage);
   if (currentPage > totalPages) {
-    setCurrentPage(totalPages)
+    setCurrentPage(totalPages);
   }
   useEffect(() => {
-    setCurrentPage(1)
-  }, [cardData])
+    setCurrentPage(1);
+  }, [cardData]);
 
   useEffect(() => {
     if (filtersChanged) {
-      setCurrentPage(1)
+      setCurrentPage(1);
     } else {
       axios
         .get("/api/get-card-with-type")
         .then((response) => {
-          let filteredData = response.data.cards
+          let filteredData = response.data.cards;
           if (selectedProvider !== "All") {
             filteredData = filteredData.filter(
               (card) => card.type === selectedProvider
-            )
+            );
           }
 
           if (selectedPrice === "low") {
-            filteredData = filteredData.sort((a, b) => a.price - b.price)
+            filteredData = filteredData.sort((a, b) => a.price - b.price);
           } else if (selectedPrice === "high") {
-            filteredData = filteredData.sort((a, b) => b.price - a.price)
+            filteredData = filteredData.sort((a, b) => b.price - a.price);
           }
-          setCardData(filteredData)
-          setLoading(false)
+          setCardData(filteredData);
+          setLoading(false);
         })
         .catch((error) => {
-          console.error("Error fetching card data:", error)
-          setLoading(false)
-        })
+          console.error("Error fetching card data:", error);
+          setLoading(false);
+        });
     }
-  }, [selectedProvider, selectedPrice, filtersChanged])
+  }, [selectedProvider, selectedPrice, filtersChanged]);
 
   const handleProviderChange = (value) => {
-    setLoading(true)
-    setSelectedProvider(value)
-  }
+    setLoading(true);
+    setSelectedProvider(value);
+  };
 
   const handlePriceChange = (value) => {
-    setLoading(true)
-    setSelectedPrice(value)
-  }
+    setLoading(true);
+    setSelectedPrice(value);
+  };
 
   const handleAddToCart = (card) => {
-    setIsCartOpen(true)
+    setIsCartOpen(true);
     addToCart({
       bin: card?.bin,
       card: card?.card,
@@ -86,31 +91,68 @@ function Preowned() {
       cardId: card?.id,
       usdValue: card?.price,
       type: card?.type,
-    })
-  }
+    });
+  };
 
   const handleKeepShopping = () => {
-    setIsCartOpen(false)
-  }
+    setIsCartOpen(false);
+  };
 
   const handleCheckout = () => {
-    navigate(`/checkout`)
-  }
+    if (user) {
+      setIsLoading(true);
+      axios
+        ?.post(
+          `/api/preowned-order`,
+          {
+            customer_name: user?.customerName,
+            email: user?.email,
+            payment_method: "btc",
+            guest: false,
+            items: cartItems?.map((cartItem) => ({
+              type:
+                cartItem?.type === "1" || cartItem?.type === "visa"
+                  ? "visa"
+                  : "master",
+              quantity: cartItem?.quantity,
+              price: cartItem?.usdValue,
+              bin: cartItem?.bin,
+              card: cartItem?.card,
+              cardId: cartItem?.cardId,
+            })),
+          },
+          {
+            headers: { Authorization: `Bearer ${cookies?.pfAuthToken}` },
+          }
+        )
+        .then((res) => {
+          navigate(`/payment`, {
+            state: { email: user?.email, data: res?.data },
+          });
+        })
+        .catch((error) => {
+          message.error(error.response.data.error);
+        })
+        ?.finally(() => setIsLoading(false));
+    } else {
+      navigate(`/checkout`);
+    }
+  };
 
   const handlePageChange = (page) => {
-    setCurrentPage(page)
-  }
+    setCurrentPage(page);
+  };
 
   const getCurrentPageData = () => {
-    const startIndex = (currentPage - 1) * cardsPerPage
-    const endIndex = startIndex + cardsPerPage
+    const startIndex = (currentPage - 1) * cardsPerPage;
+    const endIndex = startIndex + cardsPerPage;
     return cardData
       ?.filter(
         (currentPageCard) =>
           !cartItems?.some((cartItem) => cartItem.card === currentPageCard.card)
       )
-      .slice(startIndex, endIndex)
-  }
+      .slice(startIndex, endIndex);
+  };
 
   return (
     <>
@@ -224,7 +266,12 @@ function Preowned() {
                 <Button key="keepShopping" onClick={handleKeepShopping}>
                   Keep Shopping
                 </Button>
-                <Button key="checkout" type="primary" onClick={handleCheckout}>
+                <Button
+                  key="checkout"
+                  type="primary"
+                  onClick={handleCheckout}
+                  loading={isLoading}
+                >
                   Checkout ({cartCount})
                 </Button>
               </div>
@@ -240,6 +287,6 @@ function Preowned() {
         showSizeChanger={false}
       />
     </>
-  )
+  );
 }
-export default Preowned
+export default Preowned;
