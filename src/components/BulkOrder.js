@@ -407,6 +407,7 @@ const BulkOrder = () => {
                   <Skeleton.Button size="small" shape="square" active />
                 ) : (
                   <p>
+                    $
                     {(calculatedCharges?.items &&
                       calculatedCharges?.items[0]?.cost) ||
                       0}
@@ -427,6 +428,7 @@ const BulkOrder = () => {
                   <Skeleton.Button size="small" shape="square" active />
                 ) : (
                   <p>
+                    $
                     {(calculatedCharges?.items &&
                       calculatedCharges?.items[0]?.additional_cost) ||
                       0}
@@ -447,6 +449,7 @@ const BulkOrder = () => {
                   <Skeleton.Button size="small" shape="square" active />
                 ) : (
                   <p>
+                    $
                     {(calculatedCharges?.items &&
                       calculatedCharges?.items[0]?.international_cost) ||
                       0}
@@ -467,7 +470,7 @@ const BulkOrder = () => {
                 {reCalculatingCharges ? (
                   <Skeleton.Button size="small" shape="square" active />
                 ) : (
-                  <p>{calculatedCharges?.order_total || 0}</p>
+                  <p>${calculatedCharges?.order_total || 0}</p>
                 )}
               </div>
               <Button className="buyNowBtn" htmlType="submit">
