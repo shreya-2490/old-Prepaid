@@ -18,7 +18,11 @@ import Footer from "./Footer"
 import { Helmet } from "react-helmet"
 import { usdToBTC } from "../utils/helper"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faDollarSign, faBitcoinSign } from "@fortawesome/free-solid-svg-icons"
+import {
+  faDollarSign,
+  faBitcoinSign,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons"
 
 const Home = () => {
   const [usdValue, setUSDValue] = useState("")
@@ -35,8 +39,8 @@ const Home = () => {
   const [isChecked, setIsChecked] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const [emailValue, setEmailValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); 
+  const [emailValue, setEmailValue] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleButtonClick = (event, buttonId) => {
     event.preventDefault()
@@ -61,21 +65,18 @@ const Home = () => {
 
   const handleBuyButtonClickMain = () => {
     if (btcValue === "0.00000") {
-      setIsValueValid(true);
+      setIsValueValid(true)
     } else if (!isChecked) {
-      setIsModalVisible(true);
-    } else if (isChecked && !emailValue) {
-      setErrorMessage("Please enter your email address.");
+      setIsModalVisible(true)
     } else {
-      setIsValueValid(false);
+      setIsValueValid(false)
       usdValue
         ? navigate(
             `/cart?usdValue=${usdValue}&btcValue=${btcValue}&selectedButton=${selectedButton}`
           )
-        : showAlert(true);
+        : showAlert(true)
     }
-  };
-  
+  }
 
   const handleProceed = () => {
     navigate(
@@ -217,6 +218,43 @@ const Home = () => {
                     <Tag onClick={() => handleTagClick("300")}>$300</Tag>
                     <Tag onClick={() => handleTagClick("500")}>$500</Tag>
                   </Space>
+                  <div className="checkbox-email">
+                    <Checkbox
+                      style={{ marginRight: "0.2rem", marginTop: "0.8rem" }}
+                      checked={isChecked}
+                      onChange={() => setIsChecked(!isChecked)}
+                    />
+                    Get order confirmation on email
+                  </div>
+                  <form>
+                    {isChecked && (
+                      <div className="both-gray">
+                        <div className="first-gray">
+                          <div className="input-with-symbol">
+                            <span className="currency-symbol">
+                              <FontAwesomeIcon
+                                icon={faEnvelope}
+                                style={{ color: "#000000" }}
+                              />
+                            </span>
+                            <Input
+                              type="email"
+                              placeholder=" Enter your email"
+                              value={emailValue}
+                              onChange={(e) => setEmailValue(e.target.value)}
+                              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Email is required!",
+                                },
+                              ]}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </form>
                   {usdValue && (
                     <div className="xtra-charges">
                       <>
@@ -229,38 +267,12 @@ const Home = () => {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
-                            fontWeight:"600"
+                            fontWeight: "600",
                           }}
                         >
                           <p>$104</p>
                           <p>0.263636 BTC</p>
                         </div>
-                        <div className="checkbox-email">
-                          <Checkbox
-                            style={{ marginRight: "0.2rem" }}
-                            checked={isChecked}
-                            onChange={() => setIsChecked(!isChecked)}
-                          />
-                          Get order confirmation on email
-                        </div>
-                        <form>
-                          <div className="first-gray">
-                            <div className="input-with-symbol">
-                              {isChecked && (
-                               <Input
-                               type="email"
-                                  placeholder="Enter your email"
-                                  value={emailValue}
-                                  onChange={(e) => setEmailValue(e.target.value)}
-                               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
-                               required
-                                />
-                              
-                              )}
-                                {errorMessage && <p className="error-message">{errorMessage}</p>}
-                            </div>
-                          </div>
-                        </form>
                       </>
                     </div>
                   )}
