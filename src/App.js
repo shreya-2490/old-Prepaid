@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
+import Home1 from "./components/Home1"
 import NavbarCart from "./components/NavbarCart";
 import Checkout from "./components/Checkout";
 import Login from "./components/Login";
@@ -61,7 +62,7 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    <Home
+                    <Home1
                       selectedProvider={selectedProvider}
                       selectedPrice={selectedPrice}
                     />
